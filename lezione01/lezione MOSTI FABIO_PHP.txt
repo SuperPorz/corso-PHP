@@ -1,0 +1,55 @@
+PHP
+
+è linguaggio interpretato, non produce un eseguibile. E' procedurale; in php, ci si muove in ambiente ad alto traffico di dati: in un istante, potrebbero esserci centinaia
+di richieste di lettura ai database, quindi serve un programma rapido--->programmazione a oggetti sconveniente (tuttavia PHP ha delle funzioni ad oggetti per venire 
+incontro a chi è abituato).
+
+Nel gergo i programmi PHP vengono definititi SCRIPT e non software; esso è un file che si trova su un server (nella sua memoria fisica permanente):
+
+percorso tipo:   var/www/ciao.php   -->come viene letto? il client dice:  GET ciao.php
+
+document root: fondamentale per gestire le risorse necessarie al client per fruire del servizio desiderato
+
+PROCEDURA CLIENT-SERVER:
+
+client > browser > www.pippo.com > DNS (traduzione siti in indirizzi numerici) > 27.144.2.33 > contatto CLIENT-SERVER
+
+
+come è fatto un file PHP? 2 modi di scrittura (intero blocco, oppure a piccoli pezzetti inline)
+
+apertura script: <?php         end of file: ?>   (non si usa, la chiusura viene detta implicita, non si genera un errore)
+
+istruzione fondamentale: echo(   )    ------------invia l'outout al server
+
+futura.istricesrl.com
+
+operatore punto "."   -> serve a unire le stringhe       PHP_EOL è una costante di sistema, è immutabile     sono case sensitive
+
+installare XAMPP a casa --->esercitarsi a DATTILOGRAFARE, cercare siti per esercitarsi  dattilografia-online.com
+
+
+
+VARIABILI (statiche e dinamiche)
+
+le variabili in PHP si dichiarano col simbolo del dollaro $, esempio:  $a = 5 (dichiaro che la variabile a contiene il valore 5, dichiaraz+assegnazione)
+
+in PHP i dati sono già tipizzati, non bisogna specificare il tipo di dato (se numero intero, stringa, float ecc)-->in PHP i dati sono tutti puntatori 
+(questo non sempre è un bene, in C ad esempio, la tipizzazione stretta dei dati mette al riparo dagli errori)
+
+dentro le virgolette doppie, si possono risolvere anche operazioni --->implica l'uso del PARSING, quindi possibili tempi di calcolo gravosi
+con virgole semplici (apici): stampa come carattere il contenuto
+
+creare account github --->prof mosti fabio:   github.com/the-linux-nerd
+
+
+ARRAY ->tecnicamente sono vettori e matrici, contengono "cose", sono una struttura dati
+
+2 tipi: 
+	array ad indicizzazione automatica (0,1,2,3...) quindi non indicizzato
+	array associativi 
+parentesi quadre: XXX di accesso, servono per far accedere ad un contenuto
+
+esercizio: paginetta PHP simile all'ultimo esempio, nome e cognome nostro, generi musicali preferiti e odiati
+
+
+
