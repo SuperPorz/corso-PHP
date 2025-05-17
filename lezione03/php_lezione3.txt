@@ -1,0 +1,22 @@
+cotrutti decisionali: IF-THEN-ELSE
+
+costrutti iterativi: FOR, FOREACH, DO-WHILE, WHILE
+
+1=true 0=false (in PHP)
+    
+#COSTRUTTO IF    
+    # operatore uguaglianza: ==
+    # operatore disuguaglianza: != oppure <>
+    # operatore AND: && (vero se una entrambe le espressioni sono vere)
+    # operatore OR: || (vero se una delle due espressioni è vera)
+
+#COSTRUTTO SWITCH-CASE (permette di compattare un blocco con troppi elseif)  
+    # switch(variabile da valutare){
+    #        case:
+    #        break
+    #        }
+
+#COSTRUTTO FOR
+	
+	for(inizializzazione=da dove parte l'indice o la variabile , condizione, incremento)
+
