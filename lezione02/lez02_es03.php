@@ -6,8 +6,10 @@
 
     $area = ($cateto1 + $cateto2) /2;
     $perimetro = $cateto1 + $cateto2 + $ipotenusa;
-    echo '<h2>' . 'cateto a: ' . $cateto1 . '</h2>';
-    echo '<h2>' . ' cateto b: ' . $cateto2 . '</h2>';
-    echo '<h2>' . ' ipotenusa c: ' . $ipotenusa . '</h2>';
-    echo '<h1>' . ' Area: ' . $area . '</h1>';
-    echo '<h1>' . ' Perimetro: ' . $perimetro . '</h1>';
+    echo '<h2>cateto a: '.$cateto1 .'</h2>';
+    echo '<h2>cateto b: '.$cateto2 .'</h2>';
+    echo '<h2>ipotenusa c: '.$ipotenusa .'</h2>';
+    echo '<h1>Area: '.$area.'</h1>';
+    echo '<h1>Perimetro: '.$perimetro .'</h1>';
+
+    # osservazione: per concatenare non servono spazi prima e dopo il "punto"
