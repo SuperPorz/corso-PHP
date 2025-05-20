@@ -1,0 +1,71 @@
+LEZIONE 4 - PHP
+
+ripasso: costrutti-->blocchi di codice all'interno di parentesi {}
+
+######## FUNZIONI
+le {} si usano anche per blocchi di funzioni; a questa va dato un nome, in modo da poterla richiamare quando
+mi pare; una funz è un blocco codice con un'etichetta richiamabile in ogni momento;
+
+La funz ha input e output, che si definiscono all'interno di parentesi tonde in questo modo:
+
+f(x,y,z) = (x)(y)(z){.....codice....} --->si esce dalla funz con "return"
+
+Le funz si dividono in 2 grandi categorie: funzioni VOID  e NON VOID (void=vuoto)
+
+- le VOID non possono essere membro destro, non hanno un ritorno, non resistuiscono output
+- le NON VOID possono essere membreo destro (ma anche no)
+
+la vita della funzione è divisa in 2 fasi:
+	1) la definizione (una sola volta)
+	2) la chiamata (infinite volte)
+
+######## PUNTATORI
+- $ significa: "valore di..."
+esempio: echo $a = "stampa il valore di a"
+
+- per riferirci all'INDIRIZZO di a, si usa l'operatore &
+esempio: &$a = "fai riferimento all'indirizzo di a, all'allocazione della sua memoria"
+
+######## INDICAZIONI GENERICHE
+# conviene cercare di stare compatti con il codice
+# conviene dividere in moduli/files di una paginetta
+struttura app: 
+	- PHP (architettura)
+	- database
+	- html
+	- css
+	- JS
+	- assets (immagini, icone..)
+
+######## MODI PER STRUTTRARE APP 
+
+- PER FILE: (approccio accessibile per i junior)
+	- elenco.php
+	- prenotazioni.php
+
+- PER ROUTE: (approccio leggermente più MASTER PRO)
+	- visualizza.php
+	- modifica.php
+	- htaccess.php--->smista le richieste verso le varie funzioni
+
+...siamo all'antipasto dell'analisi e progettazione software...
+quale approccio sceglie?
+-chiedersi quali schermate il servizio dovrà avere;
+
+
+ESERCIZIO: 
+- scrivere libreria con funzioni che calcolino area di trinagoli, rettangoli e cerchio (3 funz)
+- creare file index che chiede all'utente con menu tendina scegliere la forma, e di conseguenza viene chiesto
+  l'input dei parametri (esempio, per cerchio richiedere solamente il raggio)
+
+
+
+
+
+
+
+
+
+
+
+
