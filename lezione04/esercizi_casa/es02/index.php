@@ -1,6 +1,6 @@
 <?php
 
-    require 'libreria_2.php';
+    require 'libreria.php';
 
     $a = 1;
     $b = 2;

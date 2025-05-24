@@ -12,6 +12,6 @@
     echo '<body>'. PHP_EOL;
     echo '<h2>Lezione 4 - esercizio per casa 2</h2>'. PHP_EOL;
     echo 'Il Minimo Comune Multiplo tra '. '<strong>' .$a . ' e ' . $b . '</strong>' ." risulta: <br>" .PHP_EOL;
-    echo '<h1>' . mcm($a, $b) . '</h1'. PHP_EOL;
+    echo '<h1>' . mcm($a, $b) . '</h1>'. PHP_EOL;
     echo '</body>'. PHP_EOL;
     echo '</html>'. PHP_EOL;
