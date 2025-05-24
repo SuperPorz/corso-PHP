@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Form con Action Condizionale</title>
+  <script>
+    function aggiornaAction(form) {
+      const valoreInput = document.getElementById('destinazione').value;
+
+      // Imposta l'action in base al valore inserito
+      if (valoreInput === 'uno') {
+        form.action = 'pagina1.php';
+      } else if (valoreInput === 'due') {
+        form.action = 'pagina2.php';
+      } else {
+        form.action = 'pagina_default.php';
+      }
+
+      return true; // continua con l'invio del form
+    }
+  </script>
+</head>
+<body>
+
+<form method="POST" onsubmit="return aggiornaAction(this);">
+  <label for="destinazione">Scegli destinazione:</label>
+  <select name="destinazione" id="destinazione">
+    <option value="uno">Destinazione 1</option>
+    <option value="due">Destinazione 2</option>
+  </select>
+  <br>
+  <input type="submit" value="Invia">
+</form>
+
+</body>
+</html>
