@@ -13,7 +13,7 @@
         $pagina = $pagine[1];
         $output = render_1('templates/index.html', $pagina);
         $output = creaSelect('{{lista_piatti}}', $menu_piatti, $output); 
-        echo $output;
+        echo $output; #come mai la variabile output non si sovrascrive?
     
     } else {
 
@@ -22,7 +22,6 @@
         $piatto_scelto = $menu_piatti[$_POST['piatto']];
         $output2 = render_2('templates/ingredienti.html', $pagina, $menu_piatti[$_POST['piatto']]);
         echo $output2;
-        exit;
     }
 
         

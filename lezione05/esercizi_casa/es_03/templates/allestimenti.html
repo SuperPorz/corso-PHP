@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>{{titolo}}</title>
+        <link rel="stylesheet" href="../css/stile.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>{{h1}}</h1>
+        <p>{{contenuto}}</p>
+        <form action="lib/pagine.php" method="post">
+            <label for="X1">x1</label>
+            <input type="number" id="X1" name="variabX1" min="-999" max="999">           <!-- input variabile x1 -->
+            
+            <label for="Y1">y1</label>
+            <input type="number" id="Y1" name="variabY1" min="-999" max="999"><br>       <!-- input variabile y1 -->
+            
+            <label for="X2">x2</label>
+            <input type="number" id="X2" name="variabX2" min="-999" max="999">           <!-- input variabile x2 -->
+            
+            <label for="Y2">y2</label>
+            <input type="number" id="Y2" name="variabY2" min="-999" max="999"><br><br>   <!-- input variabile y2 -->
+
+            <input type="submit" value="Invia Dati">
+        </form>
+    </body>
+</html>

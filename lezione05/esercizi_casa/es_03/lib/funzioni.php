@@ -53,6 +53,3 @@
         // rappresento il template
         return $contenuto2;
     }
-
-
-    # creare funzione RENDER unica con verifica condizionale se input array1 e array2 sono settati
