@@ -27,7 +27,7 @@
 
         // creo le opzioni della select
         foreach ($valori as $key => $value) {
-            $select .= '<option value="' . $key . '">' . $value['nome'] . '</option>';
+            $select .= '<option value="' . $key . '">' . $value . '</option>';
         }
 
         // sostituisco il segnaposto con la select
@@ -46,10 +46,14 @@
             $contenuto2 = str_replace('{{' . $key . '}}', $value, $contenuto2); 
         }
 
-        foreach ($dati3 as $key => $value) {
-            $contenuto2 = str_replace('{{' . $key . '}}', $value, $contenuto2); 
-        }
+        $contenuto3 = str_replace('{{prezzo}}', $dati3[$_POST['modello_selezionato']][$_POST['allestimento']], $contenuto2);
 
         // rappresento il template
-        return $contenuto2;
+        return $contenuto3;
     }
+
+    /* function render_prezzo($template3, $array,) {
+
+        $contenuto3 = file_get_contents($template3);
+        return $contenuto3 = str_replace('{{prezzo}}', $array[$_POST['modello_selezionato']][$_POST['allestimento']], $contenuto3);
+    } */

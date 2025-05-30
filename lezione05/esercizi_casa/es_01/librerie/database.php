@@ -48,16 +48,3 @@
             "prezzo"=> "12€",            
         )
     );
-
-
-
-   /*  $pag_ingr = array(
-        
-        'titolo' => 'Ingredienti',
-        'h1' => 'Gli ingredienti del piatto scelto sono: ',
-        'contenuto' => 'Hai scelto una figura, ora inserisci i dati',
-        'template' => 'ingredienti.html',
-        'nome_piatto' => $menu_piatti[$_POST['piatto']['nome']],
-        'ingredienti_piatto'=> $menu_piatti[$_POST['piatto']['ingredienti']],
-        'prezzo_piatto' =>  $menu_piatti[$_POST['piatto']['prezzo']],
-    ); */

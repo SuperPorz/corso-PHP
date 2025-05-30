@@ -4,30 +4,30 @@
     $saloneAuto = array(
         0 => array(
             "modello"=> "BMW Serie 1",
-            "allestimento_base"=> "29'000€",
-            "allestimento_standard"=> "36'000€",
-            "allestimento_lusso"=> "41'000€",
+            "base"=> "29'000€",
+            "standard"=> "36'000€",
+            "lusso"=> "41'000€",
         ),
 
         1 => array(
             "modello"=> "Mercedes Classe A",
-            "allestimento_base"=> "39'000€",
-            "allestimento_standard"=> "47'000€",
-            "allestimento_lusso"=> "68'000€",
+            "base"=> "39'000€",
+            "standard"=> "47'000€",
+            "lusso"=> "68'000€",
         ),
 
         2 => array(
             "modello"=> "Fiat Punto EVO GPL",
-            "allestimento_base"=> "9'500€",
-            "allestimento_standard"=> "12'000€",
-            "allestimento_lusso"=> "15'500€",
+            "base"=> "9'500€",
+            "standard"=> "12'000€",
+            "lusso"=> "15'500€",
         ),
 
         3 => array(
             "modello"=> "Audi RS3 Sportback",
-            "allestimento_base"=> "54'000€",
-            "allestimento_standard"=> "62'000€",
-            "allestimento_lusso"=> "84'000€",
+            "base"=> "54'000€",
+            "standard"=> "62'000€",
+            "lusso"=> "84'000€",
         ),
 
     );
@@ -50,7 +50,7 @@
             'titolo' => 'Selezione Allestimenti',
             'h1' => 'Allestimenti disponibili per il modello selezionato',
             'contenuto' => 'Scegli quale allestimento desideri per il modello scelto, clicca invia e scopri il prezzo: ' ,
-            'template' => 'index.html',
+            'template' => 'allestimenti.html',
         ),
 
         3 => array(
@@ -59,4 +59,13 @@
             'contenuto' => ' ??? ' ,
             'template' => 'prezzo.html',
         ),
+    );
+
+
+    $allestimenti = array(
+
+        "base" => "allestimento base",
+        "standard" => "allestimento standard",
+        "lusso" => "allestimento lusso",
+
     );

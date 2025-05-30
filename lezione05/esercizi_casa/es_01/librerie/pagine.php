@@ -19,7 +19,7 @@
 
         # PAGINA INGREDIENTI
         $pagina = $pagine[2];
-        $piatto_scelto = $menu_piatti[$_POST['piatto']];
+        $piatto_scelto = $menu_piatti[$_POST['piatto']]; #-->serve veramente questa riga????
         $output2 = render_2('templates/ingredienti.html', $pagina, $menu_piatti[$_POST['piatto']]);
         echo $output2;
     }
