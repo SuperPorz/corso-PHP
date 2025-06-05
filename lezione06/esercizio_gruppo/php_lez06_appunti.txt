@@ -1,0 +1,4 @@
+ESPRESSIONI REGOLARI
+
+sono un linguaggio di ricerca di pattern di testo; ragionano in modo avaro, greedy...cercano di prendere 
+più testo possibile...
