@@ -37,8 +37,8 @@
 
         #ramo campi triangolo  
         0 => array(                
-            'campo1' => 'cateto1',
-            'campo2' => 'cateto2',
+            'campo1' => 'base',
+            'campo2' => 'altezza',
         ),
 
         #ramo campi rettangolo 

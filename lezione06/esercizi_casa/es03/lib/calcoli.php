@@ -3,12 +3,16 @@
     function area($param1, $param2) {
 
         switch (True) {
-            case ($param2 == 0):  #caso del cerchio
+            case (array_key_exists('raggio', $_POST)):  #area del cerchio
                 $area = $param1**2 * 3.14 ;
                 break;
 
-            case isset($param2):
+            case (array_key_exists('lato1', $_POST)):   #area del rettangolo
                 $area = $param1 * $param2 ;
+                break;
+            
+            case (array_key_exists('base', $_POST)):   #area del triangolo
+                $area = ($param1 * $param2) / 2 ;
                 break;
         }
 
