@@ -7,9 +7,18 @@
         <h1>{{h1}}</h1>
         <div>
             <form action="conferma.html" method="POST">
-                <select name="primo">{{menu_primi}}</select>
-                <select name="secondo">{{menu_secondi}}</select>
-                <select name="dolce">{{menu_dolci}}</select>
+                <SPAN style="display: inline-block;">
+                    <label style="text-align: center;"><b>PRIMI:</b></label><br>
+                    <select name="primo">{{menu_primi}}</select>
+                </SPAN>
+                <SPAN style="display: inline-block;">
+                    <label style="text-align: center;"><b>SECONDI:</b></label><br>
+                    <select name="secondo">{{menu_secondi}}</select>
+                </SPAN>
+                <SPAN style="display: inline-block;">
+                    <label style="text-align: center;"><b>DOLCI</b></label><br>
+                    <select name="dolce">{{menu_dolci}}</select>
+                </SPAN>
                 <input type="submit" value="INVIA">
             </form>
         </div>
