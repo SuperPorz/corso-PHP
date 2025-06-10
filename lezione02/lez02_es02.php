@@ -33,7 +33,11 @@
             2 => "sebina",
             3 => "celine",
             4 => "igor",
-            5 => "sasha",
+            5 => array(
+                0 => 'marco',
+                1 => 'giovanni',
+                2 => 'laura',
+            ),
         ),
     );
 
@@ -48,7 +52,15 @@
     $piano = $_GET['piano'];
     $stanza = $_GET['stanza'];
 
-    echo '<h1>' . $edificio[$piano][$stanza] . '</h1>' . PHP_EOL;
+    if (is_array($edificio[$piano][$stanza])) {
+
+        echo '<h1>' . implode(', ', $edificio[$piano][$stanza]) .'</h1>'. PHP_EOL;
+
+    } else {
+
+        echo '<h1>' . $edificio[$piano][$stanza] . '</h1>' . PHP_EOL;
+        }
+    
 
 
     
