@@ -4,7 +4,7 @@
     require_once 'lib/database.php';
     require_once 'lib/funzioni.php';
 
-    ############  PAGINA INDEX (1)  ############
+     ############  PAGINA INDEX (1)  ############
     if ($_REQUEST['p'] == 'index') {
 
         #libreria specifica richiesta:
@@ -22,7 +22,7 @@
         echo $render_index;
 
 
-    ############  PAGINA CONFERMA (2)  ############
+     ############  PAGINA CONFERMA (2)  ############
     } elseif ($_REQUEST['p'] == 'conferma') {
     
         #libreria specifica richiesta:
@@ -46,7 +46,7 @@
         #render parte finale di 'conferma.html'
         echo $render_pagina2;
 
-    ############  PAGINA RINGRAZIAMENTI (3)  ############
+     ############  PAGINA RINGRAZIAMENTI (3)  ############
     } elseif ($_REQUEST['p'] == 'ringraziamenti') {
 
         echo render($pagine['ringraziamenti']['template'], $pagine['ringraziamenti']['contenuto']);
