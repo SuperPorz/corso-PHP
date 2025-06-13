@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Estratto Conto</title>
+    </head>
+    <body>
+        <h1>Inserisci descrizione e prezzo della voce di spesa da inserire nell'estratto conto</h1>
+        <form method="post" action="index.php">
+        <input type="text" name="descrizione" placeholder="descrizione" required maxlength="50">
+        <input type="text" name="prezzo" placeholder="prezzo" required maxlength="6" min="1">
+        <input type="submit" name="inserisci" value="INSERISCI">
+        </form>
+        <h3>ESTRATTO CONTO:</h3><br><span style="font-style: italic; position: relative; top: -35px; ">(descrizione => valore €)</span><br>
+        <h3>SPESA TOTALE: 37€</h3>
+        <span>carburante => 12 €</span><br><span>alimentari => 25 €</span><br><a>
+    </body>
+</html>

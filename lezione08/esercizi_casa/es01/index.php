@@ -68,5 +68,8 @@
             file_put_contents('cache.html', ''); #prima svuoto il file temporaneo
             file_put_contents('cache.html', $render2); #poi ci scrivo la stringa HTML aggiornata
             echo $render2;
-        } 
+        } else {
+            // Se non ci sono nuovi dati POST, mostro semplicemente la cache esistente
+            echo template_HTML('cache.html');
+        }
     }
