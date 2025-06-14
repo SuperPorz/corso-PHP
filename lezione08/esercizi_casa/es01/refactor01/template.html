@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista Spesa</title>
+    </head>
+    <body>
+        <h1>Inserisci i prodotti che vuoi mettere in lista e la relativa quantità</h1>
+        <form method="post" action="index.php">
+        <input type="text" name="prodotto" placeholder="prodotto" required maxlength="20">
+        <input type="text" name="quantita" placeholder="quantità" required maxlenght="20" min="1">
+        <input type="submit" name="aggiungi" value="Aggiungi">
+        </form>
+        <h3>LISTA DELLA SPESA:</h3>
+        <ul>{{lista}}</ul>
+    </body>
+</html>
