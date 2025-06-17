@@ -1,0 +1,13 @@
+##### concetto di IDENTIFICATIVO UNIVOCO ######  --> md5 hashing associato a ciascuna voce/record
+
+
+ESERCIZIO IN CLASSE
+scrivere programma per gestire i cani di un canile: 
+campi: nome cane, anno nascita
+
+	- aggiunta nominativo cane
+	- modifica nominativo cane
+	- elimina nominativo cane
+
+
+Model View Controller --> nuovo approccio/paradigma (M.V.C.)
