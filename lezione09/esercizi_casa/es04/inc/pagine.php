@@ -1,10 +1,5 @@
 <?php
 
-    /* # PAGINA DI DEFAULT
-    if (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']])) {
-        $_REQUEST['p'] = 'classifiche';
-    } */
-
     $pagine = array(
         'classifiche' => array(
             'contenuto' => array(
@@ -66,5 +61,3 @@
             ],
         ),
     );
-    
-    #$p = $pagine[$_REQUEST['p']]; # scorciatoia per la pagina richiesta 
