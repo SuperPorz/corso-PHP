@@ -27,12 +27,6 @@
     // RENDERING DELLE PAGINE (logica)
     switch (True) {
 
-        /* case (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']]) || $_REQUEST['p'] == 'classifiche' || $_REQUEST['p'] == 'index'):  // RENDER CLASSIFICHE
-            $_REQUEST['p'] = 'classifiche';  
-            $render = Render\render($p['template'],$p['contenuto']); # render parti principali
-            echo $render;
-            break; */
-
         case($_REQUEST['p'] == 'lista-piloti'):  // RENDER PILOTI
             $render = Render\render($p['template'],$p['contenuto']); # render parti principali
             $render = str_replace('{{select}}', $p['contenuto']['select'], $render);  # render parti specifiche della pagina
