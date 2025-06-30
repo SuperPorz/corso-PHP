@@ -16,7 +16,7 @@
             'type' => 'text',
             'name' => 'nome_campo',
             'placeholder' => 'nome campo',
-            'value' => isset($_GET['edit_id']) && !empty($_GET['edit_id']) ? $database_campi[$_GET['edit_id']]['nome'] : '',
+            'value' => isset($_GET['edit_id']) && !empty($_GET['edit_id']) ? $database_campi[$_GET['edit_id']]['nome_campo'] : '',
             '' => 'required',
         ),
         'submit' => array(

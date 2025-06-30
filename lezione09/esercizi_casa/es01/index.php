@@ -4,7 +4,6 @@
     require_once 'lib/render.php';
 
     ######## SCRITTURA DATI #################
-
     ## inserisco la lista del database dentro una variabile
     $registro = Registro\lista();
 
@@ -15,7 +14,6 @@
         }
 
     ######## MODIFICA DATI  #################
-
     ## per modificare i valori dei campi, li popolo con i dati precedenti presenti in database
     if (isset($_GET['edit_id']) && !empty($_GET['edit_id'])) 
         {
@@ -32,7 +30,6 @@
         }
 
     ######## ELIMINA DATI  #################
-
     ## con la funz. elimina, tolgo dal database l'id che mi viene passato con gET (tramite click del link elimina di fianco al record)
     if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) 
         {
@@ -42,7 +39,6 @@
 
 
     ######## RENDERING  #################
-
     ## aggiorniamo la lista contentuta dalla variabile (dopo eventuali modifiche)
     $registro = Registro\lista();
 
