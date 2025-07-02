@@ -5,7 +5,7 @@
         $righe[] = Render\render(
             'tpl/persone.table.row.html',
             [
-                'id' => $persona['id'],
+                'id_p' => $persona['id_p'],
                 'nome' => $persona['nome'],
                 'numero' => $persona['numero']
             ]
@@ -23,7 +23,7 @@
         'tpl/persone.form.html',
         [
             'azione' => ( $_REQUEST['azione'] == 'modifica' ) ? 'modifica' : 'aggiungi',
-            'id' => $_REQUEST['id'] ?? '',
+            'id_p' => $_REQUEST['id_p'] ?? '',
             'nome' => $_REQUEST['nome'] ?? '',
             'numero' => $_REQUEST['numero'] ?? ''
         ]

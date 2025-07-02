@@ -40,9 +40,9 @@
             $id = intval($id);
             $nome = trim($nome);
             $numero = trim($numero);
-            $sql = "UPDATE persone SET nome = :nome, numero = :numero WHERE id = :id";
+            $sql = "UPDATE persone SET nome = :nome, numero = :numero WHERE id = :id_p";
             $params = [
-                ':id' => $id,
+                ':id_p' => $id,
                 ':nome' => $nome,
                 ':numero' => $numero
             ];
@@ -62,8 +62,8 @@
     function elimina($id) {
         if( ! empty($id) && is_numeric($id) ) {
             $id = intval($id);
-            $sql = "DELETE FROM persone WHERE id = :id";
-            $params = [':id' => $id];
+            $sql = "DELETE FROM persone WHERE id_p = :id_p";
+            $params = [':id_p' => $id];
             $sql = \DB\prepare($sql, $params);
             $res = mysqli_query(\DB\getConnection(), $sql);
             return $res;
@@ -97,8 +97,8 @@
     function dettagli($id) {
         if( ! empty($id) && is_numeric($id) ) {
             $id = intval($id);
-            $sql = "SELECT * FROM persone WHERE id = :id";
-            $params = [':id' => $id];
+            $sql = "SELECT * FROM persone WHERE id_p = :id_p";
+            $params = [':id_p' => $id];
             $sql = \DB\prepare($sql, $params);
             $res = mysqli_query(\DB\getConnection(), $sql);
             return mysqli_fetch_assoc($res);

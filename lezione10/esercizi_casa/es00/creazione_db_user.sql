@@ -1,16 +1,11 @@
-DROP DATABASE IF EXISTS php_test;
+CREATE DATABASE php_es00;
 
-CREATE DATABASE php_esercizi;
+USE php_es00;
 
-USE php_test;
+DROP TABLE persone;
 
-select user, host
-from mysql.user;
-
-CREATE USER 'MIKY' @'localhost' IDENTIFIED BY '1990';
-
-DROP USER MIKY@'localhost';
-
-GRANT ALL ON php_esercizi TO 'MIKY' @'localhost';
-
-SHOW GRANTS;
+CREATE TABLE persone (
+id_p INT AUTO_INCREMENT PRIMARY KEY, 
+nome VARCHAR(20), 
+numero INT NOT NULL
+);

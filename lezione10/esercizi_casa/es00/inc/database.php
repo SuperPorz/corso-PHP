@@ -2,9 +2,9 @@
 
     $server = "localhost";
     $port = "3306";
-    $user = "MIKY";
-    $pass = "1990";
-    $db = "php_esercizi";
+    $user = "root";
+    $pass = "";
+    $db = "php_es00";
 
     $conn = mysqli_connect($server, $user, $pass, $db, $port);
 
