@@ -1,10 +1,10 @@
 <?php
 
-    $server = "localhost";
+    $server = "mysql.istricesrl.it";
     $port = "3306";
-    $user = "MIKY";
-    $pass = "1990";
-    $db = "php_esercizi";
+    $user = "futura";
+    $pass = "Futura2025!";
+    $db = "com_istricesrl_futura_dev";
 
     $conn = mysqli_connect($server, $user, $pass, $db, $port);
 
