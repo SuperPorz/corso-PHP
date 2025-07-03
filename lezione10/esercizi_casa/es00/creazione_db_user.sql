@@ -20,4 +20,4 @@ ora_azione datetime NOT NULL
 );
 
 SELECT *
-FROM UMANI;
+FROM umani;
