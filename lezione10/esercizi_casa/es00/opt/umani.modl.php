@@ -40,8 +40,6 @@
         if( ! empty($id_p) && is_numeric($id_p) ) {
             $id_p = intval($id_p);
             $sql = "DELETE FROM umani WHERE id_p = '$id_p'";
-            /* $params = [':id_p' => $id_p];
-            $sql = \Funzioni\prepare($sql, $params); */
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
@@ -66,8 +64,6 @@
         if( !empty($id_p) && is_numeric($id_p) ) {
             $id_p = intval($id_p);
             $sql = "SELECT * FROM umani WHERE id_p = '$id_p'";
-            // $params = [':id_p' => $id_p];
-            //$sql = \Funzioni\prepare($sql, $params);
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return mysqli_fetch_assoc($res);
         } else {

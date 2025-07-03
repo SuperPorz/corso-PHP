@@ -20,20 +20,20 @@
             break;
 
         case 'modifica':
-            if (isset($_REQUEST['nome']) && !empty($_REQUEST['nome']) 
-                && isset($_REQUEST['cognome']) && !empty($_REQUEST['cognome'])
-                && isset($_REQUEST['numero']) && !empty($_REQUEST['numero'])
-                && isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p'])
-            )
-                {
-                    Umani\modifica($_REQUEST['id_p'], $_REQUEST['nome'], $_REQUEST['cognome'], $_REQUEST['numero']);
-                }
-            if (isset($_REQUEST['id_p'])) // questo if serve per popolare i campi input in caso si chieda la modifica
+            if (isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p'])) // questo if serve per popolare i campi input in caso si chieda la modifica
                 {
                     $dettagli_persona = Umani\dettagli($_REQUEST['id_p']);
                     $_REQUEST['nome'] = $dettagli_persona['nome'];
                     $_REQUEST['cognome'] = $dettagli_persona['cognome'];
                     $_REQUEST['numero'] = $dettagli_persona['numero'];
+                }
+            if (isset($_REQUEST['nome']) && !empty($_REQUEST['nome']) 
+                && isset($_REQUEST['cognome']) && !empty($_REQUEST['cognome'])
+                && isset($_REQUEST['numero']) && !empty($_REQUEST['numero'])
+                && isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p'])
+                )
+                {
+                    Umani\modifica($_REQUEST['id_p'], $_REQUEST['nome'], $_REQUEST['cognome'], $_REQUEST['numero']);
                 }
             break;
 
