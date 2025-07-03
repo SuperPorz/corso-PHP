@@ -15,6 +15,7 @@
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
+            echo "DEBUG - Dati non validi<br>";
             return false;
         }
 
@@ -28,10 +29,10 @@
             $cognome = trim($cognome);
             $numero = trim($numero);
             $sql = "UPDATE umani SET nome = '$nome', cognome = '$cognome', numero = '$numero' WHERE id_p = '$id_p'";
-            var_dump($sql);
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
+            echo "DEBUG - Dati non validi<br>";
             return false;
         }
     }
@@ -44,6 +45,7 @@
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
+            echo "DEBUG - Dati non validi<br>";
             return false;
         }
     }
@@ -68,6 +70,7 @@
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return mysqli_fetch_assoc($res);
         } else {
+            echo "DEBUG - Dati non validi<br>";
             return false;
         }
     }
