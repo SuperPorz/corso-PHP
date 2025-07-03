@@ -11,13 +11,7 @@
             $nome = trim($nome);
             $cognome = trim($cognome);
             $numero = trim($numero);
-            $sql = "INSERT INTO umani (nome, cognome, numero) VALUES (" . $nome . ", " . $cognome . ", " . $numero  . ")" ;
-            echo $sql;
-           /*  $params = [
-                ':nome' => $nome,
-                ':numero' => $numero
-            ];
-            $sql = \Funzioni\prepare($sql,$params); */
+            $sql = "INSERT INTO umani (nome, cognome, numero) VALUES ('$nome', '$cognome', '$numero')" ;
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
@@ -33,13 +27,7 @@
             $nome = trim($nome);
             $cognome = trim($cognome);
             $numero = trim($numero);
-            $sql = "UPDATE umani SET nome = " . $nome . ", " . $cognome . ", " . $numero . ") " . "WHERE id_p = " . $id_p;
-            /* $params = [
-                ':id_p' => $id_p,
-                ':nome' => $nome,
-                ':numero' => $numero
-            ];
-            $sql = \DB\prepare($sql, $params); */
+            $sql = "UPDATE umani SET nome = '$nome', cognome = '$cognome', numero = '$numero' WHERE id_p = '$id_p'";
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
@@ -51,7 +39,7 @@
     function elimina($id_p) {
         if( ! empty($id_p) && is_numeric($id_p) ) {
             $id_p = intval($id_p);
-            $sql = "DELETE FROM umani WHERE id_p = " .$id_p;
+            $sql = "DELETE FROM umani WHERE id_p = '$id_p'";
             /* $params = [':id_p' => $id_p];
             $sql = \Funzioni\prepare($sql, $params); */
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
@@ -77,7 +65,7 @@
     function dettagli($id_p) {
         if( !empty($id_p) && is_numeric($id_p) ) {
             $id_p = intval($id_p);
-            $sql = "SELECT * FROM umani WHERE id_p = " . $id_p;
+            $sql = "SELECT * FROM umani WHERE id_p = '$id_p'";
             // $params = [':id_p' => $id_p];
             //$sql = \Funzioni\prepare($sql, $params);
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
