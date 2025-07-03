@@ -21,13 +21,14 @@
     }
 
     # modifica una persona nella lista
-    function modifica($id_p, $nome, $numero, $cognome) {
+    function modifica($id_p, $nome, $cognome, $numero) {
         if (!empty($id_p) && is_numeric($id_p) && !empty($nome) && !empty($cognome) && !empty($numero)) {
             $id_p = intval($id_p);
             $nome = trim($nome);
             $cognome = trim($cognome);
             $numero = trim($numero);
             $sql = "UPDATE umani SET nome = '$nome', cognome = '$cognome', numero = '$numero' WHERE id_p = '$id_p'";
+            var_dump($sql);
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {

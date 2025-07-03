@@ -4,7 +4,7 @@
     $port = "3306";
     $user = "root";
     $pass = "";
-    $db = "php_es00";
+    $db = "php_esMOSTI";
 
     $conn = mysqli_connect($server, $user, $pass, $db, $port);
 

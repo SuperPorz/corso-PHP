@@ -3,11 +3,25 @@
     #lista pagine disponibili
     $pagine = array (
 
-        'lista_umani' => array (
+        'homepage' => array (
+            'contenuto' => array(
+
+                'titolo' => 'HOMEPAGE',
+                'h1' => 'Elenco umani registrati',
+                'table' => '',
+                'form' => '',
+            ),
+            'template' => 'tpl/main.html',
+            'include' => [
+                'opt/umani.modl.php',
+                'opt/homepage.view.php',
+            ]
+        ),
+        'modifica_umani' => array (
             'contenuto' => array(
 
                 'titolo' => 'UMANI',
-                'h1' => 'Elenco umani registrati',
+                'h1' => 'Modifica umani registrati',
                 'table' => '',
                 'form' => '',
             ),
@@ -37,7 +51,7 @@
     
     #spagina default
     if (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']])) {
-        $_REQUEST['p'] = 'lista_umani';
+        $_REQUEST['p'] = 'homepage';
     }
 
     

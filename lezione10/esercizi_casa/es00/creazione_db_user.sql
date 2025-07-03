@@ -21,3 +21,20 @@ ora_azione datetime NOT NULL
 
 SELECT *
 FROM umani;
+
+-- ---------------------------  ESERCIZIO MOSTI IN CLASSE ---------------------------------
+CREATE DATABASE php_esMOSTI;
+
+USE php_esMOSTI;
+
+DROP TABLE persone;
+
+CREATE TABLE persone (
+id_p INT AUTO_INCREMENT PRIMARY KEY, 
+nome VARCHAR(20) NOT NULL, 
+numero INT NOT NULL
+);
+
+SELECT *
+FROM persone;
+
