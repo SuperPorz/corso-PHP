@@ -28,6 +28,7 @@
             'template' => 'tpl/main.html',
             'include' => [
                 'opt/umani.modl.php',
+                'opt/log.modl.php',
                 'opt/umani.ctrl.php',
                 'opt/umani.view.php',
             ]

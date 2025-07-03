@@ -25,10 +25,10 @@
     $form = Funzioni\render('tpl/umani.form.html', 
   [
             'azione' => ( $_REQUEST['azione'] == 'modifica' ) ? 'modifica' : 'aggiungi', 
-            'val_id_p' => isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p']) ? $_REQUEST['id_p'] : '',
-            'val_nome' => isset($_REQUEST['nome']) && !empty($_REQUEST['nome']) ? $_REQUEST['nome'] : '',
-            'val_cognome' => isset($_REQUEST['cognome']) && !empty($_REQUEST['cognome']) ? $_REQUEST['cognome'] : '',
-            'val_numero' => isset($_REQUEST['numero']) && !empty($_REQUEST['numero']) ? $_REQUEST['numero'] : ''
+            'val_id_p' => isset($_REQUEST['id_p']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['id_p'] : '',
+            'val_nome' => isset($_REQUEST['nome']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['nome'] : '',
+            'val_cognome' => isset($_REQUEST['cognome']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['cognome'] : '',
+            'val_numero' => isset($_REQUEST['numero']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['numero'] : ''
         ]);
 
     $p['contenuto']['form'] = $form;
