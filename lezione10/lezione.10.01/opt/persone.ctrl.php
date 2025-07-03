@@ -1,6 +1,6 @@
 <?php
 
-    #se REQUEST_azione non è settato, per ora lo imposto su 'aggiungi'
+    #se REQUEST_azione non è settato, per ora lo imposto su ''
     if (!isset($_REQUEST['azione']) && empty($_REQUEST['azione'])) {
         $_REQUEST['azione'] = 'aggiungi';
     }
@@ -26,7 +26,7 @@
                     $p['contenuto']['footer'] = "<p>errore nella modifica di id ".$_REQUEST['id_p']."</p>";
                 }
             }
-            if( isset($_REQUEST['id_p']) ) {
+            if( isset($_REQUEST['id_p']) ) { // questo if serve per popolare i campi input in caso si chieda la modifica
                 $persona = Persone\dettagli($_REQUEST['id_p']);
                 if(!empty($persona)) {
                     $_REQUEST['id_p'] = $persona['id_p'];

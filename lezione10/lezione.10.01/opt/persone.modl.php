@@ -40,7 +40,7 @@
             $id = intval($id);
             $nome = trim($nome);
             $numero = trim($numero);
-            $sql = "UPDATE persone SET nome = :nome, numero = :numero WHERE id = :id_p";
+            $sql = "UPDATE persone SET nome = :nome, numero = :numero WHERE id_p = :id_p";
             $params = [
                 ':id_p' => $id,
                 ':nome' => $nome,

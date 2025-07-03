@@ -2,10 +2,21 @@ CREATE DATABASE php_es00;
 
 USE php_es00;
 
-DROP TABLE persone;
+DROP TABLE umani;
+DROP TABLE log;
 
-CREATE TABLE persone (
+CREATE TABLE umani (
 id_p INT AUTO_INCREMENT PRIMARY KEY, 
-nome VARCHAR(20), 
+nome VARCHAR(20) NOT NULL, 
 numero INT NOT NULL
 );
+
+CREATE TABLE log (
+id_l INT AUTO_INCREMENT PRIMARY KEY, 
+azione VARCHAR(10) NOT NULL, 
+data_azione DATE NOT NULL,
+ora_azione datetime NOT NULL
+);
+
+SELECT *
+FROM UMANI;
