@@ -17,7 +17,7 @@
     }
 
     # elimina un'azione dal pannello LOG (NON AGISCE SULLA TABELLA DELLE PERSONE!!!!)'
-    function elimina_singolo($id_log) {
+    function elimina_singolo($param_get) {
         if( ! empty($id_log) && is_numeric($id_log) ) {
             $id_log = intval($id_log);
             $sql = "DELETE FROM log_ WHERE id_log = '$id_log'";
@@ -27,4 +27,12 @@
             echo "DEBUG - Dati non validi<br>";
             return false;
         }
+    }
+
+    # svuota la cronologia
+    function elimina_tutto() {
+        
+        $sql = "DELETE FROM log_";
+        mysqli_query(\Funzioni\getConnection(), $sql);
+        return true;
     }

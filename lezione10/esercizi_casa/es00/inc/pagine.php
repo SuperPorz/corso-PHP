@@ -37,7 +37,7 @@
             'contenuto' => array(
 
                 'titolo' => 'LOG',
-                'h1' => 'Storico delle operazioni sul DB:',
+                'h1' => 'Cronologia delle operazioni sul DB:',
                 'table' => '',
                 'form' => '',
             ),
