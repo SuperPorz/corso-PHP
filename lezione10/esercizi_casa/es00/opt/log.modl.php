@@ -17,14 +17,14 @@
     }
 
     # elimina un'azione dal pannello LOG (NON AGISCE SULLA TABELLA DELLE PERSONE!!!!)'
-    function elimina_singolo($param_get) {
+    function elimina_singolo($id_log) {
         if( ! empty($id_log) && is_numeric($id_log) ) {
             $id_log = intval($id_log);
             $sql = "DELETE FROM log_ WHERE id_log = '$id_log'";
             $res = mysqli_query(\Funzioni\getConnection(), $sql);
             return $res;
         } else {
-            echo "DEBUG - Dati non validi<br>";
+            echo "DEBUG - Dati non validi - ELIMINA SINGOLO<br>";
             return false;
         }
     }
