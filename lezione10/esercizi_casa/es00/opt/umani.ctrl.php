@@ -31,6 +31,7 @@
             if (isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p'])) // questo if serve per popolare i campi input in caso si chieda la modifica
                 {
                     $dettagli_persona = Umani\dettagli($_REQUEST['id_p']);
+                    var_dump($dettagli_persona);
                     if (!empty($dettagli_persona)) 
                         {
                             $_REQUEST['nome'] = $dettagli_persona['nome'];

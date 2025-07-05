@@ -17,9 +17,15 @@
 
     function dettagli($id_c) {
 
-        $query = "SELECT * FROM cani WHERE id_c = '$id_c'";
-        $risultato_query = mysqli_query(\Funzioni\getConnection(), $query);
-        return mysqli_fetch_row($risultato_query);
+        if (!empty($id_c)) {
+            $query = "SELECT * FROM cani WHERE id_c = '$id_c'";
+            $risultato_query = mysqli_query(\Funzioni\getConnection(), $query);
+            return mysqli_fetch_assoc($risultato_query);
+        }
+        else {
+            echo "DEBUG - Dati non validi -  - DETTAGLI<br>";
+            return false;
+        }
     }
 
     function aggiungi($nome, $data_n, $data_v) {

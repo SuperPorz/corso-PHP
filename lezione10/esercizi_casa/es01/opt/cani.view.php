@@ -29,8 +29,8 @@
                 'azione' => ( $_REQUEST['azione'] == 'modifica' ) ? 'modifica' : 'aggiungi',
                 'val_id_c' => isset($_REQUEST['id_c']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['id_c'] : '',
                 'val_nome' => isset($_REQUEST['nome']) && $_GET['azione'] == 'modifica' ? $_REQUEST['nome'] : "''",
-                'data_n' => isset($_REQUEST['data_n']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_n'] : "''",
-                'data_v' => isset($_REQUEST['data_v']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_v'] : "''",
+                'val_data_n' => isset($_REQUEST['data_n']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_n'] : "''",
+                'val_data_v' => isset($_REQUEST['data_v']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_v'] : "''",
             ]
         );
 
