@@ -1,14 +1,5 @@
 <?php
 
-    /* $_REQUEST = [
-        'p' => 'modifica_umani',
-        'azione' => 'modifica',
-        'id_p' => 'dec705',
-        'nome' => 'michele',
-        'cognome' => 'lorenzoni',
-        'numero' => '999',
-    ]; */
-
     #librerie di base (funzioni)
     foreach ((glob('lib/*.php')) as $files) {
         require_once $files;
@@ -25,7 +16,7 @@
     }
 
     #render della pagina
-    foreach ($p['contenuto'] as $k => $v) {
+    foreach ($p['contenuto'] as $k) {
         $render = Funzioni\render($p['template'], $p['contenuto']);
     }
     echo $render;    

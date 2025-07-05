@@ -28,7 +28,7 @@
 
             $nome_trim = trim($nome);
             $id_cane = \Funzioni\genera_id(6);
-            $query_string = "INSERT INTO cani (id_c, nome, data_n, data_v) VALUES ('$id_cane', $nome_trim', '$data_n', '$data_v')";
+            $query_string = "INSERT INTO cani (id_c, nome, data_n, data_v) VALUES ('$id_cane', '$nome_trim', '$data_n', '$data_v')";
             mysqli_query(\Funzioni\getConnection(), $query_string); // osservazione: nella funz. aggiungi, non serve salvare risultato query in 1 variabile
             return true;
         }

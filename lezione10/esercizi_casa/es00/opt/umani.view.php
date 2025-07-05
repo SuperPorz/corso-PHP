@@ -16,9 +16,9 @@
         }
 
         #creazione tabella
-        $lista_tabella = Funzioni\render('tpl/umani.table.html', ['lista_tabella' => implode($righe)]);
+        $tabella = Funzioni\render('tpl/umani.table.html', ['lista_tabella' => implode($righe)]);
 
-    $p['contenuto']['table'] = $lista_tabella;
+    $p['contenuto']['table'] = $tabella;
 
 
     # COSTRUZIONE FORM

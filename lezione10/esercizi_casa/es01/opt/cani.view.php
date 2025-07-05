@@ -1,0 +1,38 @@
+<?php
+
+    # COSTRUZIONE TABELLA
+        #creazione righe della TABELLA
+        $righe_tabella = [ ];
+        foreach(Cani\lista() as $cane) {
+            $righe_tabella[] = Funzioni\render('tpl/cani.table.lista.html', 
+
+          [
+                    'id_c' => $cane['id_c'],
+                    'nome' => $cane['nome'],
+                    'data_n' => $cane['data_n'],
+                    'data_v' => $cane['data_v'],
+                ]        
+            );
+        }
+
+        #creazione della TABELLA
+        $tabella = Funzioni\render('tpl/cani.table.html', ['lista_tabella' => implode($righe_tabella)]);
+
+        #preparazione TABELLA per il render (aggiunta all'array pagine)
+        $p['contenuto']['table'] = $tabella;
+
+
+    # COSTRUZIONE FORM
+        #crezione del FORM
+        $form = Funzioni\render('tpl/cani.form.html',
+    [
+                'azione' => ( $_REQUEST['azione'] == 'modifica' ) ? 'modifica' : 'aggiungi',
+                'val_id_c' => isset($_REQUEST['id_c']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['id_c'] : '',
+                'val_nome' => isset($_REQUEST['nome']) && $_GET['azione'] == 'modifica' ? $_REQUEST['nome'] : "''",
+                'data_n' => isset($_REQUEST['data_n']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_n'] : "''",
+                'data_v' => isset($_REQUEST['data_v']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_v'] : "''",
+            ]
+        );
+
+        #preparazione FORM per il render (aggiunta all'array pagine)
+        $p['contenuto']['form'] = $form;

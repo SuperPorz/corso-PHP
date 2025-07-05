@@ -1,0 +1,11 @@
+<form>
+    <input type="hidden" name="azione" value="{{azione}}">
+    <input type="hidden" name="id_c" value="{{val_id_c}}">
+    <label name="nome">Nome Cane</label>
+    <input type="text" name="nome" placeholder="nome cane" value={{val_nome}} required><br>
+    <label name="data_n">Data Nascita</label>
+    <input type="date" name="data_n" placeholder="data nascita" value={{val_data_n}} required>
+    <label name="data_v">Data Vaccinazione</label>
+    <input type="date" name="data_v" placeholder="data vaccinazione" value={{val_data_v}} required><br><br>
+    <input type="submit" value="Inserisci cane nel Database">
+</form>
