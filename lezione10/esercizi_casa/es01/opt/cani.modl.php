@@ -69,3 +69,20 @@
             return false;
         }
     }
+
+    function clean_input($azione) {
+
+        if(isset($azione) && !empty($azione)) {
+
+            $form = \Funzioni\render('tpl/cani.form.html',
+            [
+                    'azione' => 'aggiungi',
+                    'val_id_c' => '',
+                    'val_nome' => "''",
+                    'val_data_n' => "''",
+                    'val_data_v' => "''",
+                ]
+            );
+            return $form;
+        }
+    }

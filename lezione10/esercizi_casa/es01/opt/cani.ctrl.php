@@ -17,6 +17,11 @@
                         echo 'ERRORE! Date inserite non valide!';
                     } else {
                         Cani\aggiungi($_REQUEST['nome'], $_REQUEST['data_n'], $_REQUEST['data_v']);
+                        //$p['contenuto']['form'] = Cani\clean_input($_REQUEST['azione']);
+                        unset($_REQUEST['id_c']);
+                        unset($_REQUEST['nome']);
+                        unset($_REQUEST['data_n']);
+                        unset($_REQUEST['data_v']);
                     }
                 }
             break;
@@ -30,6 +35,11 @@
                         echo 'ERRORE! Date inserite non valide!';
                     } else {
                         Cani\modifica($_REQUEST['id_c'], $_REQUEST['nome'], $_REQUEST['data_n'], $_REQUEST['data_v']);
+                        //$p['contenuto']['form'] = Cani\clean_input($_REQUEST['azione']);
+                        unset($_REQUEST['id_c']);
+                        unset($_REQUEST['nome']);
+                        unset($_REQUEST['data_n']);
+                        unset($_REQUEST['data_v']);
                     }
                 }
 
@@ -50,6 +60,8 @@
             
                 {
                     Cani\elimina($_REQUEST['id_c']);
+                    //$p['contenuto']['form'] = Cani\clean_input($_REQUEST['azione']);
+                    unset($_REQUEST['id_c']);
                 }
             break;
     }

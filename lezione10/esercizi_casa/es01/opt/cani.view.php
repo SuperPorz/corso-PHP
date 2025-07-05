@@ -27,12 +27,16 @@
         $form = Funzioni\render('tpl/cani.form.html',
     [
                 'azione' => ( $_REQUEST['azione'] == 'modifica' ) ? 'modifica' : 'aggiungi',
-                'val_id_c' => isset($_REQUEST['id_c']) && isset($_GET['azione']) && $_GET['azione'] == 'modifica' ? $_REQUEST['id_c'] : '',
-                'val_nome' => isset($_REQUEST['nome']) && $_GET['azione'] == 'modifica' ? $_REQUEST['nome'] : "''",
-                'val_data_n' => isset($_REQUEST['data_n']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_n'] : "''",
-                'val_data_v' => isset($_REQUEST['data_v']) && $_GET['azione'] == 'modifica' ? $_REQUEST['data_v'] : "''",
+                'val_id_c' => $_REQUEST['id_c'] ?? '',
+                'val_nome' => $_REQUEST['nome'] ?? "''",
+                'val_data_n' => $_REQUEST['data_n'] ?? '',
+                'val_data_v' => $_REQUEST['data_v'] ?? '',
             ]
         );
 
         #preparazione FORM per il render (aggiunta all'array pagine)
-        $p['contenuto']['form'] = $form;
+        $p['contenuto']['form'] = $form;     
+
+        
+
+        
