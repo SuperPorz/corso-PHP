@@ -29,15 +29,26 @@ CREATE TABLE cani (
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-SELECT *
-FROM cani c
-JOIN padroni p ON c.id_p = p.id_p;
+-- --- DB ES.03 - LEZ 10 -------
 
-SELECT *
-FROM cani c
-JOIN padroni p ON c.id_p = p.id_p
-WHERE 
+CREATE DATABASE php_es03;
+USE php_es03;
+SET SQL_SAFE_UPDATES = 0;
 
+CREATE TABLE padroni (
+	id_p VARCHAR(20) PRIMARY KEY,
+    nome_p VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE cani (
+	id_c VARCHAR(20) PRIMARY KEY,
+    nome VARCHAR(20) NOT NULL,
+    data_n VARCHAR(20) NOT NULL,
+    data_v VARCHAR(20) NOT NULL,
+    id_p VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_p) REFERENCES padroni(id_p) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 -- --- QUERY PER FARE TEST -----
 
