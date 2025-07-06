@@ -35,12 +35,27 @@
                 'opt/padroni.ctrl.php',
                 'opt/padroni.view.php',
             ]
+        ),
+            'vaccinazioni_scadute' => array (
+            'contenuto' => array(
+
+                'titolo' => 'VACCINAZIONI SCADUTE',
+                'h1' => 'Elenco cani con vaccinazioni scadute ed elenco padroni da contattare',
+                'table' => '',
+                'form' => '',
+                'select' => '',
+            ),
+            'template' => 'tpl/main.html',
+            'include' => [
+                'opt/scadenze.modl.php',
+                'opt/scadenze.view.php',
+            ]
         )
     );
     
     #spagina default
     if (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']])) {
-        $_REQUEST['p'] = 'lista_cani';
+        $_REQUEST['p'] = 'lista_padroni';
     }
 
     #scorciatoia

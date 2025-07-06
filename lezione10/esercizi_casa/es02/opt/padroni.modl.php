@@ -2,7 +2,7 @@
 
     namespace Padroni;
 
-    ######## FUNZIONI SPECIFICHE PER IL MODULO CANI ############
+    ######## FUNZIONI SPECIFICHE PER IL MODULO PADRONI ############
 
     function lista() {
 
@@ -57,9 +57,9 @@
         }
     }
 
-    function elimina($id_c) {
-        if (!empty($id_c)) {
-            $query_string = "DELETE FROM padroni WHERE id_c = '$id_c'";
+    function elimina($id_p) {
+        if (!empty($id_p)) {
+            $query_string = "DELETE FROM padroni WHERE id_p = '$id_p'";
             mysqli_query(\Funzioni\getConnection(), $query_string);
             return true;
         }

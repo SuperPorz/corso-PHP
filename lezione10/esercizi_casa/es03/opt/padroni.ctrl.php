@@ -9,28 +9,31 @@
     switch ($_REQUEST['azione']) {
 
         case 'aggiungi':
-            if (isset($_REQUEST['nome_p']) && (isset($_REQUEST['id_p']) || !empty($_REQUEST['id_p']))) 
+            if (isset($_REQUEST['nome_p']) && isset($_REQUEST['telefono']) && (isset($_REQUEST['id_p']) || !empty($_REQUEST['id_p']))) 
                 {  
-                    Padroni\aggiungi($_REQUEST['nome_p']);
+                    Padroni\aggiungi($_REQUEST['nome_p'], $_REQUEST['telefono']);
                     unset($_REQUEST['id_p']);
                     unset($_REQUEST['nome_p']);
+                    unset($_REQUEST['telefono']);
                 }
             break;
 
         case 'modifica':
-            if (isset($_REQUEST['nome_p']) && isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p']))
+            if (isset($_REQUEST['nome_p']) && isset($_REQUEST['telefono']) && isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p']))
                 {
-                    Padroni\modifica($_REQUEST['id_p'], $_REQUEST['nome_p']);
+                    Padroni\modifica($_REQUEST['id_p'], $_REQUEST['nome_p'], $_REQUEST['telefono']);
                     unset($_REQUEST['id_p']);
-                    unset($_REQUEST['nome_p']);                    
+                    unset($_REQUEST['nome_p']);
+                    unset($_REQUEST['telefono']);                    
                 }
 
             if (isset($_REQUEST['id_p']) && !empty($_REQUEST['id_p'])) // questo if serve per popolare i campi input in caso si chieda la modifica
                 {
-                    $dettagli_padrone = Padroni\dettagli($_REQUEST['id_p']);
+                    $dettagli_padrone = Padroni\dettaglio_padrone($_REQUEST['id_p']);
                     if (!empty($dettagli_padrone)) 
                         {
                             $_REQUEST['nome_p'] = $dettagli_padrone['nome_p'];
+                            $_REQUEST['telefono'] = $dettagli_padrone['telefono'];
                         }
                 }
             break;

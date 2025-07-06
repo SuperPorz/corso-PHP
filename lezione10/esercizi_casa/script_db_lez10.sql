@@ -37,14 +37,15 @@ SET SQL_SAFE_UPDATES = 0;
 
 CREATE TABLE padroni (
 	id_p VARCHAR(20) PRIMARY KEY,
-    nome_p VARCHAR(20) NOT NULL
+    nome_p VARCHAR(20) NOT NULL,
+    telefono INT NOT NULL
 );
 
 CREATE TABLE cani (
 	id_c VARCHAR(20) PRIMARY KEY,
     nome VARCHAR(20) NOT NULL,
-    data_n VARCHAR(20) NOT NULL,
-    data_v VARCHAR(20) NOT NULL,
+    data_n DATE NOT NULL,
+    data_v DATE NOT NULL,
     id_p VARCHAR(20) NOT NULL,
     FOREIGN KEY (id_p) REFERENCES padroni(id_p) 
     ON DELETE CASCADE ON UPDATE CASCADE
@@ -52,8 +53,10 @@ CREATE TABLE cani (
 
 -- --- QUERY PER FARE TEST -----
 
-SELECT *
-FROM cani;
+SELECT c.*, nome_p, telefono
+FROM cani c
+JOIN padroni p ON c.id_p = p.id_p
+WHERE data_v < DATE_SUB(NOW(),INTERVAL 1 YEAR);
 
 SELECT *
 FROM padroni;

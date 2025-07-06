@@ -2,7 +2,7 @@
 
     namespace Padroni;
 
-    ######## FUNZIONI SPECIFICHE PER IL MODULO CANI ############
+    ######## FUNZIONI SPECIFICHE PER IL MODULO PADRONI ############
 
     function lista() {
 
@@ -15,7 +15,7 @@
         return $elenco;        
     }
 
-    function dettagli($id_p) {
+    function dettaglio_padrone($id_p) {
 
         if (!empty($id_p)) {
             $query = "SELECT * FROM padroni WHERE id_p = '$id_p'";
@@ -28,12 +28,12 @@
         }
     }
 
-    function aggiungi($nome) {
+    function aggiungi($nome, $telefono) {
 
-        if (!empty($nome)) {
+        if (!empty($nome) && !empty($telefono)) {
             $nome_trim = trim($nome);
             $id_padrone = \Funzioni\genera_id(6);
-            $query_string = "INSERT INTO padroni (id_p, nome_p) VALUES ('$id_padrone', '$nome_trim')";
+            $query_string = "INSERT INTO padroni (id_p, nome_p, telefono) VALUES ('$id_padrone', '$nome_trim', '$telefono')";
             mysqli_query(\Funzioni\getConnection(), $query_string); // osservazione: nella funz. aggiungi, non serve salvare risultato query in 1 variabile
             return true;
         }
@@ -43,11 +43,11 @@
         }
     }
 
-    function modifica($id_p, $nome) {
+    function modifica($id_p, $nome, $telefono) {
 
-        if (!empty($id_p) && !empty($nome)) {
+        if (!empty($id_p) && !empty($nome) && !empty($telefono)) {
 
-            $query_string = "UPDATE padroni set nome_p = '$nome' WHERE id_p = '$id_p'";
+            $query_string = "UPDATE padroni set nome_p = '$nome', telefono = '$telefono' WHERE id_p = '$id_p'";
             mysqli_query(\Funzioni\getConnection(), $query_string);
             return true;
         }
@@ -57,9 +57,9 @@
         }
     }
 
-    function elimina($id_c) {
-        if (!empty($id_c)) {
-            $query_string = "DELETE FROM padroni WHERE id_c = '$id_c'";
+    function elimina($id_p) {
+        if (!empty($id_p)) {
+            $query_string = "DELETE FROM padroni WHERE id_p = '$id_p'";
             mysqli_query(\Funzioni\getConnection(), $query_string);
             return true;
         }

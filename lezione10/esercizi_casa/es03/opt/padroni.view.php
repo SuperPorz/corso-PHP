@@ -9,6 +9,7 @@
           [
                     'id_p' => $padrone['id_p'],
                     'nome_p' => $padrone['nome_p'],
+                    'telefono' => $padrone['telefono'],
                 ]        
             );
         }
@@ -27,6 +28,7 @@
                 'azione' => ( $_REQUEST['azione'] == 'modifica' ) ? 'modifica' : 'aggiungi',
                 'val_id_p' => $_REQUEST['id_p'] ?? '',
                 'val_nome_p' => $_REQUEST['nome_p'] ?? "''",
+                'val_telefono' => $_REQUEST['telefono'] ?? "''",
             ]
         );
 
