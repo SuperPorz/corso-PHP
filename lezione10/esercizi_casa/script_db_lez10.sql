@@ -1,3 +1,15 @@
+CREATE DATABASE php_es00;
+USE php_es00;
+SET SQL_SAFE_UPDATES = 0;
+
+CREATE TABLE umani (
+	id_p VARCHAR(20) PRIMARY KEY,
+    nome VARCHAR(20) NOT NULL,
+    cognome VARCHAR(20) NOT NULL,
+    numero iNT NOT NULL
+);
+
+
 -- --- DB ES.01 - LEZ 10 -------
 CREATE DATABASE php_es01;
 USE php_es01;

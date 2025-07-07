@@ -1,0 +1,31 @@
+GIT:
+
+strumento di versionamento codice, ma anche per altri tipi di dati comunque testuali; consente di mantenere il controllo delle versioni di codice che si scrive. 
+
+Primo concetto: REPOSITORY; materialmente, è  una cartella che contiene files di metadati e i files del codice (.git);
+
+-inizializza repository: "git init"
+-tracciamento o ignora file: "git add -nome file-" oppure ".gitignore .nome file-"
+-COMMIT: è l'accettazione delle modifiche, quindi una specie di salvataggio; ha 3 stati: area di lavoro/area staging/stash/commit
+ -staging: sala d'aspetto per files modificati; qui si preparano i commit; l'area è visibile solo in macchina locale, non in remoto.
+ -stash: simile allo staging, usandoli non si inquina la cronologia del repository  
+ -commit: si salvano le modifiche nell'albero cronologico del repository
+
+
+GIT è progettato per collaborare in remoto; 2 concetti per il remoto: PUSH e PULL
+PULL: scarico il repository
+PUSH: mando le mie modifiche
+
+REGOLE FONDAMENTALI:
+1) commit continui: ogni commit costituisce un punto di ripristino; regola ottimale: tutte le volte che tutto funziona, fai un commit; preparare commit prima: pianifico/progetto prima cosa modificherò e committerò
+2) descrizioni parlanti;
+3) se lavori su cose diverse, rami diversi (branch) --> poi dopo si fa MERGE
+4) usa un modello: esistono diversi stili di GIT, uno vale l'altro ma bisogna sceglierne uno.  esempio: GIT-FLOW (filosofia di uso)
+5) git non è un sistema di backup; però è buono fare periodicamente un backup della cartella GIT
+
+GIT FLOW
+prevede 2 rami principali: MASTER e DEVELOP (faccio il branch da master di DEVELOP)
+svilippo continuamente su develop, poi arrivo ad un certo punto e se sono soddisfatto faccio un nuovo branch chiamato RELEASE
+nella release faccio un merge di di master e develop; 
+poi faccio un merge tra release e master per dare il codice al cliente, e un altro merge (ramo) tra release e develop per continuare a sviluppare;
+
