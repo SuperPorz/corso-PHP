@@ -22,6 +22,3 @@
             'footer' => $p['contenuto']['footer'] ?? ''
         ]
     );
-
-
-    mysqli_prepare();
