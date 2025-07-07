@@ -26,14 +26,6 @@
 
     // RENDERING DELLE PAGINE (logica)
     switch (True) {
-
-        /* case($_REQUEST['p'] == 'homepage'):  // RENDER PILOTI
-            $render = Render\render($p['template'],$p['contenuto']); # render parti principali
-            #$render = str_replace('{{select}}', $p['contenuto']['select'], $render);  # render parti specifiche della pagina
-            #$render = str_replace('{{fields}}', $p['contenuto']['fields'], $render);  # render parti specifiche della pagina
-            $render = str_replace('<p><a href="homepage.html">TORNA ALLA HOMEPAGE</a></p>', '', $render); # render parti specifiche
-            echo $render;
-            break; */
             
         case($_REQUEST['p'] == 'gestione-campi'):  // RENDER TEAMS 
             $render = Render\render($p['template'],$p['contenuto']); # render parti principali
