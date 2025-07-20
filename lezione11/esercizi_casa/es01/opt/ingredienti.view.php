@@ -14,10 +14,10 @@
         }
 
         #stringa HTML della tabella dentro variabile
-        $tabella = Funzioni\render('tpl/ingredienti.table.html', $righe_tabella);
+        $tabella = Funzioni\render('tpl/ingredienti.table.html', ['lista_ingredienti' => implode($righe_tabella)]);
 
         #preparazione TABELLA per il render (aggiunta all'array pagine)
-        $p['contenuto']['table'] = $tabella;
+        $p['contenuto']['tabella'] = $tabella;
 
 
     # COSTRUZIONE FORM

@@ -27,20 +27,19 @@
             'template' => 'tpl/main.html',
             'include' => [
                 'opt/ingredienti.modl.php',
-                'opt/piatti.modl.php',
-                'opt/piatti.ctrl.php',
-                'opt/piatti.view.php',
+                'opt/ingredienti.ctrl.php',
+                'opt/ingredienti.view.php',
             ]
         ]
     ];
 
-    # abbreviazione
-    $p = $pagine[$_REQUEST['p']];
-
+    
     #pagina default
-    if (isset($_REQUEST['p']) && empty($_REQUEST['p'])) {
-
+    if (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']])) {
+        
         $_REQUEST['p'] = 'piatti';
     }
-
+    
+    # abbreviazione
+    $p = $pagine[$_REQUEST['p']];
 

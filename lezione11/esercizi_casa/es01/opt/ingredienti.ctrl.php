@@ -13,7 +13,7 @@
             if(isset($_REQUEST['nome_i']) && (isset($_REQUEST['idi']) || !empty($_REQUEST['idi']))) 
                 {
                     Ingredienti\aggiungi($_REQUEST['nome_i']);
-                    unset($_REQUEST['id_c']);
+                    unset($_REQUEST['idi']);
                     unset($_REQUEST['nome_i']);                    
                 }
             break;
@@ -22,10 +22,9 @@
             if(isset($_REQUEST['nome_i']) && (isset($_REQUEST['idi']) && !empty($_REQUEST['idi']))) 
                 {
                     Ingredienti\modifica($_REQUEST['idi'], $_REQUEST['nome_i']);
-                    unset($_REQUEST['id_c']);
+                    unset($_REQUEST['idi']);
                     unset($_REQUEST['nome_i']);                    
                 }
-            break;
 
             if (isset($_REQUEST['idi']) && !empty($_REQUEST['idi'])) // questo if serve per popolare i campi input in caso si chieda la modifica
                 {

@@ -19,3 +19,6 @@ CREATE TABLE piatto (
 select p.idp, p.nome_p, i.nome_i
 from piatto p
 join ingrediente i on p.idi = p.idi;
+
+select *
+from ingrediente;

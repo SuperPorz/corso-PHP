@@ -23,16 +23,15 @@
         #preparazione TABELLA per il render (aggiunta all'array pagine)
         $p['contenuto']['table'] = $tabella;
 
-    # COSTRUZIONE DELLA SELECT
-    $x = file_get_contents('tpl/padroni.select.html');
-    $options = '';
-    foreach(Padroni\lista() as $k => $v) {
-        $options .= "<option value=\"" .$v['id_p'] . "\">" . $v['nome_p'] . "</option>";
-    }
-    $x = str_replace('{{lista_select}}', $options, $x);
-    $p['contenuto']['select'] = $x;
 
-    //var_dump($x);
+    # COSTRUZIONE DELLA SELECT
+        $x = file_get_contents('tpl/padroni.select.html');
+        $options = '';
+        foreach(Padroni\lista() as $k => $v) {
+            $options .= "<option value=\"" .$v['id_p'] . "\">" . $v['nome_p'] . "</option>";
+        }
+        $x = str_replace('{{lista_select}}', $options, $x);
+        $p['contenuto']['select'] = $x;
 
 
     # COSTRUZIONE FORM
