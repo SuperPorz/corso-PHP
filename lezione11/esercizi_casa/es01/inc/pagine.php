@@ -7,7 +7,8 @@
                 'titolo' => 'PIATTI',
                 'h1' => 'Elenco piatti disponibili nel menù',
                 'tabella' => '',
-                'form' => ''
+                'form' => '',
+                'select' => ''
             ],
             'template' => 'tpl/main.html',
             'include' => [
@@ -22,7 +23,8 @@
                 'titolo' => 'INGREDIENTI',
                 'h1' => 'Elenco ingredienti a disposizione in cucina',
                 'tabella' => '',
-                'form' => ''
+                'form' => '',
+                'select' => ''
             ],
             'template' => 'tpl/main.html',
             'include' => [

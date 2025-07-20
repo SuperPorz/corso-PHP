@@ -14,11 +14,15 @@ CREATE TABLE piatto (
     idi INT NOT NULL,
     FOREIGN KEY (idi) REFERENCES ingrediente(idi)
     ON DELETE CASCADE
+    ON UPDATE CASCADE
 	);
     
-select p.idp, p.nome_p, i.nome_i
+select p.idp, p.nome_p, i.idi, i.nome_i
 from piatto p
-join ingrediente i on p.idi = p.idi;
+join ingrediente i on p.idi = i.idi;
 
 select *
 from ingrediente;
+
+select *
+from piatto;

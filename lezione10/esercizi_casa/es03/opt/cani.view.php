@@ -6,7 +6,7 @@
         foreach(Cani\lista() as $cane) {
             $righe_tabella[] = Funzioni\render('tpl/cani.table.lista.html', 
 
-          [
+                [
                     'id_c' => $cane['id_c'],
                     'nome' => $cane['nome'],
                     'data_n' => $cane['data_n'],
