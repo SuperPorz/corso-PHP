@@ -1,0 +1,9 @@
+<form>
+    <input type="hidden" name="azione" value="{{azione}}">
+    <input type="hidden" name="idp" value="{{val_idp}}">
+    <input type="text" name="nome_p" placeholder="nome piatto" value="{{nome_p}}" required>
+    <select name="ingredienti" multiple>
+        {{ingredienti_registrati}}
+    </select>
+    <input type="submit" value="Registra piatto">
+</form>
