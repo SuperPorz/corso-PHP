@@ -1,10 +1,7 @@
 <tr>
-    <td rowspan="{{numero_ingredienti}}">{{idp}}</td>
-    <td rowspan="{{numero_ingredienti}}">{{nome_p}}</td>
-    <td rowspan="{{numero_ingredienti}}">{{idi}}</td>
-    <td rowspan="{{numero_ingredienti}}">{{nome_i}}</td>
-    <td rowspan="{{numero_ingredienti}}"><a href="piatti.html?azione=elimina&idp={{idp}}">Elimina piatto</a></td>
-    <!-- inizio rowspan da qui in giu -->
-    {{lista_ingredienti_piatto}}
-    <td><a href="piatti.html?azione=elimina&idi={{idi}}"></td>
+    <td>{{idp}}</td>
+    <td>{{nome_p}}</td>
+    <td>{{ingredienti}}</td>
+    <td><a href="piatti.html?azione=modifica&idp={{idp}}">Modifica piatto</a></td>
+    <td><a href="piatti.html?azione=elimina&idp={{idp}}">Elimina piatto</a></td>
 </tr>

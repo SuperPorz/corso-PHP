@@ -10,40 +10,44 @@
     switch ($_REQUEST['azione']) {
 
         case 'aggiungi':
-            if(isset($_REQUEST['nome_p']) && (isset($_REQUEST['idi']) || !empty($_REQUEST['idi']))) 
+            if(isset($_REQUEST['nome_p']) && !empty($_REQUEST['nome_p']))
                 {
-                    var_dump($_REQUEST);
-                    foreach($_REQUEST['idi'] as $valore) {
-
-                        Piatti\aggiungi($_REQUEST['nome_p'], $v);
-                        unset($_REQUEST['nome_p']);                    
-                        unset($_REQUEST['idi']);
+                    $array_ingredienti = [];
+                    foreach($_REQUEST as $k => $v) {
+                        if (is_numeric($k)) {
+                            $array_ingredienti[] = $v;
+                        }
                     }
+
+                    Piatti\aggiungi($_REQUEST['nome_p'], $array_ingredienti);
+                    unset($_REQUEST);   // faccio l'unset di tutto
+                    $_REQUEST['azione'] = 'aggiungi';
                 }
             break;
 
         case 'modifica':
-            if(isset($_REQUEST['nome_p']) && (isset($_REQUEST['idi']) && !empty($_REQUEST['idi'])) && (isset($_REQUEST['idi']) && !empty($_REQUEST['idi']))) 
+            if(isset($_REQUEST['nome_p']) && !empty($_REQUEST['nome_p']) && (isset($_REQUEST['idp']) && !empty($_REQUEST['idp']))) 
                 {
-                    /* $ingredienti_scelti =[];
-                    foreach($_REQUEST['idi'] as $k => $v) {
-                        $ingredienti_scelti[] = $v;
-                    } */
+                    $array_ingredienti = [];
+                    foreach($_REQUEST as $k => $v) {
+                        if (is_numeric($k)) {
+                            $array_ingredienti[] = $v;
+                        }
+                    }
 
-                    Piatti\modifica($_REQUEST['idp'], $_REQUEST['nome_p'], $_REQUEST['idi']);
-                    unset($_REQUEST['idp']);
-                    unset($_REQUEST['nome_p']);
-                    unset($_REQUEST['idi']);                    
+                    Piatti\modifica($_REQUEST['idp'], $_REQUEST['nome_p'], $array_ingredienti);
+                    unset($_REQUEST);   // faccio l'unset di tutto
+                    $_REQUEST['azione'] = 'aggiungi';
                 }
 
-            if (isset($_REQUEST['idi']) && !empty($_REQUEST['idi'])) // questo if serve per popolare i campi input in caso si chieda la modifica
+            if (isset($_REQUEST['idp']) && !empty($_REQUEST['idp'])) // questo if serve per popolare i campi input in caso si chieda la modifica
                 {
-                    $dettagli_ingrediente = Piatti\dettagli($_REQUEST['idp']);
-                    if (!empty($dettagli_ingrediente)) 
+                    $dettagli_piatto = Piatti\dettagli($_REQUEST['idp']);
+                    if (!empty($dettagli_piatto)) 
                         {
-                            $_REQUEST['idp'] = $dettagli_ingrediente['idp'];
-                            $_REQUEST['nome_p'] = $dettagli_ingrediente['nome_p'];
-                            $_REQUEST['idi'] = $dettagli_ingrediente['idi'];
+                            $_REQUEST['idp'] = $dettagli_piatto['idp'];
+                            $_REQUEST['nome_p'] = $dettagli_piatto['nome_p'];
+                            #aggiungere codice per flaggare tutte le opzioni che erano scelte
                         }
                 }
             break;
@@ -57,31 +61,3 @@
                 }
             break;
     }
-
-
-
-
-
-/*     $azienda = array (
-
-        'capo_01' => array (
-            0 => 'dipendente_01',
-            1 => 'dipendente_01',
-            2 => 'dipendente_01'
-        ),
-
-        'capo_02' => array (
-            0 => 'dipendente_03',
-            1 => 'dipendente_04',
-            2 => 'dipendente_05'
-        )
-        );
-
-        $azienda = array (
-
-            'dipendente_01' => 'capo01',
-            'dipendente_02' => 'capo01',
-            'dipendente_03' => 'capo01',
-            'dipendente_04' => 'capo07',
-            'dipendente_05' => 'capo07',        
-        ); */

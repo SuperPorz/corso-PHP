@@ -10,8 +10,7 @@
                 [
                     'idp' => $piatto['idp'],
                     'nome_p' => $piatto['nome_p'],
-                    'idi' => $piatto['idi'],
-                    'nome_i' => $piatto['nome_i'],
+                    'ingredienti' => $piatto['ingredienti'],
                 ]
             );
         }
@@ -21,19 +20,7 @@
 
         #preparazione TABELLA per il render (aggiunta all'array pagine)
         $p['contenuto']['tabella'] = $tabella;
-
-
-    # COSTRUZIONE DELLA SELECT
-        $x = file_get_contents('tpl/piatti.form.select.html');
-        $options = '';
-        foreach(Ingredienti\lista() as $k => $v) {
-
-            $options .= "<option value=\"" .$v['idi'] . "\">" . $v['nome_i'] . "</option>";
-        }
-        $x = str_replace('{{ingredienti_registrati}}', $options, $x);
-        $p['contenuto']['select'] = $x;
         
-    
     
     # COSTRUZIONE FORM
         #creazione form
@@ -45,6 +32,14 @@
                 'val_nome_p' => $_REQUEST['nome_p'] ?? "''"
             ]
         );
+    
+    
+    # COSTRUZIONE DELLA SELECT
+        $options = '';
+        foreach(Ingredienti\lista() as $k => $v) {
 
-        #preparazione TABELLA per il render (aggiunta all'array pagine)
+            $options .= "<br><input type=\"checkbox\" name=\"" .$v['idi'] ."\"". "id=\"" .$v['idi'] ."\"". "value=\"". $v['nome_i'] ."\"" . 'placeholder="'. $v['nome_i'] ."\">" . 
+            "<label for=" .$v['idi'] ."\">" . $v['nome_i'] . "</label>";
+        }
+        $form = str_replace('{{select}}', $options, $form);
         $p['contenuto']['form'] = $form;

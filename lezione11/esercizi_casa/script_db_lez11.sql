@@ -1,3 +1,4 @@
+-- -----------  LEZ 11 - esercizio 01 ----------------------
 CREATE DATABASE php_lez11_es01;
 USE php_lez11_es01;
 SET SQL_SAFE_UPDATES = 0;
@@ -10,19 +11,14 @@ CREATE TABLE ingrediente (
 
 CREATE TABLE piatto (
 	idp VARCHAR(20) PRIMARY KEY,
-    nome_p VARCHAR (50) NOT NULL,
-    idi INT NOT NULL,
-    FOREIGN KEY (idi) REFERENCES ingrediente(idi)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+    nome_p VARCHAR (50) UNIQUE NOT NULL,
+    ingredienti VARCHAR (255)
 	);
-    
-select p.idp, p.nome_p, i.idi, i.nome_i
-from piatto p
-join ingrediente i on p.idi = i.idi;
 
 select *
 from ingrediente;
 
 select *
 from piatto;
+
+-- -----------  LEZ 11 - esercizio 02 ----------------------
