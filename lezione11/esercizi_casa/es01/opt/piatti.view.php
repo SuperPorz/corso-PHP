@@ -34,12 +34,65 @@
         );
     
     
-    # COSTRUZIONE DELLA SELECT
+    # COSTRUZIONE LISTA INPUT INGREDIENTI
+
+        #lista standard
         $options = '';
         foreach(Ingredienti\lista() as $k => $v) {
 
-            $options .= "<br><input type=\"checkbox\" name=\"" .$v['idi'] ."\"". "id=\"" .$v['idi'] ."\"". "value=\"". $v['nome_i'] ."\"" . 'placeholder="'. $v['nome_i'] ."\">" . 
+            $options .= "<br><input type=\"checkbox\" name=\"" .$v['idi'] ."\"". "id=\"" .$v['idi'] ."\"". "value=\"". $v['nome_i'] ."\"" . 'placeholder="'. $v['nome_i'] ."\"&nbsp>" . 
             "<label for=" .$v['idi'] ."\">" . $v['nome_i'] . "</label>";
         }
-        $form = str_replace('{{select}}', $options, $form);
+        $form = str_replace('{{ingredienti_registrati}}', $options, $form);
+
+        #lista con flag attive sugli ingredienti da modificare
+        if ($_REQUEST['azione'] == 'modifica' && isset($_REQUEST['idp']) && !empty($_REQUEST['idp'])) {
+
+            $dettagli_piatto = Piatti\dettagli($_REQUEST['idp']);
+            $string_to_array = explode(';', trim($dettagli_piatto['ingredienti']));
+            
+            // Rimuovi l'ultimo elemento vuoto e pulisci gli spazi
+            $ingredienti_piatto = array_filter(array_map('trim', $string_to_array));
+            
+            foreach($ingredienti_piatto as $ingrediente) {
+                if (!empty($ingrediente)) {
+                    // Pattern più specifico per evitare sostituzioni multiple
+                    $pattern_da_sostituire = 'value="' . $ingrediente . '"' . 'placeholder="' . $ingrediente . '"&nbsp>';
+                    $pattern_sostituzione = 'value="' . $ingrediente . '"' . 'placeholder="' . $ingrediente . '" checked &nbsp;';
+                    
+                    $form = str_replace($pattern_da_sostituire, $pattern_sostituzione, $form);
+                }
+            }
+        }
+        
+        #preparazione per il render finale
         $p['contenuto']['form'] = $form;
+        
+
+        /* #lista con flag attive sugli ingredienti da modificare
+        if ($_REQUEST['azione'] == 'modifica' && isset($_REQUEST['idp']) && !empty($_REQUEST['idp'])) {
+
+            $dettagli_piatto = Piatti\dettagli($_REQUEST['idp']);
+            $string_to_array = explode(';',trim($dettagli_piatto['ingredienti']));
+            array_pop($string_to_array);
+            
+            foreach($string_to_array as $k => $v) {
+                if (in_array($v, $string_to_array)) {
+                    
+                    $pattern_sostituzione = 'placeholder="' . $v . "\"&nbsp";
+                    var_dump($pattern_sostituzione);
+                    $form = str_replace($pattern_sostituzione, 'checked', $form);
+                }
+            }
+        } */
+
+
+        #blocco con uso di REGEX:
+
+        /* foreach($ingredienti_piatto as $ingrediente) {
+            if (!empty($ingrediente)) {
+                $pattern = '/value="' . preg_quote($ingrediente, '/') . '"([^>]*?)&nbsp;/';
+                $replacement = 'value="' . $ingrediente . '" checked $1&nbsp;';
+                $form = preg_replace($pattern, $replacement, $form);
+            }
+        } */

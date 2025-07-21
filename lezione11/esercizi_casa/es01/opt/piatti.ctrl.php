@@ -47,7 +47,7 @@
                         {
                             $_REQUEST['idp'] = $dettagli_piatto['idp'];
                             $_REQUEST['nome_p'] = $dettagli_piatto['nome_p'];
-                            #aggiungere codice per flaggare tutte le opzioni che erano scelte
+                            $_REQUEST['ingredienti'] = $dettagli_piatto['ingredienti'];
                         }
                 }
             break;
