@@ -131,5 +131,5 @@
     # RENDER PAGINA
     $render = file_get_contents('main.html');
     $render = str_replace('{{select}}', $select, $render);
-    $render = str_replace('{{nome_capo}}', $capo_associato, $render);
+    $render = str_replace('{{nome_capo}}', $capo_del_dipendente, $render);
     echo $render;
