@@ -12,7 +12,7 @@
         case 'aggiungi':
             if(isset($_REQUEST['nome_i']) && (isset($_REQUEST['idi']) || !empty($_REQUEST['idi']))) 
                 {
-                    Ingredienti\aggiungi($_REQUEST['nome_i']);
+                    Ingrediente\aggiungi($_REQUEST['nome_i']);
                     unset($_REQUEST['idi']);
                     unset($_REQUEST['nome_i']);                    
                 }
@@ -21,14 +21,14 @@
         case 'modifica':
             if(isset($_REQUEST['nome_i']) && (isset($_REQUEST['idi']) && !empty($_REQUEST['idi']))) 
                 {
-                    Ingredienti\modifica($_REQUEST['idi'], $_REQUEST['nome_i']);
+                    Ingrediente\modifica($_REQUEST['idi'], $_REQUEST['nome_i']);
                     unset($_REQUEST['idi']);
                     unset($_REQUEST['nome_i']);                    
                 }
 
             if (isset($_REQUEST['idi']) && !empty($_REQUEST['idi'])) // questo if serve per popolare i campi input in caso si chieda la modifica
                 {
-                    $dettagli_ingrediente = Ingredienti\dettagli($_REQUEST['idi']);
+                    $dettagli_ingrediente = Ingrediente\dettagli($_REQUEST['idi']);
                     if (!empty($dettagli_ingrediente)) 
                         {
                             $_REQUEST['nome_i'] = $dettagli_ingrediente['nome_i'];
@@ -40,7 +40,7 @@
             if (isset($_REQUEST['idi'])) 
             
                 {
-                    Ingredienti\elimina($_REQUEST['idi']);
+                    Ingrediente\elimina($_REQUEST['idi']);
                     unset($_REQUEST['idi']);
                 }
             break;

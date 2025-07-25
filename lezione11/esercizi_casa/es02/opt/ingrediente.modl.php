@@ -1,9 +1,9 @@
 <?php
 
-    namespace Ingredienti;
+    namespace Ingrediente;
 
     function lista() {
-        $query = 'SELECT * FROM ingrediente';
+        $query = 'SELECT * FROM ingrediente ORDER BY idi';
         $invio_query = mysqli_query(\Funzioni\getConnection(), $query);
         $ingredienti = [];
         while ($riga = mysqli_fetch_assoc($invio_query)){

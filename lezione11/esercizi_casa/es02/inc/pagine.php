@@ -2,25 +2,43 @@
 
     $pagine = [
 
-        'piatti' => [
+        'crea_piatti' => [
             'contenuto' => [
-                'titolo' => 'PIATTI',
-                'h1' => 'Elenco piatti disponibili nel menù',
+                'titolo' => 'PIATTI CREATI',
+                'h1' => 'Elenco piatti creati',
                 'tabella' => '',
                 'form' => '',
                 'select' => ''
             ],
             'template' => 'tpl/main.html',
             'include' => [
-                'opt/ingredienti.modl.php',
-                'opt/piatti.modl.php',
-                'opt/piatti.ctrl.php',
-                'opt/piatti.view.php',
+                'opt/ingrediente.modl.php',
+                'opt/piatto.modl.php',
+                'opt/crea_piatti.modl.php',
+                'opt/crea_piatti.ctrl.php',
+                'opt/crea_piatti.view.php',
             ]
         ],
-        'ingredienti' => [
+
+        'piatto' => [
             'contenuto' => [
-                'titolo' => 'INGREDIENTI',
+                'titolo' => 'NOME PIATTO',
+                'h1' => 'Nomi dei piatti',
+                'tabella' => '',
+                'form' => '',
+                'select' => ''
+            ],
+            'template' => 'tpl/main.html',
+            'include' => [
+                'opt/piatto.modl.php',
+                'opt/piatto.ctrl.php',
+                'opt/piatto.view.php',
+            ]
+        ],
+
+        'ingrediente' => [
+            'contenuto' => [
+                'titolo' => 'NOME INGREDIENTE',
                 'h1' => 'Elenco ingredienti a disposizione in cucina',
                 'tabella' => '',
                 'form' => '',
@@ -28,9 +46,9 @@
             ],
             'template' => 'tpl/main.html',
             'include' => [
-                'opt/ingredienti.modl.php',
-                'opt/ingredienti.ctrl.php',
-                'opt/ingredienti.view.php',
+                'opt/ingrediente.modl.php',
+                'opt/ingrediente.ctrl.php',
+                'opt/ingrediente.view.php',
             ]
         ]
     ];
@@ -39,7 +57,7 @@
     #pagina default
     if (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']])) {
         
-        $_REQUEST['p'] = 'piatti';
+        $_REQUEST['p'] = 'crea_piatti';
     }
     
     # abbreviazione
