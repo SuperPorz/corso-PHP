@@ -76,7 +76,7 @@
                 'tabella' => '',
                 'form' => '',
                 'select' => '',
-                'sottomenu' => ''
+                'sottomenu' => '<h4>(se non associato a nessun ingrediente, il piatto non verrà visualizzato)</h4>'
             ],
             'template' => 'tpl/main.html',
             'include' => [
@@ -95,7 +95,7 @@
                 'tabella' => '',
                 'form' => '',
                 'select' => '',
-                'sottomenu' => ''
+                'sottomenu' => '<h4>(se non associato a nessun piatto, l\'ingrediente non verrà visualizzato)</h4>'
             ],
             'template' => 'tpl/main.html',
             'include' => [
