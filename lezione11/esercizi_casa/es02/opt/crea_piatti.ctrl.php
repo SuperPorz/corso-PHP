@@ -15,7 +15,7 @@
                     $array_ingredienti = [];
                     foreach($_REQUEST as $k => $v) {
                         if (is_numeric($k)) {
-                            $array_ingredienti[] = $v;
+                            $array_ingredienti[] = $k;
                         }
                     }
 
@@ -29,15 +29,14 @@
             if(isset($_REQUEST['idp']) && !empty($_REQUEST['idp']))
                 {
                     $array_ingredienti = [];
+                    
                     foreach($_REQUEST as $k => $v) {
                         if (is_numeric($k)) {
-                            $array_ingredienti[] = $v;
+                            $array_ingredienti[] = $k;
                         }
                     }
-
+                    
                     Crea_piatti\modifica($_REQUEST['idp'],$array_ingredienti);
-                    unset($_REQUEST);   // faccio l'unset di tutto
-                    $_REQUEST['azione'] = 'aggiungi';
                 }
 
             if (isset($_REQUEST['idp']) && !empty($_REQUEST['idp'])) // questo if serve per popolare i campi input in caso si chieda la modifica

@@ -40,12 +40,13 @@ CREATE TABLE piatto (
 CREATE TABLE piatti_ingredienti (
 	idp VARCHAR(20) NOT NULL,
     idi INT NOT NULL,
-    FOREIGN KEY (idp) REFERENCES piatto(idp),
-    FOREIGN KEY (idi) REFERENCES ingrediente(idi),
+    FOREIGN KEY (idp) REFERENCES piatto(idp) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idi) REFERENCES ingrediente(idi) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (idp, idi)
 );
 
-DELETE FROM piatto WHERE idp = '77d953';
+select *
+from piatti_ingredienti;
 
 
 

@@ -2,21 +2,26 @@
 
     $pagine = [
 
-        'crea_piatti' => [
+        'homepage' => [
             'contenuto' => [
-                'titolo' => 'PIATTI CREATI',
-                'h1' => 'Elenco piatti creati',
+                'titolo' => 'HOMEPAGE',
+                'h1' => 'Benvenuto alla trattoria LORENZONI MARI & MONTI!',
                 'tabella' => '',
                 'form' => '',
-                'select' => ''
+                'select' => '',
+                'sottomenu' => '<h3>Inizia inserendo un PIATTO oppure un INGREDIENTE:</h3>
+                                <ul>
+                                    <li><a href="piatto.html">PIATTO</a></li>
+                                    <li><a href="ingrediente.html">INGREDIENTE</a></li>
+                                </ul>
+                                <h3>Oppure vai alle associazioni PIATTI/INGREDIENTI:</h3>
+                                <ul>
+                                <li><a href="crea_piatti.html">PIATTO => INGREDIENTI</a></li>
+                                <li><a href="uso_ingrediente.html">INGREDIENTE => PIATTI</a></li>
+                                </ul>'
             ],
-            'template' => 'tpl/main.html',
+            'template' => 'tpl/homepage.html',
             'include' => [
-                'opt/ingrediente.modl.php',
-                'opt/piatto.modl.php',
-                'opt/crea_piatti.modl.php',
-                'opt/crea_piatti.ctrl.php',
-                'opt/crea_piatti.view.php',
             ]
         ],
 
@@ -26,7 +31,13 @@
                 'h1' => 'Nomi dei piatti',
                 'tabella' => '',
                 'form' => '',
-                'select' => ''
+                'select' => '',
+                'sottomenu' => '<h3>Procedi con:</h3>
+                                <ul>
+                                    <li><a href="ingrediente.html">INGREDIENTE</a></li>
+                                    <li><a href="crea_piatti.html">PIATTO => INGREDIENTI</a></li>
+                                    <li><a href="uso_ingrediente.html">INGREDIENTE => PIATTI</a></li>
+                                </ul>'
             ],
             'template' => 'tpl/main.html',
             'include' => [
@@ -42,7 +53,13 @@
                 'h1' => 'Elenco ingredienti a disposizione in cucina',
                 'tabella' => '',
                 'form' => '',
-                'select' => ''
+                'select' => '',
+                'sottomenu' => '<h3>Procedi con:</h3>
+                                <ul>
+                                    <li><a href="piatto.html">PIATTO</a></li>
+                                    <li><a href="crea_piatti.html">PIATTO => INGREDIENTI</a></li>
+                                    <li><a href="uso_ingrediente.html">INGREDIENTE => PIATTI</a></li>
+                                </ul>'
             ],
             'template' => 'tpl/main.html',
             'include' => [
@@ -50,14 +67,51 @@
                 'opt/ingrediente.ctrl.php',
                 'opt/ingrediente.view.php',
             ]
-        ]
+        ],
+
+        'crea_piatti' => [
+            'contenuto' => [
+                'titolo' => 'PIATTI CREATI',
+                'h1' => 'Elenco piatti creati',
+                'tabella' => '',
+                'form' => '',
+                'select' => '',
+                'sottomenu' => ''
+            ],
+            'template' => 'tpl/main.html',
+            'include' => [
+                'opt/ingrediente.modl.php',
+                'opt/piatto.modl.php',
+                'opt/crea_piatti.modl.php',
+                'opt/crea_piatti.ctrl.php',
+                'opt/crea_piatti.view.php',
+            ]
+        ],
+
+        'uso_ingrediente' => [
+            'contenuto' => [
+                'titolo' => 'USO INGREDIENTI',
+                'h1' => 'Visualizza ciascun ingrediente ed in quale piatto è utilizzato',
+                'tabella' => '',
+                'form' => '',
+                'select' => '',
+                'sottomenu' => ''
+            ],
+            'template' => 'tpl/main.html',
+            'include' => [
+                'opt/ingrediente.modl.php',
+                'opt/piatto.modl.php',
+                'opt/uso_ingrediente.modl.php',
+                'opt/uso_ingrediente.view.php',
+            ]
+        ],
     ];
 
     
     #pagina default
     if (!isset($_REQUEST['p']) || !isset($pagine[$_REQUEST['p']])) {
         
-        $_REQUEST['p'] = 'crea_piatti';
+        $_REQUEST['p'] = 'homepage';
     }
     
     # abbreviazione
