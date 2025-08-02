@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titolo}}</title>
+    <link rel="stylesheet" href="css/stile.css">
+</head>
+<body>
+    <header>
+    </header>
+    <h1>{{h1}}</h1>
+    {{form}}
+    <hr>
+    <h1>Lista della spesa:</h1>
+    {{tabella}}
+    <hr>
+    {{info}}
+    <hr>
+        <fieldset>
+            <legend>SEZIONE 1: MODIFICA PIATTI/INGREDIENTI</legend>
+            <ul style="list-style-type: square;">
+                <li><a href="ingrediente.html">INGREDIENTE</a>(aggiungi/modifica/elimina ingrediente)</li>
+                <li><a href="piatto.html">PIATTO</a>(aggiungi/modifica/elimina piatto)</li>
+                <li><a href="crea_piatti.html">PIATTO => INGREDIENTI</a>(associa piatti con ingredienti)</li>
+                <li><a href="uso_ingrediente.html">INGREDIENTE => PIATTI</a>(per ciascun ingrediente, visualizza piatti associati)</li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>SEZIONE 2: SUGGERISCI MENU/LISTA SPESA</legend>
+            <ul style="list-style-type: square;">
+                <li><a href="piatti_preparabili.html">PIATTI PREPARABILI</a></li>
+                <li><a href="lista_spesa.html">MENU' e LISTA SPESA</a></li>
+            </ul>
+        </fieldset>   
+    <hr><br><a href="homepage.html">TORNA ALLA HOMEPAGE</a>
+</body>
+</html>

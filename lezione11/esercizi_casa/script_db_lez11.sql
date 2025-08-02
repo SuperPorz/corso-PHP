@@ -47,7 +47,3 @@ CREATE TABLE piatti_ingredienti (
 
 select *
 from piatti_ingredienti;
-
-
-
-
