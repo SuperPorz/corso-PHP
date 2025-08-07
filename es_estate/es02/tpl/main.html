@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Discografia</title>
+    </head>
+    <body>
+        <h1>Database Discografie Musicali</h1>
+        <h3>Scegli un gruppo musicale e un anno per vedere gli album pubblicati:</h3>
+        <form action="" method="post">
+            <select name="gruppo">
+                {{options}}
+            </select>
+            <input type="number" name="anno" placeholder="anno" required min="1960" max="2000">
+            <input type="submit" value="INVIA">
+        </form>
+        <ul>{{albums}}</ul>
+    </body>
+</html>

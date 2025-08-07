@@ -3,11 +3,10 @@
 In questo documento trovate gli esercizi da svolgere durante le vacanze estive; come vedrete riprendono i concetti visti finora a partire dalle prime lezioni, ma a un livello di difficoltà più
 sfidante, in questo modo è possibile ripassare tutti i punti importanti del corso senza annoiarsi troppo.
 
-## eseercizio 01
+## esercizio 01
 
 Scrivere una pagina che rappresenti il contenuto di un array associativo strutturato in modo da contenere un elenco di album musicali con anno, autore e genere; la pagina deve mostrare il
-contenuto dell'array in forma di elenco puntato, con i dettagli di ogni album rappresentati come sotto punti del titolo. Utilizzare i CSS per aggiungere stile all'elenco e modificare il colore
-del testo.
+contenuto dell'array in forma di elenco puntato, con i dettagli di ogni album rappresentati come sotto punti del titolo. Utilizzare i CSS per aggiungere stile all'elenco e modificare il colore del testo.
 
 ## esercizio 02
 
