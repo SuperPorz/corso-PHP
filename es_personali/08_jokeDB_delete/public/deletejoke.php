@@ -7,16 +7,12 @@
         
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'SELECT id, joketext FROM joke';
-        $jokes= $pdo->query($sql);
+        $sql = 'DELETE FROM joke WHERE id = :id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':id', $_POST['id']);
+        $stmt->execute();
 
-        $title = 'Joke list';
-
-        ob_start();
-
-        include __DIR__ . '/../templates/jokes.html.php';
-
-        $output = ob_get_clean();
+        header('location: jokes.php');
     }
     catch (PDOException $error) {
 
