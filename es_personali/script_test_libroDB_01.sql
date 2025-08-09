@@ -1,6 +1,6 @@
 ########################################### DATABASE
 CREATE DATABASE libro_01;
-USE test_libro;
+USE libro_01;
 SET SQL_SAFE_UPDATES = 0;
 
 CREATE USER IF NOT EXISTS 'userphp'@'localhost' IDENTIFIED BY 'admin';
@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON `database`.* TO 'userphp'@'localhost';
 FLUSH PRIVILEGES;
 
 ########################################### TABELLE
-CREATE TABLE `test_libro`.`joke` (
+CREATE TABLE `libro_01`.`joke` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `joketext` TEXT NOT NULL,
   `jokedate` DATE NOT NULL,
