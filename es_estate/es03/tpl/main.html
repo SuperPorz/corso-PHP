@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fattori Primi</title>
+    </head>
+    <body>
+        <h1>SCOMPOSIZIONE FATTORI PRIMI</h1>
+        <h2>Inserisci un intero positivo per vederne la scomposizione in fattori primi:</h2>
+        <p>(inserire un valore compreso tra 2 e 10'000)</p>
+        <form action="" method="post">
+            <input type="number" name="intero" placeholder="Intero" required min="2" max="10000" id="f1">
+            <input type="submit" value="Invia" id="f2">
+        </form>
+        <h2>Fattori primi:</h2>
+        <h1 id="res">{{fattori}}</h1>
+    </body>
 </html>
