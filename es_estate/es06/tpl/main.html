@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Legge Di Ohm</title>
+    </head>
+    <body>
+        <h1>LEGGE DI OHM</h1>
+        <h3>Compila uno solo dei form sottostanti per calcolare la proprietà desiderata:</h3>
+        <fieldset class="field">
+            <legend>CACALCOLA TENSIONE "V"</legend>
+            <form action="" method="post">
+                <input type="hidden" name="calcolo" value="tensione">
+                <input type="hidden" name="V" value="">
+                <input type="number" name="I" placeholder="Intensità" required min="0" step="0.01" max="1000" id="f1">
+                <input type="number" name="R" placeholder="Resistenza" required min="0" step="0.01" max="1000" id="f1">
+                <input type="submit" value="Invia" id="f2">
+            </form>
+        </fieldset>
+        <fieldset class="field">
+            <legend>CACALCOLA INTENSITA' "I"</legend>
+            <form action="" method="post">
+                <input type="hidden" name="calcolo" value="intensita">
+                <input type="hidden" name="I" value="">
+                <input type="number" name="V" placeholder="Tensione" required min="0" step="0.01" max="1000" id="f1">
+                <input type="number" name="R" placeholder="Resistenza" required min="0" step="0.01" max="1000" id="f1">
+                <input type="submit" value="Invia" id="f2">
+            </form>
+        </fieldset>
+        <fieldset class="field">
+            <legend>CACALCOLA RESISTENZA' "R"</legend>
+            <form action="" method="post">
+                <input type="hidden" name="calcolo" value="resistenza">
+                <input type="hidden" name="R" value="">
+                <input type="number" name="V" placeholder="Tensione" required min="0" step="0.01" max="1000" id="f1">
+                <input type="number" name="I" placeholder="Intensità" required min="0" step="0.01" max="1000" id="f1">
+                <input type="submit" value="Invia" id="f2">
+            </form>
+        </fieldset>
+        <h2>RISULTATO:</h2>
+        <h1>{{risultato}}</h1>
+        <a href="">AZZERA I CAMPI</a>
+    </body>
+</html>
