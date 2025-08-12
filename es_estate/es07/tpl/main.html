@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style_1.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PIANIFICA VIAGGIO</title>
+    </head>
+    <body>
+        <h1>PIANIFICA VIAGGIO</h1>
+        <h3>Inserisci per ciascuna tappa, la distanza in Km da quella precedente:</h3>
+        <fieldset class="field">
+            <legend>TAPPA e CHILOMETRAGGIO</legend>
+            <form action="" method="post">
+                <input type="text" name="tappa" placeholder="Luogo da visitare" required id="f1">
+                <input type="number" name="km" placeholder="Km da tappa precedente" required id="f1">
+                <input type="submit" value="Invia" id="f2">
+            </form>
+        </fieldset>
+        <h2>Tappe inserite e relative distanze:</h2>
+        <ol>{{tappe}}</ol>
+        <h2>Totale distanza di percorrenza del viaggio:</h2>
+        <h1>{{risultato}} Km</h1>
+        <a href="index.php?elimina">ELIMINA ITINERARIO MEMORIZZATO</a>
+        <a href="">AZZERA I CAMPI</a>
+    </body>
+</html>
