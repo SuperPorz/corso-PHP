@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OSTELLO</title>
+    </head>
+    <body>
+        <h1>GESTIONE CAMERE OSTELLO</h1>
+        <h2>Inserisci il tuo nome e le persone che vorresti in camera</h2>
+        <p>(per gli amici, indica ciascun nome separato da una virgola ',')</p>
+        <form action="" method="post">
+            <fieldset class="field">
+                <legend>SELEZIONA OPTIONALS</legend>
+                <input type="text" name="nome" placeholder="il tuo nome" required>
+                <select name="genere">
+                    <option value="U">Uomo</option>
+                    <option value="D">Donna</option>
+                </select>
+                <input type="textarea" name="preferenze" placeholder="preferenze amici" required>
+            </fieldset>
+            <br><input type="submit" value="INVIA">            
+        </form>
+        <h2>STUDENTI REGISTRATI</h2>
+        {{lista_studenti}}
+        <h2>LISTA CAMERE</h2>
+        <h3>Camere uomini:</h3>
+        {{camere_uomini}}
+        <h3>Camere donne:</h3>
+        {{camere_donne}}
+        <h3>Camere singole:</h3>
+        {{camere_singole}}
+        <a href="index.php?lista_chiusa">CHIUDI LA LISTA</a>
+    </body>
+</html>

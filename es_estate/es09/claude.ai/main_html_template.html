@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Camere Ostello</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><circle cx="10" cy="10" r="1" fill="white" opacity="0.2"/><circle cx="30" cy="15" r="1.5" fill="white" opacity="0.3"/><circle cx="60" cy="8" r="1" fill="white" opacity="0.2"/><circle cx="80" cy="12" r="1.2" fill="white" opacity="0.25"/></svg>') repeat;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .form-section {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4facfe;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .form-section p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        fieldset {
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            background: white;
+        }
+        
+        legend {
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 0 15px;
+            font-size: 1.1em;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 150px 2fr;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        input[type="text"], select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input[type="text"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        select {
+            cursor: pointer;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+            font-family: inherit;
+        }
+        
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.5);
+        }
+        
+        input[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+        
+        .results-section {
+            margin-top: 40px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .result-card.students {
+            border-top-color: #3498db;
+        }
+        
+        .result-card.men {
+            border-top-color: #2ecc71;
+        }
+        
+        .result-card.women {
+            border-top-color: #e74c3c;
+        }
+        
+        .result-card.singles {
+            border-top-color: #f39c12;
+        }
+        
+        .result-card h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .result-card h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        
+        .result-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .result-card li {
+            background: #f8f9fa;
+            margin: 8px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+        
+        .result-card li:hover {
+            background: #e9ecef;
+            border-left-color: #4facfe;
+            transform: translateX(5px);
+        }
+        
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(238, 90, 82, 0.4);
+        }
+        
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(238, 90, 82, 0.5);
+        }
+        
+        .action-button.secondary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+        }
+        
+        .action-button.secondary:hover {
+            box-shadow: 0 12px 25px rgba(79, 172, 254, 0.5);
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e53e3e;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .success-message {
+            background: #f0fff4;
+            color: #2f855a;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #48bb78;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 GESTIONE CAMERE OSTELLO</h1>
+        </div>
+        
+        <div class="content">
+            <div class="form-section">
+                <h2>📝 Inserisci il tuo nome e le persone che vorresti in camera</h2>
+                <p>(per gli amici, indica ciascun nome separato da una virgola ',')</p>
+                
+                <form action="" method="post">
+                    <fieldset>
+                        <legend>🎯 DATI STUDENTE</legend>
+                        <div class="form-row">
+                            <input type="text" name="nome" placeholder="Il tuo nome" required>
+                            <select name="genere" required>
+                                <option value="U">👨 Uomo</option>
+                                <option value="D">👩 Donna</option>
+                            </select>
+                            <textarea name="preferenze" placeholder="Amici preferiti (separati da virgola)" required></textarea>
+                        </div>
+                    </fieldset>
+                    <input type="submit" value="➕ AGGIUNGI STUDENTE">
+                </form>
+            </div>
+            
+            <div class="results-section">
+                <div class="results-grid">
+                    <div class="result-card students">
+                        <h3>👥 STUDENTI REGISTRATI</h3>
+                        {{lista_studenti}}
+                    </div>
+                    
+                    <div class="result-card men">
+                        <h3>👨‍🤝‍👨 CAMERE UOMINI</h3>
+                        {{camere_uomini}}
+                    </div>
+                    
+                    <div class="result-card women">
+                        <h3>👩‍🤝‍👩 CAMERE DONNE</h3>
+                        {{camere_donne}}
+                    </div>
+                    
+                    <div class="result-card singles">
+                        <h3>🏠 CAMERE SINGOLE</h3>
+                        {{camere_singole}}
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="index.php?lista_chiusa" class="action-button secondary">🔒 CHIUDI LISTA E ASSEGNA CAMERE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
