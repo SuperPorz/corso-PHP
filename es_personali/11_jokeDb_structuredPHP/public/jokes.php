@@ -2,6 +2,7 @@
 
     try {
         include __DIR__ . '/../includes/DatabaseConnection.php';
+        include __DIR__ . '/../includes/DatabaseFunctions.php';
 
         $sql = 'SELECT j.id, joketext, `name`, email
                 FROM joke j 
@@ -10,6 +11,8 @@
         $jokes= $pdo->query($sql);
 
         $title = 'Joke list';
+
+        $totalJokes = total_jokes($pdo);
 
         ob_start();
 
