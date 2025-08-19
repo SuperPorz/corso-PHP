@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>REGISTRO VOTI SCUOLA</title>
+    </head>
+    <body>
+        <header class="header">
+            <ul>
+                <li><a href="#">HOMEPAGE</a></li>
+                <li><a href="#">Inserimento dati</a></li>
+                <li><a href="#">Risultati finali</a></li>
+                <li><a href="#">Gruppi recupero</a></li>
+            </ul>
+        </header>
+        <h1>REGISTRO VOTI SCUOLA</h1>
+        <h2>Compilare i campi per ciascun studente:</h2>
+        <form action="" method="post">
+            <fieldset class="field" name="studente">
+                <legend><pre>nome studente:</pre></legend>
+                <label for="nome"></label>
+                <input type="text" name="nome" id="input" placeholder="nome studente" required><br>
+            </fieldset>
+            <fieldset class="field" name="materie">
+                <legend>MATERIE:</legend>
+                    {{options}}
+            </fieldset>
+            <br><input type="submit" value="INVIA" id="f2">
+        </form>
+        <h3>STUDENTI REGISTRATI: ({{tot}})</h3>
+        {{studenti_registrati}}
+        <h3>MIGLIOR STUDENTE:</h3>
+        {{miglior_studente}}
+        <h3>MIGLIORI 10 STUDENTI:</h3>
+        {{top10_studenti}}
+        <h3>"PEGGIORI" 20 STUDENTI:</h3>
+        {{peggiori20_studenti}}
+        <h3>GRUPPI DI RECUPERO: (per studenti con almeno 1 insufficienza)</h3>
+        {{gruppi_recupero}}
+        <a href="index.php">AZZERA CAMPI</a>
+    </body>
+</html>
