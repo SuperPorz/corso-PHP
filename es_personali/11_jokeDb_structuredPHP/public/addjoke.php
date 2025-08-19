@@ -4,13 +4,9 @@
 
         try {
             include __DIR__ . '/../includes/DatabaseConnection.php';
+            include __DIR__ . '/../includes/DatabaseFunction.php';
 
-            $sql = 'INSERT INTO joke SET joketext = :joketext, 
-                jokedate = CURDATE()'; 
-            
-            $statement = $pdo->prepare($sql);
-            $statement->bindValue(':joketext', $_POST['joketext']);
-            $statement->execute();
+            insert_joke($pdo, $_POST['joketext'], 1);
 
             # inseriamo nella risposta al client, un reindirizzamento
             header('location: jokes.php');
@@ -35,5 +31,5 @@
 
     include __DIR__ . '/../templates/layout.html.php';
 
-    $pdo = null; //disconnette dal database (per sicurezza)
+    $pdo = null;
 
