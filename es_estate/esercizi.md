@@ -56,16 +56,26 @@ sovrapposizioni e dev'essere prevista una pausa per il pranzo dall'una alle due 
 
 ## esercizio 11
 
-Scrivere un programma che consenta di inserire la media dei voti per le varie materie di tutti gli studenti di una piccola scuola. Dai dati inseriti ricavare lo studente migliore, che avrà un premio; i dieci studenti migliori, che andranno in gita gratis; i venti studenti peggiori che dovranno venire accompagnati dai genitori. 
+Scrivere un programma che consenta di inserire la media dei voti per le varie materie di tutti gli studenti di una piccola scuola. Dai dati inseriti ricavare lo studente migliore, che avrà un premio; i dieci studenti migliori, che andranno in gita gratis; i venti studenti peggiori che dovranno venire accompagnati dai genitori.
 
 Compilare inoltre un elenco di tutti gli studenti con una insufficienza in qualche materia, e compilare un piano per le lezioni di recupero tenendo conto che ogni gruppo di recupero dev'essere formato al massimo da cinque studenti e deve trattare una
 sola materia.
 
 ## esercizio 12
 
-Scrivere un programma che consenta di inserire i tempi di lavoro in un'officina per auto. I tempi devono essere associati a un tipo di lavoro, a un operatore e a un'auto in particolare (usare la
-targa come identificativo univoco). Il programma deve consentire di richiamare tutte le lavorazioni svolte per una certa auto, calcolare i costi in base al numero di ore lavorate, e7 mostrare
-il totale. Il programma deve anche mostrare quali operai sono più veloci a svolgere ogni tipo di operazione, qual è il tempo medio che occorre per ogni lavorazione, e quali sono le lavorazioni
+Scrivere un programma che consenta di inserire i tempi di lavoro in un'officina per auto.
+
+I tempi devono essere associati a:
+
+ - un tipo di lavoro
+
+ - un operatore
+
+ - un'auto in particolare (usare la targa come identificativo univoco).
+
+Il programma deve consentire di richiamare tutte le lavorazioni svolte per una certa auto, calcolare i costi in base al numero di ore lavorate, e mostrare il totale.
+
+Il programma deve anche mostrare quali operai sono più veloci a svolgere ogni tipo di operazione, qual è il tempo medio che occorre per ogni lavorazione, e quali sono le lavorazioni
 richieste più di frequente dai clienti.
 
 ## esercizio 13
@@ -76,11 +86,11 @@ di carburante. Mostrare il consumo medio di carburante, compilare un elenco dei 
 ## esercizio 14
 
 Scrivere un programma che memorizzi le preferenze musicali di un numero arbitrario di utenti. Il programma deve contenere un elenco di musicisti con il relativo compenso. Calcolare quali concerti
-conviene organizzare in base al costo del biglietto, al numero di partecipanti stimato sulle preferenze, e al compenso dell'artista. Tramite i CSS dare alla pagina un aspetto progressive anni '70.
+conviene organizzare in base al costo del biglietto, al numero di partecipanti stimato sulle preferenze, e al compenso dell'artista. Tramite i CSS dare alla pagina un aspetto progressive anni '70'.
 
 ## esercizio 15
 
-Scrivere un programma che consenta di gestire le statistiche di un gruppo di giocatori di basket (canestri, palle perse, tiri liberi, eccetera) e consenta di formulare la formazione migliore in base
+Scrivere un programma che consenta di gestire le statistiche di un gruppo di giocatori di basket (canestri, palle perse, tiri liberi, freschezza (minuti di resistenza prima di affaticarsi), eccetera) e consenta di formulare la formazione migliore in base
 ai punteggi inseriti; il programma deve anche proporre una lista di sostituzioni in base alla propensione a stancarsi dei vari giocatori, in modo da mantenere sempre una formazione fresca in campo.
 Gestire la stanchezza in termini di minuti giocabili prima di cominciare ad affaticarsi.
 
@@ -108,8 +118,23 @@ psicologo).
 
 ## esercizio 20
 
-Scrivere un programma che consenta di gestire una piccola biblioteca. Per ogni libro salvare titolo, autore, genere, classificazione Dewey e collocazione. Creare un modulo di ricerca nel quale sia
-possibile trovare un libro in base ai dati inseriti. Creare un elenco topografico per collocazione di tutti i libri presenti in biblioteca. Creare un elenco per genere di tutti i libri presenti in
-biblioteca. Creare un elenco per autore di tutti i libri presenti in biblioteca. Gestire il prestito dei volumi, il tesseramento degli utenti, creare una lista degli utenti in ritardo nella
-restituzione dei libri. Tramite i CSS dare alla pagina uno stile adeguato a una biblioteca di quartiere.
+Scrivere un programma che consenta di gestire una piccola biblioteca. Per ogni libro salvare titolo, autore, genere, classificazione Dewey e collocazione.
+
+ - Creare un modulo di ricerca nel quale sia possibile trovare un libro in base ai dati inseriti.
+
+ - Creare un elenco topografico per collocazione di tutti i libri presenti in biblioteca.
+
+ - Creare un elenco per genere di tutti i libri presenti in biblioteca.
+
+ - Creare un elenco per autore di tutti i libri presenti in biblioteca.
+
+ - Gestire :
+
+ 	- il prestito dei volumi
+
+ 	- il tesseramento degli utenti
+
+ - Creare una lista degli utenti in ritardo nella restituzione dei libri.
+
+ - Tramite i CSS dare alla pagina uno stile adeguato a una biblioteca di quartiere.
 
