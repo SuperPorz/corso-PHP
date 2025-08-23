@@ -6,7 +6,8 @@
 
     //include il file che fornisce la funzione total_jokes
     include_once __DIR__ . 
-        '/../includes/DatabaseFunctions.php';
+        '/../classes/DatabaseTable.php';
 
     //richiama la funzione total_jokes
-    echo total_jokes($pdo);
+    $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+    echo $jokesTable->total();

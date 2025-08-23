@@ -1,22 +1,25 @@
 <?php
 
-    include __DIR__ . '/../includes/DatabaseConnection.php';
-    include __DIR__ . '/../includes/DatabaseFunctions.php';
 
-    try {
-        if (isset($_POST['joketext'])) { //se form inviato, eseguiamo query aggiornamento
+try {
+    include __DIR__ . '/../includes/DatabaseConnection.php';
+    include __DIR__ . '/../classes/DatabaseTable.php';
+
+    $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+
+    if (isset($_POST['joketext'])) { //se form inviato, eseguiamo query aggiornamento
 
             $joke = $_POST['joke'];
             $joke['jokedate'] = new DateTime();
             $joke['authorid'] = 1;
 
-            save($pdo, 'joke', 'id', $joke);
+            $jokesTable->save($joke);
             
             header('location: jokes.php');
         }
         else { //se non inviato, eseguiamo query per richiedere barzelletta non ancora modificata
             if (isset($_GET['id'])){
-                $joke = find_by_id($pdo, 'joke', 'id', $_GET['id']);
+                $joke = $jokesTable->find_by_id($_GET['id']);
             }
             
             $title = 'Edit joke';

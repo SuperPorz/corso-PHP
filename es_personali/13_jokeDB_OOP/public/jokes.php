@@ -2,21 +2,21 @@
 
     try {
         include __DIR__ . '/../includes/DatabaseConnection.php';
-        include __DIR__ . '/../includes/DatabaseFunctions.php';
+        include __DIR__ . '/../classes/DatabaseTable.php';
 
-        $result = find_all($pdo, 'joke');
+        $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+        $authorTable = new DatabaseTable($pdo, 'author', 'id');
+
+        $result = $jokesTable->find_all();
 
         $jokes = [];
         foreach($result as $joke) {
-            $author = find_by_id (
-                $pdo,
-                'author',
-                'id',
-                $joke['authorid']);
+            $author = $authorTable->find_by_id($joke['authorid']);
 
             $joke[] = [
                 'id' => $joke['id'],
                 'joketext' => $joke['joketext'],
+                'jokedate' => $joke['jokedate'],
                 'name' => $author['name'],
                 'email' => $author['email']
             ];
@@ -24,7 +24,7 @@
 
         $title = 'Joke list';
 
-        $totalJokes = total($pdo, 'joke');
+        $totalJokes = $jokesTable->total();
 
         ob_start();
 
