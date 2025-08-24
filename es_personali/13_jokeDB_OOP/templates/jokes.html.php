@@ -1,4 +1,4 @@
-<p><?=$totalJokes?> jokes have been sumbmitted ti the Internet Joke Database.</p>
+<p><?=$totalJokes?> jokes have been sumbmitted to the Internet Joke Database.</p>
 
 <?php foreach ($jokes as $joke): ?>
     <blockquote>
