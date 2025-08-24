@@ -10,6 +10,11 @@
                 $this->authorsTable = $authorsTable;            
         }
 
+        public function home() {
+            $title = 'Internet Joke Database';
+            return ['template' => 'home.html.php', 'title' => $title];
+        }
+
         public function list() {
             $result = $this->jokesTable->find_all();
 
@@ -32,15 +37,13 @@
             ob_start();
             include __DIR__ . '/../templates/jokes.html.php';
             $output = ob_get_clean();
-            return ['output' => $output, 'title' => $title];
-        }
-
-        public function home() {
-            $title = 'Internet Joke Database';
-            ob_start();
-            include __DIR__ . '/../templates/home.html.php';
-            $output = ob_get_clean();
-            return ['output' => $output, 'title' => $title];
+            return [
+                'title' => $title,
+                'variables' => [
+                    'totalJokes' => $totalJokes,
+                    'jokes' => $jokes
+                ]
+            ];
         }
 
         public function delete() {
@@ -64,7 +67,13 @@
                 ob_start();
                 include __DIR__ . '/../templates/home.html.php';
                 $output = ob_get_clean();
-                return ['output' => $output, 'title' => $title];
+                return [
+                    'title' => $title,
+                    'variables' => [
+                        'totalJokes' => $totalJokes,
+                        'jokes' => $jokes ?? null
+                    ]
+                ];
             }
         }
         

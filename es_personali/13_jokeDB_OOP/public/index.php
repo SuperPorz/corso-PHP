@@ -1,5 +1,12 @@
 <?php
 
+    function load_template($templateFileName, $variables = []) {
+        extract($variables);
+        ob_start();
+        include __DIR__ . '/../templates/' . $templateFileName;
+        return ob_get_clean();
+    }
+
     try {
         # includes
         include __DIR__ . '/../includes/DatabaseConnection.php';
@@ -11,13 +18,17 @@
         $authorsTable = new DatabaseTable($pdo, 'author', 'id');
         $jokeController = new JokeController($jokesTable, $authorsTable);
 
-        # front controller
+        # caricamento template corretto ed estrazione variabili
         $action = $_GET['action'] ?? 'home';
-        $page = $jokeController->$action(); //concatenazione di $action + () per chiamare una funzione che varia caso per caso
-
-        # output variables
+        $page = $jokeController->$action();
         $title = $page['title'];
-        $output = $page['output'];
+
+        if (isset($page['variables'])) {
+            $output = load_template($page['template'], $page['variables']);
+        }
+        else {
+            $output = load_template($page['template']);
+        }
 
     } catch (PDOException $e) {
         $title = 'An error has occurred';
