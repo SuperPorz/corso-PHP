@@ -1,15 +1,29 @@
 <?php
 
-    $title = 'Internet Joke Database';
+    try {
+        # includes
+        include __DIR__ . '/../includes/DatabaseConnection.php';
+        include __DIR__ . '/../classes/DatabaseTable.php';
+        include __DIR__ . '/../controllers/JokeController.php';
 
-    //avvia buffer
-    ob_start();
+        # istanze
+        $jokesTable = new DatabaseTable($pdo, 'joke', 'id');
+        $authorsTable = new DatabaseTable($pdo, 'author', 'id');
+        $jokeController = new JokeController($jokesTable, $authorsTable);
 
-    //includi file ma verrà mantenuto nel buffer del server
-    include __DIR__ . '/../templates/home.html.php';
+        # front controller
+        $action = $_GET['action'] ?? 'home';
+        $page = $jokeController->$action(); //concatenazione di $action + () per chiamare una funzione che varia caso per caso
 
-    //lettura del buffer e memorizzazione in una variabile
-    $output = ob_get_clean();
+        # output variables
+        $title = $page['title'];
+        $output = $page['output'];
 
-    //includi template principale
+    } catch (PDOException $e) {
+        $title = 'An error has occurred';
+        $output = 'Database error: ' . $e->getMessage() . ' in '
+            . $e->getFile() . ':' . $e->getLine();
+    }
+
     include __DIR__ . '/../templates/layout.html.php';
+    $pdo = null;

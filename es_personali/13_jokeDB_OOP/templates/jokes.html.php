@@ -20,9 +20,9 @@
             ?>
         )
         
-        <a href="editjoke.php?id=<?=$joke['id']?>">Edit</a>
+        <a href="index.php?action=edit&id=<?=$joke['id']?>">Edit</a>
 
-        <form action="deletejoke.php" method="post">
+        <form action="index.php?action=delete" method="post">
             <input type="hidden" name="id" 
                 value="<?=$joke['id']?>">
 
