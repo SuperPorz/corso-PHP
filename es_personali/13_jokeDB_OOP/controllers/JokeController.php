@@ -34,10 +34,8 @@
 
             $title = 'Joke list';
             $totalJokes = $this->jokesTable->total();
-            ob_start();
-            include __DIR__ . '/../templates/jokes.html.php';
-            $output = ob_get_clean();
             return [
+                'template' => 'jokes.html.php',
                 'title' => $title,
                 'variables' => [
                     'totalJokes' => $totalJokes,
@@ -64,14 +62,11 @@
                     $joke = $this->jokesTable->find_by_id($_GET['id']);
                 }
                 $title = 'Edit joke';
-                ob_start();
-                include __DIR__ . '/../templates/home.html.php';
-                $output = ob_get_clean();
                 return [
+                    'template' => 'editjoke.html.php',
                     'title' => $title,
                     'variables' => [
-                        'totalJokes' => $totalJokes,
-                        'jokes' => $jokes ?? null
+                        'joke' => $joke ?? null
                     ]
                 ];
             }
