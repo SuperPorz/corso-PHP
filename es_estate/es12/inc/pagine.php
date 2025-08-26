@@ -13,10 +13,10 @@
             ]
         ],
 
-        'richiesta_lavorazione' => [
+        'inserimento_lavorazione' => [
             'contenuto' => [
-                'titolo' => 'RICHIESTA LAVORAZIONE',
-                'h1' => 'INSERIMENTO RICHIESTA LAVORAZIONE',
+                'titolo' => 'INSERIMENTO LAVORAZIONE',
+                'h1' => 'INSERIMENTO LAVORAZIONE',
                 'tabella' => '',
                 'form' => '',
                 'select' => '',
@@ -24,15 +24,28 @@
             'template' => 'tpl/main.html',
             'include' => [
                 'opt/inserimento.modl.php',
-                'opt/inserimento.ctrl.php',
-                'opt/inserimento.view.php',
+            ]
+        ],
+
+        'gestione_operatori' => [
+            'contenuto' => [
+                'titolo' => 'GESTIONE OPERATORI OFFICINA',
+                'h1' => 'GESTIONE OPERATORI OFFICINA',
+                'tabella' => '',
+                'form' => '',
+                'select' => '',
+            ],
+            'template' => 'tpl/main.html',
+            'include' => [
+                'opt/operatori.modl.php',
             ]
         ],
 
         'storico_lavorazioni' => [
             'contenuto' => [
                 'titolo' => 'STORICO LAVORAZIONI',
-                'h1' => 'INSERISCI LA TARGA PER OTTENERE <br> LO STORICO LAVORAZIONI',
+                'h1' => 'INSERISCI LA TARGA PER OTTENERE 
+                            <br> LO STORICO LAVORAZIONI',
                 'tabella' => '',
                 'form' => '',
                 'select' => '',
@@ -40,8 +53,6 @@
             'template' => 'tpl/main.html',
             'include' => [
                 'opt/storico.modl.php',
-                'opt/storico.ctrl.php',
-                'opt/storico.view.php',
             ]
         ],
     ];

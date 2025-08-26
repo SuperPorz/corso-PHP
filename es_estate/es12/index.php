@@ -1,6 +1,12 @@
 <?php
 
-    
+    # INCLUDE
+    include_once 'inc/DatabaseConnection.php';
+    include_once 'classes/database.php';
+    include_once 'classes/officina.php';
+
+
+    # ISTANZE
 
 
 
