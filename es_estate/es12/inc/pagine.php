@@ -5,55 +5,61 @@
         'homepage' => [
             'contenuto' => [
                 'titolo' => 'HOMEPAGE',
-                'h1' => 'Benvenuto nell\'officina LORENZONI srl!',
-                'select' => '',
+                'ul' => file_get_contents('tpl/ul.menu.html'),
+                'h1' => 'Benvenuto nell\'officina LORENZONI GmbH!',
             ],
             'template' => 'tpl/homepage.html',
-            'include' => [
-            ]
         ],
 
-        'inserimento_lavorazione' => [
+        'lavorazioni' => [
             'contenuto' => [
                 'titolo' => 'INSERIMENTO LAVORAZIONE',
-                'h1' => 'INSERIMENTO LAVORAZIONE',
-                'tabella' => '',
+                'ul' => file_get_contents('tpl/ul.menu.html'),
+                'h1' => 'INSERIMENTO LAVORAZIONI DISPONIBILI IN OFFICINA',
+                'h2a' => 'Inserisci una possibile lavorazione:',
                 'form' => '',
-                'select' => '',
+                'h2b' => 'Lavorazioni attualmente disponibili:',
+                'tabella' => '',
             ],
             'template' => 'tpl/main.html',
-            'include' => [
-                'opt/inserimento.modl.php',
-            ]
         ],
 
-        'gestione_operatori' => [
+        'operatori' => [
             'contenuto' => [
                 'titolo' => 'GESTIONE OPERATORI OFFICINA',
-                'h1' => 'GESTIONE OPERATORI OFFICINA',
-                'tabella' => '',
-                'form' => '',
-                'select' => '',
+                'ul' => file_get_contents('tpl/ul.menu.html'),
+                'h1' => 'INSERIMENTO OPERATORI DELL\'OFFICINA',
+                'h2a' => 'Inserisci il nominativo di un operatore autorizzato:',
+                'form1' => '',               
+                'h2b' => 'Inserisci il tempo di lavorazione di ciascun operaio:',
+                'form2' => '',
+                'select_lavorazione' => '',
+                'select_operatore' => '',
+                'h2c' => 'Operatori attualmente disponibili:',
+                'tabella1' => '',
+                'h2d' => 'Tempistiche lavorazioni per operaio:',
+                'tabella2' => '',
             ],
-            'template' => 'tpl/main.html',
-            'include' => [
-                'opt/operatori.modl.php',
-            ]
+            'template' => 'tpl/special.html',
         ],
 
-        'storico_lavorazioni' => [
+        'officina' => [
             'contenuto' => [
-                'titolo' => 'STORICO LAVORAZIONI',
-                'h1' => 'INSERISCI LA TARGA PER OTTENERE 
-                            <br> LO STORICO LAVORAZIONI',
-                'tabella' => '',
-                'form' => '',
-                'select' => '',
+                'titolo' => 'OFFICINA & STORICO',
+                'ul' => file_get_contents('tpl/ul.menu.html'),
+                'h1' => 'GESTIONE OFFICINA e STORICO LAVORAZIONI',
+                'h2a' => 'Richiedi un intervento per la tua auto:',
+                'form1' => '',                
+                'select_lavorazione' => '',
+                'select_operatore' => '',
+                'h2b' => 'Inserisci la tua targa per vederne lo storico:',
+                'form2' => '',
+                'h2c' => 'Storico lavorazioni per la targa inserita:',
+                'tabella1' => '',
+                'h2d' => 'Dati officina:',
+                'tabella2' => '',
             ],
-            'template' => 'tpl/main.html',
-            'include' => [
-                'opt/storico.modl.php',
-            ]
+            'template' => 'tpl/special.html',
         ],
     ];
 

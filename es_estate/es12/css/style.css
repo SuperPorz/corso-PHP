@@ -6,6 +6,8 @@ body {
     flex-direction: column;
     text-align: center;
     box-sizing: border-box;
+    justify-items: center;
+    align-items: center;
 }
 .header {
     display: flex;
@@ -29,9 +31,8 @@ body {
 
 h1 {
     font-size: 60px;
-    color: #e43d40;
+    color:darkred;
     margin: 10px;
-    border-radius: 20px;
     padding: 8px;
 }
 
@@ -58,16 +59,6 @@ h3 {
     text-align: center;
 }
 
-a {
-    font-size: 30px;
-    color: rgba(255, 255, 255, 0.826);
-    background-color:darkred;
-    border-radius: 20px;
-    padding: 8px;
-    text-decoration: none;
-    font-style: italic;
-}
-
 form {
     display: flex;
     flex-direction: row;
@@ -86,19 +77,22 @@ select {
 }
 
 legend {
-    font-size: 30px;
     color: #e43d40;
     background-color: #ffffff;
-    border-radius: 20px;
-    padding: 5px 15px 5px 15px;
+    border-radius: 5px 40px 5px;
+    padding: 5px 10px 5px 10px;
     font-style: italic;
+}
+
+legend pre {
+    font-size: 24px;
+    margin: 3px 7px 3px 7px;
 }
 
 fieldset {
     background-color: #fabec0;
     border-radius: 20px;
     margin: 10px;
-    text-align: left;
 }
 
 #f1 {
@@ -111,7 +105,7 @@ fieldset {
     background-color: #f85c70;
     color: white;
     padding: 8px 30px 8px 30px;
-    border-radius: 20px;
+    border-radius: 5px 40px 5px;
     text-decoration: none;
     font-size: 40px;
 }
@@ -132,52 +126,43 @@ fieldset {
     text-align: center;
 }
 
+#link {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.826);
+    background-color:darkred;
+    border-radius: 20px;
+    padding: 8px;
+    text-decoration: none;
+    font-style: italic;
+}
+
 /* ---------------------------------------------------------- */
 
 ul {
-    background-color: #fabec0;
+    background-color: darkred;
     border-radius: 15px;
     margin: 15px 0;
     padding: 15px;
     list-style: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
 }
 
-ul > li {
-    font-size: 24px;
-    color:  #e43d40;
-    font-weight: bold;
-}
-
-ul ul {
-    background-color: rgba(89, 161, 165, 0.6);
-    border-radius: 10px;
-    margin: 10px 0 0 0;
-    padding: 10px;
-    box-shadow: none;
-}
-
-ul ul li {
-    font-size: 18px;
-    color: rgb(255, 255, 255);
-    margin: 5px 0;
-    padding: 3px 0;
+ul li {
+    margin: 20px;
+    padding: 20px;
     font-weight: normal;
     border: none;
-}
-
-ul ul li:contains("orario inizio"),
-ul ul li:contains("orario fine") {
-    color: orange;
-    font-weight: bold;
-}
-
-h3 + p {
-    font-size: 25px;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 30px;
+    background-color: #e43d40;
+    border-radius: 5px 40px 5px;
     font-style: italic;
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-    padding: 5px;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;    
 }

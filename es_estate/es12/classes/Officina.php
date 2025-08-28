@@ -52,4 +52,33 @@
         public function elimina_intervento($id_interv) {
             $this->tab_intervento->delete($id_interv);
         }
+
+        # DA SISTEMARE
+        public function migliori_operatori() {
+            $query = 'SELECT * FROM `tempi_per_operatore` 
+                GROUP BY id_lavoraz
+                HAVING tempo = MIN(tempo) 
+                ORDER BY tempo';
+            $result = $this->tab_intervento->query($query);
+            return $result->fetchAll();
+        }
+
+        # DA SISTEMARE
+        public function tempi_medi() {
+            $query = 'SELECT * FROM `tempi_per_operatore` 
+                GROUP BY id_lavoraz
+                HAVING tempo = AVG(tempo) 
+                ORDER BY tempo';
+            $result = $this->tab_intervento->query($query);
+            return $result->fetchAll();
+        }
+
+        # DA SISTEMARE
+        public function lavorazioni_frequenti() {
+            $query = 'SELECT * FROM `tempi_per_operatore` 
+                GROUP BY id_lavoraz 
+                ORDER BY COUNT(id_lavoraz)';
+            $result = $this->tab_intervento->query($query);
+            return $result->fetchAll();
+        }
     }

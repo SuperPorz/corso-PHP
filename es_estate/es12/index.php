@@ -3,16 +3,18 @@
     try {
         # INCLUDES
         include 'inc/DatabaseConnection.php';
-        include 'inc/pagine.php';
         include 'inc/functions.php';
-        include 'classes/database.php';
-        include 'classes/officina.php';
+        include 'inc/pagine.php';
+        include 'classes/DatabaseTable.php';
+        include 'classes/Lavorazioni.php';
+        include 'classes/Operatori.php';
+        include 'classes/Officina.php';
 
         # ISTANZE
         # istanze tabelle
         $tab_operatore = new DatabaseTable($pdo, 'operatore', 'id_operat');
         $tab_lavorazione = new DatabaseTable($pdo, 'lavorazione', 'id_lavoraz');
-        $tab_tempi_operatore = new DatabaseTable($pdo, 'tempi-per_operatore', 
+        $tab_tempi_operatore = new DatabaseTable($pdo, 'tempi_per_operatore', 
                                                 'id_tempi');
         $tab_intervento = new DatabaseTable($pdo, 'intervento', 'id_interv');
 
@@ -86,9 +88,9 @@
         $tempi_medi = [];
         $top_lavorazioni = [];
 
-        $tempi_migliori = $operatore->migliori_operatori();
-        $tempi_medi = $lavorazione->tempi_medi();
-        $top_lavorazioni = $lavorazione->lavorazioni_frequenti();
+        $tempi_migliori = $officina->migliori_operatori();
+        $tempi_medi = $officina->tempi_medi();
+        $top_lavorazioni = $officina->lavorazioni_frequenti();
 
         
 

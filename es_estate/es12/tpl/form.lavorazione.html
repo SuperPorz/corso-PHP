@@ -1,0 +1,13 @@
+<form action="" method="post">
+    <fieldset class="field" name="lavorazione">
+        <legend><pre>Richiesta lavorazione:</pre></legend>
+        <label for="targa"></label>
+        <input type="text" name="targa" id="input" placeholder="es. CX895WA" 
+                minlength="7"  maxlength="7" required><br>
+        <label for="lavorazione"></label>
+        {{select_lavorazione}}
+        <label for="operatore"></label>
+        {{select_operatore}}
+    </fieldset>
+    <br><input type="submit" value="INVIA" id="f2">
+</form>
