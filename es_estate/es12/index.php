@@ -12,8 +12,8 @@
         # istanze tabelle
         $tab_operatore = new DatabaseTable($pdo, 'operatore', 'id_operat');
         $tab_lavorazione = new DatabaseTable($pdo, 'lavorazione', 'id_lavoraz');
-        $tab_tempi_operatore = new DatabaseTable($pdo, 
-            'tempi-per_operatore', 'id_tempi');
+        $tab_tempi_operatore = new DatabaseTable($pdo, 'tempi-per_operatore', 
+                                                'id_tempi');
         $tab_intervento = new DatabaseTable($pdo, 'intervento', 'id_interv');
 
         # istanza main program OFFICINA
@@ -89,7 +89,6 @@
         $tempi_migliori = $operatore->migliori_operatori();
         $tempi_medi = $lavorazione->tempi_medi();
         $top_lavorazioni = $lavorazione->lavorazioni_frequenti();
-
 
         
 

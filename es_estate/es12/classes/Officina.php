@@ -41,7 +41,7 @@
                 GROUP BY targa
                 HAVING targa = :targa';
             $parameters = ['targa' => $targa];
-            $result = $this->tab_intervento->query($query);
+            $result = $this->tab_intervento->query($query, $parameters);
             return $result->fetchAll();
         }
 
