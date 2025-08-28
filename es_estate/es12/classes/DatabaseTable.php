@@ -12,7 +12,7 @@
             $this->primaryKey = $primaryKey;
         }
 
-        private function query($sql, $parameters = []) {
+        public function query($sql, $parameters = []) {
             $query = $this->pdo->prepare($sql);
             $query->execute($parameters);
             return $query;
@@ -96,5 +96,13 @@
             catch (PDOException $e) {
                 $this->update($record);
             }
+        }
+
+        public function find_by_field($field, $value) {
+            $query = 'SELECT * FROM `' . $this->table . 
+                '` WHERE `' . $field . '` = :value';
+            $parameters = ['value' => $value];
+            $result = $this->query($query, $parameters);
+            return $result->fetchAll();
         }
     }

@@ -23,12 +23,13 @@ CREATE TABLE lavorazione (
 );
 
 CREATE TABLE tempi_per_operatore (
+	id_tempi INT NOT NULL AUTO_INCREMENT, 
 	id_operat INT NOT NULL,
 	id_lavoraz INT NOT NULL,
     tempo INT NOT NULL,
     FOREIGN KEY (id_operat) REFERENCES operatore(id_operat) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_lavoraz) REFERENCES lavorazione(id_lavoraz) ON DELETE CASCADE ON UPDATE CASCADE,
-	PRIMARY KEY (id_operat, id_lavoraz, tempo)
+	PRIMARY KEY (id_tempi)
 );
 
 CREATE TABLE intervento (
@@ -59,3 +60,27 @@ FROM joke;
 SELECT j.id, LEFT(joketext, 20) as testo_ridotto, `name`, email
 FROM joke j 
 INNER JOIN author a ON j.authorid = a.id;
+
+
+SELECT * FROM `tempi_per_operatore` 
+GROUP BY id_lavoraz 
+HAVING tempo = MIN(tempo)
+ORDER BY tempo;
+
+SELECT * FROM `tempi_per_operatore` 
+GROUP BY id_lavoraz
+HAVING tempo = AVG(tempo) 
+ORDER BY tempo;
+
+SELECT COUNT(id_lavoraz) as numero_lavorazioni 
+FROM `tempi_per_operatore` 
+GROUP BY id_lavoraz 
+ORDER BY numero_lavorazioni;
+
+SELECT targa, SUM(tempo * costo_h) as spesa_totale   
+FROM intervento i
+JOIN lavorazione l ON i.id_lavoraz = l.id_lavoraz
+JOIN operatore o ON i.id_operat = o.id_operat
+JOIN tempi_per_operatore t ON i.id_operat = t.id_operat
+GROUP BY targa
+HAVING targa = 'tgx99';

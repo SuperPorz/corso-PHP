@@ -2,7 +2,7 @@
 
     class Operatore {
         private $tab_operatore;
-        private $nome;       
+        private $nome;
 
         public function __construct(DatabaseTable $tab_operatore, $nome) {
             $this->tab_operatore = $tab_operatore;
@@ -22,5 +22,15 @@
 
         public function elimina_operatore($id) {
             $this->tab_operatore->delete($id);
+        }
+
+        # DA SISTEMARE
+        public function migliori_operatori() {
+            $query = 'SELECT * FROM `tempi_per_operatore` 
+                GROUP BY id_lavoraz
+                HAVING tempo = MIN(tempo) 
+                ORDER BY tempo';
+            $result = $this->tab_operatore->query($query);
+            return $result->fetchAll();
         }
     }
