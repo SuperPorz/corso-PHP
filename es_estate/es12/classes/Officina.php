@@ -20,12 +20,21 @@
             $this->tab_intervento->save($array);
         }
         
-        public function tempi_per_operatore($lavorazione, $operatore, $tempo) {
+        public function inserisci_tempi_per_operatore($lavorazione, $operatore, $tempo) {
             $array = [];
             $array['id_operat'] = $operatore;
             $array['id_lavoraz'] = $lavorazione;
             $array['tempo'] = $tempo;
             $this->tab_tempi_operatore->save($array);
+        }
+
+        public function findAll_tempi_per_operatore() {
+            $query = 'SELECT id_tempi, nome, descrizione, tempo   
+                FROM tempi_per_operatore t
+                JOIN lavorazione l ON t.id_lavoraz = l.id_lavoraz
+                JOIN operatore o ON t.id_operat = o.id_operat';
+            $result = $this->tab_intervento->query($query);
+            return $result->fetchAll();
         }
 
         public function storico_lavorazioni($targa) {

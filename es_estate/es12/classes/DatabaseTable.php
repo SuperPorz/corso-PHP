@@ -68,8 +68,8 @@
         public function delete($id) {
             $parameters = [':id' => $id];
     
-            $this->query('DELETE FROM' . $this->table . '
-                WHERE' . $this->primaryKey . ' = :id', $parameters);
+            $this->query('DELETE FROM ' . $this->table . 
+                ' WHERE ' . $this->primaryKey . ' = :id', $parameters);
         }
 
         public function find_all() {
@@ -88,7 +88,8 @@
     
         public function save($record) {
             try {
-                if ($record[$this->primaryKey] == '') {
+                // Controlla se la chiave primaria esiste E se è vuota
+                if (!isset($record[$this->primaryKey]) || $record[$this->primaryKey] == '') {
                     $record[$this->primaryKey] = null;
                 }
                 $this->insert($record);

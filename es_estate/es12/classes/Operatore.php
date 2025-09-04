@@ -10,7 +10,9 @@
         }
 
         public function inserisci_operatore() { 
-            $this->tab_operatore->save($this->nome);
+            $array = [];
+            $array['nome'] = $this->nome;
+            $this->tab_operatore->save($array);
         }
 
         public function modifica_operatore($id) {

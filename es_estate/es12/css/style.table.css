@@ -1,0 +1,102 @@
+/* Stile per la tabella lavorazioni */
+table {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-family: monospace;
+}
+
+/* Header della tabella */
+table thead {
+    background-color: darkred;
+}
+
+table thead th {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 20px;
+    text-align: center;
+    border: none;
+}
+
+/* Righe del corpo tabella */
+table tbody tr {
+    background-color: #fabec0;
+    transition: background-color 0.3s ease;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f0a8ab;
+}
+
+table tbody tr:hover {
+    background-color: #e43d40;
+    color: white;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* Celle della tabella */
+table tbody td {
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    color: #333;
+}
+
+table tbody tr:hover td {
+    color: white;
+}
+
+/* Link di eliminazione */
+table tbody td a {
+    color: darkred;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #ffffff;
+    padding: 5px 15px;
+    border-radius: 5px 20px 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+table tbody td a:hover {
+    background-color: #f85c70;
+    color: white;
+    transform: scale(1.1);
+}
+
+table tbody tr:hover td a {
+    background-color: white;
+    color: darkred;
+}
+
+table tbody tr:hover td a:hover {
+    background-color: #f85c70;
+    color: white;
+}
+
+/* Responsive design per la tabella */
+@media (max-width: 768px) {
+    table {
+        width: 95%;
+        font-size: 16px;
+    }
+    
+    table thead th,
+    table tbody td {
+        padding: 8px 10px;
+        font-size: 18px;
+    }
+    
+    table thead th {
+        font-size: 20px;
+    }
+}

@@ -37,12 +37,17 @@ h1 {
 }
 
 h2 {
-    font-size: 45px;
-    color: #e43d40;
-    margin: 10px;
+    font-size: 40px;
+    color: white; /* Bianco per massimo contrasto */
+    background-color: darkred; /* Sfondo scuro per far risaltare il testo */
+    margin: 15px auto;
     border-radius: 20px;
-    padding: 8px;
+    padding: 10px 30px;
     font-style: italic;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra per profondità */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombra del testo per maggiore leggibilità */
+    max-width: 80%; /* Limita la larghezza per una migliore presentazione */
+    text-align: center;
 }
 
 h3 {

@@ -15,15 +15,15 @@
         public function inserisci_lavorazione() { 
             $array = [];
             $array['descrizione'] = $this->descrizione;
-            $array['costo'] = $this->costo;
-            $this->tab_lavorazione->save($this->descrizione);
+            $array['costo_h'] = $this->costo;
+            $this->tab_lavorazione->save($array);
         }
 
         public function modifica_lavorazione() {
             $array = [];
             $array['id_lavoraz'] = $_POST['id_lavoraz'];
             $array['descrizione'] = $this->descrizione;
-            $array['costo'] = $this->costo;
+            $array['costo_h'] = $this->costo;
             $this->tab_lavorazione->save($array);
         }
 

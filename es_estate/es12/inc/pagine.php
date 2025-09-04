@@ -17,11 +17,11 @@
                 'ul' => file_get_contents('tpl/ul.menu.html'),
                 'h1' => 'INSERIMENTO LAVORAZIONI DISPONIBILI IN OFFICINA',
                 'h2a' => 'Inserisci una possibile lavorazione:',
-                'form' => '',
+                'form' => file_get_contents('tpl/lavorazioni.form.html'),
                 'h2b' => 'Lavorazioni attualmente disponibili:',
                 'tabella' => '',
             ],
-            'template' => 'tpl/main.html',
+            'template' => 'tpl/lavorazioni.html',
         ],
 
         'operatori' => [
@@ -30,7 +30,7 @@
                 'ul' => file_get_contents('tpl/ul.menu.html'),
                 'h1' => 'INSERIMENTO OPERATORI DELL\'OFFICINA',
                 'h2a' => 'Inserisci il nominativo di un operatore autorizzato:',
-                'form1' => '',               
+                'form1' => file_get_contents('tpl/operatori.form.html'),
                 'h2b' => 'Inserisci il tempo di lavorazione di ciascun operaio:',
                 'form2' => '',
                 'select_lavorazione' => '',
@@ -39,6 +39,7 @@
                 'tabella1' => '',
                 'h2d' => 'Tempistiche lavorazioni per operaio:',
                 'tabella2' => '',
+                'azzera' => 'href="operatori"'
             ],
             'template' => 'tpl/special.html',
         ],
@@ -58,6 +59,7 @@
                 'tabella1' => '',
                 'h2d' => 'Dati officina:',
                 'tabella2' => '',
+                'azzera' => 'href="officina"'
             ],
             'template' => 'tpl/special.html',
         ],

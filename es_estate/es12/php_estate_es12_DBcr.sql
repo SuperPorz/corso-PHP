@@ -54,8 +54,8 @@ insert into joke (joketext, jokedate) values (
     
     
 ########################################## TEST QUERY
-SELECT id, LEFT(joketext, 20), authorid
-FROM joke;
+SELECT *
+FROM operatore;
 
 SELECT j.id, LEFT(joketext, 20) as testo_ridotto, `name`, email
 FROM joke j 
