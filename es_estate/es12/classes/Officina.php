@@ -1,93 +1,83 @@
 <?php
 
     class Officina {
-        private $tab_tempi_operatore;
         private $tab_intervento;        
 
         public function __construct(
-            DatabaseTable $tab_tempi_operatore,
             DatabaseTable $tab_intervento,
             ) {
-            $this->tab_tempi_operatore = $tab_tempi_operatore;
             $this->tab_intervento = $tab_intervento;
         }
 
-        public function richiesta_lavorazione($targa, $lavorazione, $operatore) {
+        # INSERIMENTO/ELIMINAZIONE LAVORAZIONE
+        public function inserisci_lavorazione($targa, $lavorazione, $operatore, 
+            $tempo, $costo) {
             $array = [];
             $array['targa'] = $targa;
-            $array['id_lavoraz'] = $lavorazione;
-            $array['id_operat'] = $operatore;
+            $array['lavorazione'] = $lavorazione;
+            $array['operatore'] = $operatore;
+            $array['tempo'] = $tempo;
+            $array['costo_h'] = $costo;
             $this->tab_intervento->save($array);
         }
-        
-        public function inserisci_tempi_per_operatore($lavorazione, $operatore, $tempo) {
-            $array = [];
-            $array['id_operat'] = $operatore;
-            $array['id_lavoraz'] = $lavorazione;
-            $array['tempo'] = $tempo;
-            $this->tab_tempi_operatore->save($array);
+        public function elimina_intervento($id_interv) {
+            $this->tab_intervento->delete($id_interv);
         }
 
-        public function findAll_tempi_per_operatore() {
-            $query = 'SELECT id_tempi, nome, descrizione, tempo   
-                FROM tempi_per_operatore t
-                JOIN lavorazione l ON t.id_lavoraz = l.id_lavoraz
-                JOIN operatore o ON t.id_operat = o.id_operat';
-            $result = $this->tab_intervento->query($query);
-            return $result->fetchAll();
+        # STORICO GLOBALE OFFICINA
+        public function lista_interventi_registrati() {
+            return $this->tab_intervento->find_all();
         }
 
-        public function storico_lavorazioni($targa) {
+        # STORICO PER TARGA
+        public function storico_lavorazioni_targa($targa) {
             return $this->tab_intervento->find_by_field('targa', $targa);
         }
 
+        # COSTO TOTALE PER TARGA
         public function costi_totali($targa) {
-            $query = 'SELECT targa, SUM(tempo * costo_h) as spesa_totale   
-                FROM intervento i
-                JOIN lavorazione l ON i.id_lavoraz = l.id_lavoraz
-                JOIN operatore o ON i.id_operat = o.id_operat
-                JOIN tempi_per_operatore t ON i.id_operat = t.id_operat
-                GROUP BY targa
-                HAVING targa = :targa';
+            $query = 'SELECT SUM(tempo * costo_h) as spesa_totale   
+                FROM intervento
+                WHERE targa = :targa';
             $parameters = ['targa' => $targa];
             $result = $this->tab_intervento->query($query, $parameters);
             return $result->fetchAll();
         }
 
-        public function elimina_tempi_operatore($id_tempi) {
-            $this->tab_tempi_operatore->delete($id_tempi);
-        }
-
-        public function elimina_intervento($id_interv) {
-            $this->tab_intervento->delete($id_interv);
-        }
-
-        # DA SISTEMARE
+        # [DA SISTEMARE] MIGLIORI OPERATORI
         public function migliori_operatori() {
-            $query = 'SELECT * FROM `tempi_per_operatore` 
-                GROUP BY id_lavoraz
-                HAVING tempo = MIN(tempo) 
-                ORDER BY tempo';
+            $query = 'SELECT operatore, lavorazione, MIN(tempo) as tempo_migliore 
+                FROM intervento
+                GROUP BY lavorazione';
             $result = $this->tab_intervento->query($query);
             return $result->fetchAll();
         }
 
-        # DA SISTEMARE
+        # [DA SISTEMARE] TEMPI MEDI PER LAVORAZIONE
         public function tempi_medi() {
-            $query = 'SELECT * FROM `tempi_per_operatore` 
-                GROUP BY id_lavoraz
-                HAVING tempo = AVG(tempo) 
-                ORDER BY tempo';
+            $query = 'SELECT lavorazione, AVG(tempo) as tempo_medio 
+                FROM intervento 
+                GROUP BY lavorazione';
             $result = $this->tab_intervento->query($query);
             return $result->fetchAll();
         }
 
         # DA SISTEMARE
         public function lavorazioni_frequenti() {
-            $query = 'SELECT * FROM `tempi_per_operatore` 
-                GROUP BY id_lavoraz 
-                ORDER BY COUNT(id_lavoraz)';
+            $query = 'SELECT lavorazione, COUNT(*) as frequenza
+                FROM intervento 
+                GROUP BY lavorazione
+                ORDER BY frequenza DESC';
             $result = $this->tab_intervento->query($query);
             return $result->fetchAll();
+        }
+
+        # RENDER
+        public function render($tpl, $dati) {
+            $contenuto = file_get_contents($tpl);
+            foreach ($dati as $k => $v) {
+                $contenuto = str_replace('{{' . $k . '}}', $v, $contenuto);
+            }
+            return $contenuto;
         }
     }

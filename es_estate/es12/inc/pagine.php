@@ -5,63 +5,35 @@
         'homepage' => [
             'contenuto' => [
                 'titolo' => 'HOMEPAGE',
-                'ul' => file_get_contents('tpl/ul.menu.html'),
                 'h1' => 'Benvenuto nell\'officina LORENZONI GmbH!',
+                'azzera' => 'href="homepage"'
             ],
             'template' => 'tpl/homepage.html',
-        ],
-
-        'lavorazioni' => [
-            'contenuto' => [
-                'titolo' => 'INSERIMENTO LAVORAZIONE',
-                'ul' => file_get_contents('tpl/ul.menu.html'),
-                'h1' => 'INSERIMENTO LAVORAZIONI DISPONIBILI IN OFFICINA',
-                'h2a' => 'Inserisci una possibile lavorazione:',
-                'form' => file_get_contents('tpl/lavorazioni.form.html'),
-                'h2b' => 'Lavorazioni attualmente disponibili:',
-                'tabella' => '',
-            ],
-            'template' => 'tpl/lavorazioni.html',
-        ],
-
-        'operatori' => [
-            'contenuto' => [
-                'titolo' => 'GESTIONE OPERATORI OFFICINA',
-                'ul' => file_get_contents('tpl/ul.menu.html'),
-                'h1' => 'INSERIMENTO OPERATORI DELL\'OFFICINA',
-                'h2a' => 'Inserisci il nominativo di un operatore autorizzato:',
-                'form1' => file_get_contents('tpl/operatori.form.html'),
-                'h2b' => 'Inserisci il tempo di lavorazione di ciascun operaio:',
-                'form2' => '',
-                'select_lavorazione' => '',
-                'select_operatore' => '',
-                'h2c' => 'Operatori attualmente disponibili:',
-                'tabella1' => '',
-                'h2d' => 'Tempistiche lavorazioni per operaio:',
-                'tabella2' => '',
-                'azzera' => 'href="operatori"'
-            ],
-            'template' => 'tpl/special.html',
         ],
 
         'officina' => [
             'contenuto' => [
                 'titolo' => 'OFFICINA & STORICO',
-                'ul' => file_get_contents('tpl/ul.menu.html'),
                 'h1' => 'GESTIONE OFFICINA e STORICO LAVORAZIONI',
-                'h2a' => 'Richiedi un intervento per la tua auto:',
-                'form1' => '',                
-                'select_lavorazione' => '',
-                'select_operatore' => '',
-                'h2b' => 'Inserisci la tua targa per vederne lo storico:',
-                'form2' => '',
-                'h2c' => 'Storico lavorazioni per la targa inserita:',
+                'h2a' => 'Storico globale lavorazioni officina:',
                 'tabella1' => '',
-                'h2d' => 'Dati officina:',
+                'h2b' => 'Inserisci lavorazione per auto:',
+                'form1' => file_get_contents('tpl/forms/officina.lavorazione.form.html'),
+                'h2c' => 'Inserisci la tua targa per vederne lo storico:',
+                'form2' => file_get_contents('tpl/forms/officina.storico.form.html'),
+                'h2d' => 'Storico lavorazioni per la targa inserita:',
                 'tabella2' => '',
+                'h3' => 'Spesa totale per la targa selezionata:',
+                'spesa_totale' => '',
+                'h2e' => 'Migliori operatori:',
+                'tabella3' => '',
+                'h2f' => 'Tempi medi per ciascuna lavorazione:',
+                'tabella4' => '',
+                'h2g' => 'Lavorazioni più richieste:',
+                'tabella5' => '',
                 'azzera' => 'href="officina"'
             ],
-            'template' => 'tpl/special.html',
+            'template' => 'tpl/officina.html',
         ],
     ];
 

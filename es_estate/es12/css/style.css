@@ -9,6 +9,11 @@ body {
     justify-items: center;
     align-items: center;
 }
+
+/* #div1 {
+    background-color: rgb(169, 217, 219);
+} */
+
 .header {
     display: flex;
     justify-items: center;
@@ -38,8 +43,8 @@ h1 {
 
 h2 {
     font-size: 40px;
-    color: white; /* Bianco per massimo contrasto */
-    background-color: darkred; /* Sfondo scuro per far risaltare il testo */
+    color:darkred; /* Bianco per massimo contrasto */
+    background-color:burlywood; /* Sfondo scuro per far risaltare il testo */
     margin: 15px auto;
     border-radius: 20px;
     padding: 10px 30px;
@@ -52,15 +57,8 @@ h2 {
 
 h3 {
     font-size: 30px;
-    color: #f37970;
-    margin: 0px;
-    background-color: #ffffffe0;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    color: #ffffffe0;
+    background-color:blue;
     text-align: center;
 }
 
@@ -68,6 +66,9 @@ form {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center; /* Centra orizzontalmente il contenuto del form */
+    margin: 0 auto; /* Centra il form stesso */
+    width: fit-content;
 
 }
 
@@ -98,6 +99,7 @@ fieldset {
     background-color: #fabec0;
     border-radius: 20px;
     margin: 10px;
+    width: fit-content;
 }
 
 #f1 {

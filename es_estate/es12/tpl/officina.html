@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.table.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{titolo}}</title>
+    </head>
+    <body>
+        <header class="header">
+            <ul>
+                <li><a href="index.html">HOMEPAGE</a></li>
+                <li><a href="officina.html">Gestione Officina</a></li>
+            </ul>
+        </header>
+        <h1>{{h1}}</h1>
+        <div id="div1">
+            <h2>{{h2a}}</h2> <!-- visual. storico GLOBALE -->
+            {{tabella1}}
+        </div>
+        <div>
+            <h2>{{h2b}}</h2> <!-- inserimento lavorazione -->
+            {{form1}}
+        </div>
+        <div id="div1">
+            <h2>{{h2c}}</h2> <!-- inserimento targa -->
+            {{form2}}
+        </div>
+        <div>
+            <h2>{{h2d}}</h2> <!-- visual. storico -->
+            {{tabella2}}
+            <h3>{{h3}} {{spesa_totale}}</h3>
+        </div>
+        <div id="div1">
+            <h2>{{h2e}}</h2> <!-- visual. best operatori -->
+            {{tabella3}}
+            <h2>{{h2f}}</h2> <!-- visual. tempi medi per lavoraz. -->
+            {{tabella4}}
+            <h2>{{h2g}}</h2> <!-- visual. lavoraz. più richieste -->
+            {{tabella5}}
+        </div>
+        <a {{azzera}} id="link">AZZERA CAMPI</a>
+    </body>
+</html>

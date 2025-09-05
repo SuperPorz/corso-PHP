@@ -52,7 +52,7 @@ in camera con un amico, e che ci sia il minor numero di camere singole possibile
 
 
 
-informazioni: camere solo doppie o singole; ogni studente indica multiple preferenze; ad una certa, la lista va chiusa generando gli accoppiamenti; 
+informazioni: camere solo doppie o singole; ogni studente indica multiple preferenze; ad una certa, la lista va chiusa generando gli accoppiamenti;
 
 ## esercizio 10
 
@@ -81,8 +81,13 @@ I tempi devono essere associati a:
 
 Il programma deve consentire di richiamare tutte le lavorazioni svolte per una certa auto, calcolare i costi in base al numero di ore lavorate, e mostrare il totale.
 
-Il programma deve anche mostrare quali operai sono più veloci a svolgere ogni tipo di operazione, qual è il tempo medio che occorre per ogni lavorazione, e quali sono le lavorazioni
-richieste più di frequente dai clienti.
+Il programma deve anche mostrare:
+
+&nbsp;	- quali operai sono più veloci a svolgere ogni tipo di operazione, 
+
+&nbsp;	- qual è il tempo medio che occorre per ogni lavorazione,
+
+&nbsp;	- quali sono le lavorazioni richieste più di frequente dai clienti.
 
 ## esercizio 13
 

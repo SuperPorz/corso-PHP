@@ -2,175 +2,136 @@
 
     try {
         # INCLUDES
-        include 'inc/DatabaseConnection.php';
-        include 'inc/functions.php';
+        include 'classes/DatabaseConnection.php';
         include 'inc/pagine.php';
         include 'classes/DatabaseTable.php';
-        include 'classes/Lavorazione.php';
-        include 'classes/Operatore.php';
         include 'classes/Officina.php';
 
+
         # ISTANZE
-        # istanze tabelle
-        $tab_operatore = new DatabaseTable($pdo, 'operatore', 'id_operat');
-        $tab_lavorazione = new DatabaseTable($pdo, 'lavorazione', 'id_lavoraz');
-        $tab_tempi_operatore = new DatabaseTable($pdo, 'tempi_per_operatore', 
-                                                'id_tempi');
-        $tab_intervento = new DatabaseTable($pdo, 'intervento', 'id_interv');
-
-        # istanza main program OFFICINA
-        $officina = new Officina($tab_tempi_operatore, $tab_intervento);
+        $tab_intervento = new DatabaseTable($pdo, 'intervento', 
+            'id_interv');
+        $officina = new Officina($tab_intervento);
 
 
-        # INSERIMENTO DATI
-        # inserimento operatore
-        if (isset($_POST['nome'])) {
-            $operatore = new Operatore($tab_operatore, $_POST['nome']);
-            $operatore->inserisci_operatore();
-        }
-
-        # inserimento lavorazione
-        if (isset($_POST['descrizione']) && isset($_POST['costo_h'])) {
-            $lavorazione = new Lavorazione($tab_lavorazione, 
-                $_POST['descrizione'], $_POST['costo_h']);
-            
-                $lavorazione->inserisci_lavorazione();
-        }
-
-        # inserimento tempi_per_operatore
-        if (isset($_POST['id_lavoraz']) && isset($_POST['id_operat'])
-            && isset($_POST['tempo'])) {
-
-                $officina->inserisci_tempi_per_operatore(
-                    $_POST['descrizione'],
-                    $_POST['id_operat'], $_POST['tempo']);
-        }
-
+        # CONTROLLER INTERVENTI AUTO
         # inserimento intervento su auto
-        if (isset($_POST['targa']) && isset($_POST['id_lavoraz'])
-            && isset($_POST['id_operat'])) {
+        if (isset($_POST['targa']) && isset($_POST['lavorazione'])
+            && isset($_POST['operatore']) && isset($_POST['tempo'])
+            && isset($_POST['costo_h'])) {
 
-                $officina->richiesta_lavorazione($_POST['targa'],
-                    $_POST['id_lavoraz'], $_POST['id_operat']);
-        }
-
-
-        # ELIMINAZIONE DATI
-        # eliminazione lavorazione
-        if (isset($_GET['id_lavoraz']) && $_GET['azione'] == 'elimina') {
-            $tab_lavorazione->delete($_GET['id_lavoraz']);
-            header('Location: lavorazioni.html');
-        }
-
-        # eliminazione operatore
-        if (isset($_GET['id_operat']) && $_GET['azione'] == 'elimina') {
-            $tab_operatore->delete($_GET['id_operat']);
-            header('Location: operatori.html');
-        }
-
-        # eliminazione record tempi_per_operatore
-        if (isset($_GET['id_tempi']) && $_GET['azione'] == 'elimina') {
-            $officina->elimina_tempi_operatore($_GET['id_tempi']);
-            header('Location: officina.html');
+                $officina->inserisci_lavorazione($_POST['targa'],
+                    $_POST['lavorazione'], $_POST['operatore'],
+                    $_POST['tempo'], $_POST['costo_h']);
         }
 
         # eliminazione record intervento su auto
-        if (isset($_GET['id_tempi']) && $_GET['azione'] == 'elimina') {
-            $officina->elimina_intervento($_GET['id_tempi']);
+        if (isset($_GET['id_interv']) && $_GET['azione'] == 'elimina') {
+            $officina->elimina_intervento($_GET['id_interv']);
             header('Location: officina.html');
         }
 
 
         # VISUALIZZAZIONE DATI (inserimento nell'array pagine)
-        # pagina lavorazioni
-        if ($_REQUEST['p'] == 'lavorazioni') {
-            $righe_tabella = [];
-            foreach($tab_lavorazione->find_all() as $lavorazione) {
+        #tabella1: STORICO GLOBALE
+        $righe_tabella1 = [];
+        foreach($officina->lista_interventi_registrati() as $intervento) {
 
-                $righe_tabella[] = Funzioni\render('tpl/lavorazioni.table.list.html', 
+            $righe_tabella1[] = $officina->render('tpl/tables/officina.storico.table.list.html', 
+            [
+                'id_interv' => $intervento['id_interv'],
+                    'targa' => $intervento['targa'],
+                    'lavorazione' => $intervento['lavorazione'],
+                    'operatore' => $intervento['operatore'],
+                    'tempo' => $intervento['tempo'],
+                    'costo_h' => $intervento['costo_h'] .' €',
+                    'costo_tot' => number_format($intervento['costo_h'] * $intervento['tempo'], 
+                        0, '.', "'") . ' <i>€</i>'
+                ]
+            );
+        }
+        $tabella1 = $officina->render('tpl/tables/officina.storico.table.html', 
+        ['interventi_registrati' => implode($righe_tabella1)]);
+        $p['contenuto']['tabella1'] = '<div class="table-container">' . $tabella1 . '</div>';
+
+        #tabella2: STORICO PER TARGA
+        if (isset($_POST['targa']) && isset($_POST['storico'])) {
+                
+            $righe_tabella2 = [];
+            $costo_tot = 0;
+            foreach($officina->storico_lavorazioni_targa($_POST['targa']) as $intervento) {
+
+                $righe_tabella2[] = $officina->render('tpl/tables/officina.storico.table.list.html', 
                 [
-                    'id_lavoraz' => $lavorazione['id_lavoraz'],
-                    'descrizione' => $lavorazione['descrizione'],
-                    'costo_h' => $lavorazione['costo_h'],
+                    'id_interv' => $intervento['id_interv'],
+                    'targa' => $intervento['targa'],
+                    'lavorazione' => $intervento['lavorazione'],
+                    'operatore' => $intervento['operatore'],
+                    'tempo' => $intervento['tempo'],
+                    'costo_h' => $intervento['costo_h'],
+                    'costo_tot' => number_format($intervento['costo_h'] * $intervento['tempo'], 
+                        0, '.', "'") . ' <i>€</i>'
                     ]
                 );
+                $costo_tot += $intervento['tempo'] * $intervento['costo_h'];
             }
-            #stringa HTML della tabella dentro variabile
-            $tabella = Funzioni\render('tpl/lavorazioni.table.html', 
-            ['lavorazioni_registrate' => implode($righe_tabella)]);
-
-            #preparazione TABELLA per il render (aggiunta all'array pagine)
-            $p['contenuto']['tabella'] = $tabella;
+            $tabella2 = $officina->render('tpl/tables/officina.storico.table.html', 
+            ['interventi_registrati' => implode($righe_tabella2)]);
+            $p['contenuto']['tabella2'] = $tabella2;
+            $p['contenuto']['spesa_totale'] = number_format($costo_tot, 0, 
+                '.', "'") . ' <i>€</i>';
         }
-
-        # pagina operatori
-        if ($_REQUEST['p'] == 'operatori') {
-
-                #tabella1 (elenco operatori)
-                $righe_tabella1 = [];
-                foreach($tab_operatore->find_all() as $operatore) {
-
-                    $righe_tabella1[] = Funzioni\render('tpl/operatori.table1.list.html', 
-                    [
-                        'id_operat' => $operatore['id_operat'],
-                        'nome' => $operatore['nome'],
-                        ]
-                    );
-                }
-                #stringa HTML della tabella dentro variabile
-                $tabella1 = Funzioni\render('tpl/operatori.table1.html', 
-                ['operatori_registrati' => implode($righe_tabella1)]);
-
-                #preparazione TABELLA per il render (aggiunta all'array pagine)
-                $p['contenuto']['tabella1'] = $tabella1;
-
-                
-                #tabella2 (tempistiche per operaio)
-                $righe_tabella2 = [];
-                foreach($officina->findAll_tempi_per_operatore() as $t_operatore) {
-
-                    $righe_tabella2[] = Funzioni\render('tpl/operatori.table2.list.html', 
-                    [
-                        'id_tempi' => $t_operatore['id_tempi'],
-                        'nome' => $t_operatore['nome'],
-                        'descrizione' => $t_operatore['descrizione'],
-                        'tempo' => $t_operatore['tempo']
-                        ]
-                    );
-                }
-                #stringa HTML della tabella dentro variabile
-                $tabella2 = Funzioni\render('tpl/operatori.table2.html', 
-                ['tempistiche_registrate' => implode($righe_tabella2)]);
-
-                #preparazione TABELLA per il render (aggiunta all'array pagine)
-                $p['contenuto']['tabella2'] = $tabella2;
-
-
-        }
-
-        # CALCOLI
-        # lista lavorazioni svolte e spesa totale
-        if (isset($_POST['targa']) && $_GET['azione'] == 'storico') {
-            $lista_lavoraz = [];
-            $spesa_totale = 0;
-
-            $lista_lavoraz = $officina->storico_lavorazioni($_POST['targa']);
-            $spesa_totale = $officina->costi_totali($_POST['targa']);
-        }
-
-        # tempi migliori operatori, tempi medi, lavorazioni più richieste
-        $tempi_migliori = [];
-        $tempi_medi = [];
-        $top_lavorazioni = [];
-
-        $tempi_migliori = $officina->migliori_operatori();
-        $tempi_medi = $officina->tempi_medi();
-        $top_lavorazioni = $officina->lavorazioni_frequenti();
-
         
+        #tabella3: BEST OPERATORI
+        $righe_tabella3 = [];
+        foreach($officina->migliori_operatori() as $operatore) {
+
+            $righe_tabella3[] = $officina->render('tpl/tables/officina.calcoli.table3.list.html', 
+                [
+                    'operatore' => $operatore['operatore'],
+                    'lavorazione' => $operatore['lavorazione'],
+                    'tempo_migliore' => $operatore['tempo_migliore'] . ' <i>ore</i>',
+                    ]
+                );
+        }
+        $tabella3 = $officina->render('tpl/tables/officina.calcoli.table3.html', 
+        ['migliori_operatori' => implode($righe_tabella3)]);
+        $p['contenuto']['tabella3'] = $tabella3;
+
+        #tabella4: TEMPI MEDI PER LAVORAZIONE
+        $righe_tabella4 = [];
+        foreach($officina->tempi_medi() as $lavorazione) {
+
+            $righe_tabella4[] = $officina->render('tpl/tables/officina.calcoli.table4.list.html', 
+                [
+                    'lavorazione' => $lavorazione['lavorazione'],
+                    'tempo_medio' => number_format($lavorazione['tempo_medio'], 0, 
+                '.', "'") . ' <i>ore</i>'
+                    ]
+                );
+        }
+        $tabella4 = $officina->render('tpl/tables/officina.calcoli.table4.html', 
+        ['tempi_medi' => implode($righe_tabella4)]);
+        $p['contenuto']['tabella4'] = $tabella4;
+
+        #tabella5: TEMPI MEDI PER LAVORAZIONE
+        $righe_tabella5 = [];
+        foreach($officina->lavorazioni_frequenti() as $lavorazione) {
+
+            $righe_tabella5[] = $officina->render('tpl/tables/officina.calcoli.table5.list.html', 
+                [
+                    'lavorazione' => $lavorazione['lavorazione'],
+                    'frequenza' => $lavorazione['frequenza'] . ' <i>volte</i>',
+                    ]
+                );
+        }
+        $tabella5 = $officina->render('tpl/tables/officina.calcoli.table5.html', 
+        ['lavorazioni_frequenti' => implode($righe_tabella5)]);
+        $p['contenuto']['tabella5'] = $tabella5;
+
 
         # RENDER FINALE
-        $render = Funzioni\render($p['template'], $p['contenuto']);
+        $render = $officina->render($p['template'], $p['contenuto']);
         echo $render;
 
     } catch (PDOException $e) {

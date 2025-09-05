@@ -1,7 +1,7 @@
 /* Stile per la tabella lavorazioni */
 table {
-    width: 90%;
-    max-width: 800px;
+    width: 80%;
+    /*max-width: 800px;*/
     margin: 20px auto;
     border-collapse: collapse;
     background-color: #ffffff;
@@ -99,4 +99,50 @@ table tbody tr:hover td a:hover {
     table thead th {
         font-size: 20px;
     }
+}
+
+
+/* TABELLA LIMITATA IN ALTEZZA */
+/* Container per la tabella con scrollbar */
+.table-container {
+    max-height: 500px; /* Altezza massima in pixel */
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+}
+
+/* Modifica la tabella per adattarsi al container */
+.table-container table {
+    width: 100%;
+    margin: 0;
+    box-shadow: none; /* Rimuovi l'ombra dalla tabella, la ha già il container */
+    border-radius: 0; /* Il container gestisce i bordi arrotondati */
+}
+
+/* Header fisso che rimane visibile durante lo scroll */
+.table-container table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Personalizza la scrollbar */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: darkred;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #b71c1c;
 }
