@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>esercizio classe - lezione 12</title>
+    </head>
+    <body>
+        <h1>Elenco Persone:</h1>
+        <ul>
+        {% for persona in lista_nomi %}
+            <li>{{persona.nome}} {{persona.cognome}}, {{persona.numero}}{% if not loop.last %},{%else %}.{% endif %}</li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

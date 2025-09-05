@@ -1,0 +1,2 @@
+ESERCIZIO
+stampa una lista di persone nome, numero di telefono con una UL usando TWIG

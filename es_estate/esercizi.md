@@ -3,6 +3,8 @@
 In questo documento trovate gli esercizi da svolgere durante le vacanze estive; come vedrete riprendono i concetti visti finora a partire dalle prime lezioni, ma a un livello di difficoltà più
 sfidante, in questo modo è possibile ripassare tutti i punti importanti del corso senza annoiarsi troppo.
 
+
+
 ## esercizio 01
 
 Scrivere una pagina che rappresenti il contenuto di un array associativo strutturato in modo da contenere un elenco di album musicali con anno, autore e genere; la pagina deve mostrare il
@@ -47,6 +49,10 @@ possibili destinazioni. Calcolare il costo del viaggio in base alla destinazione
 Scrivere un programma per gestire l'assegnazione delle camere durante una gita scolastica. Creare un array associativo per memorizzare gli studenti. L'utente deve poter inserire un numero
 arbitrario di studenti con le loro preferenze in termini di amicizie. Produrre l'elenco degli accoppiamenti per le camere in modo che non ci siano camere miste, che più studenti possibile finiscano
 in camera con un amico, e che ci sia il minor numero di camere singole possibile.
+
+
+
+informazioni: camere solo doppie o singole; ogni studente indica multiple preferenze; ad una certa, la lista va chiusa generando gli accoppiamenti; 
 
 ## esercizio 10
 

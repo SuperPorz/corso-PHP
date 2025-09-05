@@ -1,0 +1,92 @@
+JSON
+
+-è  un modo di descrivere i dati, più sintetico di XML; 
+-è un formato di interscambio di informazioni;
+-è un formato stringa, editabile con semplice editor testo;
+-gli spazi non contano nulla
+-indentazione non semantica ma RACCOMANDATA
+
+SINTASSI
+3 tipi di segni di sintassi:
+    - raggruppamenti { } [ ]
+    - isolatori stringa " "
+    - separatori ':' ','
+
+-come si descrive un oggetto json?
+    -> con una coppia di graffe { }
+
+    oggetto JSON:
+    {"chiave":"valore"} (la coppia è detta ATTRIBUTO)
+
+-come si scrivono 2 attributi (2 coppie)?
+    {"chiave1":"valore1" , "chiave2":"valore2"}  si usa la virgola
+
+-tipi di dati e formato
+    {"età": 23}
+
+
+
+COMPLICAZIONI: OGGETTI STRUTTURATI
+-liste si rappresentano con le quadre [ ] (vettore)
+
+esempio: 
+    {
+        "nome":"Marco"
+        "cognome":"Rossi"
+        "voti": [7,8,6,4,9]
+    }
+
+vettore: 
+[
+    {"nome":"Marco"},
+    {"cognome":"Rossi"},
+    ...,
+]
+
+array:
+{
+    {"nome":"Marco"},
+    {"cognome":"Rossi"},
+    ...,
+}
+
+STRUTTURE DATI:
+    - coppie chiave:valore (attributo)
+    - liste [ ]
+    - oggetti { }
+
+OSS: composer e twig sono legati a PHP
+
+COMPOSER.JSON ---> IL VERO ARGOMENTO DELLA LEZIONE
+-composer è un software che si installa a livello di sistema
+-serve per gestire le dipendenze nelle web app
+-repository, composer.exe, composer.json, /vendor, /vendor/autoload.php
+
+funzionamento:
+    1: lanciamo composer.exe
+    2: questo legge composer.json
+    3: composer.json gli dice cosa cercare nei repository
+    4: comp.exe vai nei repository e cerca quello che serve
+    5: la roba viene savata nella cartella /vendor
+    6: comp.exe crea un file nella cartella vendor, 
+        'autoload.php' che farà gestire le librerie, 
+        te le mette a disposizione nel codice
+    7: i developers devono includere autoload.php nei loro programmi
+
+TWIG
+-è un template manager
+-è già predisposto per operare con i segnaposto doppie graffe {{sostituisci}}
+-{{a}} {% if a=3 %} ... {%endif%} COSTRUTTO IF
+- COSTRUTTO CICLO FOR {% for i in 0...5 %} ... {%endfor%}
+-COMMENTO: {# COMMENTO #} 
+- spazi non semantici
+
+funzionamento:
+1: TWIG vuole un loader
+
+
+-twig ha delle funzioni, tipo filtri da usare su variabili
+
+
+ESERCIZI PER CASA:
+prendi 1 o 2 esercizi vecchi (non troppo complessi) e rifalli usando composer+twig
