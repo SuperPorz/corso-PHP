@@ -83,16 +83,29 @@ Il programma deve consentire di richiamare tutte le lavorazioni svolte per una c
 
 Il programma deve anche mostrare:
 
-&nbsp;	- quali operai sono più veloci a svolgere ogni tipo di operazione, 
+ 	- quali operai sono più veloci a svolgere ogni tipo di operazione,
 
-&nbsp;	- qual è il tempo medio che occorre per ogni lavorazione,
+ 	- qual è il tempo medio che occorre per ogni lavorazione,
 
-&nbsp;	- quali sono le lavorazioni richieste più di frequente dai clienti.
+ 	- quali sono le lavorazioni richieste più di frequente dai clienti.
 
 ## esercizio 13
 
-Scrivere un programma che consenta di monitorare il consumo di benzina di un'automobile. Il programma deve consentire l'inserimento dei viaggi fatti, con il numero di km percorsi e il consumo in termini
-di carburante. Mostrare il consumo medio di carburante, compilare un elenco dei viaggi più dispendiosi in termini di consumi e il numero totale di km percorsi dal mezzo.
+Scrivere un programma che consenta di monitorare il consumo di benzina di un'automobile. 
+
+Il programma deve consentire l'inserimento dei viaggi fatti, con:
+
+&nbsp;	- il numero di km percorsi 
+
+&nbsp;	- il consumo in termini di carburante. 
+
+Mostrare: 
+
+&nbsp;	- il consumo medio di carburante, 
+
+&nbsp;	- un elenco dei viaggi più dispendiosi in termini di consumi
+
+&nbsp;	- il numero totale di km percorsi dal mezzo.
 
 ## esercizio 14
 

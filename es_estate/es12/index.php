@@ -2,7 +2,7 @@
 
     try {
         # INCLUDES
-        include 'classes/DatabaseConnection.php';
+        include 'inc/DatabaseConnection.php';
         include 'inc/pagine.php';
         include 'classes/DatabaseTable.php';
         include 'classes/Officina.php';

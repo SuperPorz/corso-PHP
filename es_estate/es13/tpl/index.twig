@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.table.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Estate - esercizio 13</title>
+    </head>
+    <body>
+        <h1>MONITORAGGIO CONSUMI VIAGGIO</h1> 
+        <h2>Inserisci i dati di ciascun viaggio:</h2>
+        <h4>(inserisci almeno 6 viaggi)</h4>
+        <form>
+            <fieldset class="field">
+                <legend>Viaggio</legend>
+                <label for="luogo_partenza">Partenza</label>
+                <input id="input" type="text" name="luogo_partenza" placeholder="luogo partenza" required><br>
+                <label for="luogo_arrivo">Arrivo</label>
+                <input id="input" type="text" name="luogo_arrivo" placeholder="luogo arrivo" required><br>
+                <label for="distanza">Distanza</label>
+                <input id="input" type="number" name="distanza" placeholder="distanza in KM" min="5" required><br>
+                <label for="consumo">Consumo</label>
+                <input id="input" type="number" name="consumo" placeholder="litri/100km" min="5" required><br>
+            </fieldset>
+            <br><input type="submit" value="INVIA" id="f2">
+        </form>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="6" class="table-title">VIAGGI REGISTRATI:</th>
+                    </tr>
+                    <tr>
+                        <th>Id viaggio</th>
+                        <th>Luogo partenza</th>
+                        <th>Luogo arrivo</th>
+                        <th>Distanza (km)</th>
+                        <th>Consumo (l/100km)</th>
+                        <th>Azione #1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for viaggio in lista_viaggi %}
+                        <tr>
+                            <td>{{viaggio.idv}}</td>
+                            <td>{{viaggio.luogo_partenza}}</td>
+                            <td>{{viaggio.luogo_arrivo}}</td>
+                            <td>{{viaggio.distanza}}</td>
+                            <td>{{viaggio.consumo}}</td>
+                            <td><a href="?azione=elimina&id={{viaggio.idv}}">Elimina viaggio</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h2>DATI CALCOLATI</h2>
+            <h3>Consumo medio: {{consumo_medio}} litri/100km</h3>
+            <h3>Viaggi più dispendiosi:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id viaggio</th>
+                        <th>Luogo partenza</th>
+                        <th>Luogo arrivo</th>
+                        <th>Distanza (km)</th>
+                        <th>Consumo (l/100km)</th>
+                        <th>Azione #1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for viaggio in peggiori5 %}
+                        <tr>
+                            <td>{{viaggio.idv}}</td>
+                            <td>{{viaggio.luogo_partenza}}</td>
+                            <td>{{viaggio.luogo_arrivo}}</td>
+                            <td>{{viaggio.distanza}}</td>
+                            <td>{{viaggio.consumo}}</td>
+                            <td><a href="?azione=elimina&id={{viaggio.idv}}">Elimina viaggio</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h3>Totale KM percorsi: {{totale_km}}</h3>
+        </div>
+    </body>
+</html>
