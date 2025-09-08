@@ -31,8 +31,8 @@ COMPLICAZIONI: OGGETTI STRUTTURATI
 
 esempio: 
     {
-        "nome":"Marco"
-        "cognome":"Rossi"
+        "nome":"Marco",
+        "cognome":"Rossi",
         "voti": [7,8,6,4,9]
     }
 

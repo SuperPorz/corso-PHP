@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        {% block head %}
+        <title>Lezione 13.01</title>
+        {% endblock %}
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <header>
+            {% block header %}{% endblock %}
+            <hr>
+            <nav>
+                <ul class="menu">
+                    {% for voce in menu %}
+                    <li><a href="{{ voce.url }}">{{ voce.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <hr>
+        </header>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>

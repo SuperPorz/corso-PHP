@@ -1,0 +1,2 @@
+riprendere l'esercizio classe della lezione 11.01, gestione cani e padroni,
+e riadattarlo con i contenuti della lezione 13;

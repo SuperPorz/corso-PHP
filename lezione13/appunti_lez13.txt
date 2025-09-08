@@ -1,0 +1,23 @@
+ESTENSIONE DEI TEMPLATE TWIG
+
+    - TEMPLATE BASE:
+    <html>
+        <body>
+            {% block 'percoso file che estende' %}
+            {% endblock %}
+        </body>
+    </html>
+
+
+    - TEMPLATE ESTENSIONE:
+    {% extends 'percorso file da estendere' %}
+    {% block main %}
+        ...
+        ...
+    {% endblock %}
+
+
+ALTRE COSE FATTIBILI CON TWIG
+extends -> estende i file nel tpl corrente SERVE A RIEMPIRE PARTI
+include ->include i file nel tpl corrente COPIA E INCOLLA CODICE
+import -> importa le macro nel file dove import è invocato
