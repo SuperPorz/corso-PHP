@@ -1,6 +1,6 @@
 ########################################### DATABASE
 CREATE DATABASE estate_es13;
-USE estate_es12_officina;
+USE estate_es13;
 SET SQL_SAFE_UPDATES = 0;
 
 # CREATE USER IF NOT EXISTS 'userphp'@'localhost' IDENTIFIED BY 'admin';

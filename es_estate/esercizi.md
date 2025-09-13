@@ -91,26 +91,39 @@ Il programma deve anche mostrare:
 
 ## esercizio 13
 
-Scrivere un programma che consenta di monitorare il consumo di benzina di un'automobile. 
+Scrivere un programma che consenta di monitorare il consumo di benzina di un'automobile.
 
 Il programma deve consentire l'inserimento dei viaggi fatti, con:
 
-&nbsp;	- il numero di km percorsi 
+ 	- il numero di km percorsi
 
-&nbsp;	- il consumo in termini di carburante. 
+ 	- il consumo in termini di carburante.
 
-Mostrare: 
+Mostrare:
 
-&nbsp;	- il consumo medio di carburante, 
+ 	- il consumo medio di carburante,
 
-&nbsp;	- un elenco dei viaggi più dispendiosi in termini di consumi
+ 	- un elenco dei viaggi più dispendiosi in termini di consumi
 
-&nbsp;	- il numero totale di km percorsi dal mezzo.
+ 	- il numero totale di km percorsi dal mezzo.
 
 ## esercizio 14
 
-Scrivere un programma che memorizzi le preferenze musicali di un numero arbitrario di utenti. Il programma deve contenere un elenco di musicisti con il relativo compenso. Calcolare quali concerti
-conviene organizzare in base al costo del biglietto, al numero di partecipanti stimato sulle preferenze, e al compenso dell'artista. Tramite i CSS dare alla pagina un aspetto progressive anni '70'.
+Scrivere un programma che memorizzi le preferenze musicali di un numero arbitrario di utenti. 
+
+Il programma deve contenere:
+
+&nbsp;	- un elenco di musicisti con il relativo compenso 
+
+Calcolare quali concerti conviene organizzare in base a:
+
+&nbsp;	- costo del biglietto, 
+
+&nbsp;	- numero di partecipanti stimato sulle preferenze 
+
+&nbsp;	- compenso dell'artista
+
+Tramite i CSS dare alla pagina un aspetto progressive anni '70'.
 
 ## esercizio 15
 
