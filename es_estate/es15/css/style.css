@@ -1,0 +1,151 @@
+body {
+    background-color: rgb(89, 161, 165);
+    font-family:monospace;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+    justify-items: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 60px;
+    color:darkred;
+    margin: 10px;
+    padding: 8px;
+}
+
+h2 {
+    font-size: 40px;
+    color:darkred; /* Bianco per massimo contrasto */
+    background-color:burlywood; /* Sfondo scuro per far risaltare il testo */
+    margin: 15px auto;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-style: italic;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra per profondità */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombra del testo per maggiore leggibilità */
+    max-width: 80%; /* Limita la larghezza per una migliore presentazione */
+    text-align: center;
+}
+
+h3 {
+    font-size: 30px;
+    color: #ffffffe0;
+    background-color:blue;
+    text-align: center;
+    width: 100%;
+}
+
+h4 {
+    font-size: 20px;
+    color: #ffffffe0;
+    text-align: center;
+    margin-top: 0px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Cambiato da right a center */
+    margin: 0 auto;
+    width: fit-content;
+
+}
+
+label {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+}
+
+select {
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+legend {
+    color: #e43d40;
+    background-color: #ffffff;
+    border-radius: 5px 40px 5px;
+    padding: 5px 10px 5px 10px;
+    font-style: italic;
+    font-size: 24px;
+    margin: 3px 7px 3px 7px;
+}
+
+fieldset {
+    background-color: #fabec0;
+    border-radius: 20px;
+    margin: 10px;
+    width: fit-content;
+    text-align: right; /* Allinea tutto il contenuto a destra */
+}
+
+fieldset label {
+    display: inline-block;
+    margin-right: 10px; /* Spazio tra label e input */
+    text-align: right;
+}
+
+#def_opt {
+    font-style: italic;
+    font-size: smaller;
+}
+
+#f1 {
+    height: 50px;
+    width: 250px;
+    border-radius: 20px;
+}
+
+#f2 {
+    background-color: #f85c70;
+    color: white;
+    padding: 8px 30px 8px 30px;
+    border-radius: 5px 40px 5px;
+    text-decoration: none;
+    font-size: 40px;
+}
+
+#f2:hover {
+    background-color:blue;
+    color:white;
+    text-decoration: none;
+}
+
+#input {
+    height: 40px;
+    width: 160px;
+    border-radius: 10px;
+}
+
+#input::placeholder {
+    text-align: center;
+}
+
+#link {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.826);
+    background-color:darkred;
+    border-radius: 20px;
+    padding: 8px;
+    text-decoration: none;
+    font-style: italic;
+}
+
+/* Stile forzato per tutti gli HR */
+body hr {
+    all: unset !important;
+    display: block !important;
+    height: 0 !important;
+    width: 80% !important;
+    margin: 30px auto !important;
+    border-top: 4px double burlywood !important;
+    box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3) !important;
+    box-sizing: border-box !important;
+}

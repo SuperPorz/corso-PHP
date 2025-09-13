@@ -109,27 +109,40 @@ Mostrare:
 
 ## esercizio 14
 
-Scrivere un programma che memorizzi le preferenze musicali di un numero arbitrario di utenti. 
+Scrivere un programma che memorizzi le preferenze musicali di un numero arbitrario di utenti.
 
 Il programma deve contenere:
 
-&nbsp;	- un elenco di musicisti con il relativo compenso 
+ 	- un elenco di musicisti con il relativo compenso
 
 Calcolare quali concerti conviene organizzare in base a:
 
-&nbsp;	- costo del biglietto, 
+ 	- costo del biglietto,
 
-&nbsp;	- numero di partecipanti stimato sulle preferenze 
+ 	- numero di partecipanti stimato sulle preferenze
 
-&nbsp;	- compenso dell'artista
+ 	- compenso dell'artista
 
 Tramite i CSS dare alla pagina un aspetto progressive anni '70'.
 
 ## esercizio 15
 
-Scrivere un programma che consenta di gestire le statistiche di un gruppo di giocatori di basket (canestri, palle perse, tiri liberi, freschezza (minuti di resistenza prima di affaticarsi), eccetera) e consenta di formulare la formazione migliore in base
-ai punteggi inseriti; il programma deve anche proporre una lista di sostituzioni in base alla propensione a stancarsi dei vari giocatori, in modo da mantenere sempre una formazione fresca in campo.
-Gestire la stanchezza in termini di minuti giocabili prima di cominciare ad affaticarsi.
+Scrivere un programma che consenta di gestire le statistiche di un gruppo di giocatori di basket: 
+
+&nbsp;	- canestri, 
+
+&nbsp;	- palle perse, 
+
+&nbsp;	- tiri liberi, 
+
+&nbsp;	- freschezza (minuti di resistenza prima di affaticarsi)
+
+Deve poi consentire di formulare la formazione migliore in base ai punteggi inseriti;
+
+Il programma inoltre deve:
+
+&nbsp;	- proporre una lista di sostituzioni in base alla propensione a stancarsi dei vari giocatori, in modo da 	  mantenere sempre una formazione fresca in campo.
+	- Gestire la stanchezza in termini di minuti giocabili prima di cominciare ad affaticarsi.
 
 ## esercizio 16
 
