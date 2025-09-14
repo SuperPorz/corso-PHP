@@ -105,7 +105,7 @@ table tbody tr:hover td a:hover {
 /* TABELLA LIMITATA IN ALTEZZA CON HEADER FISSO */
 /* Container per la tabella con scrollbar */
 .table-container {
-    max-height: 500px; /* Altezza massima in pixel */
+    max-height: 600px; /* Altezza massima in pixel */
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
