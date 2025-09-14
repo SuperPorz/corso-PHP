@@ -57,7 +57,7 @@
             $concerti = $this->concerti();
             $margin = 1.3;
 
-            foreach($concerti as &$concerto) {  // Aggiungi & per il riferimento
+            foreach($concerti as &$concerto) {  // Aggiunge & per il riferimento
                 $costo_biglietto = ($concerto['compenso'] * $margin) / $concerto['spettatori'];
                 $incasso_tot = $concerto['spettatori'] * $costo_biglietto;
                 $profitto_tot = $incasso_tot - $concerto['compenso'];
@@ -66,7 +66,7 @@
                 $concerto['incasso_tot'] = $incasso_tot;
                 $concerto['profitto_tot'] = $profitto_tot;
             }
-            unset($concerto); // Importante: rimuovi il riferimento dopo il ciclo
+            unset($concerto); // Rimuove il riferimento dopo il ciclo
             
             return $concerti;
         }
@@ -79,7 +79,7 @@
                         return $b['profitto_tot'] <=> $a['profitto_tot']; // Ordine decrescente
                     });
             
-            // Prendo i primi 3 (più profittevoli)
+            // Prende i primi 3 (più profittevoli)
             $top_concerti = array_slice($concerti_calcolati, 0, 3);
 
             return $top_concerti;

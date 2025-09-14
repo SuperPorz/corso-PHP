@@ -5,8 +5,8 @@
         # INCLUDES
         include 'inc/DatabaseConnection.php';
         include 'classes/DatabaseTable.php';
-        include 'classes/GestioneConcerti.php';
-        require_once 'lib/ext/autoload.php'; // composer
+        include 'classes/BasketStats.php';
+        require_once 'lib/ext/autoload.php';
 
 
         # CONFIGURAZIONE TWIG
@@ -16,51 +16,45 @@
 
 
         # ISTANZE
-        $tab_musicista = new DatabaseTable($pdo, 'musicista','idm');
-        $tab_utente = new DatabaseTable($pdo, 'utente','idu');
-        $tab_preferenza = new DatabaseTable($pdo, 'preferenza','idp');
-        $organizzazione = new GestioneConcerto(
-                $tab_musicista, $tab_utente, $tab_preferenza);
+        $tab_giocatore = new DatabaseTable($pdo, 'giocatore','idg');
+        $statistiche = new BasketStats($tab_giocatore);
 
 
         # INSERIMENTI/ELIMINAZIONI DATI DAL DB
         // inserimenti
-        if (isset($_POST['nome']) && isset($_POST['compenso'])) {
-            $organizzazione->registra_musicista(
-                $_POST['nome'], $_POST['compenso']);
-        }
-        if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['preferenza'])) {
-            $organizzazione->registra_utente(
-                $_POST['nome'], $_POST['email'], $_POST['preferenza']);
+        if (isset($_POST['azione']) && $_POST['azione'] == 'registra') {
+            $statistiche->registra_giocatore(
+                $_POST['nome'], 
+                $_POST['ruolo'], 
+                $_POST['punti'], 
+                $_POST['rimbalzi'], 
+                $_POST['assist'], 
+                $_POST['resistenza'],
+                $_POST['palle_perse'], 
+                $_POST['falli']);
         }
 
         // eliminazioni
-        if (isset($_GET['azione']) && isset($_GET['idm'])) {
-            $organizzazione->elimina_musicista($_GET['idm']);
-        }
-        if (isset($_GET['azione']) && isset($_GET['idu'])) {
-            $organizzazione->elimina_utente($_GET['idu']);
+        if (isset($_GET['azione']) && isset($_GET['idg'])) {
+            $statistiche->elimina_giocatore($_GET['idg']);
         }
 
 
-        # QUERY AL DATABASE E CALCOLI
-        $musicisti_registrati = $tab_musicista->find_all();
-        $utenti_registrati = $tab_utente->find_all();
-        $statistiche_database = $organizzazione->statistiche_database();
-        $statistiche_generali = $organizzazione->statistiche_generali();
-        $top_concerti = $organizzazione->concerti_profittevoli();
+        # CALCOLI: USO METODO DELLA CLASSE 'MAIN PROGRAM'
+        $risultati = $statistiche->main_program();
 
 
         # RENDER FINALE
         echo $template->render(
             [
-                'musicisti_registrati' => $musicisti_registrati,
-                'utenti_registrati' => $utenti_registrati,
-                'statistiche_database' => $statistiche_database,
-                'statistiche_generali' => $statistiche_generali,
-                'top_concerti' => $top_concerti
+                'lista_giocatori' => $tab_giocatore->find_all(),
+                'giocatori_per_ruolo' => $risultati[0],
+                'top5' => $risultati[1],
+                'sostituzioni' => $risultati[2],
             ]
         );
+
+        //print_r($risultati[2]);
     } 
     catch (PDOException $e){
         echo "Errore: " . $e->getMessage() . "<br>";

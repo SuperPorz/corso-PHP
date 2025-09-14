@@ -11,7 +11,7 @@ body {
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 80px;
     color:darkred;
     margin: 10px;
     padding: 8px;
@@ -57,15 +57,16 @@ form {
 
 }
 
-label {
-    font-size: 30px;
-    color: rgb(255, 255, 255);
-}
-
 select {
     font-size: 30px;
-    color: rgb(0, 0, 0);
+    align-content: center;
+    font-style: italic;
+    text-align: center;
+    height: 40px;
+    width: 160px;
     border-radius: 10px;
+    width: fit-content;
+    color: rgb(77, 77, 77)
 }
 
 legend {
@@ -79,7 +80,7 @@ legend {
 }
 
 fieldset {
-    background-color: #fabec0;
+    /*background-color: #fabec0;*/
     border-radius: 20px;
     margin: 10px;
     width: fit-content;
@@ -90,6 +91,8 @@ fieldset label {
     display: inline-block;
     margin-right: 10px; /* Spazio tra label e input */
     text-align: right;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
 }
 
 #def_opt {

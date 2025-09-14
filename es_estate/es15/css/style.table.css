@@ -1,6 +1,6 @@
 /* Stile per la tabella lavorazioni */
 table {
-    width: 100%;
+    width: 80%;
     /*max-width: 800px;*/
     /* margin: 20px auto; */
     border-collapse: collapse;
@@ -102,15 +102,22 @@ table tbody tr:hover td a:hover {
 }
 
 
-/* TABELLA LIMITATA IN ALTEZZA */
+/* TABELLA LIMITATA IN ALTEZZA CON HEADER FISSO */
 /* Container per la tabella con scrollbar */
 .table-container {
     max-height: 500px; /* Altezza massima in pixel */
-    overflow-y: auto;
-    overflow-x: hidden;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
+    overflow: hidden;
+    width: fit-content; /* La larghezza si adatta al contenuto */
+    max-width: 90%; /* Non supera la larghezza della pagina */
+}
+
+/* Container specifico per tabella sostituzioni (più stretta) */
+.table-container.sostituzioni-table {
+    width: 600px; /* Larghezza fissa più stretta per sostituzioni */
+    max-width: 90%; /* Responsive */
 }
 
 /* Modifica la tabella per adattarsi al container */
@@ -121,29 +128,88 @@ table tbody tr:hover td a:hover {
     border-radius: 0; /* Il container gestisce i bordi arrotondati */
 }
 
-/* Header fisso che rimane visibile durante lo scroll */
+/* Header fisso */
 .table-container table thead {
+    background-color: darkred;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: table-header-group;
+}
+
+.table-container table thead tr {
+    display: table-row;
+}
+
+.table-container table thead th {
+    display: table-cell;
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
+/* Corpo della tabella con scroll */
+.table-container table tbody {
+    display: table-row-group;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Per permettere lo scroll solo del tbody */
+.table-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container table {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container table thead {
+    flex: 0 0 auto;
+}
+
+.table-container table tbody {
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.table-container table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-container table tbody td {
+    display: table-cell;
+}
+
+.table-container table thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
 /* Personalizza la scrollbar */
-.table-container::-webkit-scrollbar {
+.table-container table tbody::-webkit-scrollbar {
     width: 8px;
 }
 
-.table-container::-webkit-scrollbar-track {
+.table-container table tbody::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
 }
 
-.table-container::-webkit-scrollbar-thumb {
+.table-container table tbody::-webkit-scrollbar-thumb {
     background: darkred;
     border-radius: 10px;
 }
 
-.table-container::-webkit-scrollbar-thumb:hover {
+.table-container table tbody::-webkit-scrollbar-thumb:hover {
     background: #b71c1c;
 }
 
@@ -152,7 +218,7 @@ table tbody tr:hover td a:hover {
     text-align: center;
     font-size: 28px;
     padding: 20px;
-    background-color: #b71c1c;
+    background-color: rgb(19,70,89);
     color: white;
     font-weight: bold;
 }

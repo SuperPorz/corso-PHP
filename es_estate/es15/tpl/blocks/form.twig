@@ -1,0 +1,31 @@
+{% block form %}
+<form action="" method="post">
+    <fieldset class="field">
+        <input type="hidden" name="azione" value="registra" required><br>
+        <label for="nome">Nome</label>
+        <input id="input" type="text" name="nome" required><br>
+        <label for="ruolo">Ruolo</label>    
+        <select name="ruolo">
+            <option id="def_opt" disabled selected>ruolo</option> <!-- opzione di default -->
+                <option name="ruolo" value="playmaker">Playmaker</option>
+                <option name="ruolo" value="guardia">Guardia</option>
+                <option name="ruolo" value="ala_piccola">Ala piccola</option>
+                <option name="ruolo" value="ala_grande">Ala grande</option>
+                <option name="ruolo" value="pivot">Pivot</option>
+        </select><br> 
+        <label for="punti">Punti</label>
+        <input id="input" type="number" name="punti" min="10" max="200" required><br>
+        <label for="rimbalzi">Rimbalzi</label>
+        <input id="input" type="number" name="rimbalzi" min="5" max="200" required><br>
+        <label for="assist">Assist</label>
+        <input id="input" type="number" name="assist" min="0" max="40" required><br>
+        <label for="resistenza">Resistenza</label>
+        <input id="input" type="number" name="resistenza" min="5" max="50" required><br>
+        <label for="palle_perse">Palle perse</label>
+        <input id="input" type="number" name="palle_perse" min="1" max="50" required><br>
+        <label for="falli">Falli</label>
+        <input id="input" type="number" name="falli" min="0" max="30" required><br>
+    </fieldset>
+    <br><input type="submit" value="INVIA" id="f2">
+</form>
+{% endblock %}

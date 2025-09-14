@@ -5,176 +5,21 @@
         <link rel="stylesheet" href="css/style.table.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Estate - esercizio 14</title>
+        <title>Estate - esercizio 15</title>
     </head>
     <body>
-        <h1>ORGANIZZAZIONE CONCERTI</h1>
+        <h1>BASKET STATS</h1>
         <hr>
-        <h2>Registrazione musicisti:</h2>
-        <form>
-            <fieldset class="field">
-                <label for="nome">Nome</label>
-                <input id="input" type="text" name="nome" placeholder="nome musicista" required><br>
-                <label for="compenso">Compenso</label>
-                <input id="input" type="number" name="compenso" placeholder="compenso" min="2000" max="50000" required><br>
-            </fieldset>
-            <br><input type="submit" value="INVIA" id="f2">
-        </form>
+        <h2>Registrazione giocatori:</h2>
+        {% include "blocks/form.twig" %}
         <hr>
-        <h2>Registrazione utenti:</h2>
-        <form>
-            <fieldset class="field">
-                <label for="nome">Nome</label>
-                <input id="input" type="text" name="nome" placeholder="nome utente" required><br>
-                <label for="email">Email</label>
-                <input id="input" type="email" name="email" placeholder="email" required><br>
-                <label for="preferenza">Preferenza</label><br>
-                <select name="preferenza">
-                    <option id="def_opt" disabled selected>Seleziona musicista</option> <!-- option di default -->
-                    {% for musicista in musicisti_registrati %}
-                        <option name="{{musicista.nome}}" value="{{musicista.idm}}">{{musicista.nome}}</option>
-                    {% endfor %}
-                </select>
-            </fieldset>
-            <br><input type="submit" value="INVIA" id="f2">
-        </form>
+        <h2>MAIN PROGRAM:</h2>
         <hr>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-title">MUSICISTI REGISTRATI:</th>
-                    </tr>
-                    <tr>
-                        <th>Id musicista</th>
-                        <th>Nome</th>
-                        <th>Compenso</th>
-                        <th>Azione #1</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for musicista in musicisti_registrati %}
-                        <tr>
-                            <td>{{musicista.idm}}</td>
-                            <td>{{musicista.nome}}</td>
-                            <td>{{musicista.compenso}} €</td>
-                            <td><a href="?azione=elimina&idm={{musicista.idm}}">Elimina musicista</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        {% include "blocks/table.top5.twig" %}
         <hr>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-title">UTENTI REGISTRATI:</th>
-                    </tr>
-                    <tr>
-                        <th>Id utente</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Azione #1</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for utente in utenti_registrati %}
-                        <tr>
-                            <td>{{utente.idu}}</td>
-                            <td>{{utente.nome}}</td>
-                            <td>{{utente.email}}</td>
-                            <td><a href="?azione=elimina&idu={{utente.idu}}">Elimina utente</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        {% include "blocks/table.sostituzioni.twig" %}
         <hr>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="6" class="table-title">CONCERTI POSSIBILI: <small>(in ordine alfabetico per musicista)</small></th>
-                    </tr>
-                    <tr>
-                        <th>Musicista</th>
-                        <th>Compenso</th>
-                        <th>Totale preferenze</th>
-                        <th>prezzo biglietto</th>
-                        <th>Incasso totale</th>
-                        <th>Profitto organizzazione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for concerto in statistiche_generali %}
-                        <tr>
-                            <td>{{concerto.musicista}}</td>
-                            <td>{{concerto.compenso}}</td>
-                            <td>{{concerto.totale_preferenze}}</td>
-                            <td>{{concerto.prezzo_biglietto}} €</td>
-                            <td>{{concerto.incasso_totale}} €</td>
-                            <td>{{concerto.profitto_organizzazione}} €</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        {% include "blocks/table.giocatori.twig" %}
         <hr>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="6" class="table-title">TOP CONCERTI:</th>
-                    </tr>
-                    <tr>
-                        <th>Musicista</th>
-                        <th>Compenso</th>
-                        <th>Spettatori</th>
-                        <th>Prezzo biglietto</th>
-                        <th>Incasso totale</th>
-                        <th>Profitto organizzazione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for concerto in top_concerti %}
-                        <tr>
-                            <td>{{concerto.nome}}</td>
-                            <td>{{concerto.compenso}} €</td>
-                            <td>{{concerto.spettatori}}</td>
-                            <td>{{concerto.costo_biglietto}} €</td>
-                            <td>{{concerto.incasso_tot}} €</td>
-                            <td>{{concerto.profitto_tot}} €</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <hr>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-title">STATISTICHE DATABASE:</th>
-                    </tr>
-                    <tr>
-                        <th>Totale musicisti/gruppi</th>
-                        <th>Totale utenti</th>
-                        <th>Totale preferenze</th>
-                        <th>Prezzo medio biglietto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for record in statistiche_database %}
-                        <tr>
-                            <td>{{record.totale_musicisti}}</td>
-                            <td>{{record.totale_utenti}}</td>
-                            <td>{{record.totale_preferenze}}</td>
-                            <td>{{record.prezzo_medio_biglietto}} €</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
     </body>
 </html>
