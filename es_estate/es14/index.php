@@ -1,6 +1,4 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
 
     try {
 
@@ -49,7 +47,7 @@
         $musicisti_registrati = $tab_musicista->find_all();
         $utenti_registrati = $tab_utente->find_all();
         $statistiche_database = $organizzazione->statistiche_database();
-        $statistiche_generali = $organizzazione->statistiche_generali();
+        $statistiche_generali = $organizzazione->calcola_costi();
         $top_concerti = $organizzazione->concerti_profittevoli();
 
 

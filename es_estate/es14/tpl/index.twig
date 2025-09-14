@@ -8,90 +8,109 @@
         <title>Estate - esercizio 14</title>
     </head>
     <body>
-        <h1>ORGANIZZAZIONE CONCERTI</h1>
-        <hr>
-        <h2>Registrazione musicisti:</h2>
-        <form>
-            <fieldset class="field">
-                <label for="nome">Nome</label>
-                <input id="input" type="text" name="nome" placeholder="nome musicista" required><br>
-                <label for="compenso">Compenso</label>
-                <input id="input" type="number" name="compenso" placeholder="compenso" min="2000" max="50000" required><br>
-            </fieldset>
-            <br><input type="submit" value="INVIA" id="f2">
-        </form>
-        <hr>
-        <h2>Registrazione utenti:</h2>
-        <form>
-            <fieldset class="field">
-                <label for="nome">Nome</label>
-                <input id="input" type="text" name="nome" placeholder="nome utente" required><br>
-                <label for="email">Email</label>
-                <input id="input" type="email" name="email" placeholder="email" required><br>
-                <label for="preferenza">Preferenza</label><br>
-                <select name="preferenza">
-                    <option id="def_opt" disabled selected>Seleziona musicista</option> <!-- option di default -->
-                    {% for musicista in musicisti_registrati %}
-                        <option name="{{musicista.nome}}" value="{{musicista.idm}}">{{musicista.nome}}</option>
-                    {% endfor %}
-                </select>
-            </fieldset>
-            <br><input type="submit" value="INVIA" id="f2">
-        </form>
-        <hr>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-title">MUSICISTI REGISTRATI:</th>
-                    </tr>
-                    <tr>
-                        <th>Id musicista</th>
-                        <th>Nome</th>
-                        <th>Compenso</th>
-                        <th>Azione #1</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for musicista in musicisti_registrati %}
-                        <tr>
-                            <td>{{musicista.idm}}</td>
-                            <td>{{musicista.nome}}</td>
-                            <td>{{musicista.compenso}} €</td>
-                            <td><a href="?azione=elimina&idm={{musicista.idm}}">Elimina musicista</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <!-- Section 1: Title and Musician Registration -->
+        <div class="bg-section section-1">
+            <h1>ORGANIZZAZIONE CONCERTI</h1>
+            <hr>
+            <h2>Registrazione musicisti:</h2>
+            <form action="" method="post">
+                <fieldset class="field">
+                    <legend>Dati Musicista</legend>
+                    <label for="nome">Nome</label>
+                    <input id="input" type="text" name="nome" placeholder="nome musicista" required><br>
+                    <label for="compenso">Compenso</label>
+                    <input id="input" type="number" name="compenso" placeholder="compenso" min="2000" max="50000" required><br>
+                </fieldset>
+                <br><input type="submit" value="INVIA" id="f2">
+            </form>
+            <hr>
         </div>
-        <hr>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-title">UTENTI REGISTRATI:</th>
-                    </tr>
-                    <tr>
-                        <th>Id utente</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Azione #1</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for utente in utenti_registrati %}
-                        <tr>
-                            <td>{{utente.idu}}</td>
-                            <td>{{utente.nome}}</td>
-                            <td>{{utente.email}}</td>
-                            <td><a href="?azione=elimina&idu={{utente.idu}}">Elimina utente</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+
+        <!-- Section 2: User Registration -->
+        <div class="bg-section section-2">
+            <h2>Registrazione utenti:</h2>
+            <form action="" method="post">
+                <fieldset class="field">
+                    <legend>Dati Utente</legend>
+                    <label for="nome">Nome</label>
+                    <input id="input" type="text" name="nome" placeholder="nome utente" required><br>
+                    <label for="email">Email</label>
+                    <input id="input" type="email" name="email" placeholder="email" required><br>
+                    <label for="preferenza">Preferenza</label><br>
+                    <select name="preferenza">
+                        <option id="def_opt" disabled selected>Seleziona musicista</option>
+                        {% for musicista in musicisti_registrati %}
+                            <option name="{{musicista.nome}}" value="{{musicista.idm}}">{{musicista.nome}}</option>
+                        {% endfor %}
+                    </select>
+                </fieldset>
+                <br><input type="submit" value="INVIA" id="f2">
+            </form>
+            <hr>
         </div>
-        <hr>
-        <div>
+
+        <!-- Section 3: Registered Musicians Table -->
+        <div class="bg-section section-3">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="4" class="table-title">MUSICISTI REGISTRATI:</th>
+                        </tr>
+                        <tr>
+                            <th>Id musicista</th>
+                            <th>Nome</th>
+                            <th>Compenso</th>
+                            <th>Azione #1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for musicista in musicisti_registrati %}
+                            <tr>
+                                <td>{{musicista.idm}}</td>
+                                <td>{{musicista.nome}}</td>
+                                <td>{{musicista.compenso}} €</td>
+                                <td><a href="?azione=elimina&idm={{musicista.idm}}">Elimina musicista</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        </div>
+
+        <!-- Section 4: Registered Users Table -->
+        <div class="bg-section section-4">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="4" class="table-title">UTENTI REGISTRATI:</th>
+                        </tr>
+                        <tr>
+                            <th>Id utente</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Azione #1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for utente in utenti_registrati %}
+                            <tr>
+                                <td>{{utente.idu}}</td>
+                                <td>{{utente.nome}}</td>
+                                <td>{{utente.email}}</td>
+                                <td><a href="?azione=elimina&idu={{utente.idu}}">Elimina utente</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        </div>
+
+        <!-- Section 5: Possible Concerts Table -->
+        <div class="bg-section section-5">
             <table>
                 <thead>
                     <tr>
@@ -109,19 +128,21 @@
                 <tbody>
                     {% for concerto in statistiche_generali %}
                         <tr>
-                            <td>{{concerto.musicista}}</td>
+                            <td>{{concerto.nome}}</td>
                             <td>{{concerto.compenso}}</td>
-                            <td>{{concerto.totale_preferenze}}</td>
-                            <td>{{concerto.prezzo_biglietto}} €</td>
-                            <td>{{concerto.incasso_totale}} €</td>
-                            <td>{{concerto.profitto_organizzazione}} €</td>
+                            <td>{{concerto.spettatori}}</td>
+                            <td>{{concerto.costo_biglietto}} €</td>
+                            <td>{{concerto.incasso_tot}} €</td>
+                            <td>{{concerto.profitto_tot}} €</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <hr>
         </div>
-        <hr>
-        <div>
+
+        <!-- Section 6: Top Concerts and Database Statistics -->
+        <div class="bg-section section-6">
             <table>
                 <thead>
                     <tr>
@@ -149,9 +170,8 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-        <hr>
-        <div>
+            <hr>
+            
             <table>
                 <thead>
                     <tr>

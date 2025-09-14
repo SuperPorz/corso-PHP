@@ -1,158 +1,346 @@
-/* Stile per la tabella lavorazioni */
+/* Progressive Rock '70s Table Styling */
+
 table {
-    width: 100%;
-    /*max-width: 800px;*/
-    /* margin: 20px auto; */
+    width: 90%;
+    max-width: 1200px;
     border-collapse: collapse;
-    background-color: #ffffff;
-    border-radius: 15px;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 40, 0.9), 
+        rgba(40, 20, 60, 0.8), 
+        rgba(20, 40, 60, 0.9));
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    font-family: monospace;
+    box-shadow: 
+        0 0 30px rgba(244, 228, 193, 0.3),
+        inset 0 0 30px rgba(0, 0, 0, 0.6);
+    font-family: 'Philosopher', sans-serif;
+    border: 3px solid rgba(244, 228, 193, 0.5);
+    margin: 30px auto;
+    backdrop-filter: blur(5px);
 }
 
-/* Header della tabella */
-table thead {
-    background-color: darkred;
-}
-
-table thead th {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 15px 20px;
+/* Table title styling */
+.table-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    padding: 20px;
+    background: linear-gradient(135deg, 
+        rgba(80, 40, 20, 0.9), 
+        rgba(120, 60, 40, 0.8), 
+        rgba(60, 80, 100, 0.9));
+    color: #f4e4c1;
     text-align: center;
-    border: none;
+    text-shadow: 
+        0 0 10px rgba(244, 228, 193, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid rgba(244, 228, 193, 0.6);
+    letter-spacing: 2px;
 }
 
-/* Righe del corpo tabella */
+/* Header cells */
+table thead th {
+    font-family: 'Cinzel', serif;
+    color: #e8d4b0;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 600;
+    padding: 18px 15px;
+    text-align: center;
+    background: linear-gradient(135deg, 
+        rgba(60, 40, 80, 0.9), 
+        rgba(80, 60, 100, 0.8), 
+        rgba(40, 60, 80, 0.9));
+    border: none;
+    text-shadow: 
+        0 0 8px rgba(232, 212, 176, 0.6),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(232, 212, 176, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Body rows */
 table tbody tr {
-    background-color: #fabec0;
-    transition: background-color 0.3s ease;
+    background: linear-gradient(135deg, 
+        rgba(40, 40, 80, 0.7), 
+        rgba(60, 40, 60, 0.6), 
+        rgba(40, 60, 80, 0.7));
+    transition: all 0.4s ease;
+    border-bottom: 1px solid rgba(244, 228, 193, 0.2);
 }
 
 table tbody tr:nth-child(even) {
-    background-color: #f0a8ab;
+    background: linear-gradient(135deg, 
+        rgba(50, 50, 90, 0.7), 
+        rgba(70, 50, 70, 0.6), 
+        rgba(50, 70, 90, 0.7));
 }
 
 table tbody tr:hover {
-    background-color: #e43d40;
-    color: white;
+    background: linear-gradient(135deg, 
+        rgba(100, 80, 60, 0.8), 
+        rgba(120, 100, 80, 0.8), 
+        rgba(80, 100, 120, 0.8));
     transform: scale(1.02);
-    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 20px rgba(244, 228, 193, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    position: relative;
 }
 
-/* Celle della tabella */
+/* Body cells */
 table tbody td {
-    padding: 12px 20px;
+    padding: 15px 12px;
     text-align: center;
-    font-size: 20px;
+    font-size: clamp(16px, 1.8vw, 22px);
     border: none;
-    color: #333;
+    color: #e8d4b0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
 }
 
 table tbody tr:hover td {
-    color: white;
+    color: #f4e4c1;
+    text-shadow: 
+        0 0 8px rgba(244, 228, 193, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Link di eliminazione */
+/* Action links */
 table tbody td a {
-    color: darkred;
+    font-family: 'Cinzel', serif;
+    color: #f4e4c1;
     text-decoration: none;
-    font-weight: bold;
-    background-color: #ffffff;
-    padding: 5px 15px;
-    border-radius: 5px 20px 5px;
+    font-weight: 600;
+    background: linear-gradient(135deg, 
+        rgba(180, 60, 40, 0.8), 
+        rgba(220, 80, 60, 0.8), 
+        rgba(160, 40, 20, 0.8));
+    padding: 8px 18px;
+    border-radius: 15px;
     transition: all 0.3s ease;
     display: inline-block;
+    box-shadow: 
+        0 0 15px rgba(220, 80, 60, 0.4),
+        inset 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(244, 228, 193, 0.5);
+    font-size: clamp(14px, 1.5vw, 18px);
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 table tbody td a:hover {
-    background-color: #f85c70;
-    color: white;
-    transform: scale(1.1);
+    background: linear-gradient(135deg, 
+        rgba(220, 80, 60, 0.9), 
+        rgba(260, 100, 80, 0.9), 
+        rgba(180, 60, 40, 0.9));
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 
+        0 0 25px rgba(260, 100, 80, 0.6),
+        inset 0 0 15px rgba(0, 0, 0, 0.3),
+        0 6px 12px rgba(0, 0, 0, 0.4);
+    color: #fff;
 }
 
 table tbody tr:hover td a {
-    background-color: white;
-    color: darkred;
+    background: linear-gradient(135deg, 
+        rgba(200, 70, 50, 0.9), 
+        rgba(240, 90, 70, 0.9), 
+        rgba(180, 50, 30, 0.9));
+    border-color: rgba(244, 228, 193, 0.7);
 }
 
 table tbody tr:hover td a:hover {
-    background-color: #f85c70;
-    color: white;
+    background: linear-gradient(135deg, 
+        rgba(255, 120, 100, 0.9), 
+        rgba(255, 140, 120, 0.9), 
+        rgba(235, 100, 80, 0.9));
+    color: #1a1a2e;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive design per la tabella */
+/* Container for scrollable tables */
+.table-container {
+    max-height: 650px;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 40px rgba(244, 228, 193, 0.3),
+        inset 0 0 40px rgba(0, 0, 0, 0.6);
+    margin: 40px auto;
+    overflow: hidden;
+    width: fit-content;
+    max-width: 95%;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 40, 0.9), 
+        rgba(40, 20, 60, 0.8), 
+        rgba(20, 40, 60, 0.9));
+    border: 3px solid rgba(244, 228, 193, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.table-container.sostituzioni-table {
+    width: 650px;
+    max-width: 95%;
+}
+
+.table-container table {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+}
+
+/* Sticky header for scrollable tables */
+.table-container table thead {
+    background: linear-gradient(135deg, 
+        rgba(60, 40, 80, 0.95), 
+        rgba(80, 60, 100, 0.9), 
+        rgba(40, 60, 80, 0.95));
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: table-header-group;
+}
+
+.table-container table thead th {
+    display: table-cell;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: linear-gradient(135deg, 
+        rgba(60, 40, 80, 0.95), 
+        rgba(80, 60, 100, 0.9), 
+        rgba(40, 60, 80, 0.95));
+}
+
+.table-container table tbody {
+    display: table-row-group;
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Flexbox layout for scrollable tables */
+.table-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container table {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container table thead {
+    flex: 0 0 auto;
+}
+
+.table-container table tbody {
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+    max-height: 450px;
+}
+
+.table-container table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-container table tbody td {
+    display: table-cell;
+}
+
+.table-container table thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Custom scrollbar styling */
+.table-container table tbody::-webkit-scrollbar {
+    width: 12px;
+}
+
+.table-container table tbody::-webkit-scrollbar-track {
+    background: linear-gradient(135deg, 
+        rgba(40, 40, 80, 0.8), 
+        rgba(60, 40, 60, 0.7));
+    border-radius: 10px;
+}
+
+.table-container table tbody::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+        rgba(180, 100, 40, 0.9), 
+        rgba(220, 120, 60, 0.9));
+    border-radius: 10px;
+    border: 2px solid rgba(244, 228, 193, 0.3);
+}
+
+.table-container table tbody::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+        rgba(220, 120, 60, 0.9), 
+        rgba(260, 140, 80, 0.9));
+    box-shadow: 0 0 10px rgba(244, 228, 193, 0.5);
+}
+
+/* Non-container tables (full tables) */
+table:not(.table-container table) {
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 40, 0.9), 
+        rgba(40, 20, 60, 0.8), 
+        rgba(20, 40, 60, 0.9));
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     table {
-        width: 95%;
-        font-size: 16px;
+        width: 98%;
+        font-size: 14px;
     }
     
     table thead th,
     table tbody td {
-        padding: 8px 10px;
-        font-size: 18px;
+        padding: 10px 6px;
+        font-size: clamp(14px, 2vw, 18px);
     }
     
-    table thead th {
-        font-size: 20px;
+    .table-title {
+        font-size: clamp(18px, 3vw, 24px);
+        padding: 15px;
+    }
+    
+    table tbody td a {
+        padding: 6px 12px;
+        font-size: clamp(12px, 1.5vw, 16px);
+    }
+    
+    .table-container {
+        max-height: 500px;
+        margin: 20px auto;
+    }
+    
+    .table-container table tbody {
+        max-height: 350px;
     }
 }
 
-
-/* TABELLA LIMITATA IN ALTEZZA */
-/* Container per la tabella con scrollbar */
-.table-container {
-    max-height: 500px; /* Altezza massima in pixel */
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    margin: 20px auto;
-}
-
-/* Modifica la tabella per adattarsi al container */
-.table-container table {
-    width: 100%;
-    margin: 0;
-    box-shadow: none; /* Rimuovi l'ombra dalla tabella, la ha già il container */
-    border-radius: 0; /* Il container gestisce i bordi arrotondati */
-}
-
-/* Header fisso che rimane visibile durante lo scroll */
-.table-container table thead {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-/* Personalizza la scrollbar */
-.table-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.table-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background: darkred;
-    border-radius: 10px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-    background: #b71c1c;
-}
-
-/* TITOLO TABELLA */
-.table-title {
-    text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    background-color: #b71c1c;
-    color: white;
-    font-weight: bold;
+@media (max-width: 480px) {
+    table thead th,
+    table tbody td {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+    
+    .table-title {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    table tbody td a {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
 }

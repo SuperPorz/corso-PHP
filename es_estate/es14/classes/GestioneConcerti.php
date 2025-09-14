@@ -28,11 +28,19 @@
             $array1['nome'] = $nome;
             $array1['email'] = $email;
             
-            $array2 = [];
-            $array2['utente_id'] = $nome;
-            $array2['musicista_id'] = $preferenza;
+            // Salva l'utente per generare un ID
             $this->tab_utente->save($array1);
-            $this->tab_preferenza->save($array2);
+            
+            // Trova l'utente appena inserito per recuperarne l'ID
+            $utente_salvato = $this->tab_utente->find_by_field('email', $email);
+            
+            if ($utente_salvato) {
+                $array2 = [];
+                // Usa l'ID dell'utente salvato
+                $array2['utente_id'] = $utente_salvato[0]['idu']; 
+                $array2['musicista_id'] = $preferenza;
+                $this->tab_preferenza->save($array2);
+            }
         }
 
         public function elimina_musicista($id) {
@@ -53,16 +61,36 @@
             return $result->fetchAll();
         }
 
-        private function calcola_costi() {
+        public function calcola_costi() {
             $concerti = $this->concerti();
-            $margin = 1.3;
+
+            // Definisci le fasce di prezzo e i relativi costi base
+            $fasce_prezzo = [
+                'bassa' => ['min_preferenze' => 0, 'max_preferenze' => 100, 'prezzo_base' => 20],
+                'media' => ['min_preferenze' => 101, 'max_preferenze' => 500, 'prezzo_base' => 50],
+                'alta' => ['min_preferenze' => 501, 'max_preferenze' => PHP_INT_MAX, 'prezzo_base' => 120]
+            ];
 
             foreach($concerti as &$concerto) {  // Aggiunge & per il riferimento
-                $costo_biglietto = ($concerto['compenso'] * $margin) / $concerto['spettatori'];
-                $incasso_tot = $concerto['spettatori'] * $costo_biglietto;
+                
+                $prezzo_biglietto = 0;
+                $spettatori = $concerto['spettatori'];
+
+                // Determina il prezzo del biglietto in base alla fascia di spettatori
+                if ($spettatori >= $fasce_prezzo['bassa']['min_preferenze'] 
+                    && $spettatori <= $fasce_prezzo['bassa']['max_preferenze']) {
+                        $prezzo_biglietto = $fasce_prezzo['bassa']['prezzo_base'];
+                } elseif ($spettatori >= $fasce_prezzo['media']['min_preferenze'] 
+                    && $spettatori <= $fasce_prezzo['media']['max_preferenze']) {
+                        $prezzo_biglietto = $fasce_prezzo['media']['prezzo_base'];
+                } elseif ($spettatori >= $fasce_prezzo['alta']['min_preferenze']) {
+                    $prezzo_biglietto = $fasce_prezzo['alta']['prezzo_base'];
+                }
+
+                $incasso_tot = $spettatori * $prezzo_biglietto;
                 $profitto_tot = $incasso_tot - $concerto['compenso'];
                 
-                $concerto['costo_biglietto'] = $costo_biglietto;
+                $concerto['costo_biglietto'] = $prezzo_biglietto;
                 $concerto['incasso_tot'] = $incasso_tot;
                 $concerto['profitto_tot'] = $profitto_tot;
             }
