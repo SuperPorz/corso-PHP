@@ -1,0 +1,47 @@
+2 metodi per evitare di scrivere json dentro il DB
+    - metodo 1: DB 'pagine' tabella 'include'(id, id_pagina, path) ->dopo facciamo query anzichè json_decode
+    - metodo 2:
+
+OBJECT ORIENTED PROGRAMMING - OOP
+
+CLASSI: (persone)
+    - attributi (nome, cognome, email...)
+    - metodi (costruttore, aggiungi, elimina, modifica, distruttore)
+        - costruttore ->costruisce le istanze/oggetti
+        - distruttore ->distrugge le istanze/oggetti
+
+concetti di pubblico/privato:
+    si intende la visibilità di attributi e metodi dall'esterno della classe;
+
+GETTERS & SETTERS: ->utili per effetturare sanificazioni di dati in input
+se una variabile è privata, per interagire serviranno 2 metodi:
+    - SET $variabile
+    - GET $variabile
+
+concetto di NAMESPACE: si trova anche per le classi;
+
+EREDITARIETA'
+una classe ne estende un'altra, gli aggiunge roba (si crea comunque un solo oggetto)
+
+OVERRIDE
+si definisce un metodo nella classe figlia con lo stesso nome della classe padre, per modificarne il comportamento
+
+CLASSI ASTRATTE
+utili quando si devono usare molte altre classi che hanno in comune strutture e logiche, esempio:
+
+    classi: 
+        - Cani
+        - Gatti
+        - Persone
+    
+    CLASSE ASTRATTA:
+        - EsseriViventi
+
+
+ESERCIZIO:
+classe astratta: veicoli
+classi figlie: auto, moto, camion
+
+ESERCIZI PER CASA:
+continuare esercizi estate con OOP
+

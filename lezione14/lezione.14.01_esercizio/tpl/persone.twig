@@ -1,0 +1,43 @@
+{% extends "ext/main.twig" %}
+{% block head %}
+    <title>Gestione Persone</title>
+{% endblock %}
+{% block header %}
+    <h1>gestione persone</h1>
+{% endblock %}
+{% block main %}
+<p>Qui puoi gestire le informazioni sui padroni.</p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome padrone</th>
+            <th>Numero</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for persona in lista %}
+        <tr>
+            <td>{{persona.id}}</td>
+            <td>{{persona.nome}}</td>
+            <td>{{persona.numero}}</td>
+            <td>
+                <a href="?elimina={{numero.id}}">elimina</a>
+                <a href="?modifica={{numero.id}}">modifica</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+<form action="lista-persone.html" method="post">
+    {# <input type="text" name="id" placeholder="ID del padrone" value="{{dati.id_persona}}"> #}
+    <input type="text" name="nome" placeholder="Nome del padrone" required value="{{dati.nome_persona}}">
+    <input type="number" name="numero" placeholder="Numero" value="{{dati.numero}}">
+    <input type="submit" value="Aggiungi persona">
+</form>
+<hr>
+<p>{{dati.status}}</p>
+{% endblock %}
+
