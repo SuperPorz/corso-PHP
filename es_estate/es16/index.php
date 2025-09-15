@@ -5,7 +5,7 @@
         # INCLUDES
         include 'inc/DatabaseConnection.php';
         include 'classes/DatabaseTable.php';
-        include 'classes/BasketStats.php';
+        include 'classes/Articolo.php';
         require_once 'lib/ext/autoload.php';
 
 
@@ -15,28 +15,38 @@
         $template = $twig->load('index.twig'); // caricamento template
 
 
-        # ISTANZE
-        $tab_giocatore = new DatabaseTable($pdo, 'giocatore','idg');
-        $statistiche = new BasketStats($tab_giocatore);
+        # ISTANZE INIZIALI
+        $tab_articolo = new DatabaseTable($pdo, 'articolo','ida');
+        $redazione = new RedazioneGiornale($tab_articolo);
 
 
-        # INSERIMENTI/ELIMINAZIONI DATI DAL DB
-        // inserimenti
+        # INSERIMENTI/MODIFICHE/ELIMINAZIONI DATI DAL DB
+        // inserisci articolo
         if (isset($_POST['azione']) && $_POST['azione'] == 'registra') {
-            $statistiche->registra_giocatore(
-                $_POST['nome'], 
-                $_POST['ruolo'], 
-                $_POST['punti'], 
-                $_POST['rimbalzi'], 
-                $_POST['assist'], 
-                $_POST['resistenza'],
-                $_POST['palle_perse'], 
-                $_POST['falli']);
+            $redazione->registra_articolo(
+                $_POST['autore'], 
+                $_POST['titolo'], 
+                $_POST['argomento'], 
+                $_POST['testo'], 
+                $_POST['lunghezza'], 
+            );
         }
 
-        // eliminazioni
-        if (isset($_GET['azione']) && isset($_GET['idg'])) {
-            $statistiche->elimina_giocatore($_GET['idg']);
+        // modifica articolo
+        if (isset($_GET['azione']) && isset($_GET['ida'])) {
+            $redazione->modifica_articolo(
+                $_GET['ida'], 
+                $_POST['autore'], 
+                $_POST['titolo'], 
+                $_POST['argomento'], 
+                $_POST['testo'], 
+                $_POST['lunghezza'],
+            );
+        }
+
+        // elimina articolo
+        if (isset($_GET['azione']) && isset($_GET['ida'])) {
+            $redazione->elimina_articolo($_GET['ida']);
         }
 
 
