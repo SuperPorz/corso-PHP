@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/style.table.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Estate - esercizio 15</title>
+        <title>Estate - esercizio 16</title>
     </head>
     <body>
-        <h1>BASKET STATS</h1>
+        <h1>LORENZONI BIOTECH PRESS @GmbH</h1>
         <hr>
-        <h2>Registrazione giocatori:</h2>
-        {% include "blocks/form.twig" %}
+        <h2>Registra articoli:</h2>
+            {% include "blocks/form.twig" %}
         <hr>
-        <h2>MAIN PROGRAM:</h2>
-        <hr>
-        {% include "blocks/table.top5.twig" %}
-        <hr>
-        {% include "blocks/table.sostituzioni.twig" %}
-        <hr>
-        {% include "blocks/table.giocatori.twig" %}
+        <h2>PROSSIMO NUMERO RIVISTA - sfoglia online:</h2>
+            {% include "blocks/div.article.twig" %}
         <hr>
     </body>
 </html>

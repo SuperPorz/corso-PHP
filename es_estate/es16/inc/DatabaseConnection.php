@@ -2,7 +2,7 @@
 
     try {
         $pdo = new PDO(
-            'mysql:host=localhost; dbname=estate_es15; charset=utf8', 
+            'mysql:host=localhost; dbname=estate_es16; charset=utf8',
             'userphp', 
             'admin');
         

@@ -2,29 +2,24 @@
 <form action="" method="post">
     <fieldset class="field">
         <input type="hidden" name="azione" value="registra" required><br>
-        <label for="nome">Nome</label>
-        <input id="input" type="text" name="nome" required><br>
-        <label for="ruolo">Ruolo</label>    
-        <select name="ruolo">
-            <option id="def_opt" disabled selected>ruolo</option> <!-- opzione di default -->
-                <option name="ruolo" value="playmaker">Playmaker</option>
-                <option name="ruolo" value="guardia">Guardia</option>
-                <option name="ruolo" value="ala_piccola">Ala piccola</option>
-                <option name="ruolo" value="ala_grande">Ala grande</option>
-                <option name="ruolo" value="pivot">Pivot</option>
+        <label for="autore">Autore</label>
+        <input id="input" type="text" name="autore" required><br>
+        <label for="titolo">titolo</label>
+        <input id="input" type="text" name="titolo" required><br>
+        <label for="argomento">Argomento</label>    
+        <select name="argomento">
+            <option id="def_opt" disabled selected>argomento</option> <!-- opzione di default -->
+                <option name="argomento" value="intelligenza artificiale">Intelligenza artificiale</option>
+                <option name="argomento" value="sostenibilità digitale">Sostenibilità digitale</option>
+                <option name="argomento" value="cybersicurezza">Cybersicurezza</option>
+                <option name="argomento" value="IoT">Internet Of Thigns</option>
+                <option name="argomento" value="quantum computing">quantum computig</option>
+                <option name="argomento" value="biotecnologie digitali">Biotecnologie digitali</option>
+                <option name="argomento" value="sistemi operativi">Sistemi operativi</option>
+                <option name="argomento" value="big data">Big data</option>
         </select><br> 
-        <label for="punti">Punti</label>
-        <input id="input" type="number" name="punti" min="10" max="200" required><br>
-        <label for="rimbalzi">Rimbalzi</label>
-        <input id="input" type="number" name="rimbalzi" min="5" max="200" required><br>
-        <label for="assist">Assist</label>
-        <input id="input" type="number" name="assist" min="0" max="40" required><br>
-        <label for="resistenza">Resistenza</label>
-        <input id="input" type="number" name="resistenza" min="5" max="50" required><br>
-        <label for="palle_perse">Palle perse</label>
-        <input id="input" type="number" name="palle_perse" min="1" max="50" required><br>
-        <label for="falli">Falli</label>
-        <input id="input" type="number" name="falli" min="0" max="30" required><br>
+        <label for="testo">Testo</label>
+        <input id="input" type="text" rows="4" name="titolo" required><br>
     </fieldset>
     <br><input type="submit" value="INVIA" id="f2">
 </form>
