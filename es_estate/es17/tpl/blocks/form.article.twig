@@ -1,5 +1,5 @@
 {% block form %}
-<form action="" method="post" >
+<form action="index.php" method="post" >
     <fieldset class="field">
         <input type="hidden" name="azione" value="registra" required><br>
         <label for="autore">Autore</label>
@@ -7,8 +7,8 @@
         <label for="titolo">titolo</label>
         <input id="input" type="text" name="titolo" required><br>
         <label for="argomento">Argomento</label>    
-        <select name="argomento">
-            <option id="def_opt" disabled selected>argomento</option> <!-- opzione di default -->
+        <select name="argomento" id="input">
+            <option id="def_opt" disabled selected> --- </option> <!-- opzione di default -->
                 <option id="option" name="argomento" value="intelligenza artificiale">Intelligenza artificiale</option>
                 <option id="option" name="argomento" value="sostenibilità digitale">Sostenibilità digitale</option>
                 <option id="option" name="argomento" value="cybersicurezza">Cybersicurezza</option>

@@ -121,26 +121,18 @@ select {
     text-align: center;
     height: 30px;
     width: 160px;
-    border-radius: 10px;
     width: fit-content;
-    color: rgb(77, 77, 77)
-}
-
-legend {
-    color: #e43d40;
-    background-color: #ffffff;
-    border-radius: 5px 40px 5px;
-    padding: 5px 10px 5px 10px;
-    font-style: italic;
-    font-size: 24px;
-    margin: 3px 7px 3px 7px;
+    color: rgb(77, 77, 77);
+    border: #000;
+    border-width: 3px;
+    border-style: double;
 }
 
 fieldset {
-    border-radius: 20px;
     margin: 10px;
     width: fit-content;
     text-align: right;
+    background-color: rgb(214, 211, 190);
 }
 
 fieldset label {
@@ -148,7 +140,7 @@ fieldset label {
     margin-right: 10px;
     text-align: right;
     font-size: 30px;
-    color: rgb(255, 255, 255);
+    color: rgb(97, 97, 97);
 }
 
 #def_opt {
@@ -156,19 +148,15 @@ fieldset label {
     font-size: smaller;
 }
 
-#f1 {
-    height: 50px;
-    width: 250px;
-    border-radius: 20px;
-}
-
 #f2 {
     background-color: #f85c70;
     color: white;
     padding: 8px 30px 8px 30px;
-    border-radius: 5px 40px 5px;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 25px;
+    border: #000;
+    border-width: 3px;
+    border-style: double;
 }
 
 #f2:hover {
@@ -180,9 +168,23 @@ fieldset label {
 #input {
     height: 40px;
     width: 160px;
-    border-radius: 10px;
+    border: #000;
+    border-width: 3px;
+    border-style: double;
 }
 
 #input::placeholder {
     text-align: center;
+}
+
+#link {
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.826);
+    background-color:darkred;
+    padding: 8px;
+    text-decoration: none;
+    font-style: italic;
+    border: #000;
+    border-width: 5px;
+    border-style: ridge;
 }

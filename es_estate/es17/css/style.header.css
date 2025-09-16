@@ -1,0 +1,89 @@
+.header {
+    display: flex;
+    justify-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.header ul {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.header li {
+    display: inline-block;
+}
+
+.header a {
+    font-size: 20px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f8f8f8;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.header a:hover {
+    background: #e8e8e8;
+}
+
+/* Checkbox nascosto */
+.expand-checkbox {
+    display: none;
+}
+
+/* Elementi nascosti inizialmente */
+.magazine-item.hidden-item {
+    display: none;
+}
+
+/* Stili per il pulsante di espansione */
+.expand-btn {
+    margin-left: 10px;
+}
+
+.expand-label {
+    font-size: 18px;
+    padding: 5px 12px;
+    border: 1px solid #007cba;
+    border-radius: 4px;
+    background: #007cba;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-block;
+}
+
+.expand-label:hover {
+    background: #005a8b;
+}
+
+/* Mostra solo il "+" inizialmente */
+.expand-label .collapse-text {
+    display: none;
+}
+
+.expand-label .expand-text {
+    display: inline;
+}
+
+/* Quando il checkbox è checked, mostra tutti gli elementi */
+.expand-checkbox:checked ~ .magazine-list .magazine-item.hidden-item {
+    display: inline-block;
+}
+
+/* Quando il checkbox è checked, cambia il testo da "+" a "-" */
+.expand-checkbox:checked ~ .magazine-list .expand-label .expand-text {
+    display: none;
+}
+
+.expand-checkbox:checked ~ .magazine-list .expand-label .collapse-text {
+    display: inline;
+}

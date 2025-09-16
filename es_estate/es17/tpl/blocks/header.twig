@@ -1,0 +1,24 @@
+{% block header %}
+    <header class="header">
+        {% if riviste|length > 20 %}
+            <input type="checkbox" id="expand-toggle" class="expand-checkbox">
+        {% endif %}
+        
+        <ul class="magazine-list">
+            {% for key, rivista in riviste %}
+                <li class="magazine-item {% if loop.index > 20 %}hidden-item{% endif %}"><!--aggiungo la classe solo se + di 20 riviste-->
+                    <a href="rivista={{key}}">{{loop.index}}</a>
+                </li>                
+            {% endfor %}
+            
+            {% if riviste|length > 20 %}<!--se riviste >20: creo bottoni + e meno; uso l'operatore filtro -->
+                <li class="expand-btn">
+                    <label for="expand-toggle" class="expand-label">
+                        <span class="expand-text">+</span>
+                        <span class="collapse-text">-</span>
+                    </label>
+                </li>
+            {% endif %}
+        </ul>
+    </header>
+{% endblock %}

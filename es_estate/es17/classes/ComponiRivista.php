@@ -5,17 +5,15 @@
         # ATTRIBUTI SPECIFICI DELLA CLASSE
         private $TOT_PER_PAGINA; //limite battute per pagina (fissata per scelta)
         private $LIMITE_RIVISTA; //limite battute per rivista (fissata dall'esercizio)
-        private $num_riviste;
         private $riviste;
 
 
         # COSTRUTTORE
-        function __construct($num_riviste = 0)
+        function __construct($tabella_DB)
         {
-            parent::__construct();
+            parent::__construct($tabella_DB);
             $this->TOT_PER_PAGINA = 2750;
             $this->LIMITE_RIVISTA = 11000;
-            $this->num_riviste = $num_riviste; //unico parametro di istanziazione
             $this->riviste = [];
         }
 
@@ -64,13 +62,40 @@
 
 
         # MAIN PROGRAM : COMPOSIZIONE RIVISTE PIANIFICATE
-        public function componi_riviste_pianificate() {
+        public function componi_riviste($num_riviste) {
 
-            for ($idx = 1; $idx <= $this->num_riviste; $idx++) {
+            for ($idx = 1; $idx <= intval($num_riviste); $idx++) {
                 $rivista_singola = $this->componi_rivista();
                 $this->riviste[] = $rivista_singola;
                 $idx++;                
             }
             return $this->riviste;
+        }
+
+
+        # DB TEMPORANEO SU FILE
+        public function lettura (){
+            if (!file_exists('temp/riviste.db')) {
+                    return [];
+            } 
+            else {
+                return unserialize(file_get_contents('temp/riviste.db'));
+            }
+        }
+
+        public function scrittura($array){
+            $x = fopen('temp/riviste.db', 'w+');
+            if ($x == true) {
+                fwrite($x, serialize($array));
+                fclose($x);
+                return true;
+            } 
+            else {
+                return false;
+            }
+        }
+
+        public function elimina_temp_db() {
+            unlink('temp/riviste.db');
         }
     }
