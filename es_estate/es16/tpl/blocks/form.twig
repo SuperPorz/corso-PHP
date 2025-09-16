@@ -1,5 +1,5 @@
 {% block form %}
-<form action="" method="post">
+<form action="" method="post" >
     <fieldset class="field">
         <input type="hidden" name="azione" value="registra" required><br>
         <label for="autore">Autore</label>
@@ -9,18 +9,18 @@
         <label for="argomento">Argomento</label>    
         <select name="argomento">
             <option id="def_opt" disabled selected>argomento</option> <!-- opzione di default -->
-                <option name="argomento" value="intelligenza artificiale">Intelligenza artificiale</option>
-                <option name="argomento" value="sostenibilità digitale">Sostenibilità digitale</option>
-                <option name="argomento" value="cybersicurezza">Cybersicurezza</option>
-                <option name="argomento" value="IoT">Internet Of Thigns</option>
-                <option name="argomento" value="quantum computing">quantum computig</option>
-                <option name="argomento" value="biotecnologie digitali">Biotecnologie digitali</option>
-                <option name="argomento" value="sistemi operativi">Sistemi operativi</option>
-                <option name="argomento" value="big data">Big data</option>
+                <option id="option" name="argomento" value="intelligenza artificiale">Intelligenza artificiale</option>
+                <option id="option" name="argomento" value="sostenibilità digitale">Sostenibilità digitale</option>
+                <option id="option" name="argomento" value="cybersicurezza">Cybersicurezza</option>
+                <option id="option" name="argomento" value="IoT">Internet Of Thigns</option>
+                <option id="option" name="argomento" value="quantum computing">quantum computig</option>
+                <option id="option" name="argomento" value="biotecnologie digitali">Biotecnologie digitali</option>
+                <option id="option" name="argomento" value="sistemi operativi">Sistemi operativi</option>
+                <option id="option" name="argomento" value="big data">Big data</option>
         </select><br> 
         <label for="testo">Testo</label>
-        <input id="input" type="text" rows="4" name="titolo" required><br>
+        <input id="input" type="text" name="titolo" required><br>
     </fieldset>
-    <br><input type="submit" value="INVIA" id="f2">
+    <input type="submit" value="INVIA" id="f2">
 </form>
 {% endblock %}

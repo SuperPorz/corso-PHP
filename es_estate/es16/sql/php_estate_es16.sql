@@ -15,15 +15,15 @@ CREATE TABLE articolo (
     autore VARCHAR(100) NOT NULL,
     titolo VARCHAR(100) NOT NULL,
     argomento ENUM(
-        'intelligenza artificiale', 
-        'sostenibilità digitale', 
-        'cybersicurezza', 
-        'IoT', 
-        'quantum computing', 
-        'biotecnologie digitali', 
-        'sistemi operativi', 
-        'big data'
-    ) NOT NULL,
+		'INTELLIGENZA ARTIFICIALE', 
+		'SOSTENIBILITÀ DIGITALE', 
+		'CYBERSICUREZZA', 
+		'IOT', 
+		'QUANTUM COMPUTING', 
+		'BIOTECNOLOGIE DIGITALI', 
+		'SISTEMI OPERATIVI', 
+		'BIG DATA'
+	) NOT NULL,
     testo TEXT NOT NULL,
     lunghezza INT GENERATED ALWAYS AS (LENGTH(testo)) STORED,
     CONSTRAINT chk_testo_lunghezza CHECK (LENGTH(testo) >= 200 AND LENGTH(testo) <= 500)
@@ -73,18 +73,18 @@ BEGIN
         -- Seleziona argomento casuale
         SET arg_index = FLOOR(1 + RAND() * 8);
         SET random_argomento = CASE arg_index
-            WHEN 1 THEN 'intelligenza artificiale'
-            WHEN 2 THEN 'sostenibilità digitale'
-            WHEN 3 THEN 'cybersicurezza'
-            WHEN 4 THEN 'IoT'
-            WHEN 5 THEN 'quantum computing'
-            WHEN 6 THEN 'biotecnologie digitali'
-            WHEN 7 THEN 'sistemi operativi'
-            ELSE 'big data'
+            WHEN 1 THEN 'INTELLIGENZA ARTIFICIALE'
+            WHEN 2 THEN 'SOSTENIBILITÀ DIGITALE'
+            WHEN 3 THEN 'CYBERSICUREZZA'
+            WHEN 4 THEN 'IOT'
+            WHEN 5 THEN 'QUANTUM COMPUTING'
+            WHEN 6 THEN 'BIOTECNOLOGIE DIGITALI'
+            WHEN 7 THEN 'SISTEMI OPERATIVI'
+            ELSE 'BIG DATA'
         END;
         
         -- Genera titolo e testo basati sull'argomento
-        IF random_argomento = 'intelligenza artificiale' THEN
+        IF random_argomento = 'INTELLIGENZA ARTIFICIALE' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Machine Learning e il Futuro dell Automazione'
                 WHEN 2 THEN 'Reti Neurali Artificiali: Principi Base'
@@ -94,7 +94,7 @@ BEGIN
             END;
             SET random_testo = 'L intelligenza artificiale rappresenta una delle rivoluzioni tecnologiche più significative del nostro tempo. I sistemi di machine learning stanno trasformando settori dalla medicina alla finanza. Gli algoritmi di deep learning sono capaci di apprendere pattern complessi e prendere decisioni autonome. Tuttavia questa evoluzione porta sfide etiche importanti.';
             
-        ELSEIF random_argomento = 'sostenibilità digitale' THEN
+        ELSEIF random_argomento = 'SOSTENIBILITÀ DIGITALE' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Green Computing: Ridurre l Impatto Ambientale'
                 WHEN 2 THEN 'Data Center Sostenibili e Energia Rinnovabile'
@@ -104,7 +104,7 @@ BEGIN
             END;
             SET random_testo = 'La sostenibilità digitale è diventata una priorità per le aziende tecnologiche globali. Il consumo energetico dei data center rappresenta una percentuale significativa del fabbisogno mondiale. Le organizzazioni investono in fonti rinnovabili e tecnologie efficienti. Il green computing include anche software ottimizzato che richiede meno risorse computazionali.';
             
-        ELSEIF random_argomento = 'cybersicurezza' THEN
+        ELSEIF random_argomento = 'CYBERSICUREZZA' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Protezione da Ransomware: Strategie Difensive'
                 WHEN 2 THEN 'Zero Trust Architecture: Il Futuro della Sicurezza'
@@ -114,7 +114,7 @@ BEGIN
             END;
             SET random_testo = 'La cybersicurezza è una componente critica per le organizzazioni moderne. Gli attacchi informatici sono sempre più sofisticati richiedendo approcci difensivi proattivi. La filosofia Zero Trust assume che nessun utente sia intrinsecamente fidato. La formazione del personale rimane fondamentale poiché molte violazioni hanno origine da errori umani.';
             
-        ELSEIF random_argomento = 'IoT' THEN
+        ELSEIF random_argomento = 'IOT' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Smart Home: Automazione Domestica Intelligente'
                 WHEN 2 THEN 'Industrial IoT: Industria 4.0 in Azione'
@@ -124,7 +124,7 @@ BEGIN
             END;
             SET random_testo = 'L Internet delle Cose rivoluziona l interazione con il mondo fisico attraverso la tecnologia. Miliardi di dispositivi connessi raccolgono dati in tempo reale creando ecosistemi intelligenti. I sensori IoT permettono monitoraggio continuo di parametri ambientali abilitando decisioni basate sui dati. Tuttavia presenta sfide di sicurezza e privacy significative.';
             
-        ELSEIF random_argomento = 'quantum computing' THEN
+        ELSEIF random_argomento = 'QUANTUM COMPUTING' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Principi Base del Calcolo Quantistico'
                 WHEN 2 THEN 'Algoritmi Quantistici vs Algoritmi Classici'
@@ -134,7 +134,7 @@ BEGIN
             END;
             SET random_testo = 'Il calcolo quantistico rappresenta un paradigma computazionale che sfrutta principi della meccanica quantistica. I qubit possono esistere in stati di sovrapposizione permettendo di esplorare multiple soluzioni simultaneamente. Algoritmi come Shor e Grover promettono velocità esponenzialmente superiori. Tuttavia i sistemi attuali sono fragili e richiedono ambienti criogenici.';
             
-        ELSEIF random_argomento = 'biotecnologie digitali' THEN
+        ELSEIF random_argomento = 'BIOTECNOLOGIE DIGITALI' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Bioinformatica: Analisi Genomica Computazionale'
                 WHEN 2 THEN 'Digital Health: Telemedicina e Wearables'
@@ -144,7 +144,7 @@ BEGIN
             END;
             SET random_testo = 'Le biotecnologie digitali trasformano il settore sanitario integrando strumenti computazionali con scienze biologiche. L analisi di dataset genomici con machine learning accelera la ricerca medica personalizzata. I dispositivi wearable permettono monitoraggio continuo dei parametri vitali. La simulazione computazionale rivoluziona lo sviluppo farmaci riducendo tempi e costi.';
             
-        ELSEIF random_argomento = 'sistemi operativi' THEN
+        ELSEIF random_argomento = 'SISTEMI OPERATIVI' THEN
             SET random_titolo = CASE FLOOR(1 + RAND() * 5)
                 WHEN 1 THEN 'Architettura del Kernel: Monolitico vs Microkernel'
                 WHEN 2 THEN 'Gestione della Memoria nei SO Moderni'

@@ -22,7 +22,7 @@
             $this->argomenti = [];
             $this->TOT_BATTUTE = 0;
             $this->TOT_PER_PAGINA = 2750;
-            $this->TOT_PER_PAGINA = 11000;
+            $this->LIMITE_RIVISTA = 11000; // Corretto: era assegnato due volte
         }
 
         # INSERIMENTI/MODIFICHE AL DB
@@ -53,10 +53,10 @@
             $this->argomenti[] = $articolo['argomento'];
             $this->TOT_BATTUTE += intval($articolo['lunghezza']);
 
-            //tolgo tutti gli articoli dell'autore dalla lista provvisoria
-            foreach($this->lista_articoli as $item) {
+            // Rimuovo tutti gli articoli dell'autore dalla lista provvisoria
+            foreach($this->lista_articoli_copy as $key => $item) {
                 if ($item['autore'] == $articolo['autore']) {
-                    unset($this->lista_articoli_copy[$articolo]);
+                    unset($this->lista_articoli_copy[$key]); // Uso la chiave corretta
                 }
             }
         }
@@ -66,32 +66,45 @@
             while ($this->TOT_BATTUTE <= 11000) {
                 $x = $this->lista_articoli_copy; //scorciatoia copia DB
                 $y = $this->articoli_scelti; //scorciatoia art. scelti
-                $articolo = array_rand($x);
+                
+                // Controllo se ci sono ancora articoli disponibili
+                if (empty($x)) {
+                    break;
+                }
+                
+                $articolo = $x[array_rand($x)];
 
                 if (empty($y)) {
                     $this->popola_var_classe($articolo);
                 }
                 else {
-                    //aggiungo articolo se: db !empty & argomento assente, oppure argom presente ma <= 1
-                    if ((in_array($articolo['argomento'], $y) && !empty($y)) || 
-                        (!in_array($articolo['argomento'], $y) && array_count_values($articolo['argomento'], $y) <= 1)){
+                    // Corretto: controllo argomenti negli articoli già scelti
+                    $argomenti_presenti = array_column($this->articoli_scelti, 'argomento');
+                    $count_argomento = array_count_values($argomenti_presenti);
+                    
+                    // Aggiungo articolo se: argomento non presente, oppure presente ma <= 1 volta
+                    if (!isset($count_argomento[$articolo['argomento']]) || 
+                        $count_argomento[$articolo['argomento']] <= 1) {
                         $this->popola_var_classe($articolo);
                     }
-                    elseif (array_count_values($articolo['argomento'], $y) > 1) {
-                        foreach($this->lista_articoli as $item) {
+                    else {
+                        // Rimuovo tutti gli articoli con questo argomento dalla lista
+                        foreach($this->lista_articoli_copy as $key => $item) {
                             if ($item['argomento'] == $articolo['argomento']) {
-                                unset($this->lista_articoli_copy[$articolo]);
+                                unset($this->lista_articoli_copy[$key]);
                             }
                         }
                     }
                 }
             }
-            // ricerca di articolo 'corto' per riempire ultimo spazio
-            if ($this->TOT_BATTUTE <= 500) {
-                $articolo = array_rand($x);
-                foreach($this->lista_articoli as $item) {
-                    if ($item['lunghezza'] <= $this->TOT_BATTUTE) {
-                        $this->popola_var_classe($articolo);
+            
+            // Ricerca di articolo 'corto' per riempire ultimo spazio
+            $spazio_rimanente = 11000 - $this->TOT_BATTUTE;
+            if ($spazio_rimanente > 0 && $spazio_rimanente <= 500) {
+                foreach($this->lista_articoli_copy as $item) {
+                    if ($item['lunghezza'] <= $spazio_rimanente) {
+                        $this->popola_var_classe($item);
+                        break; // Prendo solo il primo che trova
                     } 
                 }   
             }
@@ -99,32 +112,45 @@
         }
 
         public function componi_pagine_rivista() {
-            // preparazione
+            // Preparazione
             $this->articoli_scelti();
             $z = $this->articoli_scelti; //scorciatoia art. scelti
             $pagine = [];
+            $pagina_corrente = [];
+            $battute_pagina_corrente = 0;
+            $battute_totali_usate = 0;
 
-            while ($this->LIMITE_RIVISTA <= 11000) {
-                // composizione pagine
-                foreach($z as $articolo) {
-                    if ($pagine == []) {
-                        $pagine[] = $articolo;
-                        $this->TOT_PER_PAGINA -= $articolo['lunghezza'];
-                        $this->LIMITE_RIVISTA -= $articolo['lunghezza'];
+            foreach($z as $articolo) {
+                // Se l'articolo entra nella pagina corrente
+                if ($battute_pagina_corrente + $articolo['lunghezza'] <= $this->TOT_PER_PAGINA && 
+                    $battute_totali_usate + $articolo['lunghezza'] <= $this->LIMITE_RIVISTA) {
+                    
+                    $pagina_corrente[] = $articolo;
+                    $battute_pagina_corrente += $articolo['lunghezza'];
+                    $battute_totali_usate += $articolo['lunghezza'];
+                } else {
+                    // Pagina piena, inizia una nuova pagina
+                    if (!empty($pagina_corrente)) {
+                        $pagine[] = $pagina_corrente;
                     }
-                    else {
-                        if ($articolo['lunghezza'] <= $this->TOT_PER_PAGINA) {
-                            $pagine[] = $articolo;
-                            $this->TOT_PER_PAGINA -= $articolo['lunghezza'];
-                            $this->LIMITE_RIVISTA -= $articolo['lunghezza'];
-                        }
-                        else {
-                            $this->TOT_PER_PAGINA = 2750; //resetto la variabile
-                            break; // esco dal ciclo, una pagina è conclusa
-                        }
+                    
+                    // Controlla se abbiamo raggiunto il limite della rivista
+                    if ($battute_totali_usate + $articolo['lunghezza'] > $this->LIMITE_RIVISTA) {
+                        break;
                     }
+                    
+                    // Inizia nuova pagina
+                    $pagina_corrente = [$articolo];
+                    $battute_pagina_corrente = $articolo['lunghezza'];
+                    $battute_totali_usate += $articolo['lunghezza'];
                 }
-            } 
+            }
+            
+            // Aggiungi l'ultima pagina se non è vuota
+            if (!empty($pagina_corrente)) {
+                $pagine[] = $pagina_corrente;
+            }
+            
             return $pagine;
         }
     }

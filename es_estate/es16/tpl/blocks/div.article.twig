@@ -1,12 +1,16 @@
 {% block form %}
     {% for pagina in pagine %}
-        <div>
+        <div class="pagina-container">
             <h3>LORENZONI BIOTECH PRESS @GmbH - numero 23 - 26/07/2025</h3>
-            {% for articolo in pagina %}
-                <h4>{{articolo.argomento}}</h4>
-                <h5>{{articolo.titolo}}</h5>
-                <p>{{articolo.testo}}</p>
-            {% endfor %}
+            <div class="articoli-colonne">
+                {% for articolo in pagina %}
+                    <div class="articolo-item">
+                        <h4>{{articolo.argomento}}</h4>
+                        <h5>{{articolo.titolo}}</h5>
+                        <article class="articolo-testo">{{articolo.testo}}</article>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
