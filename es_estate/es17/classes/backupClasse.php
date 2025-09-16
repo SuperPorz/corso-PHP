@@ -22,7 +22,7 @@
             $this->argomenti = [];
             $this->TOT_BATTUTE = 0;
             $this->TOT_PER_PAGINA = 2750;
-            $this->LIMITE_RIVISTA = 11000; // Corretto: era assegnato due volte
+            $this->LIMITE_RIVISTA = 11000;
         }
 
         # INSERIMENTI/MODIFICHE AL DB
@@ -62,6 +62,7 @@
         }
 
         # MAIN PROG
+        // scelgo articoli fino ad arrivare sotto 11k caratteri
         private function articoli_scelti() {
             while ($this->TOT_BATTUTE <= 11000) {
                 $x = $this->lista_articoli_copy; //scorciatoia copia DB
@@ -111,6 +112,7 @@
             return true;
         }
 
+        // compongo le pagine pescando dalla lista articoli
         public function componi_pagine_rivista() {
             // Preparazione
             $this->articoli_scelti();
@@ -153,4 +155,13 @@
             
             return $pagine;
         }
+
+        // compongo il numero di riviste richieste
+        public function pianifica_numeri($tot_riviste) {
+
+            
+
+        }
+
+
     }

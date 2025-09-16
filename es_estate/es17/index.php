@@ -5,7 +5,8 @@
         # INCLUDES
         include 'inc/DatabaseConnection.php';
         include 'classes/DatabaseTable.php';
-        include 'classes/RedazioneGiornale.php';
+        include 'classes/SelezionaArticoli.php';
+        include 'classes/ComponiRivista.php';
         require_once 'lib/ext/autoload.php';
 
 
