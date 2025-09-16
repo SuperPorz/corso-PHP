@@ -40,7 +40,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    text-align: left;
+    text-align: justify;
     min-height: 400px;
     align-items: start; /* Allinea gli elementi in alto */
 }
