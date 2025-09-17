@@ -83,10 +83,9 @@ form {
     background-color: #E8E1D1;
     border: 2px solid #A89B8C;
     padding: 20px;
-    margin-bottom: 20px; /* Spazio tra fieldset e pulsanti */
+    margin-bottom: 20px;
 }
 
-/* ===== FORM ARTICOLI (LAYOUT A RIGHE) ===== */
 /* ===== FORM ARTICOLI (LAYOUT A RIGHE) ===== */
 .form-articoli .field {
     display: flex;
@@ -109,7 +108,7 @@ form {
     min-width: 120px;
 }
 
-/* Label per la textarea - AGGIUNTO QUESTO SELETTORE */
+/* Label per la textarea */
 .textarea-row label {
     font-size: 20px;
     color: #6B5B4D;
@@ -171,7 +170,7 @@ form {
     margin-bottom: 5px;
 }
 
-/* Input e select con dimensioni uniformi */
+/* Input e select con dimensioni uniformes */
 #input, select {
     height: 40px;
     width: 200px;
@@ -231,9 +230,9 @@ select {
     margin: 10px;
     overflow: hidden;
     background-image: url('../img/paper.png');
-    background-size: 105% 100%; /* MODIFICATO: adatta l'immagine alle dimensioni del container */
+    background-size: 105% 100%;
     background-position: center;
-    background-repeat: no-repeat; /* AGGIUNTO: evita la ripetizione */
+    background-repeat: no-repeat;
     position: relative;
 }
 
@@ -284,6 +283,26 @@ select {
     margin: 20px 0;
 }
 
+/* Contenitore principale della paginazione */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Layout della lista delle riviste */
+.magazine-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
 .footer ul {
     align-items: center;
     display: flex;
@@ -309,6 +328,27 @@ select {
     font-family: "Old Standard TT", serif;
 }
 
+/* Stile per i pulsanti di navigazione */
+.nav-button {
+    font-size: 18px;
+    padding: 6px 12px;
+    border: 1px solid #8B4513;
+    background: #8B4513;
+    color: #F5F1E6;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Old Standard TT", serif;
+    text-align: center;
+    min-width: 30px;
+    height: 36px;
+}
+
+/* Elementi nascosti */
+.magazine-item.hidden-item,
+.nav-button.hidden-item {
+    display: none;
+}
+
 /* Elementi nascosti inizialmente */
 .magazine-item.hidden-item {
     display: none;
@@ -316,7 +356,9 @@ select {
 
 /* Pulsante di espansione */
 .expand-btn {
-    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .expand-label {

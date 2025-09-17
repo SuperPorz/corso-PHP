@@ -82,12 +82,7 @@
             }
         }
 
-        public function scrittura($array) {
-            // Crea la directory se non esiste
-            if (!is_dir('temp')) {
-                mkdir('temp', 0777, true);
-            }
-            
+        public function scrittura($array) {            
             $x = fopen('temp/riviste.db', 'w+');
             if ($x == true) {
                 fwrite($x, serialize($array));

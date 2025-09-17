@@ -8,24 +8,25 @@
         {% endif %}
     </span>
     <footer class="footer">
-        {% if riviste|length > 20 %}
-            <input type="checkbox" id="expand-toggle" class="expand-checkbox">
-        {% endif %}
-        <ul class="magazine-list">
-            {% for key, rivista in riviste %}
-                <li class="magazine-item {% if loop.index > 20 %}hidden-item{% endif %}">
-                    <a href="index.php?p=magazine&rivista={{loop.index}}">{{loop.index}}</a>
-                </li>                
-            {% endfor %}
-            {% if riviste|length > 20 %}
-                <li class="expand-btn">
-                    <label for="expand-toggle" class="expand-label">
-                        <span class="expand-text">+</span>
-                        <span class="collapse-text">-</span>
-                    </label>
-                </li>
+        <div class="pagination-container">
+            <button class="nav-button load-less hidden-item">
+                <span class="nav-text">-</span> <!--- TASTO "-" -->
+            </button>
+            
+            <ul class="magazine-list" data-current-page="1" data-total-pages="{{ ((riviste|length) / 10)|round(0, 'ceil') }}">
+                {% for key, rivista in riviste %}
+                    <li class="magazine-item {% if loop.index > 10 %}hidden-item{% endif %}" data-index="{{ loop.index }}">
+                        <a href="index.php?p=magazine&rivista={{loop.index}}">{{loop.index}}</a>
+                    </li>                
+                {% endfor %}
+            </ul>
+            
+            {% if riviste|length > 10 %}
+                <button class="nav-button load-more">
+                    <span class="nav-text">+</span> <!--- TASTO "+" -->
+                </button>
             {% endif %}
-        </ul>
+        </div>
         <hr>
     </footer>
 {% endblock %}

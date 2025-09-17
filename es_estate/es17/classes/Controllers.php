@@ -18,7 +18,6 @@ class ControllerArticoli {
                 $_POST['titolo'],
                 $_POST['argomento'],
                 $_POST['testo'],
-                $_POST['lunghezza']
             );
             $this->redirectToIndex();
         }
@@ -31,7 +30,6 @@ class ControllerArticoli {
                 'titolo' => $_POST['titolo'],
                 'argomento' => $_POST['argomento'],
                 'testo' => $_POST['testo'],
-                'lunghezza' => $_POST['lunghezza']
             ];
             $this->modifica_articolo($data);
             $this->redirectToIndex();
@@ -45,14 +43,13 @@ class ControllerArticoli {
     }
 
     # OPERAZIONI CRUD
-    public function registra_articolo($autore, $titolo, $argomento, $testo, $lunghezza)
+    public function registra_articolo($autore, $titolo, $argomento, $testo)
     {
         $array = [
             'autore' => $autore,
             'titolo' => $titolo,
             'argomento' => $argomento,
-            'testo' => $testo,
-            'lunghezza' => intval($lunghezza)
+            'testo' => $testo
         ];
         
         return $this->tab_articolo->save($array);
@@ -98,7 +95,7 @@ class ControllerRiviste {
         }
 
         // Eliminazione pianificazione
-        if (isset($_GET['azione']) && $_GET['azione'] == 'elimina_pianificazione') {
+        if (isset($_GET['azione']) && $_GET['azione'] == 'elimina_riviste') {
             $this->elimina_pianificazione();
             $this->redirectToIndex();
         }
@@ -151,7 +148,7 @@ class ControllerTemplate {
         } else {
             $template = $this->twig->load('magazine.twig');
             
-            // Se è specificato un numero rivista, converti in indice array (numero - 1)
+            // Se è specificato un numero rivista, converte in indice array (numero - 1)
             if ($numero_rivista !== null && $numero_rivista >= 1) {
                 $indice_array = $numero_rivista - 1; // Converte 1,2,3... in 0,1,2...
                 
@@ -167,15 +164,8 @@ class ControllerTemplate {
                         $template_data['rivista_corrente'] = 0;
                     }
                 }
-            } else {
-                // Se non è specificato un numero, mostra la prima rivista disponibile
-                if (!empty($this->array_riviste)) {
-                    $template_data['pagine'] = $this->array_riviste[0];
-                    $template_data['numero_rivista'] = 1;
-                    $template_data['rivista_corrente'] = 0;
-                }
             }
-        }
+        } 
 
         return $template->render($template_data);
     }
