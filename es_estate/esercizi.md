@@ -142,11 +142,12 @@ Deve poi consentire di formulare la formazione migliore in base ai punteggi inse
 Il programma inoltre deve:
 
  	- proporre una lista di sostituzioni in base alla propensione a stancarsi dei vari giocatori, in modo da 	  mantenere sempre una formazione fresca in campo.
-- Gestire la stanchezza in termini di minuti giocabili prima di cominciare ad affaticarsi.
+
+* Gestire la stanchezza in termini di minuti giocabili prima di cominciare ad affaticarsi.
 
 ## esercizio 16
 
-Scrivere un programma che consenta di inserire dei brevi articoli di testo (scrivere solo i titoli e utilizzare lorem ipsum per il testo) organizzati per argomento, lunghezza e autore. 
+Scrivere un programma che consenta di inserire dei brevi articoli di testo (scrivere solo i titoli e utilizzare lorem ipsum per il testo) organizzati per argomento, lunghezza e autore.
 
 Proporre l'impaginazione di una rivista in modo tale che la lunghezza complessiva degli articoli sia fra le 10.000 e le 11.000 battute, che non ci siano più di due articoli sullo stesso argomento, e che non ci sia più di un articolo per autore.
 

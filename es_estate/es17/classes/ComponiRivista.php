@@ -3,10 +3,9 @@
     class ComponiRivista extends SelezioneArticoli {
 
         # ATTRIBUTI SPECIFICI DELLA CLASSE
-        private $TOT_PER_PAGINA; //limite battute per pagina (fissata per scelta)
-        private $LIMITE_RIVISTA; //limite battute per rivista (fissata dall'esercizio)
+        private $TOT_PER_PAGINA;
+        private $LIMITE_RIVISTA;
         private $riviste;
-
 
         # COSTRUTTORE
         function __construct($tabella_DB)
@@ -17,15 +16,17 @@
             $this->riviste = [];
         }
 
-
-       # MAIN PROGRAM : COMPOSIZIONE RIVISTA
+        # COMPOSIZIONE RIVISTA
         private function componi_rivista() {
+            // Reset degli articoli scelti per ogni nuova rivista
+            $this->resetSelezione();
+            
             // Preparazione contenitori, counters e scorciatoie
-            $z = $this->articoli_scelti(); //scorciatoia art. scelti
-            $pagine = []; //conterrà le pagine
-            $pagina_corrente = []; //conterrà gli articoli di 1 pagina
-            $battute_pag = 0; //counter battute pagina corrente
-            $battute_tot = 0; //counter battute totali rivista
+            $z = $this->articoli_scelti();
+            $pagine = [];
+            $pagina_corrente = [];
+            $battute_pag = 0;
+            $battute_tot = 0;
 
             foreach($z as $articolo) {
                 // Se l'articolo entra nella pagina corrente: aggiungi art.
@@ -60,30 +61,33 @@
             return $pagine;
         }
 
-
-        # MAIN PROGRAM : COMPOSIZIONE RIVISTE PIANIFICATE
+        # COMPOSIZIONE RIVISTE PIANIFICATE
         public function componi_riviste($num_riviste) {
-
+            $this->riviste = [];
+            
             for ($idx = 1; $idx <= intval($num_riviste); $idx++) {
                 $rivista_singola = $this->componi_rivista();
                 $this->riviste[] = $rivista_singola;
-                $idx++;                
             }
             return $this->riviste;
         }
 
-
         # DB TEMPORANEO SU FILE
-        public function lettura (){
+        public function lettura() {
             if (!file_exists('temp/riviste.db')) {
-                    return [];
+                return [];
             } 
             else {
                 return unserialize(file_get_contents('temp/riviste.db'));
             }
         }
 
-        public function scrittura($array){
+        public function scrittura($array) {
+            // Crea la directory se non esiste
+            if (!is_dir('temp')) {
+                mkdir('temp', 0777, true);
+            }
+            
             $x = fopen('temp/riviste.db', 'w+');
             if ($x == true) {
                 fwrite($x, serialize($array));
@@ -96,6 +100,8 @@
         }
 
         public function elimina_temp_db() {
-            unlink('temp/riviste.db');
+            if (file_exists('temp/riviste.db')) {
+                unlink('temp/riviste.db');
+            }
         }
     }

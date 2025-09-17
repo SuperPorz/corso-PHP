@@ -4,25 +4,29 @@
 
         private $tab_articolo;
         public $lista_articoli;
-        private $lista_articoli_copy;
-        public $articoli_scelti;
-        private $autori;
-        private $argomenti;
-        private $TOT_BATTUTE;
+        protected $lista_articoli_copy;
+        protected $articoli_scelti;
+        protected $autori;
+        protected $argomenti;
+        protected $TOT_BATTUTE;
 
         public function __construct(DatabaseTable $tab_articolo)
         {
             $this->tab_articolo = $tab_articolo;
             $this->lista_articoli = $this->tab_articolo->find_all();
-            $this->lista_articoli_copy = $this->lista_articoli; //creo copia
+            $this->resetSelezione();
+        }
+
+        # RESET SELEZIONE
+        protected function resetSelezione() {
+            $this->lista_articoli_copy = $this->lista_articoli;
             $this->articoli_scelti = [];
             $this->autori = [];
             $this->argomenti = [];
             $this->TOT_BATTUTE = 0;
         }
 
-
-        # FUNZIONI PRIVATE (DRY - Dont Repeat Yourself)
+        # POPOLA VARIABILI CLASSE
         private function popola_var_classe($articolo) {
             $this->articoli_scelti[] = $articolo;
             $this->autori[] = $articolo['autore'];
@@ -32,17 +36,19 @@
             // Rimuovo tutti gli articoli dell'autore dalla lista provvisoria
             foreach($this->lista_articoli_copy as $key => $item) {
                 if ($item['autore'] == $articolo['autore']) {
-                    unset($this->lista_articoli_copy[$key]); // Uso la chiave corretta
+                    unset($this->lista_articoli_copy[$key]);
                 }
             }
+            
+            // Rigenera gli indici dell'array
+            $this->lista_articoli_copy = array_values($this->lista_articoli_copy);
         }
 
-        # MAIN PROG
-        // scelgo articoli fino ad arrivare sotto 11k caratteri
+        # SELEZIONE ARTICOLI
         public function articoli_scelti() {
             while ($this->TOT_BATTUTE <= 11000) {
-                $x = $this->lista_articoli_copy; //scorciatoia copia DB
-                $y = $this->articoli_scelti; //scorciatoia art. scelti
+                $x = $this->lista_articoli_copy;
+                $y = $this->articoli_scelti;
                 
                 // Controllo se ci sono ancora articoli disponibili
                 if (empty($x)) {
@@ -55,7 +61,7 @@
                     $this->popola_var_classe($articolo);
                 }
                 else {
-                    // Corretto: controllo argomenti negli articoli già scelti
+                    // Controllo argomenti negli articoli già scelti
                     $argomenti_presenti = array_column($this->articoli_scelti, 'argomento');
                     $count_argomento = array_count_values($argomenti_presenti);
                     
@@ -71,6 +77,8 @@
                                 unset($this->lista_articoli_copy[$key]);
                             }
                         }
+                        // Rigenera indici
+                        $this->lista_articoli_copy = array_values($this->lista_articoli_copy);
                     }
                 }
             }
@@ -81,7 +89,7 @@
                 foreach($this->lista_articoli_copy as $item) {
                     if ($item['lunghezza'] <= $spazio_rimanente) {
                         $this->popola_var_classe($item);
-                        break; // Prendo solo il primo che trova
+                        break;
                     } 
                 }   
             }

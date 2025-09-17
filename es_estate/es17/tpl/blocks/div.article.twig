@@ -1,7 +1,7 @@
 {% block form %}
     {% for pagina in pagine %}
         <div class="pagina-container">
-            <h3>LORENZONI BIOTECH PRESS @GmbH - numero 23 - 26/07/2025</h3>
+            <h3><i>SFOGLIA ONLINE - LorScience numero {% if numero_rivista %}{{numero_rivista}}{% else %}1{% endif %}</i></h3>
             <div class="articoli-colonne">
                 {% for articolo in pagina %}
                     <div class="articolo-item">

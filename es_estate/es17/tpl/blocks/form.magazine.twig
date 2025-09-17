@@ -1,10 +1,10 @@
 {% block form %}
-<form action="index.php" method="post" >
+<form action="index.php" method="post" class="form-riviste">
     <fieldset class="field">
-        <label for="numeri">Numeri riviste da pianificare</label>
-        <input id="input" type="number" name="numeri" min="2" max="100" placeholder="min=2 max=20" required><br>
+        <label for="numeri">Numeri riviste:</label>
+        <input id="input" type="number" name="numeri" min="2" max="100" placeholder="min=2 max=100" required>
     </fieldset>
     <input type="submit" value="GENERA RIVISTE" id="f2">
+    <a href="index.php?azione=elimina_pianificazione" id="f2">ELIMINA RIVISTE</a>
 </form>
-<a href="index.php?azione=elimina" id="f2">ELIMINA PIANIFICAZIONE</a>
 {% endblock %}
