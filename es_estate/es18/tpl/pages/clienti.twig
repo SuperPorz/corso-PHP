@@ -1,0 +1,19 @@
+{% extends "main.twig" %}
+{% block head %}
+    <title>Pagina Clienti</title>
+{% endblock %}
+{% block header %}
+    <hr>
+        <nav>{{nav.navigazione(pagine)}}</nav>
+    <hr>
+    <h1>Prenotazione per clienti</h1>
+{% endblock %}
+{% block form %}
+    <h2>Inserisci nome e data/ora tra quelle disponibili:</h2>
+    {% include "blocks/form.twig" %}
+{% endblock %}
+{% block risultati %}
+    {% if conferma == true %}
+        <h2>Prenotazione confermata!</h2>
+    {% endif %}
+{% endblock %}

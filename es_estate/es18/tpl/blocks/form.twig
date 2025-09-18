@@ -1,0 +1,38 @@
+{% block form %}
+<form action="index.php" method="post" class="form-articoli">
+    <fieldset class="field">
+        <input type="hidden" name="azione" value="registra" required>
+        
+        <!-- Riga delle label -->
+        <div class="labels-row">
+            <label for="autore">Autore</label>
+            <label for="titolo">Titolo</label>
+            <label for="argomento">Argomento</label>
+        </div>
+        
+        <!-- Riga degli input -->
+        <div class="inputs-row">
+            <input id="input" type="text" name="autore" required>
+            <input id="input" type="text" name="titolo" required>
+            <select name="argomento" id="input">
+                <option id="def_opt" disabled selected> --- </option>
+                <option value="intelligenza artificiale">Intelligenza artificiale</option>
+                <option value="sostenibilità digitale">Sostenibilità digitale</option>
+                <option value="cybersicurezza">Cybersicurezza</option>
+                <option value="IoT">Internet Of Things</option>
+                <option value="quantum computing">Quantum computing</option>
+                <option value="biotecnologie digitali">Biotecnologie digitali</option>
+                <option value="sistemi operativi">Sistemi operativi</option>
+                <option value="big data">Big data</option>
+            </select>
+        </div>
+        
+        <!-- Textarea per il testo -->
+        <div class="textarea-row">
+            <label for="testo">Testo</label>
+            <textarea name="testo" required></textarea>
+        </div>
+    </fieldset>
+    <input type="submit" value="INVIA" id="f2">
+</form>
+{% endblock %}

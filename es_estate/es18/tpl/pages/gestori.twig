@@ -1,0 +1,23 @@
+{% extends "main.twig" %}
+{% block head %}
+    <title>Pagina Gestori</title>
+{% endblock %}
+{% block header %}
+    <hr>
+        <nav>{{nav.navigazione(pagine)}}</nav>
+    <hr>
+    <h1>Disponibilità gestori</h1>
+{% endblock %}
+{% block form %}
+    <h2>Inserisci nominativo e data/ora disponibilità:</h2>
+    {% include "blocks/form.twig" %}
+{% endblock %}
+{% block risultati %}
+    {% if conferma == true %}
+        <h2>Disponibilità inserita!</h2>
+    {% endif %}
+    <h2>Riepilogo disponibilità per giornata:</h2>
+    {% include "blocks/table.giornata.twig" %}
+    <h2>Riepilogo disponibilità per gestore:</h2>
+    {% include "blocks/table.gestore.twig" %}
+{% endblock %}

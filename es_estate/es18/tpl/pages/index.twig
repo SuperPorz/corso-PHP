@@ -1,0 +1,18 @@
+{% block head %}
+    <title>Estate - esercizio 18</title>
+{% endblock %}
+{% block header %}
+    <h1>LORENZONI BIOTECH PRESS @GmbH</h1>
+{% endblock %}
+{% block main %}
+    <div>
+        <h2>Benvenuto! Accedi all'area GESTORI o CLIENTI:</h2>
+        <a id="f2" href="gestori.html">GESTORI</a>
+        <a id="f2" href="clienti.html">CLIENTI</a>
+    </div>
+{% endblock %}
+{% block risultati %}
+    <h2>Riepilogo PRENOTAZONI confermate</h2>
+    {% include "blocks/table.giornata.twig" %}
+    <h2>Riepilogo disponibilità per gestore:</h2>
+{% endblock %}

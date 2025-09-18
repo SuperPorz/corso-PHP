@@ -1,0 +1,26 @@
+{% import "blocks/macro.nav.twig" as nav %}
+{% import "blocks/macro.table.twig" as table %}
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        {# <script src="js/pages.js" defer></script> #}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <hr>
+            {% block header %}{% endblock %}
+            <hr>
+        </header>
+        <main>
+            {% block form %}{% endblock %}
+            {% block risultati %}{% endblock %}
+        </main>
+        <footer>
+            <a href="index.php" id="link">HOMEPAGE</a>
+        </footer>
+    </body>
+</html>

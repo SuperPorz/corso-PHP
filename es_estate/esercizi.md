@@ -158,9 +158,24 @@ se ne mancano. Tramite i CSS creare la visualizzazione della rivista, applicando
 
 ## esercizio 18
 
-Creare un programma che consenta di gestire una semplice agenda per le prenotazioni. Dev'essere presente una pagina dove sono visibili le disponibilità e i clienti possono segnarsi per l'appuntamento,
-mentre deve essere disponibile un'altra pagina dove i gestori possono inserire le disponibilità, visualizzare gli appuntamenti per giornata e per cliente, e monitorare il numero di disponibilità non
-utilizzate. Tramite i CSS dare alla pagina l'aspetto adatto affinché possa essere utilizzata da un centro estetico.
+Creare un programma che consenta di gestire una semplice agenda per le prenotazioni. 
+
+PAGINA CLIENTI:
+
+&nbsp;	- devono essere visibili gli appuntamenti disponibili
+
+&nbsp;	- deve essere possibile prenotare gli appuntamenti disponibili,
+mentre deve essere disponibile un'altra pagina dove i gestori possono:
+
+&nbsp;	- inserire le disponibilità, 
+
+&nbsp;	- visualizzare gli appuntamenti per giornata 
+
+&nbsp;	- visualizzare gli appuntamenti per cliente (o per gestore?),
+
+&nbsp;	- monitorare il numero di disponibilità non utilizzate.
+
+Tramite i CSS dare alla pagina l'aspetto adatto affinché possa essere utilizzata da un centro estetico.
 
 ## esercizio 19
 

@@ -88,7 +88,7 @@ BEGIN
     
     -- Variabili per nomi casuali
     DECLARE nomi_utenti VARCHAR(1000) DEFAULT 'Mario Rossi,Luca Bianchi,Giulia Verdi,Anna Russo,Marco Ferrari,Sofia Romano,Alessio Costa,Chiara Esposito,Francesco Ricci,Elena Marino';
-    DECLARE nomi_gestori VARCHAR(1000) DEFAULT 'TecnoService,AssistenzaTech,RiparazioniExpress,GadgetFix,DeviceCare,PhoneDoctor,TabletMedic,ComputerSalus,LaptopAid,SmartRepair';
+    DECLARE nomi_gestori VARCHAR(1000) DEFAULT 'Bellezza Naturale,Estetica Divina,Centro Benessere Sereno,Spa Armonia,Studio Eleganza,Beauty Clinic,Estetica Perfetta,Centro Relax,Salone di Bellezza,Wellness Oasis';
     
     -- Pulisce le tabelle
     DELETE FROM prenotazione;
