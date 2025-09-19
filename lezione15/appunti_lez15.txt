@@ -1,0 +1,12 @@
+PROGRAMMAZIONE PROCEDURALE:
+si focalizza sul flusso dei dati
+
+PROGRAMMAZIONE A OGGETTI:
+si focalizza sul mappare le entità-relazioni
+
+esercizio di comprensione:
+scrivere a oggetti un programma che gestisca automobili in un parcheggio con questi criteri:
+- inserimento auto -->classe AUTO
+- ogni automobile quanto tempo sta dentro -->classe SOSTA
+- un auto può parcheggiare più volte nella giornata -->classe PARCHEGGIO
+- il parcheggio ha una tariffa oraria -> poter calcolare il costo di ogni sosta -->classe PARCHEGGIO
