@@ -13,7 +13,5 @@
     {% include "blocks/form.twig" %}
 {% endblock %}
 {% block risultati %}
-    {% if conferma == true %}
-        <h2>Prenotazione confermata!</h2>
-    {% endif %}
+    {% include "blocks/macro.table.twig" %}
 {% endblock %}

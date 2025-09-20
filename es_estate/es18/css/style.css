@@ -1,0 +1,401 @@
+/* ===== RESET E BASE ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F5F1E6;
+    font-family: "Old Standard TT", serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    color: #4A4A4A;
+    margin: 0;
+    padding: 20px;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #A52A2A, transparent);
+    margin: 15px auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* ===== TIPOGRAFIA ===== */
+h1 {
+    font-size: 2.5rem;
+    color: #6B5B4D;
+    margin: 0.67em 0;
+    padding: 8px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+    color: darkred;
+    margin: 0.75em 0;
+    padding: 5px;
+    line-height: 1.25;
+    font-style: italic;
+}
+
+h3 {
+    font-size: 1.75rem;
+    color: #8B4513;
+    margin: 0.83em 0;
+    padding: 3px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.25rem;
+    color: #6B4226;
+    margin: 1em 0 0.5em 0;
+    padding: 4px 0;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+h5 {
+    font-size: 1.125rem;
+    margin: 0.5em 0 0.25em 0;
+    padding: 2px 0;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+/* ===== FORM GENERICO ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: fit-content;
+}
+
+.field {
+    background-color: #E8E1D1;
+    border: 2px solid #A89B8C;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* ===== FORM ARTICOLI (LAYOUT A RIGHE) ===== */
+.form-articoli .field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Riga delle label */
+.labels-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.labels-row label {
+    font-size: 20px;
+    color: #6B5B4D;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Label per la textarea */
+.textarea-row label {
+    font-size: 20px;
+    color: #6B5B4D;
+    text-align: center;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Riga degli input */
+.inputs-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.inputs-row input,
+.inputs-row select {
+    flex: 1;
+    min-width: 120px;
+    height: 40px;
+    border: 3px double #000;
+    padding: 0 12px;
+    font-size: 16px;
+    color: #4A4A4A;
+    background-color: #FFFFFF;
+    font-family: "Old Standard TT", serif;
+    text-align: center;
+}
+
+/* Textarea per il testo */
+.textarea-row {
+    margin-top: 15px;
+}
+
+.textarea-row textarea {
+    width: 100%;
+    height: 100px;
+    border: 3px double #000;
+    padding: 12px;
+    font-size: 16px;
+    color: #4A4A4A;
+    background-color: #FFFFFF;
+    font-family: "Old Standard TT", serif;
+    resize: vertical;
+}
+
+/* ===== FORM RIVISTE (LAYOUT CLASSICO) ===== */
+.form-riviste .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-riviste label {
+    font-size: 24px;
+    color: #6B5B4D;
+    margin-bottom: 5px;
+}
+
+/* Input e select con dimensioni uniformes */
+#input, select {
+    height: 40px;
+    width: 200px;
+    border: 3px double #000;
+    padding: 0 12px;
+    font-size: 18px;
+    color: #4A4A4A;
+    background-color: #FFFFFF;
+    font-family: "Old Standard TT", serif;
+    text-align: center;
+}
+
+select {
+    appearance: none;
+}
+
+#input::placeholder {
+    font-style: italic;
+}
+
+#def_opt {
+    font-style: italic;
+    font-size: smaller;
+}
+
+/* ===== PULSANTI ===== */
+#f2 {
+    background-color: #A52A2A;
+    color: #F5F1E6;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 22px;
+    border: 3px double #000;
+    text-align: center;
+    width: 280px;
+    font-family: "Old Standard TT", serif;
+    cursor: pointer;
+    margin: 5px 0px;
+}
+
+#link {
+    font-size: 22px;
+    color: #F5F1E6;
+    background-color: darkred;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-style: italic;
+    border: 3px ridge #000;
+    margin-top: 20px;
+    font-family: "Old Standard TT", serif;
+}
+
+/* ===== ARTICOLI E PAGINE ===== */
+.pagina-container {
+    max-width: 900px;
+    padding: 60px 15px 60px 30px;
+    margin: 10px;
+    overflow: hidden;
+    background-image: url('../img/paper.png');
+    background-size: 105% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.numero-pagina {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #8B4513;
+    font-style: italic;
+}
+
+.articoli-colonne {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    text-align: justify;
+    min-height: 400px;
+    align-items: start;
+}
+
+.articolo-item {
+    margin-bottom: 25px;
+}
+
+.articolo-testo {
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+/* ===== FOOTER ===== */
+#id-span {
+    font-style: italic;
+    font-size: 20px;
+    margin: 10px;
+    color: #6B5B4D;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Contenitore principale della paginazione */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Layout della lista delle riviste */
+.magazine-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.footer ul {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+    justify-content: center;
+}
+
+.footer li {
+    display: inline-block;
+}
+
+.footer a {
+    font-size: 18px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #A89B8C;
+    background: #E8E1D1;
+    color: #4A4A4A;
+    font-family: "Old Standard TT", serif;
+}
+
+/* Stile per i pulsanti di navigazione */
+.nav-button {
+    font-size: 18px;
+    padding: 6px 12px;
+    border: 1px solid #8B4513;
+    background: #8B4513;
+    color: #F5F1E6;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Old Standard TT", serif;
+    text-align: center;
+    min-width: 30px;
+    height: 36px;
+}
+
+/* Elementi nascosti */
+.magazine-item.hidden-item,
+.nav-button.hidden-item {
+    display: none;
+}
+
+/* Elementi nascosti inizialmente */
+.magazine-item.hidden-item {
+    display: none;
+}
+
+/* Pulsante di espansione */
+.expand-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.expand-label {
+    font-size: 18px;
+    padding: 6px 14px;
+    border: 1px solid #8B4513;
+    background: #8B4513;
+    color: #F5F1E6;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Old Standard TT", serif;
+}
+
+/* Testi del pulsante di espansione */
+.expand-label .collapse-text {
+    display: none;
+}
+
+.expand-label .expand-text {
+    display: inline;
+}
+
+/* Quando il checkbox è checked, mostra tutti gli elementi */
+.expand-checkbox:checked ~ .magazine-list .magazine-item.hidden-item {
+    display: inline-block;
+}
+
+.expand-checkbox:checked ~ .magazine-list .expand-label .expand-text {
+    display: none;
+}
+
+.expand-checkbox:checked ~ .magazine-list .expand-label .collapse-text {
+    display: inline;
+}
+
+/* Checkbox nascosto */
+.expand-checkbox {
+    display: none;
+}

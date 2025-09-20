@@ -107,15 +107,16 @@
             return $result->fetchAll();
         }
 
-        public function conta_records() {
-            $query = 'SELECT COUNT(*) FROM ' . $this->table;
-            $result = $this->query($query);
-            return $result->fetchColumn() ?? 0;
+        //QUERY SPECIALI
+        public function prenotazione_per_data($data, $idg) {
+            $query = 'SELECT * FROM `' . $this->table . 
+                '` WHERE `data` = :data AND `idg` = :idg';
+            $parameters = [
+                'data' => $data,
+                'idg' => $idg
+            ];
+            $result = $this->query($query, $parameters);
+            return $result->fetchAll();
         }
 
-        public function somma_numerica(string $attribute) {
-            $query = 'SELECT SUM(' . $attribute . ') FROM ' . $this->table;
-            $result = $this->query($query);
-            return $result->fetchColumn() ?? 0;
-        }
     }

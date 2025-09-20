@@ -1,3 +1,4 @@
+{% extends "main.twig" %}
 {% block head %}
     <title>Estate - esercizio 18</title>
 {% endblock %}
@@ -12,7 +13,6 @@
     </div>
 {% endblock %}
 {% block risultati %}
-    <h2>Riepilogo PRENOTAZONI confermate</h2>
-    {% include "blocks/table.giornata.twig" %}
-    <h2>Riepilogo disponibilità per gestore:</h2>
+    <h2>Prenotazioni confermate:</h2>
+    {{table.table(lista)}} {# importo macro per la tabella #}
 {% endblock %}

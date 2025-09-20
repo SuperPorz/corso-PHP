@@ -1,9 +1,4 @@
-{% macro navigazione(pagine) %}
-    <ul class="menu">
-        {% for pagina in pagine %}
-            <li><a href="{{ pagina.url }}">{{ pagina.label }}</a></li>
-        {% endfor %}
-    </ul>
+{% macro table(lista) %}
     <div class="table-container">
             <table>
                 <thead>
@@ -25,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for giocatore in lista_giocatori %}
+                    {# {% for giocatore in lista_giocatori %}
                         <tr>
                             <td>{{giocatore.idg}}</td>
                             <td>{{giocatore.nome}}</td>
@@ -39,7 +34,7 @@
                             <td>{{giocatore.ranking}}</td>                            
                             <td><a href="?azione=elimina&idg={{giocatore.idg}}">Elimina</a></td>
                         </tr>
-                    {% endfor %}
+                    {% endfor %} #}
                 </tbody>
             </table>
         </div>
