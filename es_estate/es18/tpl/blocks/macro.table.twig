@@ -1,41 +1,52 @@
 {% macro table(lista) %}
     <div class="table-container">
+        {% if lista is not empty %}
             <table>
                 <thead>
                     <tr>
-                        <th colspan="11" class="table-title">TUTTI I GIOCATORI:</th>
-                    </tr>
-                    <tr>
-                        <th>Id giocatore</th>
-                        <th>Nome</th>
-                        <th>Ruolo</th>
-                        <th>Punti</th>
-                        <th>Rimbalzi</th>
-                        <th>Assist</th>
-                        <th>Resistenza</th>
-                        <th>Palle perse</th>
-                        <th>Falli</th>
-                        <th>Ranking</th>
-                        <th>Azione #1</th>
+                        <th>ID</th>
+                        <th>Gestore</th>
+                        <th>Cliente</th>
+                        <th>Data</th>
+                        <th>Ora</th>
+                        <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {# {% for giocatore in lista_giocatori %}
+                    {% for item in lista %}
                         <tr>
-                            <td>{{giocatore.idg}}</td>
-                            <td>{{giocatore.nome}}</td>
-                            <td>{{giocatore.ruolo}}</td>
-                            <td>{{giocatore.punti}}</td>
-                            <td>{{giocatore.rimbalzi}}</td>
-                            <td>{{giocatore.assist}}</td>
-                            <td>{{giocatore.resistenza}}</td>
-                            <td>{{giocatore.palle_perse}}</td>
-                            <td>{{giocatore.falli}}</td>
-                            <td>{{giocatore.ranking}}</td>                            
-                            <td><a href="?azione=elimina&idg={{giocatore.idg}}">Elimina</a></td>
+                            <td>{{ item.idp ?? item.idc ?? item.idg ?? 'N/A' }}</td>
+                            <td>{{ item.gestore_nome ?? 'N/A' }}</td>
+                            <td>{{ item.cliente_nome ?? item.nome ?? 'N/A' }}</td>
+                            <td>{{ item.data ?? 'N/A' }}</td>
+                            <td>{{ item.ora ?? 'N/A' }}</td>
+                            <td>
+                                {% if item.idp %}
+                                    <form method="post" style="display:inline">
+                                        <input type="hidden" name="azione" value="elimina">
+                                        <input type="hidden" name="idp" value="{{ item.idp }}">
+                                        <button type="submit">Elimina</button>
+                                    </form>
+                                {% elseif item.idc %}
+                                    <form method="post" style="display:inline">
+                                        <input type="hidden" name="azione" value="elimina">
+                                        <input type="hidden" name="idc" value="{{ item.idc }}">
+                                        <button type="submit">Elimina</button>
+                                    </form>
+                                {% elseif item.idg %}
+                                    <form method="post" style="display:inline">
+                                        <input type="hidden" name="azione" value="elimina">
+                                        <input type="hidden" name="idg" value="{{ item.idg }}">
+                                        <button type="submit">Elimina</button>
+                                    </form>
+                                {% endif %}
+                            </td>
                         </tr>
-                    {% endfor %} #}
+                    {% endfor %}
                 </tbody>
             </table>
-        </div>
+        {% else %}
+            <p>Nessun dato disponibile.</p>
+        {% endif %}
+    </div>
 {% endmacro %}

@@ -1,4 +1,6 @@
 ########################################### DATABASE
+-- Cancellazione database precedente se esiste
+DROP DATABASE IF EXISTS estate_es18c;
 CREATE DATABASE estate_es18c;
 USE estate_es18c;
 SET SQL_SAFE_UPDATES = 0;
@@ -6,6 +8,12 @@ SET SQL_SAFE_UPDATES = 0;
 # CREATE USER IF NOT EXISTS 'userphp'@'localhost' IDENTIFIED BY 'admin';
 # GRANT ALL PRIVILEGES ON `database`.* TO 'userphp'@'localhost';
 # FLUSH PRIVILEGES;
+
+
+########################################### CANCELLAZIONE TABELLE PRECEDENTI (se esistono)
+DROP TABLE IF EXISTS prenotazione;
+DROP TABLE IF EXISTS gestore;
+DROP TABLE IF EXISTS cliente;
 
 
 ########################################### TABELLE
@@ -17,7 +25,7 @@ CREATE TABLE cliente (
     PRIMARY KEY (idc)
 );
 
--- tabella per memorizzare unadisponibilità di a parte dei gestori
+-- tabella per memorizzare una disponibilità da parte dei gestori
 CREATE TABLE gestore (
     idg INT AUTO_INCREMENT NOT NULL,
     nome VARCHAR(100) NOT NULL,
@@ -29,8 +37,8 @@ CREATE TABLE gestore (
 CREATE TABLE prenotazione (
     idp INT AUTO_INCREMENT PRIMARY KEY,
     idg INT NOT NULL,
-    data_appuntamento DATE NOT NULL,
-    orario_appuntamento ENUM(
+    data DATE NOT NULL,
+    ora ENUM(
         '9:00 - 10:00',
         '10:00 - 11:00',
         '11:00 - 12:00',
@@ -74,7 +82,7 @@ BEGIN
     ('Spa Armonia', '+39 337 2345678');
 
     -- Inserimento dati nella tabella prenotazione (per i prossimi 7 giorni)
-    INSERT INTO prenotazione (idg, data_appuntamento, orario_appuntamento, idc) VALUES
+    INSERT INTO prenotazione (idg, data, ora, idc) VALUES
     -- Giorno 1
     (1, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '9:00 - 10:00', 1),
     (2, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '10:00 - 11:00', 2),
@@ -89,7 +97,7 @@ BEGIN
     (4, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '9:00 - 10:00', 9),
     (5, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '10:00 - 11:00', 10),
     
-    -- Giorno 3 (alcune prenotazioni senza cliente)
+    -- Giorno 3 (alcune prenotazioni senza cliente - disponibilità libere)
     (1, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '11:00 - 12:00', NULL),
     (2, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '13:00 - 14:00', NULL),
     (3, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '14:00 - 15:00', 1),
@@ -108,7 +116,19 @@ BEGIN
     (2, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '15:00 - 16:00', 9),
     (3, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '16:00 - 17:00', 10),
     (4, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '17:00 - 18:00', 1),
-    (5, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '9:00 - 10:00', 2);
+    (5, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '9:00 - 10:00', 2),
+    
+    -- Giorno 6 (più slot disponibili per testare)
+    (1, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '10:00 - 11:00', NULL),
+    (2, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '11:00 - 12:00', NULL),
+    (3, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '13:00 - 14:00', NULL),
+    (4, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '14:00 - 15:00', NULL),
+    (5, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '15:00 - 16:00', NULL),
+    
+    -- Giorno 7
+    (1, DATE_ADD(CURDATE(), INTERVAL 7 DAY), '16:00 - 17:00', NULL),
+    (2, DATE_ADD(CURDATE(), INTERVAL 7 DAY), '17:00 - 18:00', NULL),
+    (3, DATE_ADD(CURDATE(), INTERVAL 7 DAY), '9:00 - 10:00', NULL);
 
     SELECT 'Database popolato con successo!' AS Messaggio;
 END //
@@ -121,6 +141,20 @@ CALL PopolaDatabase();
 
 
 ########################################### TEST QUERY
-SELECT *
-FROM prenotazione;
+-- Verifica tutte le prenotazioni
+SELECT * FROM prenotazione;
 
+-- Verifica solo disponibilità libere (idc = NULL)
+SELECT p.*, g.nome as gestore_nome 
+FROM prenotazione p 
+LEFT JOIN gestore g ON p.idg = g.idg 
+WHERE p.idc IS NULL 
+ORDER BY p.data, p.ora;
+
+-- Verifica solo prenotazioni confermate (idc != NULL)
+SELECT p.*, g.nome as gestore_nome, c.nome as cliente_nome 
+FROM prenotazione p 
+LEFT JOIN gestore g ON p.idg = g.idg 
+LEFT JOIN cliente c ON p.idc = c.idc 
+WHERE p.idc IS NOT NULL 
+ORDER BY p.data, p.ora;

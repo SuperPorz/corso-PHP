@@ -1,10 +1,7 @@
 {
-    "nome":"futura/fullstack",
-    "description":"esempio di file composer.json per corso fullstack",
-    "config": {
-        "vendor-dir": "lib/ext/"
-    },
+    "name": "futura/fullstack",
+    "description": "esempio di file composer.json per corso fullstack",
     "require": {
-        "twig/twig": "3.*"
+        "twig/twig": "^3.0"
     }
 }

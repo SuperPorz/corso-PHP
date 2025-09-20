@@ -88,7 +88,7 @@ form {
 }
 
 /* ===== FORM ARTICOLI (LAYOUT A RIGHE) ===== */
-.form-articoli .field {
+.form .field {
     display: flex;
     flex-direction: column;
     gap: 10px;

@@ -52,14 +52,15 @@
             $query = 'UPDATE `' . $this->table . '` SET ';
     
             foreach($fields as $key => $value) {
-                $query .= '`' . $key . '` = :' .$key .',';
+                if ($key !== $this->prim_key) {
+                    $query .= '`' . $key . '` = :' .$key .',';
+                }
             }
     
             $query = rtrim($query, ',');
-            $query .= 'WHERE `' . $this->prim_key . '` = :prim_key';
+            $query .= ' WHERE `' . $this->prim_key . '` = :prim_key';
     
-            // Imposta la variabile :prim_key
-            $fields['prim_key'] = $fields['id'];
+            $fields['prim_key'] = $fields[$this->prim_key];
     
             $fields = $this->process_dates($fields);
             $this->query($query, $fields);

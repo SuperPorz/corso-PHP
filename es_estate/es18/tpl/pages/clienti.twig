@@ -8,10 +8,60 @@
     <hr>
     <h1>Prenotazione per clienti</h1>
 {% endblock %}
-{% block form %}
-    <h2>Inserisci nome e data/ora tra quelle disponibili:</h2>
-    {% include "blocks/form.twig" %}
+
+{% block main %}
+    {# non ci serve il blocco main, quindi vuoto #}
 {% endblock %}
+
+{% block form_registra %}
+    <h2>Registra nuovo cliente:</h2>
+    {% include "blocks/form.registra.twig" %}
+{% endblock %}
+
+{% block form_disponibilita %}
+    <h2>Prenota appuntamento:</h2>
+    {% if disponibilita_select and disponibilita_select|length > 0 %}
+        <form action="index.php?p=clienti" method="post" class="form-articoli">
+            <fieldset class="field">
+                <input type="hidden" name="azione" value="prenota">
+                
+                <label for="idc">Seleziona Cliente</label>
+                <select name="idc" id="input" required>
+                    <option disabled selected> (seleziona cliente) </option>
+                    {% if lista_clienti %}
+                        {% for cliente in lista_clienti %}
+                            <option value="{{ cliente.idc }}">{{ cliente.nome }} ({{ cliente.mail }})</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+                
+                <label for="idp">Seleziona Appuntamento Disponibile</label>
+                <select name="idp" id="input" required>
+                    <option disabled selected> (seleziona appuntamento) </option>
+                    {% for slot in disponibilita_select %}
+                        <option value="{{ slot.idp }}">{{ slot.label }}</option>
+                    {% endfor %}
+                </select>
+            </fieldset>
+            <input type="submit" value="PRENOTA" id="f2">
+        </form>
+    {% else %}
+        <p>Nessuna disponibilità al momento. Controlla più tardi o contatta i gestori.</p>
+    {% endif %}
+{% endblock %}
+
 {% block risultati %}
-    {% include "blocks/macro.table.twig" %}
+    <h2>Lista Clienti Registrati:</h2>
+    {% if lista_clienti and lista_clienti|length > 0 %}
+        {{table.table(lista_clienti)}}
+    {% else %}
+        <p>Nessun cliente registrato.</p>
+    {% endif %}
+    
+    <h2>Disponibilità Attuali:</h2>
+    {% if disponibilita_libere and disponibilita_libere|length > 0 %}
+        {{table.table(disponibilita_libere)}}
+    {% else %}
+        <p>Nessuna disponibilità al momento.</p>
+    {% endif %}
 {% endblock %}

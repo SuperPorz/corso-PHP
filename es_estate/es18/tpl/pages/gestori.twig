@@ -8,16 +8,24 @@
     <hr>
     <h1>Disponibilità gestori</h1>
 {% endblock %}
-{% block form %}
-    <h2>Inserisci nominativo e data/ora disponibilità:</h2>
-    {% include "blocks/form.twig" %}
+
+{% block main %}
+    {# non ci serve il blocco main, quindi vuoto #}
 {% endblock %}
+
+{% block form_registra %}
+    <h2>Registra operatore:</h2>
+    {% include "blocks/form.registra.twig" %}
+{% endblock %}
+
+{% block form_disponibilita %}
+    <h2>Scegli nominativo da elenco e data/ora disponibilità:</h2>
+    {% include "blocks/form.gestori.disponibilita.twig" %}
+{% endblock %}
+
 {% block risultati %}
-    {% if conferma == true %}
-        <h2>Disponibilità inserita!</h2>
-    {% endif %}
     <h2>Riepilogo disponibilità per giornata:</h2>
-        {% include "blocks/macro.table.twig" %}
+        {{table.table(disponibilita_gestori)}}
     <h2>Riepilogo disponibilità per gestore:</h2>
-        {% include "blocks/macro.table.twig" %}
+        {{table.table(disponibilita_gestori)}}
 {% endblock %}

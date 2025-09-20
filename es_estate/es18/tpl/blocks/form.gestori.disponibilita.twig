@@ -1,0 +1,34 @@
+{% block form_disponibilita %}
+<form action="index.php?p=gestori" method="post" class="form-articoli">
+    <fieldset class="field">        
+        <input type="hidden" name="azione" value="registra-disponibilita">
+        
+        <label for="idg">Seleziona Gestore</label>
+        <select name="idg" id="input" required>
+            <option disabled selected> (seleziona gestore) </option>
+            {% if lista_gestori %}
+                {% for gestore in lista_gestori %}
+                    <option value="{{ gestore.idg }}">{{ gestore.nome }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+        
+        <label for="data">Data</label>
+        <input id="input" type="date" name="data" required>
+        
+        <label for="ora">Ora</label>
+        <select name="ora" id="input" required>
+            <option disabled selected> (seleziona orario) </option>
+            <option value="9:00 - 10:00">9:00 - 10:00</option>
+            <option value="10:00 - 11:00">10:00 - 11:00</option>
+            <option value="11:00 - 12:00">11:00 - 12:00</option>
+            <option value="13:00 - 14:00">13:00 - 14:00</option>
+            <option value="14:00 - 15:00">14:00 - 15:00</option>
+            <option value="15:00 - 16:00">15:00 - 16:00</option>
+            <option value="16:00 - 17:00">16:00 - 17:00</option>
+            <option value="17:00 - 18:00">17:00 - 18:00</option>
+        </select>
+    </fieldset>
+    <input type="submit" value="INVIA" id="f2">
+</form>
+{% endblock %}

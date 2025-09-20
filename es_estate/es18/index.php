@@ -1,136 +1,186 @@
 <?php
 
+    // ATTIVA VISUALIZZAZIONE ERRORI (SOLO PER DEBUG)
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    ################################################
+    # AUTOLOADER COMPOSER (PER TWIG E LIBRERIE)
+    try {
+        // CARICA AUTOLOADER DI COMPOSER
+        $loader = require __DIR__ . '/vendor/autoload.php';
+        
+    } catch (Exception $e) {
+        die("❌ Errore autoloader Composer: " . $e->getMessage());
+    }
+
+    ################################################
+    # AUTOLOADER PERSONALIZZATO (PER LE TUE CLASSI)
+    spl_autoload_register(function ($class_name) {
+        // Cerca nelle tue cartelle personalizzate
+        $paths = [
+            __DIR__ . '/class/',
+            __DIR__ . '/class/cliente/',
+            __DIR__ . '/class/gestore/',
+            __DIR__ . '/class/prenotazione/'
+        ];
+        
+        foreach ($paths as $path) {
+            $file = $path . $class_name . '.php';
+            if (file_exists($file)) {
+                require_once $file;
+                return true;
+            }
+        }
+        return false;
+    });
+
+
     ################################################
     # INCLUDES
-    //includes generici
-    include 'inc/DatabaseConnection.php';
-    include 'class/DatabaseTable.php';
-    require_once 'lib/ext/autoload.php';
-    
-    //includes classi CLIENTE
-    foreach (glob("class/cliente/*.php") as $file) {
-        require_once $file;
+    try {
+        //includes generici (NON classi)
+        include_once 'inc/DatabaseConnection.php';
+        include_once 'class/DatabaseTable.php';
+        
+    } catch (Exception $e) {
+        die("❌ Errore durante l'inclusione dei file: " . $e->getMessage());
     }
-
-    //includes classi GESTORE
-    foreach (glob("class/gestore/*.php") as $file) {
-        require_once $file;
-    }
-
-    //includes classi PRENOTAZIONE
-    foreach (glob("class/prenotazione/*.php") as $file) {
-        require_once $file;
-    }
-
 
     ################################################
     # CONFIGURAZIONE TWIG
-    $loader = new \Twig\Loader\FilesystemLoader('tpl');
-    $twig = new \Twig\Environment($loader);
-
+    try {
+        $loader = new \Twig\Loader\FilesystemLoader('tpl');
+        $twig = new \Twig\Environment($loader);
+        
+    } catch (Exception $e) {
+        die("❌ Errore configurazione Twig: " . $e->getMessage());
+    }
 
     ################################################
     # ISTANZE
-    //tabelle DB
-    $tab_cliente = new DatabaseTable($pdo, 'cliente', 'idc');
-    $tab_gestore = new DatabaseTable($pdo, 'gestore', 'idg');
-    $tab_prenotazione = new DatabaseTable($pdo, 'prenotazione', 'idp');
+    try {
+        //tabelle DB
+        $tab_cliente = new DatabaseTable($pdo, 'cliente', 'idc');
+        $tab_gestore = new DatabaseTable($pdo, 'gestore', 'idg');
+        $tab_prenotazione = new DatabaseTable($pdo, 'prenotazione', 'idp');
 
-    //controllers
-    $cCliente = new cCliente($tab_cliente);
-    $cGestore = new cGestore($tab_gestore);
-    $cPrenotazione = new cPrenotazione($tab_prenotazione);
+        //controllers
+        $cCliente = new cCliente($tab_cliente);
+        $cGestore = new cGestore($tab_gestore);
+        $cPrenotazione = new cPrenotazione($tab_prenotazione, $tab_gestore, $tab_cliente);
 
-    //views 
-    $vClienti = new vCliente($tab_cliente);
-    $vGestori = new vGestore($tab_gestore);
+        //views 
+        $vClienti = new vCliente($tab_cliente);
+        $vGestori = new vGestore($tab_gestore);
+        $vPrenotazione = new vPrenotazione($tab_prenotazione);
+        
+    } catch (Exception $e) {
+        die("❌ Errore durante la creazione delle istanze: " . $e->getMessage());
+    }
 
 
     ################################################
     # GESTIONE AZIONI CLIENTE  
-    // aggiungi
-    if (isset($_POST['idc']) && isset($_POST['nome']) && isset($_POST['mail'])) {
+    // aggiungi cliente
+    if (isset($_POST['azione']) && $_POST['azione'] == 'registra-cliente') {
         $mCliente = new mCliente($_POST['nome'], $_POST['mail']);
-        $cCliente->aggiungi_cliente($mCliente);
+        $messaggio = $cCliente->aggiungi_cliente($mCliente);
     }
-    // elimina
-    if (isset($_POST['azione']) && $_POST['azione'] == 'elimina' && 
+    // elimina cliente
+    if (isset($_POST['azione']) && $_POST['azione'] == 'elimina' &&
         isset($_POST['idc'])) {
-            $cCliente->elimina_cliente($_POST['idc']);
+            $messaggio = $cCliente->elimina_cliente($_POST['idc']);
     }
-
 
     ################################################
     # GESTIONE AZIONI GESTORE
-    // aggiungi
-    if (isset($_POST['idg']) && isset($_POST['nome']) && isset($_POST['numero'])) {
+    // aggiungi gestore
+    if (isset($_POST['azione']) && $_POST['azione'] == 'registra-gestore') {
         $mGestore = new mGestore($_POST['nome'], $_POST['numero']);
-        $cGestore->aggiungi_gestore($mGestore);
+        $messaggio = $cGestore->aggiungi_gestore($mGestore);
     }
-    // elimina
+    // elimina gestore
     if (isset($_POST['azione']) && $_POST['azione'] == 'elimina' && 
         isset($_POST['idg'])) {
-            $cGestore->elimina_gestore($_POST['idg']);
+            $messaggio = $cGestore->elimina_gestore($_POST['idg']);
     }
-
 
     ################################################
-    # GESTIONE AZIONI PRENOTAZIONE 
-    // aggiungi
-    if (isset($_POST['azione']) && $_POST['azione'] == 'prenota'
+    # GESTIONE DISPONIBILITÀ (FASE 1) - GESTORE REGISTRA SLOT LIBERI
+    if (isset($_POST['azione']) && $_POST['azione'] == 'registra-disponibilita'
         && isset($_POST['idg']) && isset($_POST['data']) && isset($_POST['ora'])) {
-            $mPrenotazione = new mPrenotazione($_POST['idg'], $_POST['data'], $_POST['ora']);
-            $cPrenotazione->aggiungi_prenotazione($mPrenotazione);
-    }
-    // elimina
-    if (isset($_POST['azione']) && $_POST['azione'] == 'elimina' && 
-        isset($_POST['idp'])) {
-            $cPrenotazione->elimina_prenotazione($_POST['idp']);
+            $risultato = $cPrenotazione->registra_disponibilita(
+                $_POST['idg'], $_POST['data'], $_POST['ora']
+            );
     }
 
+    ################################################
+    # GESTIONE PRENOTAZIONI (FASE 2) - CLIENTE PRENOTA SLOT DISPONIBILE
+    if (isset($_POST['azione']) && $_POST['azione'] == 'prenota'
+        && isset($_POST['idp']) && isset($_POST['idc'])) {
+            $risultato = $cPrenotazione->prenota_slot_semplice(
+                $_POST['idp'], $_POST['idc']
+            );
+    }
+
+    // elimina prenotazione/disponibilità
+    if (isset($_POST['azione']) && $_POST['azione'] == 'elimina' && 
+        isset($_POST['idp'])) {
+            $messaggio = $cPrenotazione->elimina_prenotazione($_POST['idp']);
+    }
 
     ################################################
     # RENDERING
-    
-    // Qui $p ha SEMPRE un valore (mai null o indefinito)
-    $p = isset($_REQUEST['p']) ? $_REQUEST['p'] : 'index';
+    try {
+        $p = isset($_REQUEST['p']) ? $_REQUEST['p'] : 'index';
 
-
-    switch ($p) {
-    case 'clienti':
-        $template = $vClienti->carica_tpl_clienti($twig);
-        $data = [
-            'lista_clienti' => $vClienti->mostra_lista_clienti(),
-            'pagine' => [
-                ['url' => 'gestori.html','label' => 'GESTORI'],
-                ['url' => 'clienti.html','label' => 'CLIENTI']
-            ]
-        ];
-        echo $template->render($data);
-        break;
-    
-    case 'gestori':
-        $template = $vGestori->carica_tpl_gestori($twig);
-        $data = [
-            'lista_gestori' => $vGestori->mostra_lista_gestori(),
-            'pagine' => [
-                ['url' => 'gestori.html','label' => 'GESTORI'],
-                ['url' => 'clienti.html','label' => 'CLIENTI']
-            ]
-        ];
-        echo $template->render($data);
-        break;
-    
-    case 'index':
-    default:
-        $template = $twig->load('pages/index.twig');
-        $data = [
-            'lista_gestori' => $vGestori->mostra_lista_gestori(),
-            'pagine' => [] // per ora lascio vuoto, ho già i link nella pagina 
-        ];
-        echo $template->render($data);
-        break;        
-}
+        switch ($p) {
+        case 'clienti':
+            $template = $vClienti->carica_tpl_clienti($twig);
+            
+            $data = [
+                'lista_clienti' => $vClienti->mostra_lista_clienti(),
+                'disponibilita_libere' => $cPrenotazione->ottieni_disponibilita_libere(),
+                'disponibilita_select' => $cPrenotazione->ottieni_disponibilita_per_select(),
+                'p' => $p,
+                'pagine' => [
+                    ['url' => 'index.php?p=gestori','label' => 'GESTORI'],
+                    ['url' => 'index.php?p=clienti','label' => 'CLIENTI']
+                ]
+            ];
+            echo $template->render($data);
+            break;
+        
+        case 'gestori':
+            $template = $vGestori->carica_tpl_gestori($twig);
+            $data = [
+                'lista_gestori' => $vGestori->mostra_lista_gestori(),
+                'disponibilita_gestori' => $cPrenotazione->ottieni_tutte_prenotazioni(),
+                'p' => $p,
+                'pagine' => [
+                    ['url' => 'index.php?p=gestori','label' => 'GESTORI'],
+                    ['url' => 'index.php?p=clienti','label' => 'CLIENTI']
+                ]
+            ];
+            echo $template->render($data);
+            break;
+        
+        case 'index':
+        default:
+            $template = $twig->load('pages/index.twig');
+            
+            $data = [
+                'lista_prenotazioni' => $cPrenotazione->ottieni_prenotazioni_confermate(),
+                'pagine' => []
+            ];
+            echo $template->render($data);
+            break;        
+        }
+    } catch (Exception $e) {
+        die("❌ Errore durante il rendering: " . $e->getMessage());
+    }
 
     ################################################
     # CLEANUP

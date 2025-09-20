@@ -3,16 +3,22 @@
     <title>Estate - esercizio 18</title>
 {% endblock %}
 {% block header %}
-    <h1>LORENZONI BIOTECH PRESS @GmbH</h1>
+    <h1>LORENZONI BEAUTY & SPA @GmbH</h1>
 {% endblock %}
 {% block main %}
     <div>
         <h2>Benvenuto! Accedi all'area GESTORI o CLIENTI:</h2>
-        <a id="f2" href="gestori.html">GESTORI</a>
-        <a id="f2" href="clienti.html">CLIENTI</a>
+        <a id="f2" href="index.php?p=gestori">GESTORI</a>
+        <a id="f2" href="index.php?p=clienti">CLIENTI</a>
     </div>
+{% endblock %}
+{% block form_registra %}
+    {# non ci serve il blocco main, quindi vuoto #}
+{% endblock %}
+{% block form_disponibilita %}
+    {# non ci serve il blocco main, quindi vuoto #}
 {% endblock %}
 {% block risultati %}
     <h2>Prenotazioni confermate:</h2>
-    {{table.table(lista)}} {# importo macro per la tabella #}
+    {{ table.table(lista_prenotazioni) }}
 {% endblock %}
