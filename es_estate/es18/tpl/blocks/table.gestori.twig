@@ -1,0 +1,31 @@
+<div class="table-container">
+    <table>
+    <thead>
+        <tr>
+            <th>Nome gestore</th>
+            <th>Numero</th>
+            <th>Azione #1</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for gestore in lista_gestori %}
+            <tr>
+                <td>{{ gestore.nome }}</td>
+                <td>{{ gestore.numero }}</td>
+                <td>
+                    <!-- FORM PER ELIMINARE GESTORE -->
+                    <form action="index.php?p=gestori" method="post" style="display:inline;">
+                        <input type="hidden" name="azione" value="elimina">
+                        <input type="hidden" name="idg" value="{{ gestore.idg }}">
+                        <input type="submit" value="Elimina gestore" onclick="return confirm('Sei sicuro di voler eliminare questo gestore?')">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Nessun gestore registrato</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>

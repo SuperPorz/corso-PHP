@@ -1,0 +1,34 @@
+{# blocks/clienti.registrati.table.twig #}
+<div class="table-container">
+    {% if lista_clienti is not empty %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in lista_clienti %}
+                    <tr>
+                        <td>{{ cliente.idc }}</td>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.mail }}</td>
+                        <td>
+                            <!-- FORM PER ELIMINARE CLIENTE -->
+                            <form method="post" style="display:inline">
+                                <input type="hidden" name="azione" value="elimina">
+                                <input type="hidden" name="idc" value="{{ cliente.idc }}">
+                                <button type="submit">Elimina cliente</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nessun cliente registrato.</p>
+    {% endif %}
+</div>

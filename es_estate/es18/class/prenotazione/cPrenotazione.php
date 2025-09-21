@@ -7,14 +7,15 @@
         private $tab_gestore;
         private $tab_cliente;
 
-        public function __construct(DatabaseTable $tab_prenotazione, DatabaseTable $tab_gestore = null, DatabaseTable $tab_cliente = null) {
-            $this->tab_prenotazione = $tab_prenotazione;
-            $this->tab_gestore = $tab_gestore;
-            $this->tab_cliente = $tab_cliente;
-            $this->lista_prenotazioni = [];
+        public function __construct(DatabaseTable $tab_prenotazione, 
+            DatabaseTable $tab_gestore, DatabaseTable $tab_cliente) {
+                $this->tab_prenotazione = $tab_prenotazione;
+                $this->tab_gestore = $tab_gestore;
+                $this->tab_cliente = $tab_cliente;
+                $this->lista_prenotazioni = [];
         }
 
-        // Metodo originale - aggiunge prenotazione/disponibilità
+        // aggiunge prenotazione/disponibilità
         public function aggiungi_prenotazione(mprenotazione $prenotazione) {
             $array = [
                 'idg' => $prenotazione->idg,
@@ -26,13 +27,13 @@
             return 'aggiunta eseguita con successo!';
         }
 
-        // Metodo originale - elimina prenotazione
+        // elimina prenotazione
         public function elimina_prenotazione($idp) {
             $this->tab_prenotazione->delete(intval($idp));
             return 'eliminazione eseguita con successo!';
         }
 
-        // Metodo originale - trova prenotazione per ID
+        // trova prenotazione per ID
         public function trova_prenotazione($idp) {
             return $this->tab_prenotazione->find_by_id($idp);
         }
@@ -62,25 +63,14 @@
                 return 'Errore: Slot non trovato';
             }
             
-            if ($slot['idc'] !== null) {
-                return 'Errore: Slot già prenotato da un altro cliente';
-            }
-            
-            // Aggiorna il record aggiungendo il cliente
+            // Aggiorna il record aggiungendo il cliente e senza specificare l'id prenotazione
             $updated_slot = [
-                'idp' => $slot['idp'],
                 'idg' => $slot['idg'],
                 'data' => $slot['data'],
                 'ora' => $slot['ora'],
                 'idc' => $idc
             ];
-            
-            try {
-                $this->tab_prenotazione->save($updated_slot);
-                return 'Prenotazione confermata con successo!';
-            } catch (Exception $e) {
-                return 'Errore durante la prenotazione: ' . $e->getMessage();
-            }
+            return $this->tab_prenotazione->save($updated_slot);
         }
 
         // Ottieni disponibilità libere FORMATTATE per la select del cliente
@@ -122,85 +112,79 @@
         }
 
         // Ottieni disponibilità libere (per visualizzazione dettagliata)
-        public function ottieni_disponibilita_libere() {
-            $tutti_slot = $this->tab_prenotazione->find_all();
-            $disponibili = [];
-            
-            foreach ($tutti_slot as $slot) {
-                if ($slot['idc'] === null) {
-                    // Aggiungi nome gestore se disponibile
-                    if ($this->tab_gestore) {
-                        $gestore = $this->tab_gestore->find_by_id($slot['idg']);
-                        $slot['gestore_nome'] = $gestore ? $gestore['nome'] : 'N/A';
-                    }
-                    $disponibili[] = $slot;
-                }
+        public function ottieni_disponibilita() {
+            try {
+                // Query diretta per ottenere solo slot liberi con JOIN per il nome del gestore
+                $query = "SELECT p.*, g.nome as gestore_nome 
+                        FROM prenotazione p 
+                        LEFT JOIN gestore g ON p.idg = g.idg 
+                        WHERE p.idc IS NULL 
+                        ORDER BY p.data, p.ora";
+                
+                // Usa la connessione PDO direttamente per questa query complessa
+                $stmt = $this->tab_prenotazione->query($query);
+                $disponibili = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                return $disponibili;
+                
+            } catch (Exception $e) {
+                error_log("ERRORE in ottieni_disponibilita(): " . $e->getMessage());
+                return [];
             }
-            
-            // Ordina per data e ora
-            usort($disponibili, function($a, $b) {
-                $date_cmp = strcmp($a['data'], $b['data']);
-                if ($date_cmp == 0) {
-                    return strcmp($a['ora'], $b['ora']);
-                }
-                return $date_cmp;
-            });
-            
-            return $disponibili;
         }
 
-        // Ottieni prenotazioni confermate (slot con cliente)
-        public function ottieni_prenotazioni_confermate() {
-            $tutti_slot = $this->tab_prenotazione->find_all();
-            $confermate = [];
+        // Metodo per ottenere prenotazioni filtrate per gestore e data
+        public function prenotazioni_per_data($id_gestore = '', $data = '') {
+            $tutte_prenotazioni = $this->ottieni_tutte_prenotazioni();
+            $prenotazioni_filtrate = [];
             
-            foreach ($tutti_slot as $slot) {
-                if ($slot['idc'] !== null) {
-                    // Aggiungi nomi gestore e cliente se disponibili
-                    if ($this->tab_gestore) {
-                        $gestore = $this->tab_gestore->find_by_id($slot['idg']);
-                        $slot['gestore_nome'] = $gestore ? $gestore['nome'] : 'N/A';
-                    }
-                    if ($this->tab_cliente) {
-                        $cliente = $this->tab_cliente->find_by_id($slot['idc']);
-                        $slot['cliente_nome'] = $cliente ? $cliente['nome'] : 'N/A';
-                    }
-                    $confermate[] = $slot;
+            foreach ($tutte_prenotazioni as $prenotazione) {
+                $match_gestore = empty($id_gestore) || $prenotazione['idg'] == $id_gestore;
+                $match_data = empty($data) || $prenotazione['data'] == $data;
+                
+                // Filtra solo prenotazioni CONFERMATE (con idc)
+                if ($match_gestore && $match_data && !empty($prenotazione['idc'])) {
+                    $prenotazioni_filtrate[] = $prenotazione;
                 }
             }
             
-            // Ordina per data e ora
-            usort($confermate, function($a, $b) {
-                $date_cmp = strcmp($a['data'], $b['data']);
-                if ($date_cmp == 0) {
-                    return strcmp($a['ora'], $b['ora']);
+            return $prenotazioni_filtrate;
+        }
+
+        // Metodo per ottenere solo prenotazioni confermate
+        public function ottieni_prenotazioni_confermate() {
+            $tutte_prenotazioni = $this->ottieni_tutte_prenotazioni();
+            $confermate = [];
+            
+            foreach ($tutte_prenotazioni as $prenotazione) {
+                if (!empty($prenotazione['idc'])) {
+                    $confermate[] = $prenotazione;
                 }
-                return $date_cmp;
-            });
+            }
             
             return $confermate;
         }
 
         // Ottieni tutte le prenotazioni (disponibilità + confermate)
         public function ottieni_tutte_prenotazioni() {
-            $tutti_slot = $this->tab_prenotazione->find_all();
+            $prenotazioni = $this->tab_prenotazione->find_all();
             
-            foreach ($tutti_slot as &$slot) {
+            foreach ($prenotazioni as $key => $slot) {
                 // Aggiungi nomi gestore e cliente se disponibili
                 if ($this->tab_gestore) {
                     $gestore = $this->tab_gestore->find_by_id($slot['idg']);
-                    $slot['gestore_nome'] = $gestore ? $gestore['nome'] : 'N/A';
+                    $prenotazioni[$key]['gestore_nome'] = $gestore ? $gestore['nome'] : 'N/A';
                 }
                 if ($this->tab_cliente && $slot['idc']) {
                     $cliente = $this->tab_cliente->find_by_id($slot['idc']);
-                    $slot['cliente_nome'] = $cliente ? $cliente['nome'] : 'N/A';
+                    $prenotazioni[$key]['cliente_nome'] = $cliente ? $cliente['nome'] : 'N/A';
                 } else {
-                    $slot['cliente_nome'] = 'Disponibile';
+                    $prenotazioni[$key]['cliente_nome'] = 'Disponibile';
                 }
             }
             
             // Ordina per data e ora
-            usort($tutti_slot, function($a, $b) {
+            usort($prenotazioni, function($a, $b) {
                 $date_cmp = strcmp($a['data'], $b['data']);
                 if ($date_cmp == 0) {
                     return strcmp($a['ora'], $b['ora']);
@@ -208,6 +192,6 @@
                 return $date_cmp;
             });
             
-            return $tutti_slot;
+            return $prenotazioni;
         }
     }

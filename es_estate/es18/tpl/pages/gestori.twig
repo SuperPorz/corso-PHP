@@ -1,10 +1,12 @@
 {% extends "main.twig" %}
+
 {% block head %}
     <title>Pagina Gestori</title>
 {% endblock %}
+
 {% block header %}
     <hr>
-        <nav>{{nav.navigazione(pagine)}}</nav>
+        <nav>{% include "blocks/nav.twig" %}</nav>
     <hr>
     <h1>Disponibilità gestori</h1>
 {% endblock %}
@@ -14,7 +16,7 @@
 {% endblock %}
 
 {% block form_registra %}
-    <h2>Registra operatore:</h2>
+    <h2>Registra nuovo gestore:</h2>
     {% include "blocks/form.registra.twig" %}
 {% endblock %}
 
@@ -24,8 +26,9 @@
 {% endblock %}
 
 {% block risultati %}
-    <h2>Riepilogo disponibilità per giornata:</h2>
-        {{table.table(disponibilita_gestori)}}
-    <h2>Riepilogo disponibilità per gestore:</h2>
-        {{table.table(disponibilita_gestori)}}
+    <h2>Gestori Registrati:</h2>
+    {% include "blocks/table.gestori.twig" %}
+
+    <h2>Disponibilità Libere (Slot non ancora prenotati):</h2>
+    {% include "blocks/table.disponibilita.twig" with {'disponibilita_libere': disponibilita_gestori} %}
 {% endblock %}

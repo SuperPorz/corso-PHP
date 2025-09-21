@@ -120,4 +120,24 @@
             return $result->fetchAll();
         }
 
+        // Metodo per query personalizzate con multiple condizioni
+        public function find_by_multiple_fields($conditions = [], $parameters = []) {
+            $query = 'SELECT * FROM `' . $this->table . '`';
+            
+            if (!empty($conditions)) {
+                $query .= ' WHERE ';
+                $where_conditions = [];
+                
+                foreach ($conditions as $field => $value) {
+                    $where_conditions[] = '`' . $field . '` = :' . $field;
+                    $parameters[$field] = $value;
+                }
+                
+                $query .= implode(' AND ', $where_conditions);
+            }
+            
+            $result = $this->query($query, $parameters);
+            return $result->fetchAll();
+        }
+
     }

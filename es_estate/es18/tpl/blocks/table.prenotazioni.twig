@@ -1,0 +1,35 @@
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Gestore</th>
+                <th>Data</th>
+                <th>Ora</th>
+                <th>Cliente</th>
+                <th>Azione #1</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prenotazione in lista_prenotazioni %}
+                <tr>
+                    <td>{{ prenotazione.gestore_nome }}</td>
+                    <td>{{ prenotazione.data }}</td>
+                    <td>{{ prenotazione.ora }}</td>
+                    <td>{{ prenotazione.cliente_nome }}</td>
+                    <td>
+                        <!-- FORM PER ELIMINARE PRENOTAZIONE -->
+                        <form action="index.php" method="post" style="display:inline;">
+                            <input type="hidden" name="azione" value="elimina">
+                            <input type="hidden" name="idp" value="{{ prenotazione.idp }}">
+                            <input type="submit" value="Elimina prenotazione" onclick="return confirm('Sei sicuro di voler eliminare questa prenotazione?')">
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Nessuna prenotazione confermata</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,10 +1,12 @@
 {% extends "main.twig" %}
+
 {% block head %}
     <title>Pagina Clienti</title>
 {% endblock %}
+
 {% block header %}
     <hr>
-        <nav>{{nav.navigazione(pagine)}}</nav>
+        <nav>{% include "blocks/nav.twig" %}</nav>
     <hr>
     <h1>Prenotazione per clienti</h1>
 {% endblock %}
@@ -43,7 +45,7 @@
                     {% endfor %}
                 </select>
             </fieldset>
-            <input type="submit" value="PRENOTA" id="f2">
+            <input type="submit" value="prenota" id="f2">
         </form>
     {% else %}
         <p>Nessuna disponibilità al momento. Controlla più tardi o contatta i gestori.</p>
@@ -52,16 +54,5 @@
 
 {% block risultati %}
     <h2>Lista Clienti Registrati:</h2>
-    {% if lista_clienti and lista_clienti|length > 0 %}
-        {{table.table(lista_clienti)}}
-    {% else %}
-        <p>Nessun cliente registrato.</p>
-    {% endif %}
-    
-    <h2>Disponibilità Attuali:</h2>
-    {% if disponibilita_libere and disponibilita_libere|length > 0 %}
-        {{table.table(disponibilita_libere)}}
-    {% else %}
-        <p>Nessuna disponibilità al momento.</p>
-    {% endif %}
+    {% include "blocks/table.clienti.twig" %}
 {% endblock %}

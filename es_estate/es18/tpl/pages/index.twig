@@ -20,5 +20,5 @@
 {% endblock %}
 {% block risultati %}
     <h2>Prenotazioni confermate:</h2>
-    {{ table.table(lista_prenotazioni) }}
+    {% include "blocks/table.prenotazioni.twig" %}
 {% endblock %}

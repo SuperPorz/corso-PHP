@@ -1,7 +1,0 @@
-{% macro navigazione(pagine) %}
-    <ul class="menu">
-        {% for pagina in pagine %}
-            <li><a href="{{ pagina.url }}">{{ pagina.label }}</a></li>
-        {% endfor %}
-    </ul>
-{% endmacro %}

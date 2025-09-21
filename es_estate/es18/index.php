@@ -6,19 +6,12 @@
     error_reporting(E_ALL);
 
     ################################################
-    # AUTOLOADER COMPOSER (PER TWIG E LIBRERIE)
-    try {
-        // CARICA AUTOLOADER DI COMPOSER
-        $loader = require __DIR__ . '/vendor/autoload.php';
-        
-    } catch (Exception $e) {
-        die("❌ Errore autoloader Composer: " . $e->getMessage());
-    }
+    # AUTOLOADER COMPOSER (TWIG E LIBRERIE)
+    $loader = require __DIR__ . '/vendor/autoload.php';
 
     ################################################
-    # AUTOLOADER PERSONALIZZATO (PER LE TUE CLASSI)
+    # AUTOLOADER PERSONALIZZATO (CLASSI)
     spl_autoload_register(function ($class_name) {
-        // Cerca nelle tue cartelle personalizzate
         $paths = [
             __DIR__ . '/class/',
             __DIR__ . '/class/cliente/',
@@ -36,50 +29,32 @@
         return false;
     });
 
-
     ################################################
     # INCLUDES
-    try {
-        //includes generici (NON classi)
-        include_once 'inc/DatabaseConnection.php';
-        include_once 'class/DatabaseTable.php';
-        
-    } catch (Exception $e) {
-        die("❌ Errore durante l'inclusione dei file: " . $e->getMessage());
-    }
+    include_once 'inc/DatabaseConnection.php';
+    include_once 'class/DatabaseTable.php';
 
     ################################################
     # CONFIGURAZIONE TWIG
-    try {
-        $loader = new \Twig\Loader\FilesystemLoader('tpl');
-        $twig = new \Twig\Environment($loader);
-        
-    } catch (Exception $e) {
-        die("❌ Errore configurazione Twig: " . $e->getMessage());
-    }
+    $loader = new \Twig\Loader\FilesystemLoader('tpl');
+    $twig = new \Twig\Environment($loader);
 
     ################################################
     # ISTANZE
-    try {
-        //tabelle DB
-        $tab_cliente = new DatabaseTable($pdo, 'cliente', 'idc');
-        $tab_gestore = new DatabaseTable($pdo, 'gestore', 'idg');
-        $tab_prenotazione = new DatabaseTable($pdo, 'prenotazione', 'idp');
+    //tabelle DB
+    $tab_cliente = new DatabaseTable($pdo, 'cliente', 'idc');
+    $tab_gestore = new DatabaseTable($pdo, 'gestore', 'idg');
+    $tab_prenotazione = new DatabaseTable($pdo, 'prenotazione', 'idp');
 
-        //controllers
-        $cCliente = new cCliente($tab_cliente);
-        $cGestore = new cGestore($tab_gestore);
-        $cPrenotazione = new cPrenotazione($tab_prenotazione, $tab_gestore, $tab_cliente);
+    //controllers
+    $cCliente = new cCliente($tab_cliente);
+    $cGestore = new cGestore($tab_gestore);
+    $cPrenotazione = new cPrenotazione($tab_prenotazione, $tab_gestore, $tab_cliente);
 
-        //views 
-        $vClienti = new vCliente($tab_cliente);
-        $vGestori = new vGestore($tab_gestore);
-        $vPrenotazione = new vPrenotazione($tab_prenotazione);
-        
-    } catch (Exception $e) {
-        die("❌ Errore durante la creazione delle istanze: " . $e->getMessage());
-    }
-
+    //views 
+    $vClienti = new vCliente($tab_cliente);
+    $vGestori = new vGestore($tab_gestore);
+    $vPrenotazione = new vPrenotazione($tab_prenotazione);
 
     ################################################
     # GESTIONE AZIONI CLIENTE  
@@ -133,37 +108,30 @@
 
     ################################################
     # RENDERING
-    try {
-        $p = isset($_REQUEST['p']) ? $_REQUEST['p'] : 'index';
+    $p = isset($_REQUEST['p']) ? $_REQUEST['p'] : 'index';
 
-        switch ($p) {
+    switch ($p) {
         case 'clienti':
             $template = $vClienti->carica_tpl_clienti($twig);
             
             $data = [
                 'lista_clienti' => $vClienti->mostra_lista_clienti(),
-                'disponibilita_libere' => $cPrenotazione->ottieni_disponibilita_libere(),
+                'disponibilita_libere' => $cPrenotazione->ottieni_disponibilita(),
                 'disponibilita_select' => $cPrenotazione->ottieni_disponibilita_per_select(),
-                'p' => $p,
-                'pagine' => [
-                    ['url' => 'index.php?p=gestori','label' => 'GESTORI'],
-                    ['url' => 'index.php?p=clienti','label' => 'CLIENTI']
-                ]
+                'p' => $p
             ];
             echo $template->render($data);
             break;
         
         case 'gestori':
             $template = $vGestori->carica_tpl_gestori($twig);
+            
             $data = [
                 'lista_gestori' => $vGestori->mostra_lista_gestori(),
-                'disponibilita_gestori' => $cPrenotazione->ottieni_tutte_prenotazioni(),
-                'p' => $p,
-                'pagine' => [
-                    ['url' => 'index.php?p=gestori','label' => 'GESTORI'],
-                    ['url' => 'index.php?p=clienti','label' => 'CLIENTI']
-                ]
+                'disponibilita_gestori' => $cPrenotazione->ottieni_disponibilita(),
+                'p' => $p
             ];
+            
             echo $template->render($data);
             break;
         
@@ -172,14 +140,10 @@
             $template = $twig->load('pages/index.twig');
             
             $data = [
-                'lista_prenotazioni' => $cPrenotazione->ottieni_prenotazioni_confermate(),
-                'pagine' => []
+                'lista_prenotazioni' => $cPrenotazione->ottieni_prenotazioni_confermate()
             ];
             echo $template->render($data);
-            break;        
-        }
-    } catch (Exception $e) {
-        die("❌ Errore durante il rendering: " . $e->getMessage());
+            break;
     }
 
     ################################################
