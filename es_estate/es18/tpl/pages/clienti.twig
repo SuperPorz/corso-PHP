@@ -44,7 +44,7 @@
                     {% endfor %}
                 </select>
             </fieldset>
-            <input type="submit" value="prenota" id="f2">
+            <input type="submit" value="PRENOTA" id="f2">
         </form>
     {% else %}
         <p>Nessuna disponibilità al momento. Controlla più tardi o contatta i gestori.</p>
@@ -52,6 +52,5 @@
 {% endblock %}
 
 {% block risultati %}
-    <h2>Lista Clienti Registrati:</h2>
     {% include "blocks/table.clienti.twig" %}
 {% endblock %}
