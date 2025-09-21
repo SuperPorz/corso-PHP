@@ -2,6 +2,7 @@
     {% if p == 'gestori' %}
         <form action="index.php?p=gestori" method="post" class="form">
             <fieldset class="field">
+                <legend id="legend">Registra gestore:</legend>
                 <input type="hidden" name="azione" value="registra-gestore" required>
                 
                 <label for="nome">Nome gestore</label>
@@ -15,6 +16,7 @@
     {% else %}
         <form action="index.php?p=clienti" method="post" class="form">
             <fieldset class="field">
+                <legend id="legend">Registra cliente:</legend>
                 <input type="hidden" name="azione" value="registra-cliente" required>
                 
                 <label for="nome">Nome cliente</label>

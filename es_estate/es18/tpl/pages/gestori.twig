@@ -6,9 +6,9 @@
 
 {% block header %}
     <hr>
-        <nav>{% include "blocks/nav.twig" %}</nav>
+    <nav>{% include "blocks/nav.twig" %}</nav>
     <hr>
-    <h1>Disponibilità gestori</h1>
+    <h1>GESTORI</h1>
 {% endblock %}
 
 {% block main %}
@@ -16,19 +16,14 @@
 {% endblock %}
 
 {% block form_registra %}
-    <h2>Registra nuovo gestore:</h2>
     {% include "blocks/form.registra.twig" %}
 {% endblock %}
 
 {% block form_disponibilita %}
-    <h2>Scegli nominativo da elenco e data/ora disponibilità:</h2>
     {% include "blocks/form.gestori.disponibilita.twig" %}
 {% endblock %}
 
 {% block risultati %}
-    <h2>Gestori Registrati:</h2>
     {% include "blocks/table.gestori.twig" %}
-
-    <h2>Disponibilità Libere (Slot non ancora prenotati):</h2>
     {% include "blocks/table.disponibilita.twig" with {'disponibilita_libere': disponibilita_gestori} %}
 {% endblock %}

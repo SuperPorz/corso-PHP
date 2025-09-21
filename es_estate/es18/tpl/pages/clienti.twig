@@ -6,9 +6,9 @@
 
 {% block header %}
     <hr>
-        <nav>{% include "blocks/nav.twig" %}</nav>
+    <nav>{% include "blocks/nav.twig" %}</nav>
     <hr>
-    <h1>Prenotazione per clienti</h1>
+    <h1>CLIENTI</h1>
 {% endblock %}
 
 {% block main %}
@@ -16,15 +16,14 @@
 {% endblock %}
 
 {% block form_registra %}
-    <h2>Registra nuovo cliente:</h2>
     {% include "blocks/form.registra.twig" %}
 {% endblock %}
 
 {% block form_disponibilita %}
-    <h2>Prenota appuntamento:</h2>
     {% if disponibilita_select and disponibilita_select|length > 0 %}
-        <form action="index.php?p=clienti" method="post" class="form-articoli">
+        <form action="index.php?p=clienti" method="post" class="form">
             <fieldset class="field">
+                <legend id="legend">Prenota appuntamento:</legend>
                 <input type="hidden" name="azione" value="prenota">
                 
                 <label for="idc">Seleziona Cliente</label>

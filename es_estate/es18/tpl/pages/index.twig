@@ -6,7 +6,7 @@
     <h1>LORENZONI BEAUTY & SPA @GmbH</h1>
 {% endblock %}
 {% block main %}
-    <div>
+    <div class="welcome-section">
         <h2>Benvenuto! Accedi all'area GESTORI o CLIENTI:</h2>
         <a id="f2" href="index.php?p=gestori">GESTORI</a>
         <a id="f2" href="index.php?p=clienti">CLIENTI</a>
@@ -19,6 +19,5 @@
     {# non ci serve il blocco main, quindi vuoto #}
 {% endblock %}
 {% block risultati %}
-    <h2>Prenotazioni confermate:</h2>
     {% include "blocks/table.prenotazioni.twig" %}
 {% endblock %}
