@@ -56,7 +56,7 @@
     $vClienti = new vCliente($tab_cliente);
     $vGestori = new vGestore($tab_gestore);
     $vPrenotazione = new vPrenotazione($tab_prenotazione);
-
+ 
     ################################################
     # GESTIONE AZIONI CLIENTE  
     // aggiungi cliente

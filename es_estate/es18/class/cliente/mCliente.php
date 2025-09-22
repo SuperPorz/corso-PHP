@@ -10,5 +10,4 @@
             $this->nome = $nome;
             $this->mail = $mail;
         }
-        
     }

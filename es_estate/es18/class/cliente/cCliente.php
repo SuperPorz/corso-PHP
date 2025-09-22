@@ -2,13 +2,11 @@
 
     class cCliente {
 
-        public $lista_clienti;
         private $tab_cliente;
 
         public function __construct(DatabaseTable $tab_cliente)
         {
             $this->tab_cliente = $tab_cliente;
-            $this->lista_clienti = [];
         }
 
         public function aggiungi_cliente(mCliente $cliente) {
