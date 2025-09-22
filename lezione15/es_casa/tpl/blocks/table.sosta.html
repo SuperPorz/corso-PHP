@@ -1,0 +1,18 @@
+<tr>
+    <td>{{ids}}</td>
+    <td>{{targa}}</td>
+    <td>{{proprietario}}</td>
+    <td>{{nome}}</td>
+    <td>{{tariffa}}</td>
+    <td>{{inizio_sosta}}</td>
+    <td>{{fine_sosta}}</td>
+    <td>{{costo_sosta}}</td>
+    <td>
+        <!-- BOTTONE PER TERMINARE SOSTA -->
+        <form action="index.php?p=soste" method="post" style="display:inline;">
+            <input type="hidden" name="azione" value="termina">
+            <input type="hidden" name="ids" value="{{ids}}">
+            <input type="submit" value="TERMINA">
+        </form>
+    </td>
+</tr>

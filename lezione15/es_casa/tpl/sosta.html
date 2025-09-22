@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a id="f2" href="index.php">HOMEPAGE</a></li>
+            <li><a id="f2" href="index.php?p=auto">AUTO</a></li>
+            <li><a id="f2" href="index.php?p=parcheggio">PARCHEGGIO</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h2>Lezione 15 - Esercizio per casa</h2>
+    </header>
+    <main>
+        <h1>GESTIONE SOSTE</h1>
+        <div>
+            <h2>Inizia sosta</h2>
+            <form action="" method="post">
+                <fieldset class="field">
+                    <input type="hidden" name="azione" value="inizia">
+                    <select name="ida">
+                        {{lista_auto}}
+                    </select>
+                    <select name="idp">
+                        {{lista_parcheggi}}
+                    </select>
+                    <input id="f2" type="submit" value="INIZIA SOSTA">
+                </fieldset>
+            </form>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="9" class="table-title">SOSTE APERTE</th>
+                    </tr>
+                    <tr>
+                        <th>ID sosta</th>
+                        <th>Targa</th>
+                        <th>Proprietario</th>
+                        <th>Nome parcheggio</th>
+                        <th>Tariffa</th>
+                        <th>Inizio sosta</th>
+                        <th>Fine sosta</th>
+                        <th>Costo sosta</th>
+                        <th>Azione #1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{soste_aperte}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

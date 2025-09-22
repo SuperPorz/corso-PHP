@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a id="f2" href="index.php">HOMEPAGE</a></li>
+            <li><a id="f2" href="index.php?p=auto">AUTO</a></li>
+            <li><a id="f2" href="index.php?p=soste">SOSTE</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h2>Lezione 15 - Esercizio per casa</h2>
+    </header>
+    <main>
+        <h1>GESTIONE PARCHEGGIO</h1>
+        <div>
+            <h2>Registra parcheggio</h2>
+            <form action="" method="post">
+                <fieldset class="field">
+                    <input type="hidden" name="azione" value="registra-parcheggio">
+                    <input type="text" id="input" placeholder="NOME PARCHEGGIO" name="targa" required>
+                    <input type="number" id="input" placeholder="TARIFFA" name="tariffa" min="1" max="100" step="0.01" required>
+                    <input id="f2" type="submit" value="REGISTRA">
+                </fieldset>
+            </form>
+        </div>
+        <div class="table-container">
+            <h2>Parcheggi registrati</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4" class="table-title">PARCHEGGI REGISTRATI</th>
+                    </tr>
+                    <tr>
+                        <th>ID parcheggio</th>
+                        <th>Nome</th>
+                        <th>Tariffa</th>
+                        <th>Azione #1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{lista_parcheggi}}
+                </tbody>
+            </table>
+        </div>
+        <div class="table-container">
+            <h2>Soste aperte nel parcheggio</h2>
+            <h3>Seleziona un parcheggio per visualizzare le sue soste APERTE</h3>
+            <form action="" method="post">
+                <fieldset class="field">
+                    <input type="hidden" name="azione" value="soste_select">
+                    <select name="idp">
+                        {{select_parcheggi}}
+                    </select>
+                    <input id="f2" type="submit" value="MOSTRA SOSTE">
+                </fieldset>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="9" class="table-title">SOSTE APERTE (per uno specifico parcheggio)</th>
+                    </tr>
+                    <tr>
+                        <th>ID sosta</th>
+                        <th>Targa</th>
+                        <th>Proprietario</th>
+                        <th>Nome parcheggio</th>
+                        <th>Tariffa</th>
+                        <th>Inizio sosta</th>
+                        <th>Fine sosta</th>
+                        <th>Costo sosta</th>
+                        <th>Azione #1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{soste_aperte}}
+                </tbody>
+            </table>
+        </div>
+        <div class="table-container">
+            <h2>Soste chiuse nel parcheggio</h2>
+            <h3>Seleziona un parcheggio per visualizzare le sue soste CHIUSE</h3>
+            <form action="" method="post">
+                <fieldset class="field">
+                    <input type="hidden" name="azione" value="soste_select">
+                    <select name="idp">
+                        {{select_parcheggi}}
+                    </select>
+                    <input id="f2" type="submit" value="MOSTRA SOSTE">
+                </fieldset>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="9" class="table-title">SOSTE CHIUSE</th>
+                    </tr>
+                    <tr>
+                        <th>ID sosta</th>
+                        <th>Targa</th>
+                        <th>Proprietario</th>
+                        <th>Nome parcheggio</th>
+                        <th>Tariffa</th>
+                        <th>Inizio sosta</th>
+                        <th>Fine sosta</th>
+                        <th>Costo sosta</th>
+                        <th>Azione #1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{soste_chiuse}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

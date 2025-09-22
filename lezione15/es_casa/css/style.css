@@ -1,0 +1,420 @@
+/* ===== RESET E BASE ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../img/bg01.jpg') center/cover fixed;
+    font-family: "Old Standard TT", serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    color: #4A4A4A;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* ===== TIPOGRAFIA ===== */
+h1 {
+    font-size: 2.5rem;
+    color: #8B4513;
+    margin: 0.67em 0;
+    padding: 8px;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #D4AF37;
+    margin: 0.75em 0;
+    padding: 5px;
+    line-height: 1.25;
+    font-style: italic;
+}
+
+/* ===== SEZIONI CONTENUTO ===== */
+main {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1000px;
+    width: 95%;
+}
+
+.welcome-section {
+    background: rgba(255, 248, 231, 0.95);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 0;
+    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.15);
+    border: 1px solid #D4AF37;
+    text-align: center;
+}
+
+.prenotazioni-section {
+    background: rgba(255, 248, 231, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 0;
+    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.15);
+    border: 1px solid #D4AF37;
+}
+
+/* ===== FORM ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin: 20px 0 */;
+    width: 100%;
+    padding: 20px;
+}
+
+.form {
+    background-color: #FFF8E7;
+    border: 2px solid #D4AF37;
+    border-radius: 10px;
+}
+
+.field {
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+    border: none;
+}
+
+.form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ===== LEGEND ===== */
+#legend {
+    background: #FFFFFF;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #8B4513;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #D4AF37;
+    text-align: center;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+/* ===== LABELS ===== */
+label {
+    font-size: 18px;
+    color: #8B4513;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+/* Input e select */
+#input, select {
+    height: 45px;
+    width: 100%;
+    border: 2px solid #D4AF37;
+    border-radius: 8px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #4A4A4A;
+    background-color: #FFFFFF;
+    font-family: "Old Standard TT", serif;
+    transition: border-color 0.3s ease;
+}
+
+#input:focus, select:focus {
+    outline: none;
+    border-color: #8B4513;
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+}
+
+/* ===== TABELLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: #FFF8E7;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #D4AF37;
+}
+
+th {
+    background: linear-gradient(135deg, #8B4513, #A52A2A);
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+td {
+    background: #FFF8E7;
+    font-size: 15px;
+}
+
+tr:nth-child(even) td {
+    background: #F5F1E6;
+}
+
+/* ===== TITOLI TABELLA ===== */
+.table-title {
+    background: linear-gradient(#ac8e62) !important;
+    color: #8B4513 !important;
+    font-size: 1.5rem !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    height: 60px;
+}
+
+.table-title th {
+    background: transparent !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    border: none !important;
+    vertical-align: middle;
+}
+
+/* ===== CONTAINER TABELLE CON SCROLL ===== */
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.1);
+    border: 1px solid #D4AF37;
+    background: #FFF8E7;
+}
+
+.table-container table {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+}
+
+/* Stile della scrollbar per Webkit browsers (Chrome, Safari) */
+.table-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #F5F1E6;
+    border-radius: 0 10px 10px 0;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #8B4513, #A52A2A);
+    border-radius: 10px;
+    border: 2px solid #F5F1E6;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #A52A2A, #8B4513);
+}
+
+/* Stile della scrollbar per Firefox */
+.table-container {
+    scrollbar-width: thin;
+    scrollbar-color: #8B4513 #F5F1E6;
+}
+
+/* ===== PULSANTI ===== */
+button, input[type="button"], input[type="submit"] {
+    background: linear-gradient(135deg, #8B4513, #A52A2A);
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: "Old Standard TT", serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 5px;
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+#f2 {
+    background: linear-gradient(135deg, #8B4513, #A52A2A);
+    color: #FFFFFF;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px;
+    font-family: "Old Standard TT", serif;
+    cursor: pointer;
+    margin: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+#f2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+/* ===== LINK HOMEPAGE ===== */
+#link {
+    font-size: 18px;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #8B4513, #A52A2A);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-style: italic;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-family: "Old Standard TT", serif;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+#link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+/* ===== MENU DI NAVIGAZIONE ===== */
+nav {
+    margin: 20px 0;
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    background: linear-gradient(135deg, #8B4513, #A52A2A);
+    color: #FFFFFF;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 8px;
+    font-family: "Old Standard TT", serif;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    min-width: 120px;
+    text-align: center;
+}
+
+nav a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+    color: #FFFFFF;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    main {
+        padding: 0;
+        margin: 10px 0;
+        gap: 20px;
+    }
+    
+    .welcome-section,
+    .prenotazioni-section {
+        padding: 20px;
+        margin: 0;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    #legend {
+        font-size: 1.2rem;
+        padding: 8px 16px;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 10px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    nav a {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    #f2 {
+        width: 180px;
+        margin: 10px;
+        padding: 10px 20px;
+    }
+    
+    .table-container {
+        max-height: 300px;
+    }
+    
+    label {
+        font-size: 16px;
+    }
+    
+    #input, select {
+        height: 40px;
+        font-size: 14px;
+    }
+}
