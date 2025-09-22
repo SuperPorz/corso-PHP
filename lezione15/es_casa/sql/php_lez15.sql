@@ -46,17 +46,18 @@ CREATE TABLE sosta (
 DELIMITER $$
 
 -- Elimina il trigger esistente se c'è
--- DROP TRIGGER IF EXISTS calcola_costo_sosta;
+DROP TRIGGER IF EXISTS calcola_costo_sosta;
 
 CREATE TRIGGER calcola_costo_sosta
-BEFORE INSERT ON sosta  -- AGGIUNTO ANCHE INSERT
+BEFORE INSERT ON sosta
 FOR EACH ROW
 BEGIN
     -- Calcola il costo se fine_sosta è già impostata all'inserimento
     IF NEW.fine_sosta IS NOT NULL THEN
-        SET NEW.costo_sosta = (
+        SET NEW.costo_sosta = ROUND(
             TIMESTAMPDIFF(MINUTE, NEW.inizio_sosta, NEW.fine_sosta) * 
-            (SELECT tariffa FROM parcheggio WHERE idp = NEW.idp) / 60
+            (SELECT tariffa FROM parcheggio WHERE idp = NEW.idp) / 60,
+            2  -- Arrotonda a 2 cifre decimali
         );
     END IF;
 END$$
