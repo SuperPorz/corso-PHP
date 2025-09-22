@@ -58,7 +58,7 @@
             // tabella SOSTE APERTE PER PARCHEGGIO SPECIFICO
             if (!empty($idp)) {
                 foreach($this->soste_parcheggio($idp, '') as $sosta) {
-                    $tab = 'tpl/blocks/table.sosta.html';
+                    $tab = 'tpl/blocks/table.sosta1.html';
                     $array = [
                         'ids' => $sosta['ids'],
                         'targa' => $sosta['targa'],
@@ -76,7 +76,7 @@
             // tabella SOSTE CHIUSE PER PARCHEGGIO SPECIFICO
             if (!empty($idp)) {
                 foreach($this->soste_parcheggio($idp, 'NOT') as $sosta) {
-                    $tab = 'tpl/blocks/table.sosta.html';
+                    $tab = 'tpl/blocks/table.sosta1.html';
                     $array = [
                         'ids' => $sosta['ids'],
                         'targa' => $sosta['targa'],

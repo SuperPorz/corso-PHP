@@ -66,7 +66,7 @@
 
             // tabella SOSTE APERTE
             foreach($this->soste_aperte_chiuse() as $sosta) {
-                $tab = 'tpl/blocks/table.sosta.html';
+                $tab = 'tpl/blocks/table.sosta1.html';
                 $array = [
                     'ids' => $sosta['ids'],
                     'targa' => $sosta['targa'],
@@ -82,7 +82,7 @@
 
             // tabella SOSTE CHIUSE
             foreach($this->soste_aperte_chiuse('NOT') as $sosta) {
-                $tab = 'tpl/blocks/table.sosta.html';
+                $tab = 'tpl/blocks/table.sosta2.html';
                 $array = [
                     'ids' => $sosta['ids'],
                     'targa' => $sosta['targa'],
@@ -94,6 +94,7 @@
                     'costo_sosta' => $sosta['costo_sosta']
                 ];
                 $str_soste_chiuse .= Render\render($tab, $array);
+
             }
 
             // RENDER FINALE
