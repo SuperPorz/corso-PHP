@@ -19,6 +19,17 @@ body {
     line-height: 1.5;
 }
 
+/* ===== STILE PER HR ===== */
+hr {
+    border: none;
+    height: 4px;
+    background-color: #34495e;
+    margin: 15px 0;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 2px;
+}
+
 /* ===== TIPOGRAFIA ===== */
 h1 {
     font-size: 1.8rem;
@@ -299,5 +310,9 @@ nav a:hover {
     .field {
         padding: 10px;
         gap: 10px;
+    }
+    
+    hr {
+        margin: 10px 0;
     }
 }
