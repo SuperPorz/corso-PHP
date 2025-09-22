@@ -1,0 +1,23 @@
+{% extends "main.twig" %}
+{% block head %}
+    <title>Estate - esercizio 18</title>
+{% endblock %}
+{% block header %}
+    <h1>LORENZONI AGENDA WEBAPP @GmbH</h1>
+{% endblock %}
+{% block main %}
+    <div class="welcome-section">
+        <h2>Benvenuto! Accedi all'area GESTORI o CLIENTI:</h2>
+        <a id="f2" href="index.php?p=gestori">GESTORI</a>
+        <a id="f2" href="index.php?p=clienti">CLIENTI</a>
+    </div>
+{% endblock %}
+{% block form_registra %}
+    {# non ci serve il blocco main, quindi vuoto #}
+{% endblock %}
+{% block form_disponibilita %}
+    {# non ci serve il blocco main, quindi vuoto #}
+{% endblock %}
+{% block risultati %}
+    {% include "blocks/table.prenotazioni.twig" %}
+{% endblock %}

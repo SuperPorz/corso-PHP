@@ -1,0 +1,31 @@
+{% block form_registra %}
+    {% if p == 'gestori' %}
+        <form action="index.php?p=gestori" method="post" class="form">
+            <fieldset class="field">
+                <legend id="legend">Registra gestore:</legend>
+                <input type="hidden" name="azione" value="registra-gestore" required>
+                
+                <label for="nome">Nome gestore</label>
+                <input id="input" type="text" name="nome" required>
+                
+                <label for="numero">Numero</label>
+                <input id="input" type="number" name="numero" required>
+            </fieldset>
+            <input type="submit" value="INVIA" id="f2">
+        </form>
+    {% else %}
+        <form action="index.php?p=clienti" method="post" class="form">
+            <fieldset class="field">
+                <legend id="legend">Registra cliente:</legend>
+                <input type="hidden" name="azione" value="registra-cliente" required>
+                
+                <label for="nome">Nome cliente</label>
+                <input id="input" type="text" name="nome" required>
+                
+                <label for="mail">Mail</label>
+                <input id="input" type="text" name="mail" required>
+            </fieldset>
+            <input type="submit" value="INVIA" id="f2">
+        </form>        
+    {% endif %}
+{% endblock %}

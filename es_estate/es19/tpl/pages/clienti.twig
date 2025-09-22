@@ -1,0 +1,53 @@
+{% extends "main.twig" %}
+
+{% block head %}
+    <title>Pagina Clienti</title>
+{% endblock %}
+
+{% block header %}
+    {% include "blocks/nav.twig" %}
+{% endblock %}
+
+{% block main %}
+    <h1>CLIENTI</h1>
+{% endblock %}
+
+{% block form_registra %}
+    {% include "blocks/form.registra.twig" %}
+{% endblock %}
+
+{% block form_disponibilita %}
+    {% if disponibilita_select and disponibilita_select|length > 0 %}
+        <form action="index.php?p=clienti" method="post" class="form">
+            <fieldset class="field">
+                <legend id="legend">Prenota appuntamento:</legend>
+                <input type="hidden" name="azione" value="prenota">
+                
+                <label for="idc">Seleziona Cliente</label>
+                <select name="idc" id="input" required>
+                    <option disabled selected> (seleziona cliente) </option>
+                    {% if lista_clienti %}
+                        {% for cliente in lista_clienti %}
+                            <option value="{{ cliente.idc }}">{{ cliente.nome }} ({{ cliente.mail }})</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+                
+                <label for="idp">Seleziona Appuntamento Disponibile</label>
+                <select name="idp" id="input" required>
+                    <option disabled selected> (seleziona appuntamento) </option>
+                    {% for slot in disponibilita_select %}
+                        <option value="{{ slot.idp }}">{{ slot.label }}</option>
+                    {% endfor %}
+                </select>
+            </fieldset>
+            <input type="submit" value="PRENOTA" id="f2">
+        </form>
+    {% else %}
+        <p>Nessuna disponibilità al momento. Controlla più tardi o contatta i gestori.</p>
+    {% endif %}
+{% endblock %}
+
+{% block risultati %}
+    {% include "blocks/table.clienti.twig" %}
+{% endblock %}

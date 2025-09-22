@@ -1,0 +1,691 @@
+/* ===== IMPORT FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Condensed:wght@400;500;600&display=swap');
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #F5F5F5;
+    color: #1A1A1A;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 0.2px;
+    
+    /* Background image fisso */
+    background-image: url('../img/gommista1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    /* Overlay per mantenere leggibilità */
+    position: relative;
+}
+
+/* Overlay semitrasparente sopra l'immagine */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(240, 240, 240, 0.40);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ===== HEADER E NAVIGAZIONE ===== */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0;
+    border-bottom: 2px solid #FF4500;
+    backdrop-filter: blur(10px);
+}
+
+header hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FF4500, #DC143C, #FF4500, transparent);
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 18px 35px;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+/* Bottoni di navigazione */
+.nav-button {
+    color: #1A1A1A;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Roboto Condensed", sans-serif;
+    display: inline-block;
+    transition: color 0.3s ease;
+    border: none;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.nav-button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 6px;
+    left: 50%;
+    background: linear-gradient(90deg, #FF4500, #DC143C);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-button:hover {
+    color: #FF4500;
+    text-decoration: none;
+}
+
+.nav-button:hover::after {
+    width: 100%;
+}
+
+/* ===== SELETTORE TEMA ===== */
+#TEMA {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+}
+
+#TEMA select {
+    height: 35px;
+    min-width: 160px;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #1A1A1A;
+    background-color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF4500' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 14px;
+    padding-right: 30px;
+}
+
+#TEMA select:focus {
+    outline: none;
+    border-color: #FF4500;
+    box-shadow: 0 0 3px rgba(255, 69, 0, 0.3);
+}
+
+#f1 {
+    background: #FF4500;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 3px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 35px;
+    min-width: 80px;
+    white-space: nowrap;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#f1:hover {
+    background: #E63E00;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 69, 0, 0.3);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    flex: 1;
+    padding: 40px 35px;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+h1 {
+    color: #1A1A1A;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF4500, #DC143C);
+}
+
+h2 {
+    color: #1A1A1A;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ===== WELCOME SECTION ===== */
+.welcome-section {
+    text-align: center;
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    margin-bottom: 35px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+}
+
+.welcome-section h2 {
+    margin-bottom: 30px;
+    font-style: normal;
+}
+
+.welcome-section a {
+    display: inline-block;
+    margin: 8px 15px;
+}
+
+/* ===== FORM STYLES ===== */
+.form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 35px 30px;
+    margin: 30px auto;
+    max-width: 550px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+}
+
+.field {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+    background: transparent;
+}
+
+#legend {
+    color: #1A1A1A;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+label {
+    display: block;
+    color: #1A1A1A;
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+#input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    background-color: #FFFFFF;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#input:focus {
+    outline: none;
+    border-color: #FF4500;
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.2);
+}
+
+select#input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF4500' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    padding-right: 35px;
+    cursor: pointer;
+}
+
+#f2 {
+    background: linear-gradient(135deg, #FF4500, #DC143C);
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: "Roboto Condensed", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    min-width: 140px;
+    font-weight: 600;
+    margin: 15px 8px 0 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#f2:hover {
+    background: linear-gradient(135deg, #E63E00, #B91C1C);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+/* ===== TABLES ===== */
+.table-container {
+    margin: 35px auto;
+    background: rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar per tabelle */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #F0F0F0;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #FF4500;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #E63E00;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Roboto", sans-serif;
+}
+
+.table-title {
+    background: linear-gradient(135deg, #FF4500, #DC143C);
+    color: #FFFFFF;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+th {
+    background: #F8F8F8;
+    color: #1A1A1A;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    border-bottom: 1px solid #DDDDDD;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    position: sticky;
+    top: 56px;
+    z-index: 9;
+}
+
+td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #EEEEEE;
+    background-color: #FFFFFF;
+    font-size: 13px;
+}
+
+tr:nth-child(even) td {
+    background-color: #FAFAFA;
+}
+
+tr:hover td {
+    background-color: #FFF3E0;
+    transition: background-color 0.3s ease;
+}
+
+/* Bottoni nelle tabelle */
+table button,
+table input[type="submit"] {
+    background: #DC143C;
+    color: #FFFFFF;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-size: 11px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+table button:hover,
+table input[type="submit"]:hover {
+    background: #B91C1C;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(220, 20, 60, 0.3);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: rgba(248, 248, 248, 0.95);
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    border-top: 2px solid #FF4500;
+    backdrop-filter: blur(10px);
+}
+
+footer #link {
+    color: #1A1A1A;
+    text-decoration: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border: 1px solid #FF4500;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+footer #link:hover {
+    background: #FF4500;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 69, 0, 0.3);
+}
+
+/* ===== MESSAGGI E PARAGRAFI ===== */
+p {
+    text-align: center;
+    color: #1A1A1A;
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    font-style: italic;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    /* Su mobile usa background-attachment: scroll per migliori performance */
+    body {
+        background-attachment: scroll;
+    }
+    
+    /* Aumenta l'overlay su mobile per maggiore leggibilità */
+    body::before {
+        background: rgba(240, 240, 240, 0.90);
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    nav ul {
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    #TEMA {
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    #TEMA select {
+        min-width: 200px;
+    }
+    
+    #f1 {
+        width: 200px;
+    }
+    
+    main {
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form {
+        margin: 25px 10px;
+        padding: 25px 20px;
+    }
+    
+    .welcome-section {
+        padding: 30px 20px;
+        margin-bottom: 25px;
+    }
+    
+    .table-container {
+        margin: 25px 10px;
+        max-height: 350px;
+    }
+    
+    table {
+        min-width: 450px;
+    }
+    
+    th, td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+    
+    .table-title {
+        font-size: 14px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        gap: 12px;
+        padding: 12px 15px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #TEMA select {
+        min-width: 180px;
+        font-size: 12px;
+    }
+    
+    #f1 {
+        font-size: 11px;
+        padding: 6px 14px;
+        width: 180px;
+    }
+    
+    .nav-button {
+        font-size: 13px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+    
+    .welcome-section {
+        padding: 25px 15px;
+    }
+    
+    .form {
+        margin: 20px 5px;
+        padding: 20px 15px;
+    }
+    
+    #input {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+    
+    #f2 {
+        font-size: 12px;
+        padding: 10px 20px;
+        width: 100%;
+        margin: 12px 0;
+    }
+    
+    .table-container {
+        max-height: 300px;
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+    
+    table button,
+    table input[type="submit"] {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
+
+/* ===== ANIMAZIONI ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form,
+.table-container,
+.welcome-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Transizioni fluide */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Scrollbar principale */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F0F0F0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #FF4500, #DC143C);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #E63E00, #B91C1C);
+}

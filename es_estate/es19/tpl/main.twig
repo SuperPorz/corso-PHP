@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        {% if tema == 'gommista' %}
+            <link rel="stylesheet" href="css/gommista.css">
+        {% elseif tema == 'centro_medico' %}
+            <link rel="stylesheet" href="css/centro_medico.css">
+        {% elseif tema == 'psicologo' %}
+            <link rel="stylesheet" href="css/psicologo.css">
+        {% else %}
+            <link rel="stylesheet" href="css/centro_estetico.css">
+        {% endif %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <hr>
+            <nav>
+                {% block header %}{% endblock %}
+                {% include "blocks/select.tema.twig" %}
+            </nav>
+            <hr>
+        </header>
+        <main>
+            {% block main %}{% endblock %}
+            {% block form_registra %}{% endblock %}
+            {% block form_disponibilita %}{% endblock %}
+            {% block risultati %}{% endblock %}
+        </main>
+        <footer>
+            <a href="index.php" id="link">HOMEPAGE</a>
+        </footer>
+    </body>
+</html>

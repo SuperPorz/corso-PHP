@@ -1,0 +1,280 @@
+/* ===== IMPORT FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@500;700&display=swap');
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #1A1A2E;
+    color: #EAEAEA;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    /* Background immagine psicologo */
+    background-image: url('../img/psicologo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Overlay per leggibilità */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(10, 10, 20, 0.75);
+    z-index: -1;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: rgba(30, 30, 50, 0.85);
+    border-bottom: 2px solid #6C63FF;
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.6);
+    backdrop-filter: blur(12px);
+}
+
+header hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FF00FF, #6C63FF, #00FFE0, transparent);
+}
+
+/* ===== NAV ===== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 35px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.nav-button {
+    color: #EAEAEA;
+    text-decoration: none;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-button::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #FF00FF, #00FFE0);
+    box-shadow: 0 0 6px #00FFE0, 0 0 12px #FF00FF;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.nav-button:hover {
+    color: #00FFE0;
+    text-shadow: 0 0 5px #00FFE0, 0 0 10px #6C63FF;
+}
+
+.nav-button:hover::after {
+    width: 100%;
+}
+
+/* ===== MAIN ===== */
+main {
+    flex: 1;
+    padding: 40px 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-shadow: 0 0 8px #6C63FF, 0 0 16px #FF00FF;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+h2 {
+    font-size: 1.6rem;
+    color: #B3A7FF;
+}
+
+/* ===== FORM ===== */
+.form {
+    background: rgba(40, 40, 60, 0.85);
+    border: 1px solid #6C63FF;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 550px;
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #EAEAEA;
+    letter-spacing: 1px;
+}
+
+#input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    background: #2A2A40;
+    border: 1px solid #6C63FF;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+#input:focus {
+    outline: none;
+    border-color: #FF00FF;
+    box-shadow: 0 0 10px #FF00FF, 0 0 15px #6C63FF;
+}
+
+/* Pulsanti */
+#f1 {
+    margin-top: 18px;
+    background: linear-gradient(135deg, #6C63FF, #FF00FF);
+    color: #FFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 10px #6C63FF, 0 0 20px #FF00FF;
+    transition: all 0.3s ease;
+}
+
+#f1:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #00FFE0, #6C63FF);
+    box-shadow: 0 0 12px #00FFE0, 0 0 25px #6C63FF;
+}
+
+/* ===== SELETTORE TEMA ===== */
+#TEMA {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+}
+
+#TEMA select {
+    height: 38px;
+    min-width: 170px;
+    border: 1px solid #6C63FF;
+    border-radius: 6px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #EAEAEA;
+    background-color: #2A2A40;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.3s ease;
+    
+    /* Icona custom per la freccia */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236C63FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 38px;
+    box-shadow: 0 0 6px rgba(108, 99, 255, 0.5);
+}
+
+#TEMA select:focus {
+    outline: none;
+    border-color: #FF00FF;
+    box-shadow: 0 0 8px #FF00FF, 0 0 12px #6C63FF;
+}
+
+/* ===== TABELLE ===== */
+.table-container {
+    margin: 30px auto;
+    background: rgba(30, 30, 50, 0.85);
+    border: 1px solid #6C63FF;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+}
+
+.table-title {
+    background: linear-gradient(90deg, #6C63FF, #FF00FF);
+    color: #FFF;
+    font-family: "Orbitron", sans-serif;
+    text-shadow: 0 0 5px #FFF;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+/* Celle */
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tr:hover td {
+    background: rgba(255, 0, 255, 0.1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: rgba(20, 20, 35, 0.9);
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid #6C63FF;
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.6);
+}
+
+footer #link {
+    color: #FFF;
+    padding: 10px 20px;
+    border: 1px solid #6C63FF;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer #link:hover {
+    background: #6C63FF;
+    color: #FFF;
+    box-shadow: 0 0 10px #6C63FF, 0 0 20px #FF00FF;
+}
+
+/* ===== ANIMAZIONI ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.form, .table-container, .welcome-section {
+    animation: fadeIn 0.6s ease-out;
+}

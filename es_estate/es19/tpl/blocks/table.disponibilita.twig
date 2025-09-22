@@ -1,0 +1,40 @@
+{# blocks/table.disponibilita.twig #}
+<div class="table-container">
+    {% if disponibilita_libere is not empty %}
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="6" class="table-title">PRENOTAZIONI DISPONIBILI</th>
+                </tr>
+                <tr>
+                    <th>ID Prenotazione</th>
+                    <th>Gestore</th>
+                    <th>Data</th>
+                    <th>Ora</th>
+                    <th>Stato</th>
+                    <th>Azione #1</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for slot in disponibilita_libere %}
+                    <tr>
+                        <td>{{ slot.idp }}</td>
+                        <td>{{ slot.gestore_nome }}</td>
+                        <td>{{ slot.data }}</td>
+                        <td>{{ slot.ora }}</td>
+                        <td>Disponibile</td>
+                        <td>
+                            <form method="post" style="display:inline">
+                                <input type="hidden" name="azione" value="elimina">
+                                <input type="hidden" name="idp" value="{{ slot.idp }}">
+                                <button type="submit">Elimina disponibilità</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nessuna disponibilità libera al momento.</p>
+    {% endif %}
+</div>

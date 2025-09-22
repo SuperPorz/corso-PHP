@@ -1,0 +1,26 @@
+{% extends "main.twig" %}
+
+{% block head %}
+    <title>Pagina Gestori</title>
+{% endblock %}
+
+{% block header %}
+    {% include "blocks/nav.twig" %}
+{% endblock %}
+
+{% block main %}
+    <h1>GESTORI</h1>
+{% endblock %}
+
+{% block form_registra %}
+    {% include "blocks/form.registra.twig" %}
+{% endblock %}
+
+{% block form_disponibilita %}
+    {% include "blocks/form.gestori.disponibilita.twig" %}
+{% endblock %}
+
+{% block risultati %}
+    {% include "blocks/table.gestori.twig" %}
+    {% include "blocks/table.disponibilita.twig" with {'disponibilita_libere': disponibilita_gestori} %}
+{% endblock %}
