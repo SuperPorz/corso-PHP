@@ -21,12 +21,13 @@ body {
 
 /* ===== STILE PER HR ===== */
 hr {
+    border: none;
     height: 4px;
-    background-color: #ddd;
+    background-color: #34495e;
     margin: 15px 0;
     width: 90%;
     max-width: 800px;
-    color: #34495e;
+    border-radius: 2px;
 }
 
 /* ===== TIPOGRAFIA ===== */
