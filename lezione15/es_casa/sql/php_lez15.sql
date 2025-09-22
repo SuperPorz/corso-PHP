@@ -27,7 +27,7 @@ CREATE TABLE auto (
 CREATE TABLE parcheggio (
     idp INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    tariffa FLOAT NOT NULL
+    tariffa DECIMAL(5,2) NOT NULL
 );
 
 -- tabella many-to-many
@@ -37,7 +37,7 @@ CREATE TABLE sosta (
     idp INT NOT NULL,
     inizio_sosta DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     fine_sosta DATETIME NULL,
-    costo_sosta FLOAT DEFAULT 0,
+    costo_sosta DECIMAL(8,2) DEFAULT 0,
     FOREIGN KEY (ida) REFERENCES auto(ida) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (idp) REFERENCES parcheggio(idp) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -46,7 +46,7 @@ CREATE TABLE sosta (
 DELIMITER $$
 
 -- Elimina il trigger esistente se c'è
-DROP TRIGGER IF EXISTS calcola_costo_sosta;
+-- DROP TRIGGER IF EXISTS calcola_costo_sosta;
 
 CREATE TRIGGER calcola_costo_sosta
 BEFORE INSERT ON sosta
@@ -96,12 +96,12 @@ BEGIN
 
     -- Inserimento parcheggi
     INSERT INTO parcheggio (nome, tariffa) VALUES
-    ('Centrale', 2.50),
-    ('Stazione', 3.00),
-    ('Ospedale', 1.80),
+    ('Centrale', 2.81),
+    ('Stazione', 3.26),
+    ('Ospedale', 1.833),
     ('Università', 1.50),
-    ('Stadio', 4.00),
-    ('Centro Commerciale', 2.00),
+    ('Stadio', 4.16),
+    ('Centro Commerciale', 2.23),
     ('Aeroporto', 5.00);
 
     -- Inserimento soste (10 chiuse, 5 aperte)

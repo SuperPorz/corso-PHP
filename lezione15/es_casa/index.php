@@ -56,7 +56,7 @@
 
     // aggiungi parcheggio
     if (isset($_POST['azione']) && $_POST['azione'] == 'registra-parcheggio') {
-        $parcheggio = new mParcheggio($_POST['nome'], intval($_POST['tariffa']));
+        $parcheggio = new mParcheggio($_POST['nome'], floatval($_POST['tariffa']));
         $cParcheggio->aggiungi_parcheggio($parcheggio);
     }
 

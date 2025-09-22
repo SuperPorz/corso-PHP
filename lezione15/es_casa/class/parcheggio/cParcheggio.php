@@ -11,7 +11,7 @@
 
         public function aggiungi_parcheggio(mParcheggio $parcheggio) {
             $array = [];
-            $array['targa'] = $parcheggio->nome;
+            $array['nome'] = $parcheggio->nome;
             $array['tariffa'] = $parcheggio->tariffa;
             $this->tab_parcheggio->save($array);
             return true;
