@@ -184,7 +184,19 @@ psicologo).
 
 ## esercizio 20
 
-Scrivere un programma che consenta di gestire una piccola biblioteca. Per ogni libro salvare titolo, autore, genere, classificazione Dewey e collocazione.
+Scrivere un programma che consenta di gestire una piccola biblioteca. 
+
+Per ogni libro salvare:
+
+* titolo,
+* autore,
+* genere,
+* classificazione Dewey
+* collocazione.
+
+
+
+Inoltre:
 
  - Creare un modulo di ricerca nel quale sia possibile trovare un libro in base ai dati inseriti.
 
