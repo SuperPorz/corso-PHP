@@ -1,0 +1,7 @@
+PRIMO CONCETTO LARAVEL: COPPIA ROUTE + VIEW
+
+esercizio:
+creare una pagina con elenco di persone, cliccabili, ogni link deve condurre alla biografia della persona
+
+esercizio:
+predisporre una pagina con form che chieda in input 2 numeri, e mandi l'utente ad una pagina di risultato
