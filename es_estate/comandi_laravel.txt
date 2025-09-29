@@ -1,0 +1,19 @@
+INSTALLAZIONE (in una cartella contenitore di progetti):
+composer global require laravel/installer
+
+
+CREAZIONE NUOVO PROGETTO:
+laravel new example-app
+
+
+EXSTENSIONS UTILI:
+- Thunder Client (per simulare GET/POST senza uscire da VSCODE)
+- Laravel Blade Snippet (per avere alcune funzionalità su file .blade.php)
+
+
+CREAZIONE NUOVO CONTROLLER:
+php artisan make:controller 'nome-controller'
+
+
+COMANDO MIGRAZIONE DATABASE (dopo aver modificato .env):
+php artisan migrate
