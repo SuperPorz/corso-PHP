@@ -13,20 +13,27 @@ return new class extends Migration
     {
         Schema::create('prestito', function (Blueprint $table) {
             $table->id('idp');
-            $table->foreignId('libro_idl');
-            $table->foreignId('users_idu');
             $table->datetime('inizio_prestito');
-            $table->datetime('scadenza')->stored()
-                ->virtualAs(DB::raw("DATE_ADD(inizio_prestito, INTERVAL 30 DAY)"));
+            $table->datetime('scadenza')->storedAs(DB::raw("DATE_ADD(inizio_prestito, INTERVAL 30 DAY)"));
             $table->datetime('fine_prestito')->nullable();
-        });
 
-        DB::statement("
-            CREATE VIEW prestiti_ritardo AS
-            SELECT * 
-            FROM prestito
-            WHERE DATEDIFF(CURDATE(), scadenza) > 0;
-        ");
+            // Aggiungi le colonne per le foreign keys
+            $table->unsignedBigInteger('idl');
+            $table->unsignedBigInteger('idu');
+
+            // Foreign keys corrette:
+            $table->foreign('idl')
+                ->references('idl')  // riferimento alla PK di 'libro'
+                ->on('libro')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+                
+            $table->foreign('idu')
+                ->references('idu')  // riferimento alla PK di 'users'
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
     }
 
     /**
@@ -35,6 +42,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('prestito');
-        DB::statement("DROP VIEW IF EXISTS prestiti_scaduti");
     }
 };
