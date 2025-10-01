@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LettoriController;
-use App\Http\Controllers\PrestitoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,7 +11,7 @@ Route::get('/', function () {
         'pageTitle' => 'Homepage',
         'metaTitle' => 'Homepage dell\'App'
     ]);
-});
+})->name('homepage');
 
 // ADMIN ROUTES
 Route::get('/admin', function () {
@@ -20,8 +19,8 @@ Route::get('/admin', function () {
         'pageTitle' => 'Admin',
         'metaTitle' => 'Accesso Admin'
     ]);
-});
-Route::post('/admin', [AdminController::class, 'inserisci_libro']);
+})->name('admin');
+Route::post('/admin', [AdminController::class, 'inserisci_libro'])->name('admin-post');
 
 
 // CLIENTS ROUTES
@@ -30,4 +29,6 @@ Route::get('/lettori', function () {
         'pageTitle' => 'Lettori',
         'metaTitle' => 'Sezione Lettori'
     ]);
-});
+})->name('lettori');
+Route::post('/lettori', [LettoriController::class, 'cerca_libro'])->name('lettori-cerca');
+Route::post('/lettori/prenotazione', [LettoriController::class, 'prenota_libro'])->name('lettori-prenota');
