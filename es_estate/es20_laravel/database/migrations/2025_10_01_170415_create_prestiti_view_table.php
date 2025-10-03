@@ -16,7 +16,7 @@ return new class extends Migration
         DB::statement("
             CREATE OR REPLACE VIEW prestiti_scaduti AS
             SELECT * 
-            FROM prestito
+            FROM prestiti
             WHERE scadenza < CURDATE();
         ");
     }

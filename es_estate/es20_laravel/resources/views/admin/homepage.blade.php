@@ -5,7 +5,8 @@
     <h3>Inserisci nuovo libro</h3>
     @include('blocks.form-libro')
     <hr>
-    {{-- importare blocco tabella per i libri --}}
+    <h3>Collezione biblioteca:</h3>
+    @include('blocks.table-libri')
 @endsection
 
 @php

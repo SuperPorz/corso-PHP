@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prestito', function (Blueprint $table) {
+        Schema::create('prestiti', function (Blueprint $table) {
             $table->id('idp');
             $table->datetime('inizio_prestito');
             $table->datetime('scadenza')->storedAs(DB::raw("DATE_ADD(inizio_prestito, INTERVAL 30 DAY)"));
@@ -24,7 +24,7 @@ return new class extends Migration
             // Foreign keys corrette:
             $table->foreign('idl')
                 ->references('idl')  // riferimento alla PK di 'libro'
-                ->on('libro')
+                ->on('libri')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
                 
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prestito');
+        Schema::dropIfExists('prestiti');
     }
 };
