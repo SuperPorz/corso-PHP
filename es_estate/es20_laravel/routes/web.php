@@ -11,75 +11,23 @@ Route::get('/', function () {
     return view('welcome', [
         'pageTitle' => 'Homepage',
         'metaTitle' => 'Homepage dell\'App'
-    ]);
-})->name('welcome');
+    ]);})->name('welcome');
 
 // ADMIN ROUTES
-Route::get('admin', function () {
-    return view('admin.access', [
-        'pageTitle' => 'Admin',
-        'metaTitle' => 'Accesso Admin',
-        'azione' => 'login',
-        'user_type' => 'admin',
-        'pagina' => 'admin/homepage'
-    ]);
-})->name('admin');
+Route::get('admin', [AdminController::class, 'login'])
+    ->name('adlogin');
 
-Route::get('admin/homepage', function () {
-    $libri = Libri::all();
-    return view('admin.homepage', ['libri' => $libri]);
-})->name('admin-homepage');
+Route::get('admin/homepage', [AdminController::class, 'homepage'])
+    ->name('adhome');
 
-Route::post('admin/homepage', function (Request $request) {
-    $libri = Libri::all();
-    if (isset($request->idl) && $request->azione == 'modifica') {
-        $libro_mod = Libri::find($request->idl);
-    }
-    else {
-        $libro_mod = [];
-    }
-    return view('admin.homepage', [
-        'libri' => $libri,
-        'libro_mod' => $libro_mod
-    ]);
-});
+Route::post('admin/homepage', [AdminController::class, 'edit_libro'])
+    ->name('edit-libro');
 
-Route::post('admin/insert', function (Request $request) {
-    $request->validate([
-        'titolo' => 'required|string|max:255',
-        'autore' => 'required|string|max:255',
-        'genere' => 'required|string|max:255',
-        'dewey' => 'required|string|max:10',
-        'collocazione' => 'required|string|max:50'
-    ]);
-    
-    // Se c'è idl -> modifica, altrimenti inserimento
-    if ($request->has('idl') && $request->idl) {
-        $request->validate(['idl' => 'required|integer']);
-        
-        $libro = Libri::findOrFail($request->idl);
-        $libro->update($request->all());
-        
-        return redirect()->route('admin-homepage')
-            ->with('success', 'Libro modificato con successo!');
-    } else {
-        // Inserimento nuovo libro
-        Libri::create($request->all());
-        
-        return redirect()->route('admin-homepage')
-            ->with('success', 'Libro inserito con successo!');
-    }
-});
+Route::post('admin/insert', [AdminController::class, 'insert_libro'])
+    ->name('insert-libro');
 
-Route::post('admin/delete', function (Request $request) {
-    $request->validate([
-        'idl' => 'required|integer'
-    ]);
-    Libri::destroy($request->all());
-    return redirect()->route('admin-homepage')
-        ->with('success', 'Libro eliminato con successo!');
-});
-
+Route::post('admin/delete', [AdminController::class, 'delete_libro'])
+    ->name('delete-libro');
 
 
 

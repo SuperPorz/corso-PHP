@@ -30,3 +30,7 @@ php artisan make:controller 'nome-controller'
 
 COMANDO MIGRAZIONE DATABASE (dopo aver modificato .env):
 php artisan migrate
+
+
+CREAZIONE NUOVA TABELLA DB (MIGRATION)
+php artisan make:migration create_<nome tabella>_table
