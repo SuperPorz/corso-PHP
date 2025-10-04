@@ -21,7 +21,7 @@
                 <td>{{ $libro['dewey'] }}</td>
                 <td>{{ $libro['collocazione'] }}</td>
                 <td>
-                    <form action="" method="POST">
+                    <form action="{{ url('/admin/edit') }}" method="POST">
                         @csrf
                         <input type="hidden" name="azione" value="modifica">
                         <input type="hidden" name="idl" value="{{ $libro['idl'] }}">

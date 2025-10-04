@@ -1,7 +1,7 @@
-@if (!isset($pagina))
+@if (!isset($pagina) || $pagina == 'admin/homepage')
     <form action="{{ url('/admin/insert') }}" method="POST">
 @elseif ($pagina == 'modifica')
-    <form action="{{ url('/admin/homepage') }}" method="POST">
+    <form action="{{ url('/admin/edit') }}" method="POST">
 @endif
         @csrf
         <input type="hidden" name="idl" @if (!empty($libro_mod)) value="{{ $libro_mod['idl'] }}"@endif required>

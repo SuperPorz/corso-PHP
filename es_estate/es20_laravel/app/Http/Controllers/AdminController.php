@@ -3,26 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Libri;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function login() {
         return view('admin.access', [
-            'pageTitle' => 'Admin',
-            'metaTitle' => 'Accesso Admin',
             'azione' => 'login',
             'user_type' => 'admin',
-            'pagina' => 'admin/homepage'
+            'pagina' => 'admin/homepage' //serve per url dell'action FORM
         ]);
     }
 
     public function homepage() {
         $libri = Libri::all();
-        return view('admin.homepage', ['libri' => $libri]);
+        $users = User::all();
+        //$prestiti = Prestiti::all();
+        //$prestiti_scaduti = Prestiti::scaduti();
+        return view('admin.homepage', [
+            'libri' => $libri,
+            'users' => $users,
+            //'prestiti' => $prestiti,
+            //'prestiti_scaduti' => $prestiti_scaduti,
+            'pagina' => 'admin/homepage'
+        ]);
     }
 
-    public function edit_libro(Request $request) {
+    public function dati_libro(Request $request) {
         $libri = Libri::all();
         if (isset($request->idl) && $request->azione == 'modifica') {
             $libro_mod = Libri::find($request->idl);
@@ -30,7 +38,7 @@ class AdminController extends Controller
         else {
             $libro_mod = [];
         }
-        return view('admin.homepage', [
+        return view('admin.edit', [
             'libri' => $libri,
             'libro_mod' => $libro_mod
         ]);

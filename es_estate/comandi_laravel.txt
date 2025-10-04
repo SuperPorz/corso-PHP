@@ -34,3 +34,29 @@ php artisan migrate
 
 CREAZIONE NUOVA TABELLA DB (MIGRATION)
 php artisan make:migration create_<nome tabella>_table
+
+
+CREAZIONE FACTORY
+php artisan make:factory <nome-factory>Factory --model=<nome model>
+
+
+CREAZIONE SEEDER
+php artisan make:seeder <nome>Seeder
+
+
+POPOLAMENTO DB CON SEEDER DEFAULT (DatabaseSeeder.php)
+php artisan db:seed
+
+
+POPOLAMENTO CON SEEDER CUSTOMIZZATO
+php artisan db:seed --class=<nomeSeeder>
+
+
+
+
+
+
+
+
+
+
