@@ -8,7 +8,6 @@
             <td>Is Admin</td>
             <td>Azione #1</td>
             <td>Azione #2</td>
-            <td>Azione #3</td>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +19,7 @@
                 <td>{{ $user['email_verified_at'] }}</td>
                 <td>{{ $user['is_admin'] }}</td>
                 <td>
-                    <form action="{{ url('/admin/promote') }}" method="POST">
+                    <form action="{{ url('/admin/promote-user') }}" method="POST">
                         @csrf
                         <input type="hidden" name="azione" value="promuovi">
                         <input type="hidden" name="idu" value="{{ $user['idu'] }}">
@@ -28,15 +27,7 @@
                     </form>                    
                 </td>
                 <td>
-                    <form action="{{ url('/admin/edit') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="azione" value="modifica">
-                        <input type="hidden" name="idu" value="{{ $user['idu'] }}">
-                        <input class="button" type="submit" value="MODIFICA">
-                    </form>                    
-                </td>
-                <td>
-                    <form action="{{ url('/admin/delete') }}" method="POST">
+                    <form action="{{ url('/admin/delete-user') }}" method="POST">
                         @csrf
                         <input type="hidden" name="azione" value="elimina">
                         <input type="hidden" name="idu" value="{{ $user['idu'] }}">

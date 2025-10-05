@@ -1,4 +1,4 @@
-@if ($azione == 'login' && ($user_type == 'admin' || $user_type == 'lettori'))
+@if ($azione == 'login' && ($user_type == 'admin' || $user_type == 'users'))
     <form action="{{ url("/{$pagina}") }}" method="POST">
         @csrf
         <label for="name">Name</label>

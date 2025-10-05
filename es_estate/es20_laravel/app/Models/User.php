@@ -37,6 +37,10 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $primaryKey = 'idu'; // Specifica la chiave primaria
+    public $incrementing = true; // Se è auto-increment
+    protected $keyType = 'int'; // Tipo della chiave
+
     /**
      * The attributes that are mass assignable.
      *

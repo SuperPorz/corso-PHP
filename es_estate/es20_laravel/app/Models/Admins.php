@@ -3,18 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
 
 class Admins extends Model
 {
-    public function give_admin_rights($idu) {
-        $user = User::findOrFail($idu);
-        if ($user) {
-            $user->is_admin = true;
-            echo 'Utente promosso Admin!';
-        }
-        else {
-            echo 'Utente non presente nel Database';
-        }
+    public static function give_admin($idu) {
+        $user = User::find($idu);
+        $user->is_admin = true;
+        $user->save();
+    }
+
+    public static function delete_user($idu) {
+        User::destroy($idu);
     }
 }
+
+
+/* public static function delete_user($idu) {
+        $user = User::find($idu);
+        $user->delete();
+    } */

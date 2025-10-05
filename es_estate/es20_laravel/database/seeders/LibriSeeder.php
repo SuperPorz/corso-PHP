@@ -13,6 +13,6 @@ class LibriSeeder extends Seeder
      */
     public function run(): void
     {
-        Libri::factory()->count(10)->create();
+        Libri::factory()->count(25)->create();
     }
 }

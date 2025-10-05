@@ -8,7 +8,9 @@
             <td>Dewey</td>
             <td>Collocazione</td>
             <td>Azione #1</td>
-            <td>Azione #2</td>
+            @if ($pagina == 'admin/homepage')
+                <td>Azione #2</td>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -20,22 +22,33 @@
                 <td>{{ $libro['genere'] }}</td>
                 <td>{{ $libro['dewey'] }}</td>
                 <td>{{ $libro['collocazione'] }}</td>
-                <td>
-                    <form action="{{ url('/admin/edit') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="azione" value="modifica">
-                        <input type="hidden" name="idl" value="{{ $libro['idl'] }}">
-                        <input class="button" type="submit" value="MODIFICA">
-                    </form>                    
-                </td>
-                <td>
-                    <form action="{{ url('/admin/delete') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="azione" value="elimina">
-                        <input type="hidden" name="idl" value="{{ $libro['idl'] }}">
-                        <input class="button" type="submit" value="ELIMINA">
-                    </form>                    
-                </td>                
+                @if ($pagina == 'admin/homepage')
+                    <td>
+                        <form action="{{ url('/admin/edit-book') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="azione" value="modifica">
+                            <input type="hidden" name="idl" value="{{ $libro['idl'] }}">
+                            <input class="button" type="submit" value="MODIFICA">
+                        </form>                    
+                    </td>
+                    <td>
+                        <form action="{{ url('/admin/delete-book') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="azione" value="elimina">
+                            <input type="hidden" name="idl" value="{{ $libro['idl'] }}">
+                            <input class="button" type="submit" value="ELIMINA">
+                        </form>                    
+                    </td>
+                @else
+                    <td>
+                        <form action="{{ url('/users/loan') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="azione" value="prenota">
+                            <input type="hidden" name="idl" value="{{ $libro['idl'] }}">
+                            <input class="button" type="submit" value="PRENOTA">
+                        </form>                    
+                    </td>
+                @endif
             </tr>            
         @endforeach
     </tbody>

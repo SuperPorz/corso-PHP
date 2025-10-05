@@ -12,8 +12,10 @@
         <h3>Utenti registrati:</h3>
         @include('blocks.table-users')
         <hr>
+        <h3>Tutti i prestiti:</h3>
+        @include('blocks.table-prestiti') 
         <h3>Prestiti scaduti:</h3>
-        {{-- blocco per caricare i prestiti scaduti --}}
+        @include('blocks.table-prestiti-scaduti')
     @endif
 @endsection
 

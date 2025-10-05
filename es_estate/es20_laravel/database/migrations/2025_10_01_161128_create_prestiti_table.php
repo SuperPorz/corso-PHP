@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('prestiti', function (Blueprint $table) {
             $table->id('idp');
-            $table->datetime('inizio_prestito');
-            $table->datetime('scadenza')->storedAs(DB::raw("DATE_ADD(inizio_prestito, INTERVAL 30 DAY)"));
-            $table->datetime('fine_prestito')->nullable();
+            $table->unsignedBigInteger('idl'); //FK
+            $table->unsignedBigInteger('idu'); //FK
+            $table->date('inizio_prestito');
+            $table->date('scadenza')->storedAs(DB::raw("DATE_ADD(inizio_prestito, INTERVAL 30 DAY)"));
+            $table->date('fine_prestito')->nullable();
 
-            // Aggiungi le colonne per le foreign keys
-            $table->unsignedBigInteger('idl');
-            $table->unsignedBigInteger('idu');
-
-            // Foreign keys corrette:
+            // Foreign keys:
             $table->foreign('idl')
                 ->references('idl')  // riferimento alla PK di 'libro'
                 ->on('libri')

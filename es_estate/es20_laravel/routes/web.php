@@ -1,88 +1,56 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LettoriController;
-use App\Models\Libri; // model da togliere se possibile
-use App\Models\User; // model da togliere se possibile
-use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LibriController;
+use App\Http\Controllers\PrestitiController;
+use App\Http\Controllers\UsersController;
 
-// HOMEPAGE
+// HOMEPAGE APP
 Route::get('/', function () {return view('welcome');})->name('welcome');
 
-// CREATION ROUTES (FACTORIES)
-//users & admins
-Route::get('/create-users',function(){ 
-    Artisan::call('db:seed', ['--class' => 'UserSeeder']);
-    return view('welcome', ['data' => 'Utenti creati!']);
+// CREATION ROUTES (popola DB con fatories & seeders)
+Route::get('/populate',function(){ 
+    Artisan::call('db:seed', ['--class' => 'DatabaseSeeder']);
+    return view('welcome', ['data' => 'Database popolato!']);
 });
-
-//libri (25 libri)
-Route::get('/create-books',function(){ 
-    Artisan::call('db:seed', ['--class' => 'LibriSeeder']);
-    return view('welcome', ['data' => 'Libri creati!']);
-});
-//prestiti (ancora da creare)
 
 // ADMIN ROUTES
-//get
-Route::get('admin', [AdminController::class, 'login'])
-    ->name('adlogin');
+//login admins
+Route::get('admin', [AdminController::class, 'login'])->name('adlogin');
 
-Route::get('admin/homepage', [AdminController::class, 'homepage'])
-    ->name('adhome');
-
-//post
+//homepage admins
+Route::get('admin/homepage', [AdminController::class, 'homepage'])->name('adhome');
 Route::post('admin/homepage', [AdminController::class, 'homepage']);
 
-Route::post('admin/edit', [AdminController::class, 'dati_libro'])
-    ->name('insert-libro');
+//post-libro
+Route::post('admin/edit-book', [LibriController::class, 'dati_libro']);
+Route::post('admin/insert-book', [LibriController::class, 'insert_libro']);
+Route::post('admin/delete-book', [LibriController::class, 'delete_libro']);
 
-Route::post('admin/insert', [AdminController::class, 'insert_libro'])
-    ->name('insert-libro');
+//post-users
+Route::post('admin/promote-user', [UsersController::class, 'promote_user']);
+Route::post('admin/delete-user', [UsersController::class, 'delete_user']);
 
-Route::post('admin/delete', [AdminController::class, 'delete_libro'])
-    ->name('delete-libro');
-
-Route::post('admin/delete', [AdminController::class, 'delete_user'])
-    ->name('delete-user');//SISTEMARE ROTTE
-
-
-
-// CLIENTS ROUTES
-Route::prefix('lettori')->group(function () {
-
-    // Rotta pubblica di accesso
-    Route::get('/lettori', function () {
-        $libri = Libri::all();
-        return view('lettori.login', [
-            'pageTitle' => 'Lettori',
-            'metaTitle' => 'Sezione Lettori',
-            'libri' => $libri
-        ]);
-    })->name('lettori');
-
-    // Rotte protette
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/homepage', function () {
-            return view('lettori.homepage')->name('lettori-homepage');
-        });
-        
-        Route::post('/cerca', function () {
-            //codice di riferimento al controller per cercare libri
-            return view('lettori.homepage')->name('lettori-cerca');
-        });
-
-        Route::post('/prestito', function () {
-            //Libro::findOrFail();
-            //codice di riferimento al controller per il prestito
-            return view('lettori.homepage')->name('lettori-prestito');
-        });
-    });
-
-});
+//post-prestiti
+Route::post('admin/delete-loan', [PrestitiController::class, 'delete_loan']);
+Route::post('admin/send-insult', [PrestitiController::class, 'send_insult']);
 
 
-Route::post('/lettori/cerca', [LettoriController::class, 'cerca_libro'])->name('lettori-cerca');
-Route::post('/lettori/prenotazione', [LettoriController::class, 'prenota_libro'])->name('lettori-prenota');
+// USERS ROUTES
+//login
+Route::get('users', [UsersController::class, 'login_page'])->name('uslogin');
+
+//registrazione
+Route::get('users/register', [UsersController::class, 'register_page'])->name('usreg');
+Route::post('users/register', [UsersController::class, 'register']);
+
+//homepage users
+Route::get('users/homepage', [UsersController::class, 'homepage'])->name('ushome');
+
+//cerca libro
+Route::post('users/search', [LibriController::class, 'find_book']);
+
+//prenota libro
+Route::post('users/loan', [PrestitiController::class, 'book_loan']);

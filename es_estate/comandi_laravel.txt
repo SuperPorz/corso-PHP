@@ -50,6 +50,7 @@ php artisan db:seed
 
 POPOLAMENTO CON SEEDER CUSTOMIZZATO
 php artisan db:seed --class=<nomeSeeder>
+esempio: php artisan db:seed --class=LibriSeeder
 
 
 
