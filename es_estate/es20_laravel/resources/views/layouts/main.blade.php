@@ -6,6 +6,10 @@
             @include('blocks.nav')
         </header>
         <main>
+            @include('blocks.success')
+            @include('blocks.errors')
+
+            {{-- MAIN CONTENT --}}
             <div>
                 @yield('content')
             </div>

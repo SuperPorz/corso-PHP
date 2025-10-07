@@ -5,61 +5,89 @@ namespace App\Http\Controllers;
 use App\Models\Libri;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    // FUNZIONI PER ROTTE CHE AMMINISTRANO GLI USERS
-    public function promote_user(Request $request) {
-        Admins::give_admin($request->idu);
-        return redirect()->route('adhome')
-            ->with('success', 'Utente promosso con successo!');
-    }
 
-    public function delete_user(Request $request) {
-        Admins::delete_user($request->idu);
-        return redirect()->route('adhome')
-            ->with('success', 'Utente eliminato con successo!');
-    }
-
-    // FUNZIONI PER ROTTE PUBBLICHE (users)
+    // CARICAMENTO PAGINE
     public function login_page() {
         return view('users.login', [
+            'metaTitle' => 'Accesso Users',
+            'pageTitle' => 'Users',
+            'h1' => 'LOGIN UTENTI',
+            'h3' => 'Accedi all\'area riservata utenti/admin:',
             'azione' => 'login',
-            'user_type' => 'users',
-            'pagina' => 'users/homepage'
+            'pagina' => 'users/login'
         ]);
     }
 
     public function register_page() {
         return view('users.register', [
             'azione' => 'registra',
-            'user_type' => 'users',
+            'type' => 'users',
             'pagina' => 'users/register'
         ]);
     }
 
-    public function homepage() {
+    public function user_homepage() {
         return view('users.homepage', [
             'libri' => Libri::all(),
             'azione' => 'cerca',
-            'user_type' => 'users',
+            'type' => 'users',
             'pagina' => 'users/search'
         ]);
     }
 
+    // REGISTRAZIONE/LOGIN/LOGUT
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ]);
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        Auth::login($user);
         return redirect('users')->with('success', 'Utente registrato!');
+    }
+
+    public function login(Request $request) {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            // Verifica se l'utente è admin
+            if (Auth::user()->is_admin) {
+                return redirect()->route('adhome')
+                    ->with('success', 'Benvenuto Admin!');
+            } else {
+                return redirect()->route('ushome')
+                    ->with('success', 'Login effettuato con successo');
+            }
+        }
+        else {
+            return redirect()->route('login')->withErrors('Credenziali errate!');
+
+            /* return redirect()->route('login')->withErrors
+            (['email' => 'Credenziali errate!'])->onlyInput('email'); */
+        }
+    }
+
+
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login')
+            ->with('success', 'Logout effettuato con successo');
     }
 }

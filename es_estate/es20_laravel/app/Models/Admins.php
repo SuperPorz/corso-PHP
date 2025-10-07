@@ -17,9 +17,3 @@ class Admins extends Model
         User::destroy($idu);
     }
 }
-
-
-/* public static function delete_user($idu) {
-        $user = User::find($idu);
-        $user->delete();
-    } */
