@@ -20,4 +20,12 @@ class Libri extends Model
         'dewey',
         'collocazione',
     ];
+
+    // Verifica se il libro è disponibile (non in prestito)
+    public function isDisponibile()
+    {
+        return !Prestiti::where('idl', $this->idl)
+            ->whereNull('fine_prestito')
+            ->exists();
+    }
 }

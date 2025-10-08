@@ -86,4 +86,12 @@ class LibriController extends Controller
             'pagina' => 'user/homepage'
         ]);
     }
+
+    public static function libri_per_genere() {
+        return Libri::orderBy('genere', 'asc')->get();
+    }
+
+    public static function libri_per_autore() {
+        return Libri::orderBy('autore', 'asc')->get();
+    }
 }

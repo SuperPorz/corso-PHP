@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Libri;
+use App\Models\Prestiti;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +33,9 @@ class UsersController extends Controller
 
     public function user_homepage() {
         return view('users.homepage', [
-            'libri' => Libri::all(),
+            'libri_user' => Prestiti::user_books(),
+            'libri_genere' => LibriController::libri_per_genere(),
+            'libri_autore' => LibriController::libri_per_autore(),
             'azione' => 'cerca',
             'type' => 'users',
             'pagina' => 'users/search'
@@ -54,7 +56,7 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
-        return redirect('users')->with('success', 'Utente registrato!');
+        return redirect()->route('login')->with('success', 'Utente registrato!');
     }
 
     public function login(Request $request) {
@@ -76,9 +78,6 @@ class UsersController extends Controller
         }
         else {
             return redirect()->route('login')->withErrors('Credenziali errate!');
-
-            /* return redirect()->route('login')->withErrors
-            (['email' => 'Credenziali errate!'])->onlyInput('email'); */
         }
     }
 

@@ -53,6 +53,10 @@ php artisan db:seed --class=<nomeSeeder>
 esempio: php artisan db:seed --class=LibriSeeder
 
 
+FRESH MIGRATE + POPOLAMENTO --> ALL IN ONE:
+php artisan migrate:fresh --seed
+
+
 
 
 

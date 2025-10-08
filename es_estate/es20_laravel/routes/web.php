@@ -57,6 +57,7 @@ Route::prefix('users')->middleware('auth')->group(function () {
     Route::controller(PrestitiController::class)->group(function () {
         //prenota libro
         Route::post('loan', 'book_loan');
+        Route::post('return-book','return_book')->name('return.book');
     });
 });
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('idp');
             $table->unsignedBigInteger('idl'); //FK
             $table->unsignedBigInteger('idu'); //FK
-            $table->date('inizio_prestito');
+            $table->date('inizio_prestito')->default(DB::raw('CURRENT_DATE'));
             $table->date('scadenza')->storedAs(DB::raw("DATE_ADD(inizio_prestito, INTERVAL 30 DAY)"));
             $table->date('fine_prestito')->nullable();
 

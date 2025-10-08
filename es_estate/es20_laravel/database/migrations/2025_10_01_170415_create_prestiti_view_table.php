@@ -15,7 +15,7 @@ return new class extends Migration
         DB::statement('DROP VIEW IF EXISTS tutti_prestiti');
         DB::statement("
             CREATE OR REPLACE VIEW tutti_prestiti AS
-            SELECT p.idp, l.titolo, l.genere, p.idu, u.name, u.email, p.inizio_prestito, p.scadenza, p.fine_prestito
+            SELECT p.idp, l.titolo, l.idl, l.genere, p.idu, u.name, u.email, p.inizio_prestito, p.scadenza, p.fine_prestito
             FROM prestiti p
             JOIN libri l ON l.idl = p.idl
             JOIN users u ON u.idu = p.idu

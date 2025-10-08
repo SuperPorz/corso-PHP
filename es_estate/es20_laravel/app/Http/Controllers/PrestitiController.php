@@ -7,6 +7,7 @@ use App\Models\Libri;
 use App\Models\Prestiti;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class PrestitiController extends Controller
@@ -37,13 +38,34 @@ class PrestitiController extends Controller
     // METODI USERS
     public function book_loan(Request $request) {
         $request->validate([
-            'idl' => 'integer',
-            'idu' => 'integer',
+            'idl' => 'required|integer',
+            'idu' => 'required|integer',
         ]);
+
+        $libro = Libri::findOrFail($request->idl);
+        if (!$libro->isDisponibile()) {
+            return redirect()->route('ushome')
+                ->withErrors('Libro non disponibile: è già in prestito!');
+        }
         Prestiti::create([
             'idl' => $request->idl,
             'idu' => $request->idu,
         ]);
-        return redirect()->route('ushome')->with('Prestito registrato!');
+        
+        return redirect()->route('ushome')
+            ->with('success', 'Prestito registrato!');
+    }
+
+    public function return_book(Request $request) {
+        $request->validate([
+            'idp' => 'required|integer',
+        ]);
+        
+        $prestito = Prestiti::findOrFail($request->idp);
+        $prestito->fine_prestito = now()->toDateString();
+        $prestito->save();
+        
+        return redirect()->route('ushome')
+            ->with('success', 'Prestito terminato con successo!');
     }
 }
