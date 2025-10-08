@@ -8,9 +8,7 @@
             <td>Dewey</td>
             <td>Collocazione</td>
             <td>Azione #1</td>
-            @if ($pagina == 'admin/homepage')
-                <td>Azione #2</td>
-            @endif
+            <td>Azione #2</td>
         </tr>
     </thead>
     <tbody>
@@ -41,29 +39,25 @@
                     </td>
                 @else
                     <td>
-                        @if(isset($mostra_termina) && $mostra_termina)
-                            <form action="{{ url('/users/return-book') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="azione" value="termina">
-                                <input type="hidden" name="idp" value="{{ $libro->idp }}">
-                                <input type="hidden" name="idu" value="{{ Auth::id() }}">
-                                <input type="hidden" name="idl" value="{{ $libro->idl }}">
-                                <input class="button" type="submit" value="TERMINA PRESTITO">
-                            </form>
-                        @else
-                            <form action="{{ url('/users/loan') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="azione" value="prenota">
-                                <input type="hidden" name="idu" value="{{ Auth::id() }}">
-                                <input type="hidden" name="idl" value="{{ $libro->idl }}">
-                                @if(method_exists($libro, 'isDisponibile') && !$libro->isDisponibile())
-                                    <input class="button" type="submit" value="NON DISPONIBILE" disabled>
-                                @else
-                                    <input class="button" type="submit" value="PRENOTA">
-                                @endif
-                            </form>
-                        @endif
+                        <form action="{{ url('/users/loan') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="azione" value="prenota">
+                            <input type="hidden" name="idu" value="{{ Auth::id() }}">
+                            <input type="hidden" name="idl" value="{{ $libro->idl }}">
+                            @if(method_exists($libro, 'isDisponibile') && !$libro->isDisponibile())
+                                <input class="button" type="submit" value="in prestito" disabled>
+                            @else
+                                <input class="button" type="submit" value="PRENOTA">
+                            @endif
+                        </form>
                     </td>
+                    <td>
+                    <form action="" method="GET">
+                        <input type="hidden" name="azione" value="mostra">
+                        <input type="hidden" name="collocazione" value="{{ $libro->collocazione }}">
+                        <input class="button" type="submit" value="Vedi collocazione">
+                    </form>
+                </td>
                 @endif
             </tr>            
         @endforeach

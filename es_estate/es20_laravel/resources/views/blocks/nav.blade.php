@@ -7,4 +7,5 @@
         <li><a href="{{ url('/users/register')}}">Registrati</a></li><br>
         <li><a href="{{ url('/populate')}}">Popola Database (users/libri/prestiti)</a></li>
     </ul>
+    @include('blocks.btn-logout')
 </nav>

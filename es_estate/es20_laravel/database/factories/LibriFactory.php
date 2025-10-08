@@ -19,7 +19,7 @@ class LibriFactory extends Factory
         // Genera collocazione realistica: SCAFFALE.RIPIANO.POSIZIONE
         $scaffale = fake()->randomElement(['A', 'B', 'C', 'D', 'E']);
         $ripiano = fake()->numberBetween(1, 5);
-        $posizione = str_pad(fake()->numberBetween(1, 30), 2, '0', STR_PAD_LEFT);
+        $posizione = str_pad(fake()->numberBetween(1, 6), 2, '0', STR_PAD_LEFT);
         
         // Genera titoli realistici
         $titoloFormats = [

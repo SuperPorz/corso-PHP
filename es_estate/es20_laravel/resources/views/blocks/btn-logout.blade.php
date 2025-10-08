@@ -4,6 +4,6 @@
         @csrf
         <button type="submit">Logout</button>
     </form>
-{{-- @else
-    <a href="{{ route('uslogin') }}">Login</a> --}}
+@else
+    <a href="{{ route('login') }}">Login</a>
 @endauth
