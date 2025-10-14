@@ -2,21 +2,23 @@
 <html lang="it">
     @include('blocks.head', ['pageTitle' => $pageTitle, 'metaTitle' => $metaTitle])
     <body>
-        <div class=".container-fluid">
-            <div class="row">
-                <header>
-                    @include('blocks.nav')
-                </header>
-            </div>
-        </div>
+        <header>
+            @auth
+                @if (Auth::user()->is_admin)
+                    @include('blocks.nav-admin')
+                @else
+                    @include('blocks.nav-user')
+                @endif
+            @else
+                @include('blocks.nav-user')
+            @endauth
+        </header>
         <main>
             @include('blocks.success')
-            @include('blocks.errors')
 
             {{-- MAIN CONTENT --}}
-            <div>
-                @yield('content')
-            </div>
+            @yield('content')
+
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     </body>

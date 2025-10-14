@@ -50,6 +50,7 @@ Route::prefix('users')->middleware('auth')->group(function () {
     // Rotte LibriController
     Route::controller(LibriController::class)->group(function () {
         //cerca libro
+        Route::get('search', 'search_homepage');
         Route::post('search', 'find_book');
     });
 

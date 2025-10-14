@@ -25,6 +25,8 @@ class UsersController extends Controller
 
     public function register_page() {
         return view('users.register', [
+            'h1' => 'REGISTRAZIONE UTENTI',
+            'h3' => 'Registrati per poter usufruire dei servizi bibliotecari',
             'azione' => 'registra',
             'type' => 'users',
             'pagina' => 'users/register'
@@ -81,7 +83,6 @@ class UsersController extends Controller
         }
     }
 
-
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
@@ -89,4 +90,6 @@ class UsersController extends Controller
         return redirect()->route('login')
             ->with('success', 'Logout effettuato con successo');
     }
+
+    // FUNZIONI POST-AUTENTICAZIONE
 }

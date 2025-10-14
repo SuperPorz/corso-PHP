@@ -1,14 +1,26 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>HOMEPAGE</h1>
-    <h3>Benvenuto!!!</h3>
-    @if (isset($data))
-        {{-- {{ print_r($data) }} --}} {{-- esce troppo schifo --}}
-        <div style="background-color: green">
-            <pre style="color: white">Inserimento effettuato!</pre>
+    <div class="container-xxl text-center">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="italianno-regular">Biblioteca La Sapienza di Lorenzoni</h1>
+            </div>
         </div>
-    @endif
+        @if (isset($data))
+            <div class="row" style=" background-color: green">
+                <div class="col-12">
+                    <pre style="color: white">Inserimento effettuato!</pre>
+                </div>
+            </div>
+        @endif
+        @include('blocks.carousel')
+        <div class="row">
+            <div class="col-12">
+                <h1 class="italianno-regular-medium">Welcome...</h1>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @php

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Libri;
+use App\Models\Prestiti;
 use Illuminate\Http\Request;
 
 class LibriController extends Controller
@@ -80,10 +81,9 @@ class LibriController extends Controller
         
         $libri_match = $query->get();
         
-        return view('users.homepage', [
-            'libri' => Libri::all(),
+        return view('users.search', [
             'libri_match' => $libri_match,
-            'pagina' => 'user/homepage'
+            /* 'pagina' => 'user/search' */
         ]);
     }
 
@@ -93,5 +93,17 @@ class LibriController extends Controller
 
     public static function libri_per_autore() {
         return Libri::orderBy('autore', 'asc')->get();
+    }
+
+    // FUNZIONI POST-AUTENTICAZIONE
+    public function search_homepage() {
+        return view('users.search', [
+            'libri_user' => Prestiti::user_books(),
+            'libri_genere' => $this->libri_per_genere(),
+            'libri_autore' => $this->libri_per_autore(),
+            'azione' => 'cerca',
+            'type' => 'users',
+            'pagina' => 'users/search'
+        ]);
     }
 }
