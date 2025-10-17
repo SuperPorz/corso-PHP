@@ -1,35 +1,47 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>HOMEPAGE UTENTI</h1>
-    <h3>Prestiti attivi dell'utente: <mark><i>{{ auth()->user()->name }}</i></mark></h3>
-    @include('blocks.table-libri-utente', ['libri' => $libri_user])
-    <hr>
-    <h3>Libri ordinati per genere (alfabetico):</h3>
-    @include('blocks.table-libri', ['libri' => $libri_genere])
+<div class="container-xxl text-center">
+    <div class="row">
+        <div class="col">
+            <h1 class="italianno-regular">Homepage Utenti</h1>
+            <hr>
+        </div>
+    </div>
 
-    {{-- logica di caricamento immagine collocazione libro --}}
-    @if (isset($_GET['azione']))
-        @php
-            $collocazione = $_GET['collocazione'];
-            // Estrae la prima lettera e la porta in minuscolo
-            $prima_parte = strtolower(substr($collocazione, 0, 1));
-            // Estrae l'ultimo numero rimuovendo gli zeri iniziali
-            $parti = explode('.', $collocazione);
-            $ultimo_numero = ltrim(end($parti), '0');
-            // Costruisce il nome dell'immagine nel formato: letteraxnumero
-            $nome_img = $prima_parte . 'x' . $ultimo_numero;
-        @endphp
-    @else
-        @php
-            $nome_img = 'main';
-        @endphp
-    @endif
-        <img class="img-fluid img-thumbnail" width="700px" src="{{ asset('img/' . $nome_img . '.png') }}">
+    <div class="row">
+        <div class="col col-lg-4"></div>
+        <div class="col col-md-auto text-start">
+            <h2>Profilo Utente Loggato</h2>
+            <h3>ID: <i>{{ auth()->user()->idu }}</i></h3>
+            <h3>Nome: <i>{{ auth()->user()->name }}</i></h3>
+            <h3>Email: <i>{{ auth()->user()->email }}</i></h3>
+        </div>
+        <div class="col col-lg-4"></div>
+    </div>
+</div>
 
-    <hr>
-    <h3>Libri ordinati per autore (alfabetico):</h3>
-    @include('blocks.table-libri', ['libri' => $libri_autore])
+<div class="container-xxl text-center">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2>Seleziona una delle seguenti aree utente:</h2>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col col-lg-4"></div>
+
+        <div class="col col-md-auto text-center">
+            <a class="btn btn-primary" href="{{ route('welcome') }}" role="button">Welcome</a>
+            <a class="btn btn-primary" href="{{ url('/users/search') }}" role="button">Cerca libro</a>
+            <a class="btn btn-primary" href="{{ url('/users/loans') }}" role="button">Prestiti attivi</a>
+            <a class="btn btn-primary" href="{{ url('/users/stored-books') }}" role="button">Elenco libri</a>
+        </div>
+
+        <div class="col col-lg-4"></div>
+    </div>
+</div>
 @endsection
 
 @php

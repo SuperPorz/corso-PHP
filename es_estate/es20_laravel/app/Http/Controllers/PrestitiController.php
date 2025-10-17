@@ -68,4 +68,14 @@ class PrestitiController extends Controller
         return redirect()->route('ushome')
             ->with('success', 'Prestito terminato con successo!');
     }
+
+    // PAGINE POST-AUTENTICAZIONE
+    public function prestiti_utente() {
+        return view('users.loans', [
+            'libri_user' => Prestiti::user_books(),
+            'azione' => 'visualizza',
+            'type' => 'users',
+            'pagina' => 'users/loans'
+        ]);
+    }
 }

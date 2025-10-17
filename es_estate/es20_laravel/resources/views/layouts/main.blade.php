@@ -13,7 +13,7 @@
                 @include('blocks.nav-user')
             @endauth
         </header>
-        <main>
+        <main id="centrale">
             @include('blocks.success')
 
             {{-- MAIN CONTENT --}}

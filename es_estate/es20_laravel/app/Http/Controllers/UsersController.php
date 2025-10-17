@@ -16,7 +16,7 @@ class UsersController extends Controller
         return view('users.login', [
             'metaTitle' => 'Accesso Users',
             'pageTitle' => 'Users',
-            'h1' => 'LOGIN UTENTI',
+            'h1' => 'Login Utenti',
             'h3' => 'Accedi all\'area riservata utenti/admin:',
             'azione' => 'login',
             'pagina' => 'users/login'
@@ -35,10 +35,7 @@ class UsersController extends Controller
 
     public function user_homepage() {
         return view('users.homepage', [
-            'libri_user' => Prestiti::user_books(),
-            'libri_genere' => LibriController::libri_per_genere(),
-            'libri_autore' => LibriController::libri_per_autore(),
-            'azione' => 'cerca',
+            'azione' => 'null',
             'type' => 'users',
             'pagina' => 'users/search'
         ]);

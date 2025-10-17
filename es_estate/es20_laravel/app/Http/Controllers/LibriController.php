@@ -83,7 +83,7 @@ class LibriController extends Controller
         
         return view('users.search', [
             'libri_match' => $libri_match,
-            /* 'pagina' => 'user/search' */
+            'pagina' => 'user/search'
         ]);
     }
 
@@ -95,15 +95,24 @@ class LibriController extends Controller
         return Libri::orderBy('autore', 'asc')->get();
     }
 
-    // FUNZIONI POST-AUTENTICAZIONE
-    public function search_homepage() {
+    // PAGINE POST-AUTENTICAZIONE
+    public function cerca_libri() {
         return view('users.search', [
-            'libri_user' => Prestiti::user_books(),
             'libri_genere' => $this->libri_per_genere(),
             'libri_autore' => $this->libri_per_autore(),
             'azione' => 'cerca',
             'type' => 'users',
             'pagina' => 'users/search'
+        ]);
+    }
+
+    public function elenco_libri() {
+        return view('users.stored-books', [
+            'libri_genere' => $this->libri_per_genere(),
+            'libri_autore' => $this->libri_per_autore(),
+            /* 'azione' => 'cerca', */
+            'type' => 'users',
+            'pagina' => 'users/stored-books'
         ]);
     }
 }

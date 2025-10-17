@@ -1,18 +1,18 @@
-<table border="1px">
+<table class="table-sm table-striped table-hover align-middle">
     <thead>
         <tr>
-            <td>ID Utente</td>
-            <td>Nome</td>
-            <td>Email</td>
-            <td>Verificato il</td>
-            <td>Is Admin</td>
-            <td>Azione #1</td>
-            <td>Azione #2</td>
+            <th scope="col">ID Utente</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Verificato il</th>
+            <th scope="col">Is Admin</th>
+            <th scope="col">Azione #1</th>
+            <th scope="col">Azione #2</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($users as $user)
-            <tr>
+            <tr scope="row">
                 <td>{{ $user['idu'] }}</td>
                 <td>{{ $user['name'] }}</td>
                 <td>{{ $user['email'] }}</td>
@@ -23,7 +23,7 @@
                         @csrf
                         <input type="hidden" name="azione" value="promuovi">
                         <input type="hidden" name="idu" value="{{ $user['idu'] }}">
-                        <input class="button" type="submit" value="PROMUOVI">
+                        <input class="btn btn-success btn-sm" type="submit" value="PROMUOVI">
                     </form>                    
                 </td>
                 <td>
@@ -31,7 +31,7 @@
                         @csrf
                         <input type="hidden" name="azione" value="elimina">
                         <input type="hidden" name="idu" value="{{ $user['idu'] }}">
-                        <input class="button" type="submit" value="ELIMINA">
+                        <input class="btn btn-danger btn-sm" type="submit" value="ELIMINA">
                     </form>                    
                 </td>                
             </tr>            

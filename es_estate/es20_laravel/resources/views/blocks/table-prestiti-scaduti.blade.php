@@ -1,20 +1,22 @@
-<table border="1px">
+<table class="table-sm table-striped table-hover align-middle">
     <thead>
         <tr>
-            <td>ID prestito</td>
-            <td>Titolo libro</td>
-            <td>Genere libro</td>
-            <td>Nome lettore</td>
-            <td>Email lettore</td>
-            <td>Inizio prestito</td>
-            <td>Scadenza</td>
-            <td>Fine prestito</td>
-            <td>Azione #1</td>
+            <th scope="col">ID prestito</th>
+            <th scope="col">Titolo libro</th>
+            <th scope="col">Titolo libro</th>
+            <th scope="col">Titolo libro</th>
+            <th scope="col">Genere libro</th>
+            <th scope="col">Nome lettore</th>
+            <th scope="col">Email lettore</th>
+            <th scope="col">Inizio prestito</th>
+            <th scope="col">Scadenza</th>
+            <th scope="col">Fine prestito</th>
+            <th scope="col">Azione #1</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($prestiti_scaduti as $prestito)
-            <tr>
+            <tr scope="row">
                 <td>{{ $prestito->idp }}</td>
                 <td>{{ $prestito->titolo }}</td>
                 <td>{{ $prestito->genere }}</td>
@@ -29,7 +31,7 @@
                         <input type="hidden" name="azione" value="elimina">
                         <input type="hidden" name="idu" value="{{ $prestito->idu }}">
                         <input type="hidden" name="idp" value="{{ $prestito->idp }}">
-                        <input class="button" type="submit" value="INVIA SOLLECITO">
+                        <input class="btn btn-danger btn-sm" type="submit" value="INVIA SOLLECITO">
                     </form>                    
                 </td>                
             </tr>            
