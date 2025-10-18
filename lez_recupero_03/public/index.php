@@ -2,8 +2,8 @@
 
     ################################################
     # INCLUDES e IMPORT
-
     require_once '../res/ext/autoload.php';
+    require_once '../api/php/api_proxy.php';
 
     foreach (glob("../res/inc/*.php") as $file) {
         require_once $file;
@@ -26,7 +26,6 @@
     //tabelle DB
     $tab_vendite = new VenditeModel($pdo, 'vendite', 'idv');
     VenditeController::init($tab_vendite); //nuovo modo: classe statica
-    
 
 
     ################################################
@@ -64,6 +63,22 @@
     // elimina vendita
     if (isset($_POST['azione']) && $_POST['azione'] == 'elimina' && isset($_POST['idv'])) {
         VenditeController::elimina_vendita($_POST['idv']);
+    }
+
+
+    ################################################
+    #   CHIAMATA API - CALCOLA PROVVIGIONI
+    // Calcola provvigioni (nuova azione)
+    if (isset($_GET['azione']) && $_GET['azione'] == 'calcola_provvigioni') {
+        $result = ApiProxy::calcolaProvvigioni();
+        
+        if ($result['success']) {
+            echo "<script>alert('" . $result['message'] . "');</script>";
+            // Ricarica le vendite per mostrare i cambiamenti
+            $vendite = VenditeController::elenco_vendite();
+        } else {
+            echo "<script>alert('Errore: " . $result['error'] . "');</script>";
+        }
     }
 
 

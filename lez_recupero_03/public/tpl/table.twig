@@ -1,4 +1,3 @@
-{# blocks/clienti.registrati.table.twig #}
 <div class="table-container">
     {% if vendite is not empty %}
         <table border="1px">
@@ -18,14 +17,13 @@
             </thead>
             <tbody>
                 {% for vendita in vendite %}
-                    <tr>
+                    <tr data-id="{{ vendita.idv }}">  <!-- AGGIUNGI QUESTO -->
                         <td>{{ vendita.idv }}</td>
                         <td>{{ vendita.agente }}</td>
                         <td>{{ vendita.data }}</td>
                         <td>{{ vendita.importo }} €</td>
                         <td>{{ vendita.provvigione }} €</td>
                         <td>
-                            <!-- FORM PER MODIFICARE vendita -->
                             <form method="post" style="display:inline">
                                 <input type="hidden" name="azione" value="modifica">
                                 <input type="hidden" name="idv" value="{{ vendita.idv }}">
@@ -33,7 +31,6 @@
                             </form>
                         </td>
                         <td>
-                            <!-- FORM PER ELIMINARE vendita -->
                             <form method="post" style="display:inline">
                                 <input type="hidden" name="azione" value="elimina">
                                 <input type="hidden" name="idv" value="{{ vendita.idv }}">

@@ -1,7 +1,7 @@
 ########################################### DATABASE
 CREATE DATABASE recupero03;
 USE recupero03;
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
 
 # CREATE USER IF NOT EXISTS 'userphp'@'localhost' IDENTIFIED BY 'admin';
 # GRANT ALL PRIVILEGES ON `database`.* TO 'userphp'@'localhost';
@@ -15,7 +15,7 @@ CREATE TABLE vendite (
     agente VARCHAR(100) NOT NULL,
     `data` DATE NOT NULL,
     importo FLOAT NOT NULL,
-    provvigione FLOAT NULL
+    provvigione FLOAT NULL DEFAULT NULL
 );
 
 
@@ -120,5 +120,10 @@ CALL PopolaVendite50();
 CALL PopolaVenditeNoProvvigione();
 
 ########################################### TEST QUERY
+TRUNCATE TABLE vendite; -- svuota la tabella
 SELECT * FROM vendite;
+
+SELECT * FROM vendite WHERE provvigione IS NULL;
+
+UPDATE vendite SET provvigione = importo * 0.10 WHERE provvigione IS NULL;
 
