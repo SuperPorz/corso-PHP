@@ -56,8 +56,6 @@
             'provvigione' => $_POST['provvigione'] ?? null
         ];
         VenditeController::modifica_vendita($array);
-        // Ricarica le vendite dopo la modifica
-        /* $vendite = VenditeController::elenco_vendite(); */
     }
 
     // elimina vendita

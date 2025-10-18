@@ -34,7 +34,7 @@ class ApiProxy {
     }
 
     public static function vendite_registrate() {
-        $python_api_url = "http://127.0.0.1:5000/api/provvigioni";
+        $python_api_url = "http://127.0.0.1:5000/api/vendite";
         
         // Inizializza cURL
         $ch = curl_init();
