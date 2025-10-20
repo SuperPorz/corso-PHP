@@ -14,24 +14,29 @@ class AdminController extends Controller
         return view('admin.homepage', [
             'metaTitle' => 'Homepage Admin',
             'pageTitle' => 'Admin',
-            'libri' => Libri::all(),
-            'users' => User::all(),
-            'prestiti' => PrestitiController::index(),
-            'prestiti_scaduti' => PrestitiController::scaduti(),
             'pagina' => 'admin/homepage'
+        ]);
+    }
+
+    public function pagina_users() {
+        return view('admin.users', [
+            'metaTitle' => 'Homepage Admin',
+            'pageTitle' => 'Admin',
+            'users' => User::all(),
+            'pagina' => 'admin/users'
         ]);
     }
 
     // FUNZIONI LEGATE ALLE ATTIVITA' DI ADMIN
     public function promote_user(Request $request) {
         Admins::give_admin($request->idu);
-        return redirect()->route('adhome')
+        return redirect()->route('adusers')
             ->with('success', 'Utente promosso con successo!');
     }
 
     public function delete_user(Request $request) {
         Admins::delete_user($request->idu);
-        return redirect()->route('adhome')
+        return redirect()->route('adusers')
             ->with('success', 'Utente eliminato con successo!');
     }
 }

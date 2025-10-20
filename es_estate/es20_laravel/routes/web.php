@@ -13,11 +13,7 @@ Route::get('/', function () {return view('welcome');})->name('welcome');
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// CREATION ROUTES (popola DB con fatories & seeders)
-Route::get('/populate',function(){ 
-    Artisan::call('db:seed', ['--class' => 'DatabaseSeeder']);
-    return view('welcome', ['data' => 'Database popolato!']);
-});
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -81,12 +77,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('homepage', 'homepage');
 
         //modifica/elimina users
+        Route::get('users', 'pagina_users')->name('adusers');
         Route::post('promote-user', 'promote_user');
         Route::post('delete-user', 'delete_user');
     });
     
     // LibriController
     Route::controller(LibriController::class)->group(function () {
+
+        //pagina database
+        Route::get('database', 'pagina_db')->name('adDB');
 
         //modifica/elimina libro
         Route::post('edit-book', 'dati_libro');
@@ -97,10 +97,22 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // PrestitiController
     Route::controller(PrestitiController::class)->group(function () {
 
+        //pagina elenco prestiti (tutti)
+        Route::get('loans-list', 'pagina_loans_list')->name('adloans');
+
+        //pagina prestiti scaduti
+        Route::get('expired-loans', 'pagina_expired_loans');
+
         //cancella prestito
         Route::post('delete-loan', 'delete_loan');
 
         //invia mail sollecito
         Route::post('send-insult', 'send_insult');
+    });
+
+    // Popola DB con fatories & seeders
+    Route::get('populate', function(){ 
+        Artisan::call('db:seed', ['--class' => 'DatabaseSeeder']);
+        return redirect()->route('adhome')->with(['data' => 'Database popolato!']);
     });
 });

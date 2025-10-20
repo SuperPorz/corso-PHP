@@ -15,22 +15,27 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Utente NORMALE fisso per debug
-        User::create([
-            'name' => 'pincopallo',
-            'email' => 'pincopallo@gmail.com',
-            'password' => Hash::make('cacca1234'),
-            'is_admin' => false,
-            'email_verified_at' => now(),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'pincopallo@gmail.com'], // Condizione di ricerca
+            [
+                'name' => 'pincopallo',
+                'password' => Hash::make('cacca1234'),
+                'is_admin' => false,
+                'email_verified_at' => now(),
+            ]
+        );
 
         // Utente ADMIN fisso per debug
-        User::create([
-            'name' => 'bubula',
-            'email' => 'bubula@gmail.com',
-            'password' => Hash::make('cacca1234'),
-            'is_admin' => true,
-            'email_verified_at' => now(),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'bubula@gmail.com'], // Condizione di ricerca
+            [
+                'name' => 'bubula',
+                'email' => 'bubula@gmail.com',
+                'password' => Hash::make('cacca1234'),
+                'is_admin' => true,
+                'email_verified_at' => now(),
+            ]
+        );
 
         // 6 users verificati
         User::factory()->count(6)->create();

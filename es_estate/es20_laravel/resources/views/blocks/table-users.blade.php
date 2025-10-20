@@ -1,4 +1,4 @@
-<table class="table-sm table-striped table-hover align-middle">
+<table class="table table-sm table-striped table-hover">
     <thead>
         <tr>
             <th scope="col">ID Utente</th>

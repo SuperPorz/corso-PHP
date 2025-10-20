@@ -3,18 +3,22 @@
         <a class="navbar-brand" href="{{ route('welcome') }}">
             <img src="{{ asset('img/library.svg') }}" alt="Bootstrap" width="80" height="60">
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav flex-grow-1">
-                <a class="nav-link active" href="{{ url('/users/homepage')}}">Home</a>
-                <a class="nav-link active" href="{{ url('/users/search')}}">Modifica Libro</a>
-                <a class="nav-link active" href="{{ url('/users/stored-books')}}">Elenco Libri</a>
-                <a class="nav-link active" href="{{ url('/users/loans')}}">Elenco Prestiti</a>
-                <a class="nav-link active" href="{{ url('/users/loans')}}">Prestiti Scaduti</a>
-                <a class="nav-link active" href="{{ url('/populate')}}">Popola Database</a>
+                <a class="nav-link active" href="{{ url('/admin/homepage')}}">Home</a>
+                <a class="nav-link" href="{{ url('/admin/database')}}">Database</a>
+                <a class="nav-link" href="{{ url('/admin/users')}}">Gestione Utenti</a>
+                <a class="nav-link" href="{{ url('/admin/loans-list')}}">Elenco Prestiti</a>
+                <a class="nav-link" href="{{ url('/admin/expired-loans')}}">Prestiti Scaduti</a>
+                <a class="nav-link" href="{{ url('/admin/populate')}}">Popola Database</a>
             </div>
             <div class="d-flex btn-group">
                 @auth
                 <form action="{{ route('logout') }}" method="POST">
+                    @csrf
                     <button class="btn btn-secondary" type="submit">Logout</button>
                 </form>
                 @else

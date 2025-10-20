@@ -16,10 +16,14 @@
     background-color: #b1a3a6;
 }
 
-.img-form {
-    Width: 100%;
-    Height: 100%;
-    Object-fit: cover;
+#centrale #carouselExampleAutoplaying {
+    background-color: #b1a3a6;
+}
+
+.img-fluid.img-form {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 main {

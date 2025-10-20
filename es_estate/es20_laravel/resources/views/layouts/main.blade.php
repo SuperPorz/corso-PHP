@@ -13,6 +13,13 @@
                 @include('blocks.nav-user')
             @endauth
         </header>
+        @if (isset($data))
+            <div class="row" style=" background-color: green">
+                <div class="col-12">
+                    <pre style="color: white">Inserimento effettuato!</pre>
+                </div>
+            </div>
+        @endif
         <main id="centrale">
             @include('blocks.success')
 

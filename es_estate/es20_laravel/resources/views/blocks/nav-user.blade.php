@@ -3,12 +3,15 @@
         <a class="navbar-brand" href="{{ route('welcome') }}">
             <img src="{{ asset('img/library.svg') }}" alt="Bootstrap" width="80" height="60">
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav flex-grow-1">
                 <a class="nav-link active" href="{{ url('/users/homepage')}}">Home</a>
-                <a class="nav-link active" href="{{ url('/users/search')}}">Cerca</a>
-                <a class="nav-link active" href="{{ url('/users/loans')}}">Prestiti</a>
-                <a class="nav-link active" href="{{ url('/users/stored-books')}}">Elenco</a>
+                <a class="nav-link" href="{{ url('/users/search')}}">Cerca</a>
+                <a class="nav-link" href="{{ url('/users/loans')}}">Prestiti</a>
+                <a class="nav-link" href="{{ url('/users/stored-books')}}">Elenco</a>
             </div>
             <div class="d-flex btn-group">
                 @auth

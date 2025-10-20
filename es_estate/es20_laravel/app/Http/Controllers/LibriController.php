@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class LibriController extends Controller
 {
     // FUNZIONI DESTINATE ALL'AMMINISTRAZIONE BIBLIOTECA
+
+    public function pagina_db() {
+        return view('admin.database', [
+            'metaTitle' => 'Database biblioteca',
+            'pageTitle' => 'Database',
+            'libri' => Libri::all(),
+            'pagina' => 'admin/database'
+        ]);
+    }
+
     public function dati_libro(Request $request) {
         $libri = Libri::all();
         if (isset($request->idl) && $request->azione == 'modifica') {
@@ -18,6 +28,7 @@ class LibriController extends Controller
             $libro_mod = [];
         }
         return view('admin.edit', [
+            'pagina' => 'admin/database',
             'libri' => $libri,
             'libro_mod' => $libro_mod
         ]);
@@ -39,13 +50,13 @@ class LibriController extends Controller
             $libro = Libri::findOrFail($request->idl);
             $libro->update($request->all());
             
-            return redirect()->route('adhome')
+            return redirect()->route('adDB')
                 ->with('Libro modificato con successo!');
         } else {
             // Inserimento nuovo libro
             Libri::create($request->all());
             
-            return redirect()->route('adhome')
+            return redirect()->route('adDB')
                 ->with('Libro inserito con successo!');
         }
     }
@@ -55,7 +66,7 @@ class LibriController extends Controller
             'idl' => 'required|integer'
         ]);
         Libri::destroy($request->idl);
-        return redirect()->route('adhome')
+        return redirect()->route('adDB')
             ->with('Libro eliminato con successo!');
     }
 

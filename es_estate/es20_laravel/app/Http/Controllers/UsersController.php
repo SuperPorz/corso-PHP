@@ -87,6 +87,4 @@ class UsersController extends Controller
         return redirect()->route('login')
             ->with('success', 'Logout effettuato con successo');
     }
-
-    // FUNZIONI POST-AUTENTICAZIONE
 }

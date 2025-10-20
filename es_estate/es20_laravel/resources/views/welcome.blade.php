@@ -7,13 +7,6 @@
                 <h1 class="italianno-regular">Biblioteca La Sapienza di Lorenzoni</h1>
             </div>
         </div>
-        @if (isset($data))
-            <div class="row" style=" background-color: green">
-                <div class="col-12">
-                    <pre style="color: white">Inserimento effettuato!</pre>
-                </div>
-            </div>
-        @endif
         @include('blocks.carousel')
         <div class="row">
             <div class="col-12">

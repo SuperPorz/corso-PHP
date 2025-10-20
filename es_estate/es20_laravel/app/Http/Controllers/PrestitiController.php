@@ -13,6 +13,30 @@ use Illuminate\Support\Facades\Mail;
 class PrestitiController extends Controller
 {
     // METODI ADMIN
+    //pagina prestiti (tutti)
+    public function pagina_loans_list() {
+        return view('admin.loans-list', [
+            'metaTitle' => 'Admin Lista Prestiti',
+            'pageTitle' => 'Lista Prestiti',
+            'azione' => 'visualizza',
+            'prestiti' => $this->index(),
+            'type' => 'admin',
+            'pagina' => 'users/loans-list'
+        ]);
+    }
+
+    //pagina prestiti scaduti
+    public function pagina_expired_loans() {
+        return view('admin.expired-loans', [
+            'metaTitle' => 'Admin Prestiti Scaduti',
+            'pageTitle' => 'Prestiti Scaduti',
+            'azione' => 'visualizza',
+            'prestiti_scaduti' => $this->scaduti(),
+            'type' => 'admin',
+            'pagina' => 'users/expired-loans'
+        ]);
+    }
+
     public static function index()
     {
         return Prestiti::all_prestiti();
@@ -24,7 +48,7 @@ class PrestitiController extends Controller
 
     public static function delete_loan(Request $request) {
         Prestiti::destroy($request->idp);
-        return redirect()->route('adhome')
+        return redirect()->route('adloans')
             ->with('Prestito eliminato!');
     }
 
@@ -32,7 +56,7 @@ class PrestitiController extends Controller
         $user = User::find($request->idu);
         $prestito = Prestiti::find($request->idp);
         Mail::to($user->email)->send(new SollecitoPrestito($prestito, $user));
-        return redirect()->route('adhome');
+        return redirect()->route('adloans');
     }
 
     // METODI USERS

@@ -1,9 +1,7 @@
-<table class="table-sm table-striped table-hover align-middle">
+<table class="table table-sm table-striped table-hover align-middle">
     <thead>
         <tr>
             <th scope="col">ID prestito</th>
-            <th scope="col">Titolo libro</th>
-            <th scope="col">Titolo libro</th>
             <th scope="col">Titolo libro</th>
             <th scope="col">Genere libro</th>
             <th scope="col">Nome lettore</th>
