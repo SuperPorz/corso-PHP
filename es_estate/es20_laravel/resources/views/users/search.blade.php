@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="col">
-            <h3>Risultati ricerca:</h3>
+            <h3 class="italianno-regular">Risultati ricerca:</h3>
             @isset ($libri_match)
                 @include('blocks.table-libri', ['libri' => $libri_match])
             @endisset

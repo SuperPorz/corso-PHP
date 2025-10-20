@@ -53,9 +53,10 @@
             </td>
             <td>
                 <form action="" method="GET">
+                    <span hidden class="hidden-span">{{ $libro->collocazione }}</span>
                     <input type="hidden" name="azione" value="mostra">
                     <input type="hidden" name="collocazione" value="{{ $libro->collocazione }}">
-                    <input class="btn btn-info btn-sm" type="submit" value="Vedi collocazione">
+                    <input class="btn btn-info btn-sm collocazione" type="submit" value="Vedi collocazione">
                 </form>
             </td>
             @endif

@@ -5,7 +5,7 @@
         <div class="card" style="border-radius: 1rem;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img id="img-cerca" src="{{ asset('img/search.jpg') }}" alt="login form" class="img-fluid"
+              <img src="{{ asset('img/search.jpg') }}" alt="login form" class="img-fluid img-form"
                 style="border-radius: 1rem 0 0 1rem;" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -16,7 +16,7 @@
                 @elseif ($pagina == 'modifica')
                     <form action="{{ url('/admin/edit-book') }}" method="POST">
                 @elseif ($pagina == 'users/search')
-                    <form action="{{ url('/users/search') }}" method="POST">
+                    <form id="cerca-libro" action="{{ url('/users/search') }}" method="POST">
                 @endif
                     @csrf
 
@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="pt-1 mb-4">
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block"
-                            type="submit">CERCA LIBRI</button>
+                            <input data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block"
+                            type="submit" value="CERCA LIBRI">
                         </div>
                     </form>
 

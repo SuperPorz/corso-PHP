@@ -36,6 +36,15 @@ class PrestitiController extends Controller
     }
 
     // METODI USERS
+    public function prestiti_utente() { //pagina prestiti
+        return view('users.loans', [
+            'libri_user' => Prestiti::user_books(),
+            'azione' => 'visualizza',
+            'type' => 'users',
+            'pagina' => 'users/loans'
+        ]);
+    }
+
     public function book_loan(Request $request) {
         $request->validate([
             'idl' => 'required|integer',
@@ -52,7 +61,7 @@ class PrestitiController extends Controller
             'idu' => $request->idu,
         ]);
         
-        return redirect()->route('ushome')
+        return redirect()->route('elenco')
             ->with('success', 'Prestito registrato!');
     }
 
@@ -65,17 +74,7 @@ class PrestitiController extends Controller
         $prestito->fine_prestito = now()->toDateString();
         $prestito->save();
         
-        return redirect()->route('ushome')
+        return redirect()->route('prestiti')
             ->with('success', 'Prestito terminato con successo!');
-    }
-
-    // PAGINE POST-AUTENTICAZIONE
-    public function prestiti_utente() {
-        return view('users.loans', [
-            'libri_user' => Prestiti::user_books(),
-            'azione' => 'visualizza',
-            'type' => 'users',
-            'pagina' => 'users/loans'
-        ]);
     }
 }

@@ -50,11 +50,11 @@ Route::prefix('users')->middleware('auth')->group(function () {
     // Rotte LibriController
     Route::controller(LibriController::class)->group(function () {
         //cerca libro
-        Route::get('search', 'cerca_libri');
+        Route::get('search', 'cerca_libri')->name('cerca-libri');
         Route::post('search', 'find_book');
 
         //elenco libri
-        Route::get('stored-books', 'elenco_libri');
+        Route::get('stored-books', 'elenco_libri')->name('elenco');
     });
 
     // Rotte PrestitiController
@@ -64,7 +64,7 @@ Route::prefix('users')->middleware('auth')->group(function () {
         Route::post('return-book','return_book')->name('return.book');
 
         //prestiti utente loggato
-        Route::get('loans', 'prestiti_utente');
+        Route::get('loans', 'prestiti_utente')->name('prestiti');
     });
 });
 
