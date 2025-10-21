@@ -21,39 +21,53 @@ def calcola_provvigioni():
     """Endpoint che calcola effettivamente le provvigioni"""
     try:
         with engine.connect() as conn:
-            # Query 1: Update
-            query1 = text("""
+            
+            # PRIMA: Seleziona gli ID dei record che hanno provvigione NULL
+            # (questi sono quelli che verranno aggiornati)
+            query_select_ids = text("""
+                SELECT idv
+                FROM vendite 
+                WHERE provvigione IS NULL OR provvigione = 0
+            """)
+            result_ids = conn.execute(query_select_ids)
+            ids_da_aggiornare = [row.idv for row in result_ids]
+            
+            if not ids_da_aggiornare:
+                return jsonify({
+                    'success': True,
+                    'ultimi_record': [],
+                    'record_aggiornati': 0,
+                    'timestamp': datetime.now().isoformat()
+                })
+            
+            # POI: Fai l'UPDATE
+            query_update = text("""
                 UPDATE vendite 
                 SET provvigione = ROUND(importo * 0.10, 2)
                 WHERE provvigione IS NULL OR provvigione = 0
             """)
-            conn.execute(query1)
+            conn.execute(query_update)
             
-            # ACOMMIT DELLE MODIFICHE
+            # COMMIT
             conn.commit()
             
-            # Query 2: Conta record aggiornati
-            count_query = text("SELECT ROW_COUNT()")
-            count_result = conn.execute(count_query)
-            row = count_result.fetchone()
-            updated_count = row[0] if row else 0
-            
-            # Query 3: Seleziona record aggiornati
-            query2 = text("""
-                SELECT idv, agente, importo, provvigione
+            # INFINE: Seleziona SOLO i record che hai appena aggiornato
+            placeholders = ','.join([':id' + str(i) for i in range(len(ids_da_aggiornare))])
+            query_select = text(f"""
+                SELECT idv, agente, data, importo, provvigione
                 FROM vendite 
-                WHERE ABS(provvigione - (importo * 0.10)) < 0.01
-                AND importo > 0
+                WHERE idv IN ({placeholders})
                 ORDER BY idv DESC
-                LIMIT 10
             """)
-            result2 = conn.execute(query2)
-            data = [dict(row._mapping) for row in result2]
+            
+            params = {f'id{i}': id_val for i, id_val in enumerate(ids_da_aggiornare)}
+            result_select = conn.execute(query_select, params)
+            data = [dict(row._mapping) for row in result_select]
             
             return jsonify({
                 'success': True,
-                'records_aggiornati': updated_count,
                 'ultimi_record': data,
+                'record_aggiornati': len(ids_da_aggiornare),
                 'timestamp': datetime.now().isoformat()
             })
             
