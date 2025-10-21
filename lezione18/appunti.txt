@@ -1,0 +1,16 @@
+esercizio in classe 1: (DA FARE)
+- scrivere un programma python che consente inserimento di notizie in un atabella mysql, 
+    indipendente da altri programmi;
+- scrivere un programma php che legga le notizie e le rappresenti a video e si aggiorni 
+    automaticamente tramite JS (set interval di alcuni secondi);
+
+osservazioni: per python mysql-connector (oppure flask+jsonify+request) è 
+    necessario (libreria esterna); l'architttura del progetto è: due app indipendenti 
+    che operano sullo stesso database;
+
+FLASK: mini web server che permette di lavorare in modo semplice con rotte ecc;
+
+esercizio in classe 2: (FATTO)
+- scrivere un applicazione Flask che fornisca tramite route /notizie un elenco di notizie in formato json, 
+    prese da un DB mysql (va bene usare DB di esercizio precedente)
+- scrivere un html che tramite JS legga ogni 5 sec le notizie da app Flask e le rappresenti a schermo;
