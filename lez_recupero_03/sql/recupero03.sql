@@ -116,11 +116,11 @@ END //
 DELIMITER ;
 
 ############# chiamate alle stored procedures
+TRUNCATE TABLE vendite; -- svuota la tabella
 CALL PopolaVendite50();
 CALL PopolaVenditeNoProvvigione();
 
 ########################################### TEST QUERY
-TRUNCATE TABLE vendite; -- svuota la tabella
 SELECT * FROM vendite;
 
 SELECT * FROM vendite WHERE provvigione IS NULL;

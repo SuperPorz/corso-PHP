@@ -5,7 +5,7 @@ let ultimiRecordAggiornati = [];
 
 // Aspetta 5 secondi prima del primo polling
 window.addEventListener("load", (e) => {
-    setInterval(getProvvigioni, 5 * 1000);
+    setInterval(getProvvigioni, 10 * 1000);
 });
 
 const getProvvigioni = async () => {
