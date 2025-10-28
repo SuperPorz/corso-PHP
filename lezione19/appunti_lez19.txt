@@ -1,0 +1,15 @@
+realizziamo una api JS/PHP
+- form + tabella: titolo + testo di una notizia
+- database solito
+- 2 file di PHP
+- frontend in JS/HTML
+- primo file php: api, secondo file: form
+
+
+TODO LIST PER CASA:
+- creare tabella con JS aggiungendo tasti MODIFICA/ELIMINA
+- spostare creazione tabella in file a parte (tipo 'table.js' oppure 'main.js')
+- implementare correttamente inserimento/modifica/elimina dal form verso il DB
+
+
+SCENZARIO 2 o PIU' APP DISTINTE: è l'approccio più moderno, tendente ai microservizi

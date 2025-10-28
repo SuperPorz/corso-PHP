@@ -1,0 +1,19 @@
+<tr>
+    <td>{{idn}}</td>
+    <td>{{titolo}}</td>
+    <td>{{testo}}</td>
+    <td>
+        <form action="" method="post">
+            <input type="hidden" name="azione" value="modifica">
+            <input type="hidden" name="idn" value={{idn}}>
+            <input type="submit" value="MODIFICA">
+        </form>
+    </td>
+    <td>
+        <form action="" method="post">
+            <input type="hidden" name="azione" value="elimina">
+            <input type="hidden" name="idn" value={{idn}}>
+            <input type="submit" value="ELIMINA">
+        </form>
+    </td>
+</tr>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lez19</title>
+    </head>
+    <body>
+        <h1>NOTIZIE</h1>
+        <hr>
+        <!-- section form -->
+        <hr>
+        <form action="form.php" method="POST">
+            <input type="hidden" name="azione" value="inserisci">
+            <input type="text" name="titolo" placeholder="titolo" required><br><br>
+            <input type="text" name="testo" placeholder="testo" required><br><br>
+            <input type="submit" value="INVIA">
+        </form>
+
+        <!-- section taella -->
+        <div id="notizie"></div>
+
+        <script>
+            function caricaNotizie() {
+            fetch('http://localhost/corso-PHP/lezione19/app2/notizie.php')
+                .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Errore HTTP: ${response.status}`);
+                }
+                return response.json();
+                })
+                .then(data => {
+                const container = document.getElementById('notizie');
+                container.innerHTML = '';
+                if (data && data.length > 0) {
+                    data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'notizia';
+                    div.innerHTML = `
+                        <h2>${item.titolo}</h2>
+                        <p>${item.testo}</p>
+                        <hr>
+                    `;
+                    container.appendChild(div);
+                    });
+                } else {
+                    container.innerHTML = '<p>Nessuna notizia</p>';
+                }
+
+                })
+                .catch(error => {
+                console.error('Errore in lettura:', error);
+                document.getElementById('notizie').innerHTML =
+                    '<p>Errore nel caricamento delle notizie.</p>';
+                });
+            }
+
+            // Carica subito le notizie al primo avvio
+            caricaNotizie();
+
+            // Ricarica le notizie ogni 15 secondi (15000 ms)
+            setInterval(caricaNotizie, 15000);
+        </script>    
+    </body>
+</html>
