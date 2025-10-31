@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TERZO ESERCIZIO</title>
+        <script src="main.js" defer></script>
+    </head>
+    <body>
+        <!-- SEZIONE GET -->
+        <h1>Esempio di richiesta GET</h1>
+        <label for="id-get">ID:</label>
+        <input type="text" id="id-get" name="id" required>
+        <br><br>
+        <input type="button" value="GET" onclick="leggiCane(document.getElementById('id-get').value);">
+        <hr>
+
+        <!-- SEZIONE DELETE -->
+        <h1>Esempio di richiesta DELETE</h1>
+        <label for="id-delete">ID:</label>
+        <input type="text" id="id-delete" name="id" required>
+        <br><br>
+        <input type="button" value="DELETE" onclick="eliminaCane(document.getElementById('id-delete').value);">
+        <hr>
+
+        <!-- SEZIONE POST -->
+        <h1>Esempio di richiesta POST</h1>
+        <label for="nome-post">Nome:</label>
+        <input type="text" id="nome-post" name="nome" required>
+        <br><br>
+        <label for="data_n-post">Data di nascita:</label>
+        <input type="date" id="data_n-post" name="data_n" required>
+        <br><br>
+        <input type="button" value="POST" onclick="inserisciCane();">
+        <hr>
+
+        <!-- SEZIONE PUT -->
+        <h1>Esempio di richiesta PUT</h1>
+        <label for="id-put">ID:</label>
+        <input type="number" id="id-put" name="id" required>
+        <br><br>
+        <label for="nome-put">Nome:</label>
+        <input type="text" id="nome-put" name="nome" required>
+        <br><br>
+        <label for="data_n-put">Data di nascita:</label>
+        <input type="date" id="data_n-put" name="data_n" required>
+        <br><br>
+        <input type="button" value="PUT" onclick="modificaCanePUT();">
+        <hr>
+
+        <!-- SEZIONE PATCH -->
+        <h1>Esempio di richiesta PATCH</h1>
+        <label for="id-patch">ID:</label>
+        <input type="number" id="id-patch" name="id" required>
+        <br><br>
+        <label for="nome-patch">Nome:</label>
+        <input type="text" id="nome-patch" name="nome">
+        <br><br>
+        <label for="data_n-patch">Data di nascita:</label>
+        <input type="date" id="data_n-patch" name="data_n">
+        <br><br>
+        <input type="button" value="PATCH" onclick="modificaCanePATCH();">
+        <hr>
+
+        <!-- SEZIONE TABELLA PUT-PATCH -->
+        <h1>Tabella Cani Registrati</h1>
+        <button onclick="caricaElencoCani()">Ricarica Elenco</button>
+        <br><br>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Data Nascita</th>
+                </tr>
+            </thead>
+            <tbody id="tabella-cani">
+                <tr>
+                    <td colspan="6">Caricamento...</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

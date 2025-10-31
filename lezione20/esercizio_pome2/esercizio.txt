@@ -1,0 +1,4 @@
+stesso esercizio della mattina, ma impostare tutte le operazioni 
+GET, POST, PUT, PATCH, DELETE, in un'unica pagina.
+
+
