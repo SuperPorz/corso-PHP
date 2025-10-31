@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempio PUT e PATCH</title>
+</head>
+<body>
+    <h1>Esempio di richiesta PUT e PATCH</h1>
+    
+    <button onclick="caricaElencoCani()">Ricarica Elenco</button>
+    
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data Nascita</th>
+                <th>Nuovo Nome</th>
+                <th>Nuova Data</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody id="tabella-cani">
+            <tr>
+                <td colspan="6">Caricamento...</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div id="risultato" style="margin-top: 20px;"></div>
+</body>
+<script>
+    // Carica l'elenco dei cani all'avvio della pagina
+    window.onload = function() {
+        caricaElencoCani();
+    };
+
+    function caricaElencoCani() {
+        fetch('http://localhost/corso-PHP/lezione20/api/cani')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('tabella-cani');
+                
+                // Pulisci la tabella
+                tbody.innerHTML = '';
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6">Nessun cane nel database</td></tr>';
+                    return;
+                }
+                
+                // Aggiungi una riga per ogni cane
+                data.forEach(cane => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${cane.id}</td>
+                        <td>${cane.nome}</td>
+                        <td>${cane.data_n}</td>
+                        <td><input type="text" id="nome-${cane.id}" placeholder="Nuovo nome"></td>
+                        <td><input type="date" id="data-${cane.id}"></td>
+                        <td>
+                            <button onclick="modificaCane(${cane.id}, 'PUT')">PUT</button>
+                            <button onclick="modificaCane(${cane.id}, 'PATCH')">PATCH</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Errore nel caricamento dei cani:', error);
+                alert('❌ Errore nel caricamento dei cani');
+            });
+    }
+
+    function modificaCane(id, metodo) {
+        const nome = document.getElementById('nome-' + id).value;
+        const data_n = document.getElementById('data-' + id).value;
+        
+        // Validazione per PUT: tutti i campi obbligatori
+        if (metodo === 'PUT') {
+            if (!nome || !data_n) {
+                alert('❌ PUT richiede che tutti i campi siano compilati!');
+                return;
+            }
+        }
+        
+        // Validazione per PATCH: almeno un campo
+        if (metodo === 'PATCH') {
+            if (!nome && !data_n) {
+                alert('❌ PATCH richiede almeno un campo da modificare!');
+                return;
+            }
+        }
+        
+        // Prepara i dati da inviare (solo i campi compilati per PATCH)
+        const dati = { id: id };
+        
+        if (nome) {
+            dati.nome = nome;
+        }
+        
+        if (data_n) {
+            dati.data_n = data_n;
+        }
+        
+        console.log('Invio richiesta:', metodo, 'Dati:', dati);
+        
+        // Effettua la richiesta
+        fetch('http://localhost/corso-PHP/lezione20/api/cani/' + id, {
+            method: metodo,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dati)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Risposta:', data);
+            
+            if (data.success) {
+                alert('✅ ' + data.success);
+                caricaElencoCani();
+            } else if (data.error) {
+                alert('❌ Errore: ' + data.error);
+            } else {
+                alert('Operazione completata! Risposta: ' + JSON.stringify(data));
+                caricaElencoCani();
+            }
+        })
+        .catch(error => {
+            console.error('Errore:', error);
+            alert('❌ Errore durante la modifica: ' + error.message);
+        });
+    }
+</script>
+</html>

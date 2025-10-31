@@ -12,4 +12,4 @@ TODO LIST PER CASA:
 - implementare correttamente inserimento/modifica/elimina dal form verso il DB
 
 
-SCENZARIO 2 o PIU' APP DISTINTE: è l'approccio più moderno, tendente ai microservizi
+SCENARIO 2 o PIU' APP DISTINTE: è l'approccio più moderno, tendente ai microservizi

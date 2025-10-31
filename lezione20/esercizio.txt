@@ -1,0 +1,6 @@
+impostare la connessione, e:
+per la get: se non c'è l'id nella richiesta, restituire il json con tutti i cani; se c'è l'id, restituire solo quel cane
+per la post: scrittura del nuovo record
+per la put: sostituzione dell'intero record
+per la patch (non c'è in elenco, ma va fatta): aggiornamento dei soli dati inviati per quel record
+per la delete, cancellazione

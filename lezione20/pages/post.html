@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Esempio POST</title>
+    </head>
+    <body>
+        <h1>Esempio di richiesta POST</h1>
+        <fieldset>
+            <legend>inserisci cane</legend>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <br><br>
+            <label for="data_n">Data di nascita:</label>
+            <input type="date" id="data_n" name="data_n" required>
+            <br><br>
+            <input type="button" value="Invia" onclick="inserisciCane();">
+        </fieldset>
+        
+        <div id="risultato" style="margin-top: 20px;"></div>
+    </body>
+    <script>
+        function inserisciCane() {
+            // Recupera i valori dai campi
+            const nome = document.getElementById('nome').value;
+            const data_n = document.getElementById('data_n').value;
+            
+            // Validazione base
+            if (!nome || !data_n) {
+                alert('Compila tutti i campi!');
+                return;
+            }
+            
+            // Prepara i dati da inviare
+            const dati = {
+                nome: nome,
+                data_n: data_n
+            };
+            
+            // Effettua la richiesta POST
+            fetch('http://localhost/corso-PHP/lezione20/api/cani', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dati)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Risposta:', data);
+                
+                // Mostra il risultato
+                if (data.success) {
+                    alert('✅ ' + data.success);
+                    // Pulisci i campi
+                    document.getElementById('nome').value = '';
+                    document.getElementById('data_n').value = '';
+                } else if (data.error) {
+                    alert('❌ Errore: ' + data.error);
+                } else {
+                    alert('Cane inserito! Risposta: ' + JSON.stringify(data));
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('❌ Errore durante l\'inserimento: ' + error.message);
+            });
+        }
+    </script>
+</html>

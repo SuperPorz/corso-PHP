@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempio DELETE</title>
+</head>
+<body>
+    <h1>Esempio di richiesta DELETE</h1>
+    <fieldset>
+        <legend>ELIMINA cane</legend>
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+        <br><br>
+        <input type="button" value="Invia" onclick="eliminaCane( document.getElementById('id').value );">
+    </fieldset>
+</body>
+<script>
+    function eliminaCane( id ) {
+        fetch( 'http://localhost/corso-PHP/lezione20/api/cani/' + id, {
+                method: 'DELETE',
+            } )
+            .then( response => response.json() )
+            .then( data => {
+                alert( JSON.stringify( data ) );
+            })
+            .catch( error => {
+                console.error( 'Errore:', error );
+            });
+    }
+</script>
+</html>

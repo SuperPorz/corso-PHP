@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="src/css/style.css">
+        <title>Lez19</title>
+        <script src="src/js/main.js" defer></script>
+    </head>
+    <body>
+        <h1>NOTIZIE</h1>
+
+        <!-- section form -->
+        <hr>
+        <form action="form.php" method="POST">
+            <input type="hidden" name="azione" value="inserisci">
+            <input type="text" name="titolo" placeholder="titolo" required><br><br>
+            <input type="text" name="testo" placeholder="testo" required><br><br>
+            <input type="submit" value="INVIA">
+        </form>
+        <br>
+
+        <!-- section taella -->
+        <div id="notizie"></div>
+
+    </body>
+</html>

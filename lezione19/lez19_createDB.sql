@@ -16,3 +16,5 @@ insert into notizie (titolo, testo) values ('titolo4', 'Lorem ipsum dolor sit am
 insert into notizie (titolo, testo) values ('titolo5', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m');
 insert into notizie (titolo, testo) values ('titolo6', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m');
 insert into notizie (titolo, testo) values ('GFGFGFFG', 'S,DHFKDSJHFKDSJHFKHFKSHDFSSHKHFDSJ');
+
+truncate notizie;
