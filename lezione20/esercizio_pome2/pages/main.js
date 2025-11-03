@@ -9,16 +9,16 @@ function leggiCane( id ) {
     });
 }
 
-function eliminaCane( id ) {
-    fetch( 'http://localhost/corso-PHP/lezione20/esercizio_pome2/api/cani/' + id, {
-            method: 'DELETE',
-    } )
-    .then( response => response.json() )
-    .then( data => {
-        alert( JSON.stringify( data ) );
+function eliminaCane(id) {
+  fetch("http://localhost/corso-PHP/lezione20/esercizio_pome2/api/cani/" + id, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(JSON.stringify(data));
     })
-    .catch( error => {
-        console.error( 'Errore:', error );
+    .catch((error) => {
+      console.error("Errore:", error);
     });
 }
 

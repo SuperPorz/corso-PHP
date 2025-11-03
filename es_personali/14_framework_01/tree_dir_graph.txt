@@ -1,0 +1,33 @@
+Elenco del percorso delle cartelle per il volume Windows
+Numero di serie del volume: 68A5-D64E
+C:\USERS\MIKYB\DESKTOP\WORK\CORSO-PHP\ES_PERSONALI\14_FRAMEWORK_01
+|   dir.php
+|   dir_structure.txt
+|   tree.txt
+|   tree2.txt
+|   tree3.txt
+|   
++---classes
+|       DatabaseTable.php
+|       
++---controllers
+|       JokeController.php
+|       RegisterController.php
+|       
++---includes
+|       DatabaseConnection.php
+|       
++---public
+|   |   .htaccess
+|   |   index.php
+|   |   showtotaljokes.php
+|   |   
+|   \---css
+|           jokes.css
+|           
+\---templates
+        editjoke.html.php
+        home.html.php
+        jokes.html.php
+        layout.html.php
+        

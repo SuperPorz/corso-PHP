@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /corso-PHP/es_personali/14_framework_01/public/
+
+# Non riscrivere i file che esistono fisicamente (CSS, JS, immagini)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Reindirizza tutto a index.php
+RewriteRule ^(.*)$ index.php [NC,L,QSA]
