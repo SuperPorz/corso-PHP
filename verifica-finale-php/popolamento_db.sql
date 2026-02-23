@@ -1,3 +1,12 @@
+-- 1) eseguire solo le prime 2 istruzioni di creazione DB
+
+CREATE DATABASE verifica_finale_php;
+USE verifica_finale_php;
+
+-- 2) successivamente effettuare le migration in laravel
+
+
+-- 3) eseguire le seguenti istruzioni di popolamento del database
 -- Ingredienti
 INSERT INTO ingredienti (nome_ingrediente) VALUES
 ('Pomodoro'),
